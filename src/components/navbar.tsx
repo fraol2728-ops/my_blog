@@ -33,7 +33,7 @@ export const DesktopNav = ({ scrolled }: { scrolled: boolean }) => {
               "px-4 py-2 text-base font-medium transition-colors duration-300",
               scrolled
                 ? "text-white hover:bg-white/10"
-                : "text-gray-950 hover:bg-emerald-600/10"
+                : "text-slate-100 hover:bg-white/10"
             )}
           >
             {item?.label}
@@ -75,9 +75,9 @@ const MobileNavButton = ({ open, scrolled }: { open: boolean; scrolled: boolean 
   return (
     <DisclosureButton className="flex size-12 items-center justify-center self-center rounded-lg data-[hover]:bg-black/5 lg:hidden duration-300">
       {open ? (
-        <XMarkIcon className={clsx("size-6", scrolled ? "text-white" : "text-gray-950")} />
+        <XMarkIcon className={clsx("size-6", scrolled ? "text-white" : "text-slate-100")} />
       ) : (
-        <Bars2Icon className={clsx("size-6", scrolled ? "text-white" : "text-gray-950")} />
+        <Bars2Icon className={clsx("size-6", scrolled ? "text-white" : "text-slate-100")} />
       )}
     </DisclosureButton>
   );
@@ -105,7 +105,7 @@ export const MobileNav = ({ scrolled }: { scrolled: boolean }) => {
                 "text-base font-medium hover:underline underline-offset-2 decoration-[1px] transition-colors",
                 scrolled
                   ? "text-white hover:text-emerald-300"
-                  : "text-gray-700 hover:text-emerald-700"
+                  : "text-slate-100 hover:text-emerald-300"
               )}
             >
               {item?.label}
@@ -166,10 +166,10 @@ export default function Navbar() {
     <Disclosure
       as="header"
       className={clsx(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
         scrolled
-          ? "bg-black/95"
-          : "bg-white/20 backdrop-blur-md"
+          ? "border-white/10 bg-slate-900/25 backdrop-blur-xl"
+          : "border-slate-800/70 bg-slate-950"
       )}
     >
       {({ open }) => (
@@ -188,7 +188,7 @@ export default function Navbar() {
                 <p
                   className={clsx(
                     "text-sm sm:text-base font-semibold leading-tight max-w-[185px] sm:max-w-[220px]",
-                    scrolled ? "text-white" : "text-gray-950"
+                    "text-white"
                   )}
                 >
                   Master Premier

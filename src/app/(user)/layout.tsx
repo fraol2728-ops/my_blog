@@ -19,7 +19,7 @@ export default function RootLayout({
     <>
       <GradientBackground />
       <Navbar />
-      <main className="pt-24 sm:pt-28">{children}</main>
+      <main className="pt-20">{children}</main>
       <Footer />
     </>
   );
