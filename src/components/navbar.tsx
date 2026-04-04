@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { PlusGrid, PlusGridItem, PlusGridRow } from "./plus-grid";
 import {
   Disclosure,
   DisclosureButton,
@@ -27,11 +26,11 @@ export const DesktopNav = ({ scrolled }: { scrolled: boolean }) => {
   return (
     <nav className="relative hidden lg:flex items-center">
       {navLinks?.map((item) => (
-        <PlusGridItem key={item?.href} className="flex">
+        <div key={item?.href} className="flex">
           <Link
             href={item?.href}
             className={clsx(
-              "px-4 py-3 text-base font-medium transition-colors duration-300",
+              "px-4 py-2 text-base font-medium transition-colors duration-300",
               scrolled
                 ? "text-white hover:bg-white/10"
                 : "text-gray-950 hover:bg-emerald-600/10"
@@ -39,9 +38,9 @@ export const DesktopNav = ({ scrolled }: { scrolled: boolean }) => {
           >
             {item?.label}
           </Link>
-        </PlusGridItem>
+        </div>
       ))}
-      <PlusGridItem className="flex items-center">
+      <div className="flex items-center">
         {session?.user ? (
           <button
             onClick={() => signOut()}
@@ -67,7 +66,7 @@ export const DesktopNav = ({ scrolled }: { scrolled: boolean }) => {
             Login
           </Link>
         )}
-      </PlusGridItem>
+      </div>
     </nav>
   );
 };
@@ -167,42 +166,40 @@ export default function Navbar() {
     <Disclosure
       as="header"
       className={clsx(
-        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-white/10 bg-black/95"
-          : "border-black/10 bg-white/20 backdrop-blur-md"
+          ? "bg-black/95"
+          : "bg-white/20 backdrop-blur-md"
       )}
     >
       {({ open }) => (
-        <div className="px-6 lg:px-8">
-          <PlusGrid className="mx-auto max-w-7xl">
-            <PlusGridRow className="relative flex items-center justify-between">
-              <Link href="/" className="py-2">
-                <PlusGridItem className="group flex items-center gap-3 px-2 py-2 transition-colors duration-300 hover:bg-emerald-600/10">
-                  <Image
-                    src="/logo.png"
-                    alt="Master Premier Green Energy Co. Ltd"
-                    width={48}
-                    height={48}
-                    className="h-11 w-11 rounded-md object-contain"
-                    priority
-                  />
-                  <p
-                    className={clsx(
-                      "text-sm sm:text-base font-semibold leading-tight max-w-[185px] sm:max-w-[220px]",
-                      scrolled ? "text-white" : "text-gray-950"
-                    )}
-                  >
-                    Master Premier
-                    <br />
-                    Green Energy Co. Ltd
-                  </p>
-                </PlusGridItem>
-              </Link>
-              <DesktopNav scrolled={scrolled} />
-              <MobileNavButton open={open} scrolled={scrolled} />
-            </PlusGridRow>
-          </PlusGrid>
+        <div className="mx-auto max-w-7xl px-6 py-1.5 lg:px-8">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="py-1">
+              <div className="group flex items-center gap-3 px-2 py-1.5 transition-colors duration-300 hover:bg-emerald-600/10">
+                <Image
+                  src="/logo.png"
+                  alt="Master Premier Green Energy Co. Ltd"
+                  width={48}
+                  height={48}
+                  className="h-10 w-10 rounded-md object-contain"
+                  priority
+                />
+                <p
+                  className={clsx(
+                    "text-sm sm:text-base font-semibold leading-tight max-w-[185px] sm:max-w-[220px]",
+                    scrolled ? "text-white" : "text-gray-950"
+                  )}
+                >
+                  Master Premier
+                  <br />
+                  Green Energy Co. Ltd
+                </p>
+              </div>
+            </Link>
+            <DesktopNav scrolled={scrolled} />
+            <MobileNavButton open={open} scrolled={scrolled} />
+          </div>
           <MobileNav scrolled={scrolled} />
         </div>
       )}
