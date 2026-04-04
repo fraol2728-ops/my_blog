@@ -14,8 +14,8 @@ export default function HeroSection() {
         className="absolute inset-0"
       >
         <Image
-          src="/hero.webp"
-          alt="Solar panels powering a modern property"
+          src="/solarimage.webp"
+          alt="Solar installation in South Sudan"
           fill
           priority
           className="object-cover"
@@ -32,28 +32,25 @@ export default function HeroSection() {
           transition={{ duration: 0.75, ease: "easeOut" }}
           className="max-w-3xl"
         >
-          <p className="mb-5 text-sm font-medium uppercase tracking-[0.22em] text-emerald-300">
-            Premium Solar Solutions
-          </p>
           <h1 className="text-5xl font-semibold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Power Your Future with Solar Energy
+            Powering South Sudan with Reliable Solar Energy
           </h1>
           <p className="mt-6 max-w-2xl text-base text-slate-100 sm:text-xl">
-            Clean, affordable, and reliable energy solutions for modern homes
-            and businesses.
+            Delivering modern, intelligent renewable energy solutions for homes, businesses, and
+            rural communities.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
             <Button
               href="/contact"
-              className="rounded-full bg-emerald-500 px-7 py-3.5 text-white shadow-lg shadow-emerald-500/30 transition data-[hover]:-translate-y-0.5 data-[hover]:bg-emerald-400"
+              className="rounded-2xl bg-emerald-500 px-7 py-3.5 text-white shadow-lg shadow-emerald-500/30 transition data-[hover]:-translate-y-0.5 data-[hover]:bg-emerald-400"
             >
               Get Free Quote
             </Button>
             <Button
               href="/services"
               variant="outline"
-              className="rounded-full border border-white/60 bg-white/5 px-7 py-3.5 text-white backdrop-blur-sm transition data-[hover]:bg-white/15"
+              className="rounded-2xl border border-white/60 bg-white/5 px-7 py-3.5 text-white backdrop-blur-sm transition data-[hover]:bg-white/15"
             >
               Explore Services
             </Button>
