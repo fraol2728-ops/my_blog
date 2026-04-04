@@ -98,9 +98,7 @@ const CATEGORY_POST = defineQuery(`*[
 export const getCategoryPost = async (category?: string) => {
   return await clientFetch({
     query: CATEGORY_POST,
-    params: {
-      category,
-    },
+    params: category ? { category } : {},
   });
 };
 

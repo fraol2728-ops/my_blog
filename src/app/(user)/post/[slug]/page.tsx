@@ -3,6 +3,7 @@ import Container from "@/components/container";
 import OtherPosts from "@/components/otherPosts";
 import { urlFor } from "@/sanity/lib/image";
 import { getOtherPosts, getPost } from "@/sanity/queries";
+import { Post, PostCategory } from "@/types";
 import dayjs from "dayjs";
 import { ChevronLeftIcon } from "lucide-react";
 import { PortableText } from "next-sanity";
@@ -17,7 +18,7 @@ const SinglePostPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await params;
-  const post = (await getPost(slug)) || notFound();
+  const post = ((await getPost(slug)) as Post | null) || notFound();
   const otherPosts = await getOtherPosts(slug, 3);
 
   return (
@@ -47,7 +48,8 @@ const SinglePostPage = async ({
             )}
             {Array.isArray(post?.categories) && (
               <div className="flex flex-wrap gap-2">
-                {post?.categories?.map((category) => (
+                {(post?.categories as PostCategory[])?.map(
+                  (category: PostCategory) => (
                   <Link
                     key={category?.slug}
                     href={`/category/${category?.slug}`}
@@ -55,7 +57,8 @@ const SinglePostPage = async ({
                   >
                     {category?.title}
                   </Link>
-                ))}
+                  ),
+                )}
               </div>
             )}
           </div>

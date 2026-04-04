@@ -1,4 +1,5 @@
 import { getCategories } from "@/sanity/queries";
+import { PostCategory } from "@/types";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronUpDownIcon } from "@heroicons/react/24/solid";
 import React from "react";
@@ -13,7 +14,7 @@ export default async function Categories({
   currentCategory?: string;
   noFeed?: boolean;
 }) {
-  const categories = await getCategories();
+  const categories: PostCategory[] = (await getCategories()) ?? [];
   if (categories?.length === 0) {
     return;
   }
@@ -36,7 +37,7 @@ export default async function Categories({
               <p className="col-start-2 text-sm/6">All categories</p>
             </Link>
           </MenuItem>
-          {categories?.map((category) => (
+          {categories?.map((category: PostCategory) => (
             <MenuItem key={category?.slug}>
               <Link
                 href={`/category/${category?.slug}`}

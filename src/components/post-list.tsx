@@ -1,20 +1,11 @@
 import { urlFor } from "@/sanity/lib/image";
+import { Post } from "@/types";
 import dayjs from "dayjs";
 import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export type PostListItem = {
-  slug?: string;
-  publishedAt?: string;
-  title?: string;
-  excerpt?: string;
-  mainImage?: Parameters<typeof urlFor>[0];
-  author?: {
-    name?: string;
-    image?: Parameters<typeof urlFor>[0];
-  };
-};
+export type PostListItem = Post;
 
 export default function PostList({
   posts,
@@ -37,7 +28,7 @@ export default function PostList({
 
   return (
     <div>
-      {posts.map((post) => (
+      {posts.map((post: PostListItem) => (
         <article
           key={post?.slug}
           className="relative grid grid-cols-1 gap-4 border-b border-b-gray-100 py-10 first:border-t first:border-t-gray-200 sm:grid-cols-[12rem_1fr]"

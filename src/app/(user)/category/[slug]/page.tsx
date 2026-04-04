@@ -3,6 +3,7 @@ import Categories from "@/components/categories";
 import Container from "@/components/container";
 import { urlFor } from "@/sanity/lib/image";
 import { getCategoryPost } from "@/sanity/queries";
+import { Post } from "@/types";
 import dayjs from "dayjs";
 import { ChevronRightIcon, FileX2 } from "lucide-react";
 import Image from "next/image";
@@ -15,7 +16,7 @@ const CategoryPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await params;
-  const posts = await getCategoryPost(slug);
+  const posts: Post[] = (await getCategoryPost(slug)) ?? [];
   return (
     <div>
       <Container>
@@ -30,7 +31,7 @@ const CategoryPage = async ({
                     {slug}
                   </span>
                 </h2>
-                {posts?.map((post) => (
+                {posts?.map((post: Post) => (
                   <div
                     key={post?.slug}
                     className="relative grid grid-cols-1 border-b border-b-gray-100 py-10 first:border-t first:border-t-gray-200 max-sm:gap-3 sm:grid-cols-3"

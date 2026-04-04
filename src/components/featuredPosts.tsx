@@ -1,12 +1,13 @@
 import { urlFor } from "@/sanity/lib/image";
 import { getFeaturedPosts } from "@/sanity/queries";
+import { Post } from "@/types";
 import Image from "next/image";
 import React from "react";
 import dayjs from "dayjs";
 import Link from "next/link";
 
 export default async function FeaturedPosts() {
-  const featuredPosts = await getFeaturedPosts(3);
+  const featuredPosts: Post[] = (await getFeaturedPosts(3)) ?? [];
   if (featuredPosts?.length === 0) {
     return;
   }
@@ -15,7 +16,7 @@ export default async function FeaturedPosts() {
     <div className="mt-10">
       <h2 className="text-2xl font-medium tracking-wide">My Featured Posts</h2>
       <div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-3">
-        {featuredPosts?.map((post) => (
+        {featuredPosts?.map((post: Post) => (
           <div
             key={post?.slug}
             className="relative flex flex-col rounded-3xl bg-white shadow-md shadow-black/5 ring-1 ring-black/5 p-2 group"
