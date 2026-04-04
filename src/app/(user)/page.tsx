@@ -1,19 +1,15 @@
 import { Button } from "@/components/button";
 import Container from "@/components/container";
-import { urlFor } from "@/sanity/lib/image";
+import PostList from "@/components/post-list";
 import { getAllPosts } from "@/sanity/queries";
 import {
   BatteryCharging,
-  ChevronRightIcon,
   Leaf,
   ShieldCheck,
   Sun,
   Wrench,
   Zap,
 } from "lucide-react";
-import dayjs from "dayjs";
-import Image from "next/image";
-import Link from "next/link";
 
 const services = [
   {
@@ -143,35 +139,11 @@ export default async function Home() {
             </Button>
           </div>
           <div className="mt-6">
-            {posts?.map((post) => (
-              <article
-                key={post?.slug}
-                className="relative grid grid-cols-1 gap-4 border-b border-b-gray-100 py-8 first:border-t first:border-t-gray-200 sm:grid-cols-[10rem_1fr]"
-              >
-                <p className="text-sm text-gray-500">
-                  {dayjs(post?.publishedAt).format("MMMM D, YYYY")}
-                </p>
-                <div>
-                  {post?.mainImage && (
-                    <Image
-                      src={urlFor(post?.mainImage).url()}
-                      alt={post?.title || "post image"}
-                      width={900}
-                      height={500}
-                      className="mb-4 h-44 w-full rounded-2xl object-cover"
-                    />
-                  )}
-                  <h3 className="text-lg font-medium text-gray-950">{post?.title}</h3>
-                  <p className="mt-2 text-sm text-gray-600">{post?.excerpt}</p>
-                  <Link
-                    href={`/post/${post?.slug}`}
-                    className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-emerald-700"
-                  >
-                    Read insight <ChevronRightIcon className="size-4" />
-                  </Link>
-                </div>
-              </article>
-            ))}
+            <PostList
+              posts={posts}
+              showAuthor={false}
+              readMoreLabel="Read insight"
+            />
           </div>
         </section>
 
