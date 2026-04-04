@@ -1,4 +1,5 @@
-import { createClient, type QueryParams } from "next-sanity";
+import { createClient } from "next-sanity";
+import type { QueryParams } from "sanity";
 
 import { apiVersion, dataset, projectId } from "../env";
 
