@@ -1,26 +1,14 @@
 "use client";
 
-import { Button } from "@/components/button";
-import { Leaf, ShieldCheck, Zap } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 
 const highlights = [
-  {
-    title: "Certified specialists",
-    description: "Licensed engineers and NABCEP-trained installers on every project.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Performance-first systems",
-    description: "Premium components tuned for long-term output and reliability.",
-    icon: Zap,
-  },
-  {
-    title: "Sustainable commitment",
-    description: "Helping communities reduce emissions with measurable impact.",
-    icon: Leaf,
-  },
+  "Certified engineering & technical expertise",
+  "Full project lifecycle (audit → design → installation → support)",
+  "Local solar manufacturing advantage",
+  "Focus on rural energy access",
 ];
 
 export default function AboutSection() {
@@ -36,7 +24,7 @@ export default function AboutSection() {
         >
           <Image
             src="/homeabout.jfif"
-            alt="Solar team discussing rooftop design plans"
+            alt="Master Premier Green Energy Co. Ltd team at a solar site"
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
@@ -53,34 +41,23 @@ export default function AboutSection() {
             Who We Are
           </p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight text-slate-900">
-            Built to deliver clean energy with confidence.
+            Master Premier Green Energy Co. Ltd
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-slate-600">
-            We design and install premium solar systems that help homeowners and
-            organizations control costs, increase resilience, and move toward a
-            smarter energy future.
+            Master Premier Green Energy Co. Ltd is a leading renewable energy company based in
+            South Sudan, delivering engineering, technical, and advisory services across the solar
+            energy sector. We specialize in designing, installing, and supporting high-performance
+            solar systems while promoting sustainable and affordable energy solutions.
           </p>
 
           <ul className="mt-8 space-y-4">
             {highlights.map((item) => (
-              <li key={item.title} className="flex gap-4 rounded-2xl bg-slate-50 p-4">
-                <item.icon className="mt-0.5 size-5 shrink-0 text-emerald-600" aria-hidden="true" />
-                <div>
-                  <p className="font-semibold text-slate-900">{item.title}</p>
-                  <p className="text-sm text-slate-600">{item.description}</p>
-                </div>
+              <li key={item} className="flex gap-4 rounded-2xl bg-slate-50 p-4 shadow-sm">
+                <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-600" aria-hidden="true" />
+                <p className="text-sm font-medium text-slate-700">{item}</p>
               </li>
             ))}
           </ul>
-
-          <div className="mt-8">
-            <Button
-              href="/about"
-              className="rounded-full bg-slate-900 px-7 py-3.5 text-white transition data-[hover]:-translate-y-0.5 data-[hover]:bg-slate-800"
-            >
-              Learn More
-            </Button>
-          </div>
         </motion.div>
       </div>
     </section>

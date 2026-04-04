@@ -14,16 +14,12 @@ export default function CTASection() {
         className="mx-auto max-w-6xl overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 px-6 py-16 text-center text-white shadow-2xl shadow-slate-900/25 sm:px-12"
       >
         <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-          Start Saving with Solar Today
+          Build a Sustainable Future with Solar Energy
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-slate-200 sm:text-lg">
-          Get a custom plan with estimated savings, installation timeline, and a
-          transparent quote from our specialists.
-        </p>
         <div className="mt-9">
           <Button
             href="/contact"
-            className="rounded-full bg-emerald-500 px-8 py-3.5 text-white shadow-lg shadow-emerald-500/30 transition data-[hover]:-translate-y-0.5 data-[hover]:bg-emerald-400"
+            className="rounded-2xl bg-emerald-500 px-8 py-3.5 text-white shadow-lg shadow-emerald-500/30 transition data-[hover]:-translate-y-0.5 data-[hover]:bg-emerald-400"
           >
             Request a Free Quote
           </Button>
