@@ -2,6 +2,7 @@ import AboutSection from "@/components/home/AboutSection";
 import CTASection from "@/components/home/CTASection";
 import HeroSection from "@/components/home/HeroSection";
 import ProcessSection from "@/components/home/ProcessSection";
+import ProjectsSection from "@/components/home/ProjectsSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import UniqueSection from "@/components/home/UniqueSection";
 import WhySolarSection from "@/components/home/WhySolarSection";
@@ -14,6 +15,7 @@ export default function Home() {
       <main className="px-6">
         <AboutSection />
         <ServicesSection />
+        <ProjectsSection />
         <ProcessSection />
         <WhySolarSection />
         <UniqueSection />
