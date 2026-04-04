@@ -1,74 +1,194 @@
-import Banner from "@/components/banner";
-import Categories from "@/components/categories";
+import { Button } from "@/components/button";
 import Container from "@/components/container";
-import FeaturedPosts from "@/components/featuredPosts";
 import { urlFor } from "@/sanity/lib/image";
 import { getAllPosts } from "@/sanity/queries";
+import {
+  BatteryCharging,
+  ChevronRightIcon,
+  Leaf,
+  ShieldCheck,
+  Sun,
+  Wrench,
+  Zap,
+} from "lucide-react";
 import dayjs from "dayjs";
-import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+const services = [
+  {
+    title: "Residential Solar",
+    description:
+      "Custom rooftop systems designed to reduce utility bills and increase home value.",
+    icon: Sun,
+  },
+  {
+    title: "Commercial Projects",
+    description:
+      "Scalable energy systems for offices, warehouses, and multi-site businesses.",
+    icon: BatteryCharging,
+  },
+  {
+    title: "Ongoing Maintenance",
+    description:
+      "Proactive inspections, performance checks, and rapid issue resolution.",
+    icon: Wrench,
+  },
+  {
+    title: "Energy Optimization",
+    description:
+      "Data-backed recommendations to maximize output and long-term savings.",
+    icon: Zap,
+  },
+];
+
+const reasons = [
+  {
+    title: "Certified Team",
+    description: "Licensed engineers and installers with proven project delivery.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Sustainable Impact",
+    description:
+      "Lower your carbon footprint with clean, renewable energy solutions.",
+    icon: Leaf,
+  },
+  {
+    title: "Reliable Performance",
+    description: "High-quality equipment backed by clear warranties and support.",
+    icon: Sun,
+  },
+];
+
 export default async function Home() {
-  const posts = await getAllPosts(5);
+  const posts = await getAllPosts(3);
+
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden pb-24">
       <Container>
-        <Banner />
-        <FeaturedPosts />
-        <div className="mt-16 pb-24">
-          <Categories />
-          <div>
-            {posts?.length === 0 ? (
-              <div>No Post Available</div>
-            ) : (
-              <div className="mt-6">
-                {posts?.map((post) => (
-                  <div
-                    key={post?.slug}
-                    className="relative grid grid-cols-1 border-b border-b-gray-100 py-10 first:border-t first:border-t-gray-200 max-sm:gap-3 sm:grid-cols-3"
-                  >
-                    <div>
-                      <p className="text-sm/5 max-sm:text-gray-700 sm:font-medium">
-                        {dayjs(post?.publishedAt).format("dddd, MMMM D, YYYY")}
-                      </p>
-                      {post?.author && (
-                        <div className="mt-2.5 flex items-center gap-3">
-                          {post?.author?.image && (
-                            <Image
-                              src={urlFor(post?.author?.image).url()}
-                              alt="authorImage"
-                              width={50}
-                              height={50}
-                              className="aspect-square size-6 rounded-full object-cover"
-                            />
-                          )}
-                          <p className="text-gray-700">{post?.author?.name}</p>
-                        </div>
-                      )}
-                    </div>
-                    <div className="sm:col-span-2 sm:max-w-2xl">
-                      <h2 className="text-sm/5 font-medium">{post?.title}</h2>
-                      <p className="mt-3 text-sm/6 text-gray-500">
-                        {post?.excerpt}
-                      </p>
-                      <div className="mt-4">
-                        <Link
-                          href={`/post/${post?.slug}`}
-                          className="flex items-center gap-1 text-sm/5 font-medium"
-                        >
-                          <span className="absolute inset-4" />
-                          Read more{" "}
-                          <ChevronRightIcon className="size-4 text-gray-400" />
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+        <section className="mt-12 rounded-4xl border border-emerald-100 bg-gradient-to-b from-emerald-50 via-white to-amber-50 p-8 shadow-sm sm:mt-16 sm:p-12">
+          <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
+            Clean Energy for Every Roof
+          </p>
+          <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-gray-950 sm:text-6xl">
+            Power your home and business with smarter solar solutions.
+          </h1>
+          <p className="mt-5 max-w-2xl text-base text-gray-600 sm:text-lg">
+            We design, install, and maintain efficient solar systems that help
+            you save on energy costs while investing in a greener future.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button href="/contact" className="bg-emerald-700 data-[hover]:bg-emerald-600">
+              Get a Free Consultation
+            </Button>
+            <Button href="/services" variant="outline">
+              Explore Services
+            </Button>
           </div>
-        </div>
+        </section>
+
+        <section className="mt-16">
+          <h2 className="text-3xl font-medium tracking-tight text-gray-950">
+            Services built for long-term energy savings
+          </h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {services.map((service) => (
+              <div
+                key={service.title}
+                className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm"
+              >
+                <service.icon className="size-8 text-emerald-600" />
+                <h3 className="mt-4 text-xl font-medium text-gray-950">
+                  {service.title}
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">{service.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-16">
+          <h2 className="text-3xl font-medium tracking-tight text-gray-950">
+            Why choose SolarPeak
+          </h2>
+          <div className="mt-6 grid gap-4 lg:grid-cols-3">
+            {reasons.map((reason) => (
+              <div
+                key={reason.title}
+                className="rounded-3xl border border-emerald-100 bg-emerald-50/40 p-6"
+              >
+                <reason.icon className="size-7 text-emerald-700" />
+                <h3 className="mt-3 text-lg font-medium text-gray-950">
+                  {reason.title}
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">{reason.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-16">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">
+                Featured Insights
+              </p>
+              <h2 className="mt-2 text-3xl font-medium tracking-tight text-gray-950">
+                Latest News & Project Stories
+              </h2>
+            </div>
+            <Button href="/blog" variant="outline">
+              View all updates
+            </Button>
+          </div>
+          <div className="mt-6">
+            {posts?.map((post) => (
+              <article
+                key={post?.slug}
+                className="relative grid grid-cols-1 gap-4 border-b border-b-gray-100 py-8 first:border-t first:border-t-gray-200 sm:grid-cols-[10rem_1fr]"
+              >
+                <p className="text-sm text-gray-500">
+                  {dayjs(post?.publishedAt).format("MMMM D, YYYY")}
+                </p>
+                <div>
+                  {post?.mainImage && (
+                    <Image
+                      src={urlFor(post?.mainImage).url()}
+                      alt={post?.title || "post image"}
+                      width={900}
+                      height={500}
+                      className="mb-4 h-44 w-full rounded-2xl object-cover"
+                    />
+                  )}
+                  <h3 className="text-lg font-medium text-gray-950">{post?.title}</h3>
+                  <p className="mt-2 text-sm text-gray-600">{post?.excerpt}</p>
+                  <Link
+                    href={`/post/${post?.slug}`}
+                    className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-emerald-700"
+                  >
+                    Read insight <ChevronRightIcon className="size-4" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-16 rounded-4xl bg-gray-950 p-8 text-white sm:p-12">
+          <h2 className="text-3xl font-medium tracking-tight sm:text-4xl">
+            Ready to switch to solar?
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm text-white/80 sm:text-base">
+            Talk with our experts to get a tailored proposal for your property.
+            Start your clean energy journey with confidence.
+          </p>
+          <div className="mt-6">
+            <Button href="/contact" className="bg-amber-400 text-gray-950 data-[hover]:bg-amber-300">
+              Request a Quote
+            </Button>
+          </div>
+        </section>
       </Container>
     </div>
   );
