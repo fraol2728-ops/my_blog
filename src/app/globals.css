@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    @apply bg-black text-white;
+  }
+
+  svg {
+    color: #000;
+  }
+}
