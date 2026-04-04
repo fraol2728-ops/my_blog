@@ -29,7 +29,13 @@ export default function HeroSection() {
         />
       </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-transparent" />
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(90deg, rgba(242, 146, 42, 0.78) 0%, rgba(242, 146, 42, 0.48) 58%, rgba(242, 146, 42, 0) 100%)",
+        }}
+      />
 
       <div className="relative mx-auto flex min-h-screen w-full max-w-6xl items-center px-6 py-24 lg:px-12">
         <motion.div
@@ -38,7 +44,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-3xl"
         >
-          <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
             Powering South Sudan with Reliable Solar Energy
           </h1>
 
