@@ -20,7 +20,7 @@ export default function HeroSection() {
         className="absolute inset-0"
       >
         <Image
-          src="/solarimage.webp"
+          src="/hero.png"
           alt="Solar installation in South Sudan"
           fill
           priority
