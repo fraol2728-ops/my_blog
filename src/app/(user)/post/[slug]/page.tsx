@@ -1,7 +1,6 @@
 import { Button } from "@/components/button";
 import Container from "@/components/container";
 import OtherPosts from "@/components/otherPosts";
-import WriteComment from "@/components/write-comment";
 import { urlFor } from "@/sanity/lib/image";
 import { getOtherPosts, getPost } from "@/sanity/queries";
 import dayjs from "dayjs";
@@ -179,34 +178,12 @@ const SinglePostPage = async ({
                   />
                 )}
                 <div className="mt-10">
-                  <Button variant="outline" href={"/"}>
+                  <Button variant="outline" href={"/blog"}>
                     <ChevronLeftIcon className="size-4" />
                     Back to Blog
                   </Button>
                 </div>
               </div>
-            </div>
-            {/* Comments will go here */}
-            <div className="mt-10 max-w-2xl">
-              <WriteComment _id={post?._id} />
-              {post?.comments?.length > 0 && (
-                <div className="p-5">
-                  <div className="w-full flex flex-col p-10 rounded-md max-w-2xl mx-auto shadow-rose-600 shadow space-y-2">
-                    <h3 className="text-4xl font-semibold">Comments</h3>
-                    <hr className="pb-2" />
-                    {post?.comments?.map((comment) => (
-                      <div key={comment?._id}>
-                        <p>
-                          <span className="text-blue-700 font-semibold">
-                            {comment?.name}
-                          </span>
-                          : {comment?.comment}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>

@@ -7,9 +7,9 @@ import { GradientBackground } from "@/components/gradient";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "My - Blog",
+  title: "SolarPeak | Solar Energy Solutions",
   description:
-    "Stay informed with product updates, company news, and insights on how to sell smarter at your company.",
+    "SolarPeak delivers residential and commercial solar installation, maintenance, and clean energy consulting services.",
 };
 export default function RootLayout({
   children,

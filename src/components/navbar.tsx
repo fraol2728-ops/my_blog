@@ -15,7 +15,9 @@ import Image from "next/image";
 
 export const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/company", label: "Company" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -28,7 +30,7 @@ export const DesktopNav = () => {
         <PlusGridItem key={item?.href} className="flex">
           <Link
             href={item?.href}
-            className="px-4 py-3 text-base font-medium text-gray-950 bg-blend-multiply hover:bg-red-600/[9.5%]"
+            className="px-4 py-3 text-base font-medium text-gray-950 bg-blend-multiply hover:bg-emerald-600/10"
           >
             {item?.label}
           </Link>
@@ -38,7 +40,7 @@ export const DesktopNav = () => {
         {session?.user ? (
           <button
             onClick={() => signOut()}
-            className="flex items-center gap-2 px-4 py-3 text-base font-medium text-gray-950 bg-blend-multiply hover:bg-red-600/[9.5%]"
+            className="flex items-center gap-2 px-4 py-3 text-base font-medium text-gray-950 bg-blend-multiply hover:bg-emerald-600/10"
           >
             <Image
               src={session?.user?.image as string}
@@ -51,8 +53,8 @@ export const DesktopNav = () => {
           </button>
         ) : (
           <Link
-            href={"/login"}
-            className="px-4 py-3 text-base font-medium text-gray-950 bg-blend-multiply hover:bg-red-600/[9.5%]"
+            href="/login"
+            className="px-4 py-3 text-base font-medium text-gray-950 bg-blend-multiply hover:bg-emerald-600/10"
           >
             Login
           </Link>
@@ -92,7 +94,7 @@ export const MobileNav = () => {
           >
             <Link
               href={item?.href}
-              className="text-base font-medium text-gray-700 hover:text-gray-950 hover:underline underline-offset-2 decoration-[1px]"
+              className="text-base font-medium text-gray-700 hover:text-emerald-700 hover:underline underline-offset-2 decoration-[1px]"
             >
               {item?.label}
             </Link>
@@ -119,14 +121,14 @@ export const MobileNav = () => {
                 className="w-8 h-8 rounded-full object-cover"
                 alt="userImage"
               />
-              <p className="text-base font-medium text-gray-700 group-hover:text-gray-950 group-hover:underline underline-offset-2 decoration-[1px]">
+              <p className="text-base font-medium text-gray-700 group-hover:text-emerald-700 group-hover:underline underline-offset-2 decoration-[1px]">
                 {session?.user?.name}
               </p>
             </button>
           ) : (
             <Link
-              href={"/login"}
-              className="text-base font-medium text-gray-700 hover:text-gray-950 hover:underline underline-offset-2 decoration-[1px]"
+              href="/login"
+              className="text-base font-medium text-gray-700 hover:text-emerald-700 hover:underline underline-offset-2 decoration-[1px]"
             >
               Login
             </Link>
@@ -145,7 +147,7 @@ export default function Navbar() {
           <PlusGrid>
             <PlusGridRow className="relative flex justify-between">
               <div>
-                <PlusGridItem className="py-3 hover:bg-red-600/[9.5%] group duration-300">
+                <PlusGridItem className="py-3 hover:bg-emerald-600/10 group duration-300">
                   <Logo />
                 </PlusGridItem>
               </div>

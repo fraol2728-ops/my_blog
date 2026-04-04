@@ -10,20 +10,19 @@ export default function Footer() {
         <div className="absolute inset-2 rounded-4xl bg-white/80" />
         <Container className="relative py-16 text-center sm:py-24">
           <div>
-            <p className="font-mono text-xs/5 font-semibold uppercase tracking-widest text-gray-500">
-              Get started
+            <p className="font-mono text-xs/5 font-semibold uppercase tracking-widest text-emerald-700">
+              Go Solar Today
             </p>
             <p className="mx-auto mt-6 text-3xl text-gray-950 sm:text-5xl tracking-tight font-medium">
-              React to dive in ? <br />
-              Start your free trial today
+              Build a cleaner future with reliable solar power.
             </p>
-            <p className="mx-auto mt-6 max-w-xs text-sm/6 text-gray-500">
-              Get the cheat codes for selling and unlock your team&apos;s
-              revenue potential.
+            <p className="mx-auto mt-6 max-w-xl text-sm/6 text-gray-500">
+              From first consultation to long-term maintenance, SolarPeak helps
+              homeowners and businesses transition to efficient renewable energy.
             </p>
             <div className="mt-6">
-              <Button className="w-full sm:w-auto" href="/login">
-                Get started
+              <Button className="w-full sm:w-auto bg-emerald-700 data-[hover]:bg-emerald-600" href="/contact">
+                Book a Consultation
               </Button>
             </div>
           </div>
