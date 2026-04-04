@@ -1,4 +1,3 @@
-import Container from "@/components/container";
 import AboutSection from "@/components/home/AboutSection";
 import BlogPreview from "@/components/home/BlogPreview";
 import CTASection from "@/components/home/CTASection";
@@ -29,58 +28,58 @@ export default async function Home() {
   const posts = await getFeaturedPosts(3);
 
   return (
-    <div className="bg-slate-50 pb-16 text-slate-900">
+    <div className="bg-white text-slate-900">
       <HeroSection />
 
-      <Container>
+      <main className="px-6">
         <StatsSection />
         <AboutSection />
         <ServicesSection />
         <ProcessSection />
         <BlogPreview posts={posts} />
         <CTASection />
+      </main>
 
-        <footer className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-          <div className="grid gap-8 md:grid-cols-3 md:items-center">
-            <div>
-              <p className="text-xl font-semibold text-slate-900">SolarPeak</p>
-              <p className="mt-2 text-sm text-slate-600">
-                Professional solar design, installation, and support for homes
-                and businesses.
-              </p>
-            </div>
+      <footer className="border-t border-slate-200 bg-slate-50 px-6 py-12">
+        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3 md:items-center">
+          <div>
+            <p className="text-xl font-semibold text-slate-900">SolarPeak</p>
+            <p className="mt-2 text-sm text-slate-600">
+              Premium solar design, installation, and lifecycle support for
+              homes and businesses.
+            </p>
+          </div>
 
-            <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-3">
-              {footerLinks.map((link) => (
+          <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-3">
+            {footerLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="text-sm text-slate-600 transition hover:text-emerald-600"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="md:text-right">
+            <p className="text-sm text-slate-600">hello@solarpeak.com</p>
+            <p className="text-sm text-slate-600">(800) 555-0199</p>
+            <div className="mt-3 flex items-center gap-3 md:justify-end">
+              {socialLinks.map((social) => (
                 <Link
-                  key={link.label}
-                  href={link.href}
-                  className="text-sm text-slate-600 transition hover:text-emerald-600"
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="rounded-full border border-slate-200 p-2 text-slate-600 transition hover:border-emerald-300 hover:text-emerald-600"
                 >
-                  {link.label}
+                  <social.icon className="size-4" />
                 </Link>
               ))}
-            </nav>
-
-            <div className="md:text-right">
-              <p className="text-sm text-slate-600">hello@solarpeak.com</p>
-              <p className="text-sm text-slate-600">(800) 555-0199</p>
-              <div className="mt-3 flex items-center gap-3 md:justify-end">
-                {socialLinks.map((social) => (
-                  <Link
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="rounded-full border border-slate-200 p-2 text-slate-600 transition hover:border-emerald-300 hover:text-emerald-600"
-                  >
-                    <social.icon className="size-4" />
-                  </Link>
-                ))}
-              </div>
             </div>
           </div>
-        </footer>
-      </Container>
+        </div>
+      </footer>
     </div>
   );
 }

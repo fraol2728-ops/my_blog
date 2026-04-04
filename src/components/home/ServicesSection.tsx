@@ -1,28 +1,31 @@
+"use client";
+
 import { BatteryCharging, Building2, House, Wrench } from "lucide-react";
+import { motion } from "motion/react";
 
 const services = [
   {
     title: "Residential Solar",
     description:
-      "Custom systems that lower utility bills and increase energy independence.",
+      "Custom systems engineered for lower utility bills, long-term value, and energy independence.",
     icon: House,
   },
   {
     title: "Commercial Solar",
     description:
-      "Scalable, high-output solutions for offices, warehouses, and large facilities.",
+      "High-output arrays designed for businesses focused on operating efficiency and sustainability goals.",
     icon: Building2,
   },
   {
-    title: "Energy Storage",
+    title: "Battery Storage",
     description:
-      "Battery backup systems to store excess power and protect against outages.",
+      "Store excess production and keep essential loads running through outages and peak-rate periods.",
     icon: BatteryCharging,
   },
   {
     title: "Maintenance & Monitoring",
     description:
-      "Proactive support, system checks, and performance optimization year-round.",
+      "24/7 diagnostics, preventive care, and performance optimization from our expert service team.",
     icon: Wrench,
   },
 ];
@@ -31,28 +34,35 @@ export default function ServicesSection() {
   return (
     <section className="py-20">
       <div className="mx-auto max-w-6xl">
-        <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          Solar Services Tailored to You
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">
+          Services
+        </p>
+        <h2 className="mt-3 text-4xl font-semibold tracking-tight text-slate-900">
+          End-to-end solar solutions.
         </h2>
-        <p className="mt-3 max-w-2xl text-slate-600">
-          Whether you&apos;re powering a home or scaling operations, we design systems
-          built for performance and long-term savings.
+        <p className="mt-4 max-w-3xl text-lg text-slate-600">
+          We combine strategy, engineering, and white-glove execution to deliver
+          systems that perform from day one.
         </p>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((service) => (
-            <article
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((service, index) => (
+            <motion.article
               key={service.title}
-              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
+              className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-500/10"
             >
-              <service.icon className="size-9 text-emerald-600" aria-hidden="true" />
-              <h3 className="mt-4 text-xl font-semibold text-slate-900">
-                {service.title}
-              </h3>
+              <div className="inline-flex rounded-xl bg-emerald-50 p-3 transition group-hover:bg-emerald-100">
+                <service.icon className="size-6 text-emerald-600" aria-hidden="true" />
+              </div>
+              <h3 className="mt-4 text-xl font-semibold text-slate-900">{service.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 {service.description}
               </p>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>

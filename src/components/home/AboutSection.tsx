@@ -1,45 +1,74 @@
+"use client";
+
 import { Button } from "@/components/button";
-import { CheckCircle2 } from "lucide-react";
+import { Leaf, ShieldCheck, Zap } from "lucide-react";
+import { motion } from "motion/react";
 import Image from "next/image";
 
 const highlights = [
-  "Certified Experts",
-  "High-Quality Equipment",
-  "Sustainable Solutions",
+  {
+    title: "Certified specialists",
+    description: "Licensed engineers and NABCEP-trained installers on every project.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Performance-first systems",
+    description: "Premium components tuned for long-term output and reliability.",
+    icon: Zap,
+  },
+  {
+    title: "Sustainable commitment",
+    description: "Helping communities reduce emissions with measurable impact.",
+    icon: Leaf,
+  },
 ];
 
 export default function AboutSection() {
   return (
     <section className="py-20">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
-        <div className="relative h-80 overflow-hidden rounded-2xl shadow-lg sm:h-96">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0, x: -28 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+          className="relative h-[26rem] overflow-hidden rounded-2xl shadow-2xl shadow-slate-900/15"
+        >
           <Image
             src="/homeabout.jfif"
-            alt="Solar technician inspecting rooftop panels"
+            alt="Solar team discussing rooftop design plans"
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
-        </div>
+        </motion.div>
 
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-600">
+        <motion.div
+          initial={{ opacity: 0, x: 28 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">
             Who We Are
           </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            Delivering smarter energy choices for every property.
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight text-slate-900">
+            Built to deliver clean energy with confidence.
           </h2>
-          <p className="mt-5 text-slate-600">
-            We help homeowners and businesses transition to clean power with
-            end-to-end solar solutions, transparent guidance, and reliable
-            long-term support.
+          <p className="mt-5 text-lg leading-relaxed text-slate-600">
+            We design and install premium solar systems that help homeowners and
+            organizations control costs, increase resilience, and move toward a
+            smarter energy future.
           </p>
 
-          <ul className="mt-6 space-y-3">
+          <ul className="mt-8 space-y-4">
             {highlights.map((item) => (
-              <li key={item} className="flex items-center gap-3 text-slate-700">
-                <CheckCircle2 className="size-5 text-emerald-600" aria-hidden="true" />
-                {item}
+              <li key={item.title} className="flex gap-4 rounded-2xl bg-slate-50 p-4">
+                <item.icon className="mt-0.5 size-5 shrink-0 text-emerald-600" aria-hidden="true" />
+                <div>
+                  <p className="font-semibold text-slate-900">{item.title}</p>
+                  <p className="text-sm text-slate-600">{item.description}</p>
+                </div>
               </li>
             ))}
           </ul>
@@ -47,12 +76,12 @@ export default function AboutSection() {
           <div className="mt-8">
             <Button
               href="/about"
-              className="rounded-full bg-slate-900 px-6 py-3 text-white data-[hover]:bg-slate-800"
+              className="rounded-full bg-slate-900 px-7 py-3.5 text-white transition data-[hover]:-translate-y-0.5 data-[hover]:bg-slate-800"
             >
               Learn More
             </Button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
