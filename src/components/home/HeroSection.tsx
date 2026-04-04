@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/button";
-import heroImage from "@/public/hero.webp";
 import { motion } from "motion/react";
 import Image from "next/image";
 
@@ -9,7 +8,7 @@ export default function HeroSection() {
   return (
     <section className="relative isolate min-h-[78vh] overflow-hidden rounded-2xl">
       <Image
-        src={heroImage}
+        src="/hero.webp"
         alt="Solar panels powering a modern home"
         fill
         priority
