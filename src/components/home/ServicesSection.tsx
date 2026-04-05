@@ -110,7 +110,7 @@ export default function ServicesSection() {
                     {service.highlights.map((highlight) => (
                       <li key={highlight} className="flex items-start gap-3">
                         <CheckCircle
-                          className="mt-0.5 h-5 w-5 shrink-0 text-black"
+                          className="mt-0.5 h-5 w-5 shrink-0 text-[#458137]"
                           aria-hidden="true"
                         />
                         <span className="text-base text-slate-700">{highlight}</span>

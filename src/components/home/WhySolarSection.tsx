@@ -25,7 +25,7 @@ export default function WhySolarSection() {
         <ul className="mt-8 grid gap-4 md:grid-cols-2">
           {benefits.map((benefit) => (
             <li key={benefit} className="flex items-start gap-3 rounded-2xl bg-slate-50 p-4">
-              <SunMedium className="mt-0.5 size-5 shrink-0 text-black" aria-hidden="true" />
+              <SunMedium className="mt-0.5 size-5 shrink-0 text-[#458137]" aria-hidden="true" />
               <span className="text-slate-700">{benefit}</span>
             </li>
           ))}
