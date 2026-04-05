@@ -1,11 +1,9 @@
 import AboutSection from "@/components/home/AboutSection";
 import BlogPreview from "@/components/home/BlogPreview";
-import CTASection from "@/components/home/CTASection";
 import HeroSection from "@/components/home/HeroSection";
 import ProcessSection from "@/components/home/ProcessSection";
 import ProjectsSection from "@/components/home/ProjectsSection";
 import ServicesSection from "@/components/home/ServicesSection";
-import UniqueSection from "@/components/home/UniqueSection";
 import WhySolarSection from "@/components/home/WhySolarSection";
 import { getAllPosts } from "@/sanity/queries";
 
@@ -23,8 +21,6 @@ export default async function Home() {
         <ProjectsSection />
         <ProcessSection />
         <WhySolarSection />
-        <UniqueSection />
-        <CTASection />
       </main>
     </div>
   );
