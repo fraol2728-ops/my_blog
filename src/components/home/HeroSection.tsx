@@ -72,7 +72,7 @@ export default function HeroSection() {
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-100 sm:text-base">
             {TRUST_INDICATORS.map((item) => (
               <li key={item} className="flex items-center gap-2">
-                <span className="text-emerald-300">✔</span>
+                <span className="text-white">✔</span>
                 <span>{item}</span>
               </li>
             ))}

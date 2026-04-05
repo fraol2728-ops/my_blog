@@ -45,7 +45,7 @@ const WriteComment = ({ _id }: { _id: string }) => {
         <div className="flex items-center justify-center p-5">
           <div className="w-full max-w-2xl px-6 py-16 rounded-lg shadow-xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 text-white">
             <div className="flex flex-col items-center space-y-4">
-              <CheckCircle className="w-16 h-16 text-green-300" />
+              <CheckCircle className="w-16 h-16 text-[#f2922a]" />
               <h1 className="text-3xl font-bold text-center">
                 Thank you for submitting your comment!
               </h1>

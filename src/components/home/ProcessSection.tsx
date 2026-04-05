@@ -45,9 +45,9 @@ export default function ProcessSection() {
                 className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
               >
                 <div className="inline-flex rounded-2xl bg-emerald-50 p-3">
-                  <step.icon className="size-6 text-emerald-600" aria-hidden="true" />
+                  <step.icon className="size-6 text-[#f2922a]" aria-hidden="true" />
                 </div>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-600">
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-[#f2922a]">
                   Step {index + 1}
                 </p>
                 <h3 className="mt-1 text-xl font-semibold text-slate-900">{step.title}</h3>

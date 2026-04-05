@@ -25,7 +25,7 @@ export default function MissionVision() {
               key={title}
               className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
             >
-              <Icon className="size-9 text-green-600" aria-hidden="true" />
+              <Icon className="size-9 text-[#f2922a]" aria-hidden="true" />
               <h3 className="mt-5 text-2xl font-semibold text-slate-900">{title}</h3>
               <p className="mt-3 text-base leading-relaxed text-slate-600">
                 {description}
