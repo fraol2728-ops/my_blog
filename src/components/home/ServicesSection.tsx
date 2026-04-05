@@ -66,7 +66,7 @@ export default function ServicesSection() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="mx-auto max-w-3xl text-center"
         >
-          <p className="text-sm uppercase text-black">Our Services</p>
+main
           <h2 className="mt-3 text-4xl font-bold md:text-5xl">
             Comprehensive Solar Solutions for Every Need
           </h2>
@@ -110,7 +110,7 @@ export default function ServicesSection() {
                     {service.highlights.map((highlight) => (
                       <li key={highlight} className="flex items-start gap-3">
                         <CheckCircle
-                          className="mt-0.5 h-5 w-5 shrink-0 text-black"
+main
                           aria-hidden="true"
                         />
                         <span className="text-base text-slate-700">{highlight}</span>

@@ -48,7 +48,7 @@ export default function WhyChooseUsSection() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <p className="text-sm uppercase tracking-[0.2em] text-black">Why Choose Us</p>
+ main
           <h2 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
             Delivering Reliable Solar Solutions You Can Trust
           </h2>
@@ -61,7 +61,7 @@ export default function WhyChooseUsSection() {
           <ul className="mt-10 space-y-6">
             {reasons.map(({ title, description, icon: Icon }) => (
               <li key={title} className="flex items-start gap-4">
-                <Icon className="mt-0.5 size-5 shrink-0 text-black" aria-hidden="true" />
+ main
                 <div>
                   <h3 className="font-semibold text-slate-900">{title}</h3>
                   <p className="mt-1 text-sm leading-6 text-gray-600">{description}</p>
@@ -72,7 +72,7 @@ export default function WhyChooseUsSection() {
 
           <Link
             href="#contact"
-            className="mt-10 inline-flex rounded-xl bg-black px-6 py-3 text-white transition hover:bg-neutral-800"
+ main
           >
             Get a Free Consultation
           </Link>

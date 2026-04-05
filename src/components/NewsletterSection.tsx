@@ -18,12 +18,3 @@ export default function NewsletterSection() {
           />
           <button
             type="button"
-            className="h-12 rounded-xl bg-black px-6 text-sm font-semibold text-white transition hover:bg-neutral-800"
-          >
-            Subscribe
-          </button>
-        </form>
-      </div>
-    </section>
-  );
-}

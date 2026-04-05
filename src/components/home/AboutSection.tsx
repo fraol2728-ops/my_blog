@@ -40,7 +40,7 @@ export default function AboutSection() {
           transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
           className="space-y-6"
         >
-          <p className="text-sm uppercase tracking-wide text-black">About Us</p>
+ main
 
           <h2 className="text-4xl font-bold leading-tight text-slate-900 md:text-5xl">
             Powering a Sustainable Future with Reliable Solar Solutions
@@ -56,7 +56,7 @@ export default function AboutSection() {
           <ul className="space-y-4">
             {bulletPoints.map((item) => (
               <li key={item} className="flex items-start gap-3">
-                <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-black" aria-hidden="true" />
+main
                 <span className="text-base text-slate-700">{item}</span>
               </li>
             ))}
@@ -64,7 +64,7 @@ export default function AboutSection() {
 
           <a
             href="/about"
-            className="inline-flex rounded-xl bg-black px-6 py-3 font-medium text-white transition hover:bg-neutral-800"
+ main
           >
             Learn More About Us
           </a>

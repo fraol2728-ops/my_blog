@@ -23,7 +23,7 @@ export default function ProcessSection() {
           {processSteps.map((step, index) => (
             <li key={step} className="relative">
               <div className="flex items-center gap-4 md:block">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black text-sm font-semibold text-white">
+ main
                   {index + 1}
                 </span>
                 <p className="text-base font-semibold text-slate-900 md:mt-4">
