@@ -23,7 +23,7 @@ export default function BlogPreview({ posts }: { posts: Post[] | null }) {
             </h2>
           </div>
           <Link
-            href="/blog"
+            href="/news"
             className="text-sm font-semibold text-slate-700 transition hover:text-emerald-600"
           >
             View all posts

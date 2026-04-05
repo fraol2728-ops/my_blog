@@ -181,9 +181,9 @@ const SinglePostPage = async ({
                   />
                 )}
                 <div className="mt-10">
-                  <Button variant="outline" href={"/blog"}>
+                  <Button variant="outline" href={"/news"}>
                     <ChevronLeftIcon className="size-4" />
-                    Back to Blog
+                    Back to News
                   </Button>
                 </div>
               </div>

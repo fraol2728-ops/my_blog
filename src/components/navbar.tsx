@@ -17,7 +17,7 @@ export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/blog", label: "Blog" },
+  { href: "/news", label: "News" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -174,8 +174,7 @@ export default function Navbar() {
       as="header"
       className={clsx(
         "fixed inset-x-0 top-4 z-50 border-b border-transparent bg-transparent transition-all duration-300",
-        scrolled
- main
+        scrolled && "bg-black/65 backdrop-blur-md border-white/10"
       )}
     >
       {({ open }) => (
