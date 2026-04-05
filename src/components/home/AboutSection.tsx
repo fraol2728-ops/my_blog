@@ -56,7 +56,7 @@ export default function AboutSection() {
           <ul className="space-y-4">
             {bulletPoints.map((item) => (
               <li key={item} className="flex items-start gap-3">
-                <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-black" aria-hidden="true" />
+                <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-[#458137]" aria-hidden="true" />
                 <span className="text-base text-slate-700">{item}</span>
               </li>
             ))}
@@ -64,7 +64,7 @@ export default function AboutSection() {
 
           <a
             href="/about"
-            className="inline-flex rounded-xl bg-black px-6 py-3 font-medium text-white transition hover:bg-neutral-800"
+            className="inline-flex rounded-xl bg-[#458137] px-6 py-3 font-medium text-white transition hover:bg-[#3b6f2f]"
           >
             Learn More About Us
           </a>

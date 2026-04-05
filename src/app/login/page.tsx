@@ -34,7 +34,7 @@ const LoginPage = async () => {
                 className={clsx(
                   "block w-full rounded-lg border border-transparent shadow ring-1 ring-black/10",
                   "px-[calc(theme(spacing.2)-1px)] py-[calc(theme(spacing[1.5])-1px)] text-base/6 sm:text-sm/6",
-                  "data-[focus]:outline data-[focus]:outline-2 data-[focus]:-outline-offset-1 data-[focus]:outline-black"
+                  "data-[focus]:outline data-[focus]:outline-2 data-[focus]:-outline-offset-1 data-[focus]:outline-[#458137]"
                 )}
               />
             </Field>
@@ -47,7 +47,7 @@ const LoginPage = async () => {
                 className={clsx(
                   "block w-full rounded-lg border border-transparent shadow ring-1 ring-black/10",
                   "px-[calc(theme(spacing.2)-1px)] py-[calc(theme(spacing[1.5])-1px)] text-base/6 sm:text-sm/6",
-                  "data-[focus]:outline data-[focus]:outline-2 data-[focus]:-outline-offset-1 data-[focus]:outline-black"
+                  "data-[focus]:outline data-[focus]:outline-2 data-[focus]:-outline-offset-1 data-[focus]:outline-[#458137]"
                 )}
               />
             </Field>
@@ -57,8 +57,8 @@ const LoginPage = async () => {
                   name="remember-me"
                   className={clsx(
                     "group block size-4 rounded border border-transparent shadow ring-1 ring-black/10 focus:outline-none",
-                    "data-[checked]:bg-black data-[checked]:ring-black",
-                    "data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-black"
+                    "data-[checked]:bg-[#458137] data-[checked]:ring-[#458137]",
+                    "data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-[#458137]"
                   )}
                 >
                   <CheckIcon className="fill-white opacity-0 group-data-[checked]:opacity-100" />
@@ -84,7 +84,7 @@ const LoginPage = async () => {
             >
               <button
                 type="submit"
-                className="w-full justify-center space-x-2 h-10 bg-black/80 hover:bg-black duration-300 text-white rounded-full flex items-center px-6"
+                className="w-full justify-center space-x-2 h-10 bg-[#458137]/90 hover:bg-[#3b6f2f] duration-300 text-white rounded-full flex items-center px-6"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path

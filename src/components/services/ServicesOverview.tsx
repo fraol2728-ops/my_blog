@@ -18,7 +18,7 @@ export default function ServicesOverview() {
                 key={item.title}
                 className="flex items-center justify-center gap-4 px-6 py-10"
               >
-                <item.icon className="h-6 w-6 text-black" aria-hidden="true" />
+                <item.icon className="h-6 w-6 text-[#458137]" aria-hidden="true" />
                 <h2 className="text-base font-semibold tracking-tight text-slate-900">
                   {item.title}
                 </h2>

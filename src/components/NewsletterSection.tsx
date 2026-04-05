@@ -18,7 +18,7 @@ export default function NewsletterSection() {
           />
           <button
             type="button"
-            className="h-12 rounded-xl bg-black px-6 text-sm font-semibold text-white transition hover:bg-neutral-800"
+            className="h-12 rounded-xl bg-[#458137] px-6 text-sm font-semibold text-white transition hover:bg-[#3b6f2f]"
           >
             Subscribe
           </button>

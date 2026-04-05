@@ -61,7 +61,7 @@ export default function WhyChooseUsSection() {
           <ul className="mt-10 space-y-6">
             {reasons.map(({ title, description, icon: Icon }) => (
               <li key={title} className="flex items-start gap-4">
-                <Icon className="mt-0.5 size-5 shrink-0 text-black" aria-hidden="true" />
+                <Icon className="mt-0.5 size-5 shrink-0 text-[#458137]" aria-hidden="true" />
                 <div>
                   <h3 className="font-semibold text-slate-900">{title}</h3>
                   <p className="mt-1 text-sm leading-6 text-gray-600">{description}</p>
@@ -72,7 +72,7 @@ export default function WhyChooseUsSection() {
 
           <Link
             href="#contact"
-            className="mt-10 inline-flex rounded-xl bg-black px-6 py-3 text-white transition hover:bg-neutral-800"
+            className="mt-10 inline-flex rounded-xl bg-[#458137] px-6 py-3 text-white transition hover:bg-[#3b6f2f]"
           >
             Get a Free Consultation
           </Link>
