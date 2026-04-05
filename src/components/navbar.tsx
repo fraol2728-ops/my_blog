@@ -166,10 +166,10 @@ export default function Navbar() {
     <Disclosure
       as="header"
       className={clsx(
-        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
+        "fixed inset-x-0 top-4 z-50 border-b border-transparent bg-transparent transition-all duration-300",
         scrolled
-          ? "border-slate-800/70 bg-slate-950"
-          : "border-white/10 bg-slate-900/25 backdrop-blur-xl"
+          ? "shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+          : "shadow-[0_8px_24px_rgba(0,0,0,0.22)]"
       )}
     >
       {({ open }) => (
