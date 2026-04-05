@@ -33,11 +33,17 @@ export default function StatsSection() {
   });
 
   return (
-    <section ref={ref} className="bg-black py-24 text-white">
-      <div className="mx-auto max-w-6xl">
+    <section
+      ref={ref}
+      className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-black py-16 text-white"
+    >
+      <div className="mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-2 gap-10 text-center md:grid-cols-4">
           {stats.map((stat) => (
-            <article key={stat.label}>
+            <article
+              key={stat.label}
+              className="rounded-xl border border-[#f2922A] px-4 py-5 md:px-5"
+            >
               <p className="text-4xl font-bold md:text-5xl" style={{ color: "#f2922A" }}>
                 {inView ? (
                   <CountUp end={stat.value} duration={2.5} suffix={stat.suffix} />
