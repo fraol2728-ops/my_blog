@@ -35,7 +35,7 @@ export default function FAQSection() {
             <details key={faq.question} className="group rounded-xl border border-gray-200 bg-white p-5">
               <summary className="cursor-pointer list-none pr-8 text-left text-base font-semibold text-gray-900 marker:content-none">
                 {faq.question}
-                <span className="float-right text-green-600 transition group-open:rotate-45">+</span>
+                <span className="float-right text-black transition group-open:rotate-45">+</span>
               </summary>
               <p className="mt-3 text-sm leading-6 text-gray-600">{faq.answer}</p>
             </details>
