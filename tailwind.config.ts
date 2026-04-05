@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: "#0F766E",
+      },
       fontFamily: {
         sans: "Switzer, system-ui, sans-serif",
       },
