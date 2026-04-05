@@ -11,6 +11,7 @@ import { motion } from "motion/react";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 export const navLinks = [
   { href: "/", label: "Home" },
@@ -20,8 +21,14 @@ export const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+const isActivePath = (pathname: string, href: string) =>
+  href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`);
+
 export const DesktopNav = ({ scrolled }: { scrolled: boolean }) => {
   const { data: session } = useSession();
+  const pathname = usePathname();
 
   return (
     <nav className="relative hidden lg:flex items-center">
@@ -30,10 +37,9 @@ export const DesktopNav = ({ scrolled }: { scrolled: boolean }) => {
           <Link
             href={item?.href}
             className={clsx(
-              "px-4 py-2 text-base font-medium transition-colors duration-300",
-              scrolled
-                ? "text-white hover:bg-white/10"
-                : "text-slate-100 hover:bg-white/10"
+              "relative px-4 py-2 text-base font-medium transition-colors duration-300 after:absolute after:left-4 after:right-4 after:bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100",
+              scrolled ? "text-white hover:bg-white/10" : "text-black hover:bg-black/5",
+              isActivePath(pathname, item.href) && "after:scale-x-100"
             )}
           >
             {item?.label}
@@ -75,9 +81,9 @@ const MobileNavButton = ({ open, scrolled }: { open: boolean; scrolled: boolean 
   return (
     <DisclosureButton className="flex size-12 items-center justify-center self-center rounded-lg data-[hover]:bg-black/5 lg:hidden duration-300">
       {open ? (
-        <XMarkIcon className={clsx("size-6", scrolled ? "text-white" : "text-slate-100")} />
+        <XMarkIcon className={clsx("size-6", scrolled ? "text-white" : "text-black")} />
       ) : (
-        <Bars2Icon className={clsx("size-6", scrolled ? "text-white" : "text-slate-100")} />
+        <Bars2Icon className={clsx("size-6", scrolled ? "text-white" : "text-black")} />
       )}
     </DisclosureButton>
   );
@@ -85,6 +91,8 @@ const MobileNavButton = ({ open, scrolled }: { open: boolean; scrolled: boolean 
 
 export const MobileNav = ({ scrolled }: { scrolled: boolean }) => {
   const { data: session } = useSession();
+  const pathname = usePathname();
+
   return (
     <DisclosurePanel className="lg:hidden">
       <div className="flex flex-col gap-6 py-4">
@@ -103,9 +111,8 @@ export const MobileNav = ({ scrolled }: { scrolled: boolean }) => {
               href={item?.href}
               className={clsx(
                 "text-base font-medium hover:underline underline-offset-2 decoration-[1px] transition-colors",
-                scrolled
-                  ? "text-white hover:text-emerald-300"
-                  : "text-slate-100 hover:text-emerald-300"
+                scrolled ? "text-white hover:text-emerald-300" : "text-black hover:text-emerald-700",
+                isActivePath(pathname, item.href) && "underline decoration-2"
               )}
             >
               {item?.label}
@@ -168,8 +175,8 @@ export default function Navbar() {
       className={clsx(
         "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
         scrolled
-          ? "border-slate-800/70 bg-slate-950"
-          : "border-white/10 bg-slate-900/25 backdrop-blur-xl"
+          ? "border-white/10 bg-black/95 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+          : "border-transparent bg-transparent"
       )}
     >
       {({ open }) => (
@@ -188,7 +195,7 @@ export default function Navbar() {
                 <p
                   className={clsx(
                     "text-sm sm:text-base font-semibold leading-tight max-w-[185px] sm:max-w-[220px]",
-                    "text-white"
+                    scrolled ? "text-white" : "text-black"
                   )}
                 >
                   Master Premier
