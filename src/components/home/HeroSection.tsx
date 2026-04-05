@@ -37,14 +37,14 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="relative mx-auto flex min-h-screen w-full max-w-6xl items-center px-6 py-24 lg:px-12">
+      <div className="relative mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-6 py-24 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-3xl"
+          className="max-w-4xl text-center"
         >
-          <h1 className="text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="text-6xl font-bold leading-tight tracking-tight text-white sm:text-7xl lg:text-8xl">
             Powering South Sudan with Reliable Solar Energy
           </h1>
 
@@ -53,10 +53,10 @@ export default function HeroSection() {
             rural communities.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Button
               href="/contact"
-              className="rounded-2xl bg-emerald-500 px-7 py-3.5 text-white shadow-lg shadow-emerald-500/30 transition duration-300 data-[hover]:-translate-y-0.5 data-[hover]:bg-emerald-400"
+              className="rounded-2xl bg-[#458137] px-7 py-3.5 text-white shadow-lg shadow-[#458137]/30 transition duration-300 data-[hover]:-translate-y-0.5 data-[hover]:bg-[#3b6f2f]"
             >
               Get Free Quote
             </Button>
@@ -69,10 +69,10 @@ export default function HeroSection() {
             </Button>
           </div>
 
-          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-100 sm:text-base">
+          <ul className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-100 sm:text-base">
             {TRUST_INDICATORS.map((item) => (
               <li key={item} className="flex items-center gap-2">
-                <span className="text-[#458137]">✔</span>
+                <span className="text-white">✔</span>
                 <span>{item}</span>
               </li>
             ))}

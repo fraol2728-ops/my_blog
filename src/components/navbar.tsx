@@ -46,8 +46,8 @@ export default function Navbar() {
                 className={clsx(
                   "rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
                   isActivePath(pathname, item.href)
-                    ? "bg-primary/10 text-primary"
-                    : "text-gray-700 hover:bg-black/[0.03] hover:text-dark"
+                    ? "bg-[#458137]/10 text-[#458137]"
+                    : "text-gray-700 hover:bg-[#458137]/10 hover:text-[#458137]"
                 )}
               >
                 {item.label}
@@ -56,7 +56,9 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden lg:block">
-            <Button href="/contact">Get a Quote</Button>
+            <Button href="/contact" className="bg-[#458137] hover:bg-[#3b6f2f]">
+              Get a Quote
+            </Button>
           </div>
 
           <DisclosureButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:text-primary lg:hidden">
@@ -73,14 +75,14 @@ export default function Navbar() {
                   className={clsx(
                     "rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200",
                     isActivePath(pathname, item.href)
-                      ? "bg-primary/10 text-primary"
-                      : "text-gray-700 hover:text-dark"
+                      ? "bg-[#458137]/10 text-[#458137]"
+                      : "text-gray-700 hover:text-[#458137]"
                   )}
                 >
                   {item.label}
                 </Link>
               ))}
-              <Button href="/contact" className="mt-2 w-fit">
+              <Button href="/contact" className="mt-2 w-fit bg-[#458137] hover:bg-[#3b6f2f]">
                 Get a Quote
               </Button>
             </nav>
