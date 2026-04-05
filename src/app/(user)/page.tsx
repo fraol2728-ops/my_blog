@@ -5,6 +5,7 @@ import HeroSection from "@/components/home/HeroSection";
 import ProcessSection from "@/components/home/ProcessSection";
 import ProjectsSection from "@/components/home/ProjectsSection";
 import ServicesSection from "@/components/home/ServicesSection";
+import StatsSection from "@/components/home/StatsSection";
 import UniqueSection from "@/components/home/UniqueSection";
 import WhySolarSection from "@/components/home/WhySolarSection";
 import { getAllPosts } from "@/sanity/queries";
@@ -18,6 +19,7 @@ export default async function Home() {
 
       <main className="px-6">
         <AboutSection />
+        <StatsSection />
         <BlogPreview posts={latestPosts} />
         <ServicesSection />
         <ProjectsSection />
