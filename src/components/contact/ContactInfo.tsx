@@ -37,7 +37,7 @@ export default function ContactInfo() {
 
           return (
             <div key={item.label} className="flex items-start gap-3">
-              <div className="rounded-lg bg-white p-2 text-[#f2922a] shadow-sm">
+ main
                 <Icon className="size-5" aria-hidden="true" />
               </div>
               <div>

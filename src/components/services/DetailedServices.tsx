@@ -89,7 +89,7 @@ export default function DetailedServices() {
                   {service.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-3">
                       <CheckCircle2
-                        className="mt-0.5 h-5 w-5 shrink-0 text-[#f2922a]"
+ main
                         aria-hidden="true"
                       />
                       <span className="text-base text-slate-700">{bullet}</span>

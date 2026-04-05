@@ -16,7 +16,7 @@ export default function WhyChooseUs() {
           <ul className="mt-8 grid gap-5 text-base text-slate-700 md:grid-cols-2">
             {highlights.map((highlight) => (
               <li key={highlight} className="flex items-start gap-3 leading-relaxed">
-                <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#f2922a]" />
+ main
                 <span>{highlight}</span>
               </li>
             ))}
