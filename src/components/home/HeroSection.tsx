@@ -17,7 +17,7 @@ export default function HeroSection() {
         initial={{ scale: 1 }}
         animate={{ scale: 1.04 }}
         transition={{ duration: 12, ease: "easeOut" }}
-        className="absolute inset-0"
+        className="fixed inset-0 -z-10"
       >
         <Image
           src="/hero.png"
