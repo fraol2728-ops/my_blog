@@ -52,7 +52,7 @@ export default function ValuesSection() {
               key={title}
               className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
             >
-              <Icon className="size-7 text-green-600" aria-hidden="true" />
+              <Icon className="size-7 text-black" aria-hidden="true" />
               <h3 className="mt-4 text-xl font-semibold text-slate-900">{title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 {description}

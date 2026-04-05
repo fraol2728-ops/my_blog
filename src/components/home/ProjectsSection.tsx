@@ -52,7 +52,7 @@ export default function ProjectsSection() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="mx-auto max-w-3xl text-center"
         >
-          <p className="text-sm uppercase text-green-600">Our Projects</p>
+          <p className="text-sm uppercase text-black">Our Projects</p>
           <h2 className="mt-3 text-4xl font-bold md:text-5xl">
             Delivering Solar Solutions That Make an Impact
           </h2>
@@ -88,7 +88,7 @@ export default function ProjectsSection() {
             <ul className="mt-6 space-y-3">
               {featuredProject.highlights.map((highlight) => (
                 <li key={highlight} className="flex items-start gap-3">
-                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600" aria-hidden="true" />
+                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-black" aria-hidden="true" />
                   <span className="text-base text-slate-700">{highlight}</span>
                 </li>
               ))}
