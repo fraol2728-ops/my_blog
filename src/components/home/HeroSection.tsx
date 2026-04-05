@@ -56,7 +56,7 @@ export default function HeroSection() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Button
               href="/contact"
-              className="rounded-2xl bg-[#000000] px-7 py-3.5 text-white shadow-lg shadow-black/30 transition duration-300 data-[hover]:-translate-y-0.5 data-[hover]:bg-black/85"
+main
             >
               Get Free Quote
             </Button>

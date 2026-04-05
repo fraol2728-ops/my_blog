@@ -58,7 +58,7 @@ export default function Navbar() {
           <div className="hidden lg:block">
             <Button
               href="/contact"
-              className="bg-[#000000] shadow-black/30 hover:bg-black/85"
+ main
             >
               Get a Quote
             </Button>
@@ -87,7 +87,7 @@ export default function Navbar() {
               ))}
               <Button
                 href="/contact"
-                className="mt-2 w-fit bg-[#000000] shadow-black/30 hover:bg-black/85"
+ main
               >
                 Get a Quote
               </Button>
