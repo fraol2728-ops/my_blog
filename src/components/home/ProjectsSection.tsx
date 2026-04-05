@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/button";
 import { CheckCircle } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
@@ -8,11 +9,7 @@ const featuredProject = {
   title: "Commercial Solar Installation",
   description:
     "A large-scale solar installation designed to power commercial operations efficiently while reducing long-term energy costs.",
-  highlights: [
-    "High-capacity system",
-    "Optimized energy output",
-    "Long-term savings",
-  ],
+  highlights: ["High-capacity system", "Optimized energy output", "Long-term savings"],
   image: "/project1.jpg",
   alt: "Commercial rooftop solar installation with extensive panel array",
 };
@@ -52,13 +49,12 @@ export default function ProjectsSection() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="mx-auto max-w-3xl text-center"
         >
-          <p className="text-sm uppercase text-green-600">Our Projects</p>
+          <p className="text-sm uppercase tracking-[0.18em] text-[#f2922A]">Our Projects</p>
           <h2 className="mt-3 text-4xl font-bold md:text-5xl">
-            Delivering Solar Solutions That Make an Impact
+            Proven Results Across Residential, Commercial, and Industrial Sites
           </h2>
           <p className="mt-4 text-lg text-gray-600">
-            From residential systems to large-scale installations, our projects reflect our
-            commitment to quality, performance, and sustainability.
+            Every project is engineered for maximum yield and measurable savings from day one.
           </p>
         </motion.div>
 
@@ -67,7 +63,7 @@ export default function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
-          className="grid overflow-hidden rounded-2xl bg-white shadow-xl md:grid-cols-2"
+          className="grid overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 shadow-2xl shadow-slate-900/10 backdrop-blur-sm md:grid-cols-2"
         >
           <div className="group relative overflow-hidden">
             <Image
@@ -78,7 +74,7 @@ export default function ProjectsSection() {
               className="h-full min-h-[280px] w-full object-cover transition duration-500 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/8 to-transparent" />
           </div>
 
           <div className="p-8 md:p-10">
@@ -88,11 +84,17 @@ export default function ProjectsSection() {
             <ul className="mt-6 space-y-3">
               {featuredProject.highlights.map((highlight) => (
                 <li key={highlight} className="flex items-start gap-3">
-                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600" aria-hidden="true" />
+                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-[#f2922A]" aria-hidden="true" />
                   <span className="text-base text-slate-700">{highlight}</span>
                 </li>
               ))}
             </ul>
+            <Button
+              href="/contact"
+              className="mt-7 rounded-full bg-slate-900 px-6 py-3 text-white hover:bg-slate-800"
+            >
+              See Your ROI Estimate
+            </Button>
           </div>
         </motion.article>
 
@@ -104,23 +106,29 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
-              className="group overflow-hidden rounded-2xl bg-white shadow-lg"
+              className="group overflow-hidden rounded-3xl border border-slate-200/70 bg-white/75 shadow-xl shadow-slate-900/5 backdrop-blur-sm"
             >
-              <div className="relative overflow-hidden rounded-xl">
+              <div className="relative overflow-hidden">
                 <Image
                   src={project.image}
                   alt={project.alt}
                   width={900}
                   height={600}
-                  className="h-56 w-full rounded-xl object-cover transition duration-500 group-hover:scale-105"
+                  className="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-transparent opacity-70" />
               </div>
 
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-slate-900">{project.title}</h3>
                 <p className="mt-3 text-gray-600">{project.description}</p>
+                <Button
+                  href="/contact"
+                  className="mt-5 rounded-full bg-[#f2922A] px-5 py-2.5 text-sm text-white hover:bg-[#dd8223]"
+                >
+                  Start Similar Project
+                </Button>
               </div>
             </motion.article>
           ))}

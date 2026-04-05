@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/button";
 import { CheckCircle } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
@@ -20,7 +21,7 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-2xl shadow-lg"
+          className="relative overflow-hidden rounded-3xl border border-white/20 shadow-2xl shadow-slate-900/10"
         >
           <Image
             src="/homeabout.jpg"
@@ -31,6 +32,7 @@ export default function AboutSection() {
             sizes="(max-width: 1024px) 100vw, 50vw"
             priority={false}
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent" />
         </motion.div>
 
         <motion.div
@@ -38,36 +40,42 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
-          className="space-y-6"
+          className="space-y-6 rounded-3xl border border-slate-200/80 bg-white/75 p-8 shadow-xl shadow-slate-900/5 backdrop-blur-sm"
         >
-          <p className="text-sm uppercase tracking-wide text-green-600">About Us</p>
+          <p className="text-sm uppercase tracking-wide text-[#f2922A]">About Us</p>
 
           <h2 className="text-4xl font-bold leading-tight text-slate-900 md:text-5xl">
-            Powering a Sustainable Future with Reliable Solar Solutions
+            Engineered Solar Systems That Perform for Decades
           </h2>
 
           <p className="text-lg text-gray-600">
-            We are a forward-thinking solar energy provider committed to delivering high-quality,
-            efficient, and sustainable power solutions. With a strong focus on innovation and
-            reliability, we design and install solar systems tailored to meet residential,
-            commercial, and industrial needs.
+            We help homeowners and businesses transition to clean energy with precision-designed,
+            high-efficiency systems that reduce risk and maximize return on investment.
           </p>
 
           <ul className="space-y-4">
             {bulletPoints.map((item) => (
               <li key={item} className="flex items-start gap-3">
-                <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600" aria-hidden="true" />
+                <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-[#f2922A]" aria-hidden="true" />
                 <span className="text-base text-slate-700">{item}</span>
               </li>
             ))}
           </ul>
 
-          <a
-            href="/about"
-            className="inline-flex rounded-xl bg-green-600 px-6 py-3 font-medium text-white transition hover:bg-green-700"
-          >
-            Learn More About Us
-          </a>
+          <div className="flex flex-wrap gap-3">
+            <Button
+              href="/about"
+              className="rounded-full bg-slate-900 px-6 py-3 font-medium text-white hover:bg-slate-800"
+            >
+              Learn More About Us
+            </Button>
+            <Button
+              href="/contact"
+              className="rounded-full bg-[#f2922A] px-6 py-3 font-medium text-white shadow-lg shadow-[#f2922A]/30 hover:bg-[#dd8223]"
+            >
+              Get Your Savings Plan
+            </Button>
+          </div>
         </motion.div>
       </div>
     </section>

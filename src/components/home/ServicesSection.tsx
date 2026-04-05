@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/button";
 import { CheckCircle } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
@@ -66,13 +67,13 @@ export default function ServicesSection() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="mx-auto max-w-3xl text-center"
         >
-          <p className="text-sm uppercase text-green-600">Our Services</p>
+          <p className="text-sm uppercase tracking-[0.18em] text-[#f2922A]">Our Services</p>
           <h2 className="mt-3 text-4xl font-bold md:text-5xl">
-            Comprehensive Solar Solutions for Every Need
+            Premium Solar Services Built Around Real Financial Returns
           </h2>
           <p className="mt-4 text-lg text-gray-600">
-            We provide complete solar energy solutions, from installation to manufacturing and
-            long-term support.
+            We provide complete solar energy solutions, from design and installation to manufacturing
+            and long-term optimization.
           </p>
         </motion.div>
 
@@ -90,19 +91,22 @@ export default function ServicesSection() {
                 className="grid items-center gap-12 md:grid-cols-2"
               >
                 <div className={imageFirst ? "order-1" : "order-2 md:order-2"}>
-                  <div className="overflow-hidden rounded-2xl shadow-xl">
+                  <div className="group relative overflow-hidden rounded-3xl border border-white/20 shadow-2xl shadow-slate-900/10">
                     <Image
                       src={service.image}
                       alt={service.alt}
                       width={1200}
                       height={800}
-                      className="h-[400px] w-full object-cover transition duration-500 hover:scale-105"
+                      className="h-[400px] w-full object-cover transition duration-500 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-slate-950/0 to-transparent" />
                   </div>
                 </div>
 
-                <div className={imageFirst ? "order-2" : "order-1 md:order-1"}>
+                <div
+                  className={`${imageFirst ? "order-2" : "order-1 md:order-1"} rounded-3xl border border-slate-200/80 bg-white/80 p-8 shadow-xl shadow-slate-900/5 backdrop-blur-sm`}
+                >
                   <h3 className="text-3xl font-bold md:text-4xl">{service.title}</h3>
                   <p className="mt-4 text-lg text-gray-600">{service.description}</p>
 
@@ -110,13 +114,19 @@ export default function ServicesSection() {
                     {service.highlights.map((highlight) => (
                       <li key={highlight} className="flex items-start gap-3">
                         <CheckCircle
-                          className="mt-0.5 h-5 w-5 shrink-0 text-green-600"
+                          className="mt-0.5 h-5 w-5 shrink-0 text-[#f2922A]"
                           aria-hidden="true"
                         />
                         <span className="text-base text-slate-700">{highlight}</span>
                       </li>
                     ))}
                   </ul>
+                  <Button
+                    href="/contact"
+                    className="mt-8 rounded-full bg-[#f2922A] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#f2922A]/30 hover:bg-[#dd8223]"
+                  >
+                    Request Proposal
+                  </Button>
                 </div>
               </motion.article>
             );
