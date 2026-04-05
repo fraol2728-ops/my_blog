@@ -33,7 +33,7 @@ export default function HeroSection() {
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(90deg, rgba(69, 129, 55, 0.94) 0%, rgba(69, 129, 55, 0.72) 58%, rgba(69, 129, 55, 0.2) 100%)",
+            "linear-gradient(90deg, rgba(69, 129, 55, 0.62) 0%, rgba(69, 129, 55, 0.42) 58%, rgba(69, 129, 55, 0.12) 100%)",
         }}
       />
 
@@ -56,7 +56,7 @@ export default function HeroSection() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Button
               href="/contact"
-              className="rounded-2xl bg-emerald-500 px-7 py-3.5 text-white shadow-lg shadow-emerald-500/30 transition duration-300 data-[hover]:-translate-y-0.5 data-[hover]:bg-emerald-400"
+              className="rounded-2xl bg-[#000000] px-7 py-3.5 text-white shadow-lg shadow-black/30 transition duration-300 data-[hover]:-translate-y-0.5 data-[hover]:bg-black/85"
             >
               Get Free Quote
             </Button>
@@ -72,7 +72,7 @@ export default function HeroSection() {
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-100 sm:text-base">
             {TRUST_INDICATORS.map((item) => (
               <li key={item} className="flex items-center gap-2">
-                <span className="text-[#458137]">✔</span>
+                <span className="text-white">✔</span>
                 <span>{item}</span>
               </li>
             ))}

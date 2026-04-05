@@ -56,7 +56,12 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden lg:block">
-            <Button href="/contact">Get a Quote</Button>
+            <Button
+              href="/contact"
+              className="bg-[#000000] shadow-black/30 hover:bg-black/85"
+            >
+              Get a Quote
+            </Button>
           </div>
 
           <DisclosureButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:text-primary lg:hidden">
@@ -80,7 +85,10 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
-              <Button href="/contact" className="mt-2 w-fit">
+              <Button
+                href="/contact"
+                className="mt-2 w-fit bg-[#000000] shadow-black/30 hover:bg-black/85"
+              >
                 Get a Quote
               </Button>
             </nav>

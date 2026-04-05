@@ -22,7 +22,7 @@ type ButtonProps = {
 );
 
 export function Button({ variant = "primary", className, ...props }: ButtonProps) {
-  className = clsx(className, variants[variant]);
+  className = clsx(variants[variant], className);
 
   if (typeof props.href === "undefined") {
     return <Headless.Button {...props} className={className} />;
