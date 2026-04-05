@@ -27,11 +27,11 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white">
-      <div className="mx-auto max-w-7xl px-6 py-14 sm:py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="space-y-4">
-            <Logo className="px-0 text-white group-hover:text-primary" />
+    <footer className="bg-dark text-white">
+      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="space-y-5">
+            <Logo className="px-0 text-white" />
             <p className="max-w-sm text-sm leading-6 text-white/70">
               SolarPeak provides reliable residential and commercial solar solutions designed to reduce energy costs
               and support a cleaner tomorrow.
@@ -39,11 +39,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide">Quick Links</h3>
-            <ul className="mt-4 space-y-3 text-sm text-white/80">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">Quick Links</h3>
+            <ul className="mt-5 space-y-3 text-sm text-white/80">
               {quickLinks.map((link) => (
                 <li key={link.href + link.label}>
-                  <Link className="transition-colors hover:text-primary" href={link.href}>
+                  <Link className="inline-flex transition-colors hover:text-primary" href={link.href}>
                     {link.label}
                   </Link>
                 </li>
@@ -52,11 +52,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide">Services</h3>
-            <ul className="mt-4 space-y-3 text-sm text-white/80">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">Services</h3>
+            <ul className="mt-5 space-y-3 text-sm text-white/80">
               {services.map((service) => (
                 <li key={service.label}>
-                  <Link className="transition-colors hover:text-primary" href={service.href}>
+                  <Link className="inline-flex transition-colors hover:text-primary" href={service.href}>
                     {service.label}
                   </Link>
                 </li>
@@ -65,8 +65,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide">Contact</h3>
-            <ul className="mt-4 space-y-3 text-sm text-white/80">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">Contact</h3>
+            <ul className="mt-5 space-y-3 text-sm text-white/80">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white" />
                 <span>123 Solar Avenue, San Diego, CA</span>
@@ -90,7 +90,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-5 border-t border-white/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-5 border-t border-white/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-white/60">© {new Date().getFullYear()} SolarPeak. All rights reserved.</p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => {
@@ -99,7 +99,7 @@ export default function Footer() {
                 <a
                   key={social.label}
                   aria-label={social.label}
-                  className="text-white/80 transition-colors hover:text-primary"
+                  className="rounded-full p-2 text-white/80 transition-all duration-200 hover:-translate-y-0.5 hover:text-primary"
                   href={social.href}
                   rel="noreferrer"
                   target="_blank"

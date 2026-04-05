@@ -6,6 +6,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { Button } from "./button";
 
 export const navLinks = [
   { href: "/", label: "Home" },
@@ -16,32 +17,25 @@ export const navLinks = [
 ];
 
 const isActivePath = (pathname: string, href: string) =>
-  href === "/"
-    ? pathname === "/"
-    : pathname === href || pathname.startsWith(`${href}/`);
+  href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
 export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <Disclosure
-      as="header"
-      className="sticky top-0 z-50 border-b border-gray-200/80 bg-white/95 backdrop-blur"
-    >
+    <Disclosure as="header" className="sticky top-0 z-50 border-b border-black/10 bg-white/95 backdrop-blur-md">
       {({ open }) => (
-        <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center gap-3">
+        <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-6 lg:px-8">
+          <Link href="/" className="group flex items-center gap-3" aria-label="Go to homepage">
             <Image
               src="/logo.png"
               alt="Master Premier Green Energy Co. Ltd"
               width={44}
               height={44}
-              className="h-11 w-11 rounded-md object-contain"
+              className="h-11 w-11 rounded-md object-contain transition-transform duration-300 group-hover:scale-105"
               priority
             />
-            <span className="hidden text-sm font-semibold text-gray-900 sm:block">
-              Master Premier
-            </span>
+            <span className="hidden text-sm font-semibold text-dark sm:block">Master Premier</span>
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex">
@@ -50,10 +44,10 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 className={clsx(
-                  "rounded-md px-4 py-2 text-sm font-medium transition-colors duration-200",
+                  "rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
                   isActivePath(pathname, item.href)
                     ? "bg-primary/10 text-primary"
-                    : "text-gray-700 hover:text-primary"
+                    : "text-gray-700 hover:bg-black/[0.03] hover:text-dark"
                 )}
               >
                 {item.label}
@@ -62,12 +56,7 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden lg:block">
-            <Link
-              href="/contact"
-              className="inline-flex items-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-primary/90"
-            >
-              Get a Quote
-            </Link>
+            <Button href="/contact">Get a Quote</Button>
           </div>
 
           <DisclosureButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:text-primary lg:hidden">
@@ -75,8 +64,8 @@ export default function Navbar() {
             {open ? <XMarkIcon className="size-6" /> : <Bars3Icon className="size-6" />}
           </DisclosureButton>
 
-          <DisclosurePanel className="absolute inset-x-0 top-full border-b border-gray-200 bg-white shadow-sm lg:hidden">
-            <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
+          <DisclosurePanel className="absolute inset-x-0 top-full border-b border-black/10 bg-white shadow-sm lg:hidden">
+            <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-5">
               {navLinks.map((item) => (
                 <Link
                   key={item.href}
@@ -85,18 +74,15 @@ export default function Navbar() {
                     "rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200",
                     isActivePath(pathname, item.href)
                       ? "bg-primary/10 text-primary"
-                      : "text-gray-700 hover:text-primary"
+                      : "text-gray-700 hover:text-dark"
                   )}
                 >
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/contact"
-                className="mt-2 inline-flex w-fit items-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-primary/90"
-              >
+              <Button href="/contact" className="mt-2 w-fit">
                 Get a Quote
-              </Link>
+              </Button>
             </nav>
           </DisclosurePanel>
         </div>

@@ -3,14 +3,58 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight text-dark;
+  }
+
+  h1 {
+    @apply text-4xl leading-tight sm:text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl leading-tight sm:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl leading-snug sm:text-3xl;
+  }
+
+  p {
+    @apply text-base leading-7 text-gray-600;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
   button,
+  [role="button"],
   input[type="button"],
   input[type="submit"],
   input[type="reset"] {
-    @apply bg-black text-white;
+    @apply transition-all duration-200 ease-out;
   }
 
-  svg {
-    color: #000;
+  img {
+    @apply transition-transform duration-300 ease-out;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-6 py-24 lg:px-8;
   }
 }
