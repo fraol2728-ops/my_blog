@@ -9,13 +9,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#0F766E",
+        primary: "#f2922A",
+        dark: "#000000",
       },
       fontFamily: {
         sans: "Switzer, system-ui, sans-serif",
       },
       borderRadius: {
         "4xl": "2rem",
+      },
+      boxShadow: {
+        subtle: "0 12px 30px -16px rgba(0, 0, 0, 0.35)",
       },
     },
   },
