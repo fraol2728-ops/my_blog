@@ -56,7 +56,7 @@ export default function HeroSection() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Button
               href="/contact"
-              className="rounded-2xl bg-emerald-500 px-7 py-3.5 text-white shadow-lg shadow-emerald-500/30 transition duration-300 data-[hover]:-translate-y-0.5 data-[hover]:bg-emerald-400"
+              className="rounded-2xl bg-[#458137] px-7 py-3.5 text-white shadow-lg shadow-[#458137]/30 transition duration-300 data-[hover]:-translate-y-0.5 data-[hover]:bg-[#3a6d2e]"
             >
               Get Free Quote
             </Button>
@@ -72,7 +72,7 @@ export default function HeroSection() {
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-100 sm:text-base">
             {TRUST_INDICATORS.map((item) => (
               <li key={item} className="flex items-center gap-2">
-                <span className="text-[#458137]">✔</span>
+                <span className="text-white">✔</span>
                 <span>{item}</span>
               </li>
             ))}
