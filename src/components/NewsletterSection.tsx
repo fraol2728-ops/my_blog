@@ -9,7 +9,7 @@ export default function NewsletterSection() {
           Subscribe to receive the latest updates and insights.
         </p>
 
-        <form className="mx-auto mt-8 flex max-w-xl flex-col gap-3 sm:flex-row" onSubmit={(e) => e.preventDefault()}>
+        <form className="mx-auto mt-8 flex max-w-xl flex-col gap-3 sm:flex-row">
           <input
             type="email"
             placeholder="Enter your email"
@@ -17,7 +17,7 @@ export default function NewsletterSection() {
             aria-label="Email address"
           />
           <button
-            type="submit"
+            type="button"
             className="h-12 rounded-xl bg-emerald-700 px-6 text-sm font-semibold text-white transition hover:bg-emerald-600"
           >
             Subscribe

@@ -7,24 +7,26 @@ import Link from "next/link";
 
 interface NewsPageProps {
   searchParams?: Promise<{
-    category?: string;
+    category?: string | string[];
   }>;
 }
 
 export default async function NewsPage({ searchParams }: NewsPageProps) {
   const params = (await searchParams) || {};
-  const selectedCategory = params?.category;
+  const categoryParam = params?.category;
+  const selectedCategory = Array.isArray(categoryParam) ? categoryParam[0] : categoryParam;
 
-  const [postsResult, categoriesResult] = await Promise.all([
+  const [postsResponse, categoriesResponse] = await Promise.allSettled([
     selectedCategory ? getCategoryPost(selectedCategory) : getAllPosts(12),
     getCategories(),
   ]);
 
-  const posts: Post[] = postsResult ?? [];
-  const categories: PostCategory[] = categoriesResult ?? [];
+  const posts: Post[] = postsResponse.status === "fulfilled" ? postsResponse.value ?? [] : [];
+  const categories: PostCategory[] =
+    categoriesResponse.status === "fulfilled" ? categoriesResponse.value ?? [] : [];
 
-  const featuredPost = posts?.[0];
-  const latestPosts = posts?.slice(1);
+  const featuredPost = posts[0];
+  const latestPosts = posts.slice(1);
 
   return (
     <div className="py-24">
