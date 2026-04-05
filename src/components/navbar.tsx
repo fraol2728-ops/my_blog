@@ -168,8 +168,8 @@ export default function Navbar() {
       className={clsx(
         "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
         scrolled
-          ? "border-white/10 bg-slate-900/25 backdrop-blur-xl"
-          : "border-slate-800/70 bg-slate-950"
+          ? "border-slate-800/70 bg-slate-950"
+          : "border-white/10 bg-slate-900/25 backdrop-blur-xl"
       )}
     >
       {({ open }) => (
