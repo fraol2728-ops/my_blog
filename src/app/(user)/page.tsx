@@ -9,10 +9,11 @@ import { getAllPosts } from "@/sanity/queries";
 
 export default async function Home() {
   const latestPosts = await getAllPosts(3);
+  const latestPost = latestPosts?.[0] ?? null;
 
   return (
     <div className="bg-white text-slate-900">
-      <HeroSection />
+      <HeroSection latestPost={latestPost} />
 
       <main className="px-6">
         <AboutSection />
