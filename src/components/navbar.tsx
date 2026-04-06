@@ -58,7 +58,7 @@ export default function Navbar() {
           <div className="hidden lg:block">
             <Button
               href="/contact"
- main
+              variant="primary"
             >
               Get a Quote
             </Button>
@@ -87,7 +87,7 @@ export default function Navbar() {
               ))}
               <Button
                 href="/contact"
- main
+                variant="primary"
               >
                 Get a Quote
               </Button>
