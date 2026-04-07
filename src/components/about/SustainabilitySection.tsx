@@ -24,7 +24,7 @@ const pillars = [
 
 export default function SustainabilitySection() {
   return (
-    <section className="px-6 py-20">
+    <section id="sustainability" className="px-6 py-20 scroll-mt-24">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
