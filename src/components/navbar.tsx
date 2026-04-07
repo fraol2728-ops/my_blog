@@ -9,6 +9,7 @@ import clsx from "clsx";
 import { Button } from "./button";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { useRouter } from "next/navigation";
 
 type DropdownItem = {
   href: string;
@@ -57,9 +58,12 @@ const isActivePath = (pathname: string, href: string) => {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [desktopOpenDropdown, setDesktopOpenDropdown] = useState<string | null>(null);
   const [mobileOpenDropdowns, setMobileOpenDropdowns] = useState<Record<string, boolean>>({});
+  const [desktopKeyword, setDesktopKeyword] = useState("");
+  const [mobileKeyword, setMobileKeyword] = useState("");
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 24);
@@ -71,6 +75,17 @@ export default function Navbar() {
 
   const toggleMobileDropdown = (label: string) => {
     setMobileOpenDropdowns((prev) => ({ ...prev, [label]: !prev[label] }));
+  };
+
+  const submitSearch = (keyword: string) => {
+    const trimmedKeyword = keyword.trim();
+
+    if (!trimmedKeyword) {
+      router.push("/news");
+      return;
+    }
+
+    router.push(`/news?q=${encodeURIComponent(trimmedKeyword)}`);
   };
 
   return (
@@ -174,13 +189,30 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <button
-              type="button"
-              aria-label="Search"
-              className="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-200 hover:text-emerald-600"
+            <form
+              className="flex items-center gap-2"
+              onSubmit={(event) => {
+                event.preventDefault();
+                submitSearch(desktopKeyword);
+              }}
             >
-              <MagnifyingGlassIcon className="size-5" />
-            </button>
+              <input
+                type="search"
+                name="q"
+                value={desktopKeyword}
+                onChange={(event) => setDesktopKeyword(event.target.value)}
+                placeholder="Search news..."
+                aria-label="Search news"
+                className="w-40 rounded-full border border-slate-200 px-3 py-2 text-sm text-slate-700 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-200"
+              />
+              <button
+                type="submit"
+                aria-label="Search news"
+                className="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-200 hover:text-emerald-600"
+              >
+                <MagnifyingGlassIcon className="size-5" />
+              </button>
+            </form>
             <Button
               href="/contact"
               variant="primary"
@@ -255,13 +287,30 @@ export default function Navbar() {
               })}
 
               <div className="mt-1 flex items-center gap-2">
-                <button
-                  type="button"
-                  aria-label="Search"
-                  className="rounded-lg border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-200 hover:text-emerald-600"
+                <form
+                  className="flex flex-1 items-center gap-2"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    submitSearch(mobileKeyword);
+                  }}
                 >
-                  <MagnifyingGlassIcon className="size-5" />
-                </button>
+                  <input
+                    type="search"
+                    name="q"
+                    value={mobileKeyword}
+                    onChange={(event) => setMobileKeyword(event.target.value)}
+                    placeholder="Search news..."
+                    aria-label="Search news"
+                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-200"
+                  />
+                  <button
+                    type="submit"
+                    aria-label="Search news"
+                    className="rounded-lg border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-200 hover:text-emerald-600"
+                  >
+                    <MagnifyingGlassIcon className="size-5" />
+                  </button>
+                </form>
                 <Button
                   href="/contact"
                   variant="primary"
