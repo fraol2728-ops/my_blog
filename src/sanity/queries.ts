@@ -104,6 +104,55 @@ export const getCategoryPost = async (category?: string) => {
   });
 };
 
+const FILTERED_POSTS_QUERY = defineQuery(`*[
+  _type == "post"
+  && select(defined($category) => $category in categories[]->slug.current, true)
+  && select(
+    defined($keyword) => (
+      title match $searchPattern
+      || excerpt match $searchPattern
+      || pt::text(body) match $searchPattern
+    ),
+    true
+  )
+]|order(publishedAt desc)[0...$quantity]{
+  title,
+  "slug": slug.current,
+  publishedAt,
+  mainImage,
+  excerpt,
+  author->{
+    name,
+    image,
+  },
+}`);
+
+export const getFilteredPosts = async ({
+  category,
+  keyword,
+  quantity = 24,
+}: {
+  category?: string;
+  keyword?: string;
+  quantity?: number;
+}) => {
+  const normalizedKeyword = keyword?.trim();
+
+  return await clientFetch({
+    query: FILTERED_POSTS_QUERY,
+    params: {
+      ...(category ? { category } : {}),
+      ...(normalizedKeyword
+        ? {
+            keyword: normalizedKeyword,
+            searchPattern: `*${normalizedKeyword}*`,
+          }
+        : {}),
+      quantity,
+    },
+  });
+};
+
 const GET_OTHERS_POSTS_QUERY = defineQuery(`*[
   _type == "post"
   && defined(slug.current)

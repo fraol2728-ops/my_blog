@@ -1,23 +1,26 @@
 import BlogCard from "@/components/BlogCard";
 import FeaturedPost from "@/components/FeaturedPost";
 import NewsletterSection from "@/components/NewsletterSection";
-import { getAllPosts, getCategories, getCategoryPost } from "@/sanity/queries";
+import { getCategories, getFilteredPosts } from "@/sanity/queries";
 import { Post, PostCategory } from "@/types";
 import Link from "next/link";
 
 interface NewsPageProps {
   searchParams?: Promise<{
     category?: string | string[];
+    q?: string | string[];
   }>;
 }
 
 export default async function NewsPage({ searchParams }: NewsPageProps) {
   const params = (await searchParams) || {};
   const categoryParam = params?.category;
+  const keywordParam = params?.q;
   const selectedCategory = Array.isArray(categoryParam) ? categoryParam[0] : categoryParam;
+  const keyword = Array.isArray(keywordParam) ? keywordParam[0] : keywordParam;
 
   const [postsResponse, categoriesResponse] = await Promise.allSettled([
-    selectedCategory ? getCategoryPost(selectedCategory) : getAllPosts(12),
+    getFilteredPosts({ category: selectedCategory, keyword, quantity: 24 }),
     getCategories(),
   ]);
 
@@ -45,7 +48,7 @@ export default async function NewsPage({ searchParams }: NewsPageProps) {
           <section className="mb-14">
             <div className="no-scrollbar flex items-center gap-3 overflow-x-auto pb-1">
               <Link
-                href="/news"
+                href={keyword ? `/news?q=${encodeURIComponent(keyword)}` : "/news"}
                 className={`whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition ${
                   !selectedCategory
                     ? "border-emerald-700 bg-emerald-700 text-white"
@@ -61,7 +64,7 @@ export default async function NewsPage({ searchParams }: NewsPageProps) {
                 return (
                   <Link
                     key={category.slug}
-                    href={`/news?category=${category.slug}`}
+                    href={`/news?category=${category.slug}${keyword ? `&q=${encodeURIComponent(keyword)}` : ""}`}
                     className={`whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition ${
                       isActive
                         ? "border-emerald-700 bg-emerald-700 text-white"
@@ -82,7 +85,9 @@ export default async function NewsPage({ searchParams }: NewsPageProps) {
           </section>
         ) : (
           <section className="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-slate-500">
-            No news articles found yet.
+            {keyword
+              ? `No news articles found for "${keyword}".`
+              : "No news articles found yet."}
           </section>
         )}
 
