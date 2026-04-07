@@ -1,0 +1,60 @@
+"use client";
+
+import { Eye, Target } from "lucide-react";
+import { motion } from "motion/react";
+
+const cards = [
+  {
+    title: "Our Mission",
+    description:
+      "To provide high-impact renewable energy systems that lower energy costs, improve resilience, and accelerate the shift toward cleaner operations.",
+    icon: Target,
+  },
+  {
+    title: "Our Vision",
+    description:
+      "To become the most trusted clean-energy implementation partner for organizations building a sustainable and energy-secure future.",
+    icon: Eye,
+  },
+];
+
+export default function VisionMission() {
+  return (
+    <section className="px-6 py-20">
+      <div className="mx-auto max-w-6xl">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: { staggerChildren: 0.14 },
+            },
+          }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="grid gap-6 md:grid-cols-2"
+        >
+          {cards.map(({ title, description, icon: Icon }) => (
+            <motion.article
+              key={title}
+              variants={{
+                hidden: { opacity: 0, y: 24 },
+                show: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="rounded-xl bg-white p-8 shadow-lg"
+            >
+              <Icon className="size-9 text-[#16a34a]" aria-hidden="true" />
+              <h3 className="mt-5 text-2xl font-semibold text-slate-900">{title}</h3>
+              <p className="mt-3 text-base leading-relaxed text-slate-600">
+                {description}
+              </p>
+            </motion.article>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}

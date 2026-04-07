@@ -1,28 +1,44 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "motion/react";
 
 export default function CTASection() {
   return (
-    <section className="px-6 py-24">
-      <div className="mx-auto max-w-6xl">
-        <div className="rounded-3xl bg-green-700 px-8 py-14 text-center sm:px-12">
-          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Ready to Build Your Solar Roadmap?
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-green-50 sm:text-lg">
-            Connect with our team to evaluate your property, estimate savings,
-            and launch a custom solar solution built for long-term returns.
-          </p>
+    <section className="bg-slate-900 px-6 py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.35 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="mx-auto max-w-4xl rounded-xl bg-slate-800 px-8 py-14 text-center shadow-lg"
+      >
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-green-300">
+          Let&apos;s Build the Future
+        </p>
+        <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Start Your Next Energy Project with Solvora Energy
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-slate-300">
+          Connect with our specialists to evaluate your goals and create a
+          strategic renewable roadmap tailored to your organization.
+        </p>
 
-          <div className="mt-8">
-            <Link
-              href="/contact"
-              className="inline-flex rounded-xl bg-white px-7 py-3 text-sm font-semibold uppercase tracking-wide text-green-700 transition hover:bg-green-100"
-            >
-              Schedule a Consultation
-            </Link>
-          </div>
+        <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+          <Link
+            href="/contact"
+            className="rounded-xl bg-[#16a34a] px-6 py-3 font-semibold text-white transition hover:bg-green-600"
+          >
+            Schedule a Consultation
+          </Link>
+          <Link
+            href="/services"
+            className="rounded-xl border border-slate-400 px-6 py-3 font-semibold text-white transition hover:bg-slate-700"
+          >
+            Explore Services
+          </Link>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
