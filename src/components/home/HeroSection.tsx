@@ -131,7 +131,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-black/25" />
 
-        <div className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center px-6 pb-44 pt-32 lg:px-8">
+        <div className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center px-6 pb-36 pt-20 lg:px-8 lg:pt-24">
           <div className="grid w-full items-center gap-12 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-10">
             <m.div
               initial={{ opacity: 0, y: 36 }}
