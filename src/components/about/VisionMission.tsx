@@ -20,7 +20,7 @@ const cards = [
 
 export default function VisionMission() {
   return (
-    <section className="px-6 py-20">
+    <section id="vision-mission" className="px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           variants={{

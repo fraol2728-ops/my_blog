@@ -12,7 +12,7 @@ const highlights = [
 
 export default function CompanyOverview() {
   return (
-    <section className="px-6 py-20">
+    <section id="company-overview" className="px-6 py-20 scroll-mt-24">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, x: -28 }}

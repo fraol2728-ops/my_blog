@@ -12,7 +12,7 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section className="bg-slate-50 px-6 py-20">
+    <section id="our-projects" className="bg-slate-50 px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
