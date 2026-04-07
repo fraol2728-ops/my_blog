@@ -171,7 +171,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-                className="hidden lg:block"
+                className="hidden lg:block lg:-translate-y-12"
               >
                 <Link
                   href={`/post/${latestPost.slug}`}
