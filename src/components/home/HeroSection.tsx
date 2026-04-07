@@ -1,225 +1,210 @@
 "use client";
 
-import { useState } from "react";
-import { Post } from "@/types";
-import { LazyMotion, domAnimation, m } from "motion/react";
-import dayjs from "dayjs";
+import { useEffect, useMemo, useState, type ComponentType } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Bolt, Lightbulb } from "lucide-react";
-import { urlFor } from "@/sanity/lib/image";
+import { LazyMotion, AnimatePresence, domAnimation, m } from "motion/react";
+import { ArrowLeft, ArrowRight, Factory, TowerControl, Wrench, Zap } from "lucide-react";
+
+const sliderImages = ["/project1.jpg", "/project2.jpg", "/project3.jpg", "/project4.jpg"];
+
+const stats = [
+  { icon: TowerControl, label: "Transmission Lines", value: 420, suffix: "+" },
+  { icon: Wrench, label: "Ongoing Projects", value: 86, suffix: "" },
+  { icon: Factory, label: "Completed Projects", value: 1375, suffix: "+" },
+  { icon: Zap, label: "Substations", value: 210, suffix: "" },
+];
+
+function useCountUp(end: number, duration = 1700) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let frameId = 0;
+    const start = performance.now();
+
+    const update = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(end * eased));
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(update);
+      }
+    };
+
+    frameId = requestAnimationFrame(update);
+
+    return () => cancelAnimationFrame(frameId);
+  }, [end, duration]);
+
+  return count;
+}
+
+function StatItem({
+  icon: Icon,
+  label,
+  value,
+  suffix,
+  index,
+}: {
+  icon: ComponentType<{ className?: string }>;
+  label: string;
+  value: number;
+  suffix: string;
+  index: number;
+}) {
+  const count = useCountUp(value, 1300 + index * 200);
+
+  return (
+    <m.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, delay: 0.15 + index * 0.1 }}
+      className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 px-4 py-4"
+    >
+      <div className="rounded-lg bg-emerald-500/20 p-2.5 text-emerald-300">
+        <Icon className="h-5 w-5" />
+      </div>
+      <div>
+        <p className="text-2xl font-semibold text-white sm:text-3xl">
+          {count}
+          {suffix}
+        </p>
+        <p className="text-sm text-white/75">{label}</p>
+      </div>
+    </m.div>
+  );
+}
 
 type HeroSectionProps = {
-  latestPost?: Post | null;
+  latestPost?: unknown;
 };
 
-export default function HeroSection({ latestPost }: HeroSectionProps) {
-  const [isEnergyOn, setIsEnergyOn] = useState(true);
+export default function HeroSection({ latestPost: _latestPost }: HeroSectionProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const newsTitle = latestPost?.title || "Stay tuned for the latest renewable energy updates";
-  const newsDate = latestPost?.publishedAt ? dayjs(latestPost.publishedAt).format("MMMM D, YYYY") : "Updated daily";
-  const newsAuthor = latestPost?.author?.name || "Solara Editorial";
-  const newsSlug = latestPost?.slug ? `/post/${latestPost.slug}` : "/news";
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % sliderImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const activeImage = useMemo(() => sliderImages[activeIndex], [activeIndex]);
+
+  const handlePrev = () => setActiveIndex((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
+  const handleNext = () => setActiveIndex((prev) => (prev + 1) % sliderImages.length);
 
   return (
     <LazyMotion features={domAnimation}>
-      <section className="relative isolate overflow-hidden bg-white text-slate-900">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(240,253,244,0.92) 65%, rgba(220,252,231,0.78) 100%)",
-          }}
-        />
-        <div
-          className="pointer-events-none absolute right-[-10%] top-16 h-[22rem] w-[22rem] rounded-full"
-          style={{
-            background: "radial-gradient(circle, rgba(22, 163, 74, 0.2) 0%, rgba(22, 163, 74, 0) 70%)",
-            filter: "blur(20px)",
-          }}
-        />
-
-        <div className="relative mx-auto grid min-h-[calc(100vh-5rem)] w-full max-w-7xl items-center gap-14 px-4 pt-24 pb-12 md:grid-cols-2 md:gap-10 md:px-6 lg:px-8">
+      <section className="relative min-h-screen overflow-hidden bg-black">
+        <AnimatePresence mode="wait">
           <m.div
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: "easeInOut" }}
-            className="text-center md:text-left"
+            key={activeImage}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.1, ease: "easeInOut" }}
+            className="absolute inset-0"
           >
-            <p className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
-              Premium Solar Infrastructure
-            </p>
+            <m.div
+              initial={{ scale: 1 }}
+              animate={{ scale: 1.05 }}
+              transition={{ duration: 5.2, ease: "easeOut" }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={activeImage}
+                alt="Master Premier renewable energy project"
+                fill
+                priority={activeIndex === 0}
+                sizes="100vw"
+                className="object-cover"
+              />
+            </m.div>
+          </m.div>
+        </AnimatePresence>
 
-            <h1 className="mt-6 text-4xl font-bold leading-tight text-slate-900 md:text-6xl">
-              Powering the Future with Intelligent Solar Energy
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-black/25" />
+
+        <div className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center px-6 pb-44 pt-32 lg:px-8">
+          <m.div
+            initial={{ opacity: 0, y: 36 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-2xl text-center md:text-left"
+          >
+            <p className="inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
+              Clean Energy Infrastructure
+            </p>
+            <h1 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+              Powering the Future of Sustainable Energy
             </h1>
-
-            <p className="mx-auto mt-6 max-w-lg text-base leading-7 text-slate-600 md:mx-0">
-              Advanced solar solutions for homes, industries, and governments with reliable, elegant,
-              and sustainable energy systems.
+            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/80 md:mx-0 md:text-lg">
+              Delivering advanced solar and energy infrastructure solutions for industries, governments, and
+              communities.
             </p>
 
-            <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row md:justify-start">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row md:justify-start">
               <Link
                 href="/contact"
-                className="rounded-xl bg-emerald-600 px-6 py-3 text-center font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700 active:translate-y-0"
+                className="rounded-xl bg-emerald-600 px-7 py-3.5 text-center font-semibold text-white shadow-lg shadow-emerald-600/35 transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-500"
               >
                 Get a Free Quote
               </Link>
               <Link
                 href="/services"
-                className="rounded-xl border border-emerald-300 bg-white/80 px-6 py-3 text-center font-semibold text-emerald-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-400 hover:bg-emerald-50 active:translate-y-0"
+                className="rounded-xl border border-white/60 bg-transparent px-7 py-3.5 text-center font-semibold text-white transition-all duration-200 hover:-translate-y-1 hover:bg-white/10"
               >
                 Explore Services
               </Link>
             </div>
           </m.div>
-
-          <m.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.85, delay: 0.12, ease: "easeInOut" }}
-            className="relative flex items-center justify-center pb-28 md:pb-24"
-          >
-            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-              <div className="h-[18rem] w-[18rem] rounded-full bg-emerald-200/40 blur-3xl md:h-[22rem] md:w-[22rem]" />
-            </div>
-
-            <div className="relative z-10 flex h-[320px] w-full max-w-md items-center justify-center overflow-hidden rounded-3xl border border-emerald-100/80 bg-white/80 shadow-[0_30px_90px_-50px_rgba(22,163,74,0.55)] backdrop-blur-sm md:h-[430px]">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-white/90 to-emerald-100/40" />
-
-              <m.div
-                initial={{ y: -58, opacity: 0 }}
-                animate={{ y: [-58, -14, -20, -14], opacity: [0, 1, 1, 1] }}
-                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", repeatDelay: 0.6 }}
-                className="absolute top-8 z-20"
-                style={{
-                  filter: "drop-shadow(0 0 12px rgba(34,197,94,0.52))",
-                }}
-              >
-                <Bolt className="h-10 w-10 text-emerald-500" strokeWidth={2.3} />
-              </m.div>
-
-              <m.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: isEnergyOn ? 14 : 36, repeat: Infinity, ease: "linear" }}
-                className="absolute z-10 h-44 w-44 rounded-full border border-emerald-300/70 md:h-52 md:w-52"
-              />
-              <m.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: isEnergyOn ? 11 : 32, repeat: Infinity, ease: "linear" }}
-                className="absolute z-10 h-56 w-56 rounded-full border border-emerald-200/70 border-dashed md:h-64 md:w-64"
-              />
-              <m.div
-                animate={{ scale: isEnergyOn ? [1, 1.1, 1] : [1, 1.02, 1], opacity: isEnergyOn ? [0.5, 0.85, 0.5] : [0.2, 0.35, 0.2] }}
-                transition={{ duration: isEnergyOn ? 2.8 : 6.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute z-0 h-36 w-36 rounded-full bg-gradient-to-br from-emerald-300/55 via-emerald-200/30 to-lime-100/25 blur-lg md:h-40 md:w-40"
-              />
-
-              <div className="absolute bottom-16 z-20 flex flex-col items-center gap-5 md:bottom-20">
-                <m.div
-                  animate={
-                    isEnergyOn
-                      ? { scale: [1, 1.06, 1], opacity: [0.95, 1, 0.95] }
-                      : { scale: 1, opacity: 0.45 }
-                  }
-                  transition={{ duration: isEnergyOn ? 2.2 : 0.4, repeat: isEnergyOn ? Infinity : 0, ease: "easeInOut" }}
-                  className="relative"
-                >
-                  <div
-                    className="absolute inset-[-14px] rounded-full"
-                    style={{
-                      background: isEnergyOn
-                        ? "radial-gradient(circle, rgba(253,224,71,0.42) 0%, rgba(34,197,94,0.22) 50%, rgba(34,197,94,0) 80%)"
-                        : "none",
-                      filter: "blur(8px)",
-                    }}
-                  />
-                  <Lightbulb className={`relative h-14 w-14 ${isEnergyOn ? "text-emerald-500" : "text-slate-400"}`} strokeWidth={1.9} />
-                </m.div>
-
-                <button
-                  type="button"
-                  onClick={() => setIsEnergyOn((prev) => !prev)}
-                  aria-label={isEnergyOn ? "Turn energy system off" : "Turn energy system on"}
-                  aria-pressed={isEnergyOn}
-                  className={`relative h-9 w-16 rounded-full border transition-colors duration-300 ${
-                    isEnergyOn ? "border-emerald-300 bg-emerald-500/85" : "border-slate-300 bg-slate-300/80"
-                  }`}
-                >
-                  <m.span
-                    layout
-                    transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                    className="absolute top-1.5 h-6 w-6 rounded-full bg-white shadow-md"
-                    style={{ left: isEnergyOn ? "calc(100% - 1.85rem)" : "0.35rem" }}
-                  />
-                </button>
-              </div>
-            </div>
-
-            <m.article
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: [0, -4, 0] }}
-              transition={{ opacity: { duration: 0.75, delay: 0.35, ease: "easeInOut" }, y: { duration: 4.6, repeat: Infinity, ease: "easeInOut" } }}
-              className="absolute bottom-0 left-1/2 z-30 hidden w-full max-w-lg -translate-x-1/2 gap-4 rounded-xl border border-white/60 bg-white/40 p-4 text-slate-900 shadow-xl shadow-emerald-900/10 backdrop-blur-md md:flex"
-            >
-              <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-lg bg-slate-100">
-                {latestPost?.mainImage ? (
-                  <Image
-                    src={urlFor(latestPost.mainImage).width(320).height(220).url()}
-                    alt={latestPost.title || "Latest news thumbnail"}
-                    fill
-                    sizes="112px"
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="h-full w-full bg-gradient-to-br from-emerald-100 to-lime-50" />
-                )}
-              </div>
-              <div className="min-w-0 flex-1">
-                <h3 className="line-clamp-1 text-sm font-semibold leading-5 text-slate-900">{newsTitle}</h3>
-                <p className="mt-1 text-xs text-slate-500">
-                  {newsDate} · {newsAuthor}
-                </p>
-                <Link href={newsSlug} className="mt-2 inline-flex text-xs font-semibold text-emerald-700 hover:text-emerald-600">
-                  Read more →
-                </Link>
-              </div>
-            </m.article>
-          </m.div>
         </div>
 
-        <div className="px-4 pb-12 md:hidden">
-          <m.article
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeInOut" }}
-            whileHover={{ y: -2 }}
-            className="mx-auto mt-2 flex w-full max-w-lg gap-4 rounded-xl border border-white/70 bg-white/50 p-4 text-slate-900 shadow-lg shadow-emerald-900/10 backdrop-blur-md"
+        <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:px-8">
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous slide"
+            className="pointer-events-auto rounded-full border border-white/25 bg-black/30 p-3 text-white/90 backdrop-blur transition hover:scale-105 hover:bg-black/50"
           >
-            <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-lg bg-slate-100">
-              {latestPost?.mainImage ? (
-                <Image
-                  src={urlFor(latestPost.mainImage).width(280).height(200).url()}
-                  alt={latestPost.title || "Latest news thumbnail"}
-                  fill
-                  sizes="96px"
-                  className="object-cover"
-                />
-              ) : (
-                <div className="h-full w-full bg-gradient-to-br from-emerald-100 to-lime-50" />
-              )}
+            <ArrowLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next slide"
+            className="pointer-events-auto rounded-full border border-white/25 bg-black/30 p-3 text-white/90 backdrop-blur transition hover:scale-105 hover:bg-black/50"
+          >
+            <ArrowRight className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="absolute bottom-32 left-1/2 z-20 flex -translate-x-1/2 gap-2.5">
+          {sliderImages.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                activeIndex === index ? "w-8 bg-emerald-500" : "w-2.5 bg-white/55 hover:bg-white/80"
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="absolute bottom-8 left-1/2 z-30 w-[92%] max-w-6xl -translate-x-1/2 md:bottom-6">
+          <div className="rounded-2xl border border-white/15 bg-black/40 p-4 shadow-2xl shadow-black/35 backdrop-blur-lg md:p-6">
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+              {stats.map((item, index) => (
+                <StatItem key={item.label} {...item} index={index} />
+              ))}
             </div>
-            <div className="min-w-0 flex-1">
-              <h3 className="line-clamp-1 text-sm font-semibold">{newsTitle}</h3>
-              <p className="mt-1 text-xs text-slate-500">
-                {newsDate} · {newsAuthor}
-              </p>
-              <Link href={newsSlug} className="mt-2 inline-flex text-xs font-semibold text-emerald-700 hover:text-emerald-600">
-                Read more →
-              </Link>
-            </div>
-          </m.article>
+          </div>
         </div>
       </section>
     </LazyMotion>
