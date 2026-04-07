@@ -247,7 +247,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
           ))}
         </div>
 
-        <div className="absolute bottom-8 left-1/2 z-30 w-[92%] max-w-6xl -translate-x-1/2 md:bottom-6">
+        <div className="absolute left-1/2 top-[25%] z-30 w-[92%] max-w-6xl -translate-x-1/2 md:top-[75%]">
           <div className="rounded-2xl border border-white/15 bg-black/40 p-4 shadow-2xl shadow-black/35 backdrop-blur-lg md:p-6">
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
               {stats.map((item, index) => (
