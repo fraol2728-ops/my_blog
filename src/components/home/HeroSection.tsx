@@ -131,7 +131,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-black/25" />
 
-        <div className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center px-6 pb-36 pt-20 lg:px-8 lg:pt-24">
+        <div className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center px-6 pb-16 pt-20 md:pb-36 lg:px-8 lg:pt-24">
           <div className="grid w-full items-center gap-12 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-10">
             <m.div
               initial={{ opacity: 0, y: 36 }}
@@ -171,7 +171,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-                className="hidden lg:block"
+                className="hidden lg:block lg:-translate-y-12"
               >
                 <Link
                   href={`/post/${latestPost.slug}`}
@@ -247,7 +247,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
           ))}
         </div>
 
-        <div className="absolute left-1/2 top-[25%] z-30 w-[92%] max-w-6xl -translate-x-1/2 md:top-[75%]">
+        <div className="relative z-30 mx-auto mt-8 w-[92%] max-w-6xl md:absolute md:bottom-10 md:left-1/2 md:mt-0 md:-translate-x-1/2">
           <div className="rounded-2xl border border-white/15 bg-black/40 p-4 shadow-2xl shadow-black/35 backdrop-blur-lg md:p-6">
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
               {stats.map((item, index) => (
