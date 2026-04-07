@@ -1,20 +1,22 @@
-import AboutHero from "@/components/about/AboutHero";
 import CTASection from "@/components/about/CTASection";
 import CompanyOverview from "@/components/about/CompanyOverview";
-import ExpertiseSection from "@/components/about/ExpertiseSection";
-import ImpactSection from "@/components/about/ImpactSection";
-import MissionVision from "@/components/about/MissionVision";
-import ValuesSection from "@/components/about/ValuesSection";
+import HeroAbout from "@/components/about/HeroAbout";
+import ProjectsSection from "@/components/about/ProjectsSection";
+import SustainabilitySection from "@/components/about/SustainabilitySection";
+import TeamSection from "@/components/about/TeamSection";
+import ValuesGrid from "@/components/about/ValuesGrid";
+import VisionMission from "@/components/about/VisionMission";
 
 export default function AboutPage() {
   return (
     <main className="bg-white text-slate-900">
-      <AboutHero />
+      <HeroAbout />
       <CompanyOverview />
-      <MissionVision />
-      <ValuesSection />
-      <ImpactSection />
-      <ExpertiseSection />
+      <VisionMission />
+      <ValuesGrid />
+      <TeamSection />
+      <ProjectsSection />
+      <SustainabilitySection />
       <CTASection />
     </main>
   );
