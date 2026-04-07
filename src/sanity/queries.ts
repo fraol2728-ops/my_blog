@@ -28,6 +28,10 @@ const ALL_POSTS_QUERY = defineQuery(`*[
   publishedAt,
   mainImage,
   excerpt,
+  categories[]->{
+    title,
+    "slug": slug.current,
+  },
   author->{
     name,
     image,
@@ -121,6 +125,10 @@ const FILTERED_POSTS_QUERY = defineQuery(`*[
   publishedAt,
   mainImage,
   excerpt,
+  categories[]->{
+    title,
+    "slug": slug.current,
+  },
   author->{
     name,
     image,
