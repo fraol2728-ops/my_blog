@@ -57,8 +57,8 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section className="px-4 py-24">
-      <div className="mx-auto max-w-6xl">
+    <section>
+      <div className="section-shell max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -66,17 +66,15 @@ export default function ServicesSection() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="mx-auto max-w-3xl text-center"
         >
-          <p className="text-sm uppercase text-black">Our Services</p>
-          <h2 className="mt-3 text-4xl font-bold md:text-5xl">
-            Comprehensive Solar Solutions for Every Need
-          </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="ui-kicker">Our Services</p>
+          <h2 className="ui-title">Comprehensive Solar Solutions for Every Need</h2>
+          <p className="ui-subtitle">
             We provide complete solar energy solutions, from installation to manufacturing and
             long-term support.
           </p>
         </motion.div>
 
-        <div className="mt-16 space-y-24">
+        <div className="mt-16 space-y-12">
           {services.map((service, index) => {
             const imageFirst = index % 2 === 0;
 
@@ -87,10 +85,10 @@ export default function ServicesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
-                className="grid items-center gap-12 md:grid-cols-2"
+                className="ui-card ui-card-hover grid items-center gap-8 p-6 md:grid-cols-2 md:p-8"
               >
                 <div className={imageFirst ? "order-1" : "order-2 md:order-2"}>
-                  <div className="overflow-hidden rounded-2xl shadow-xl">
+                  <div className="overflow-hidden rounded-2xl">
                     <Image
                       src={service.image}
                       alt={service.alt}
@@ -103,8 +101,8 @@ export default function ServicesSection() {
                 </div>
 
                 <div className={imageFirst ? "order-2" : "order-1 md:order-1"}>
-                  <h3 className="text-3xl font-bold md:text-4xl">{service.title}</h3>
-                  <p className="mt-4 text-lg text-gray-600">{service.description}</p>
+                  <h3 className="text-2xl font-semibold text-slate-900 md:text-3xl">{service.title}</h3>
+                  <p className="mt-4 text-base text-slate-600 md:text-lg">{service.description}</p>
 
                   <ul className="mt-6 space-y-3">
                     {service.highlights.map((highlight) => (

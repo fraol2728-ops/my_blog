@@ -12,7 +12,7 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section className="bg-slate-50 px-6 py-24">
+    <section className="bg-slate-50 px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
           Featured Projects

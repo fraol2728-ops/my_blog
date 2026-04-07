@@ -28,7 +28,7 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="px-6 py-24">
+    <section className="px-6 py-20">
       <div className="mx-auto max-w-7xl rounded-xl bg-white p-10 shadow-lg sm:p-12">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
           Why Leading Organizations Choose Us
