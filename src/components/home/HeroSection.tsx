@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { LazyMotion, AnimatePresence, domAnimation, m } from "motion/react";
 import { ArrowLeft, ArrowRight, Factory, TowerControl, Wrench, Zap } from "lucide-react";
+import { urlFor } from "@/sanity/lib/image";
+import type { Post } from "@/types";
 
 const sliderImages = ["/project1.jpg", "/project2.jpg", "/project3.jpg", "/project4.jpg"];
 
@@ -77,10 +79,10 @@ function StatItem({
 }
 
 type HeroSectionProps = {
-  latestPost?: unknown;
+  latestPost: Post | null;
 };
 
-export default function HeroSection({ latestPost: _latestPost }: HeroSectionProps) {
+export default function HeroSection({ latestPost }: HeroSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -130,38 +132,86 @@ export default function HeroSection({ latestPost: _latestPost }: HeroSectionProp
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-black/25" />
 
         <div className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center px-6 pb-44 pt-32 lg:px-8">
-          <m.div
-            initial={{ opacity: 0, y: 36 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-2xl text-center md:text-left"
-          >
-            <p className="inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
-              Clean Energy Infrastructure
-            </p>
-            <h1 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Powering the Future of Sustainable Energy
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/80 md:mx-0 md:text-lg">
-              Delivering advanced solar and energy infrastructure solutions for industries, governments, and
-              communities.
-            </p>
+          <div className="grid w-full items-center gap-12 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-10">
+            <m.div
+              initial={{ opacity: 0, y: 36 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="max-w-2xl text-center md:text-left"
+            >
+              <p className="inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
+                Clean Energy Infrastructure
+              </p>
+              <h1 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+                Powering the Future of Sustainable Energy
+              </h1>
+              <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/80 md:mx-0 md:text-lg">
+                Delivering advanced solar and energy infrastructure solutions for industries, governments, and
+                communities.
+              </p>
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row md:justify-start">
-              <Link
-                href="/contact"
-                className="rounded-xl bg-emerald-600 px-7 py-3.5 text-center font-semibold text-white shadow-lg shadow-emerald-600/35 transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-500"
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row md:justify-start">
+                <Link
+                  href="/contact"
+                  className="rounded-xl bg-emerald-600 px-7 py-3.5 text-center font-semibold text-white shadow-lg shadow-emerald-600/35 transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-500"
+                >
+                  Get a Free Quote
+                </Link>
+                <Link
+                  href="/services"
+                  className="rounded-xl border border-white/60 bg-transparent px-7 py-3.5 text-center font-semibold text-white transition-all duration-200 hover:-translate-y-1 hover:bg-white/10"
+                >
+                  Explore Services
+                </Link>
+              </div>
+            </m.div>
+
+            {latestPost?.slug && (
+              <m.div
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+                className="hidden lg:block"
               >
-                Get a Free Quote
-              </Link>
-              <Link
-                href="/services"
-                className="rounded-xl border border-white/60 bg-transparent px-7 py-3.5 text-center font-semibold text-white transition-all duration-200 hover:-translate-y-1 hover:bg-white/10"
-              >
-                Explore Services
-              </Link>
-            </div>
-          </m.div>
+                <Link
+                  href={`/post/${latestPost.slug}`}
+                  className="group relative block overflow-hidden rounded-3xl border border-white/35 bg-white/10 p-4 text-white shadow-[0_0_35px_rgba(16,185,129,0.25)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/80 hover:shadow-[0_0_48px_rgba(16,185,129,0.4)]"
+                >
+                  <m.div
+                    animate={{ opacity: [0.2, 0.45, 0.2] }}
+                    transition={{ repeat: Infinity, duration: 3.8, ease: "easeInOut" }}
+                    className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-emerald-400/35 blur-3xl"
+                  />
+                  <div className="relative">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/90">Featured News</p>
+
+                    <div className="mt-3 overflow-hidden rounded-2xl border border-white/20">
+                      {latestPost.mainImage ? (
+                        <Image
+                          src={urlFor(latestPost.mainImage).width(900).height(540).url()}
+                          alt={latestPost.title || "Featured news image"}
+                          width={900}
+                          height={540}
+                          className="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="aspect-[16/10] w-full bg-gradient-to-br from-emerald-500/25 to-slate-900/90" />
+                      )}
+                    </div>
+
+                    <h3 className="mt-4 line-clamp-2 text-2xl font-semibold leading-tight text-white">
+                      {latestPost.title}
+                    </h3>
+                    <p className="mt-3 line-clamp-3 text-sm leading-6 text-white/80">{latestPost.excerpt}</p>
+
+                    <span className="mt-5 inline-flex items-center rounded-full border border-white/40 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition group-hover:border-emerald-300 group-hover:bg-emerald-500/20">
+                      Read more
+                    </span>
+                  </div>
+                </Link>
+              </m.div>
+            )}
+          </div>
         </div>
 
         <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:px-8">
