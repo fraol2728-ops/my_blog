@@ -29,7 +29,7 @@
   }
 
   h3 {
-    @apply text-2xl leading-snug sm:text-3xl lg:text-4xl;
+    @apply text-2xl leading-snug sm:text-3xl;
   }
 
   p {
@@ -63,7 +63,7 @@
   }
 
   .ui-title {
-    @apply mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl;
+    @apply mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl;
   }
 
   .ui-subtitle {
@@ -80,5 +80,13 @@
 
   .ui-input {
     @apply rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100;
+  }
+
+  .ui-glass {
+    @apply border border-white/15 bg-white/10 backdrop-blur-xl;
+  }
+
+  .ui-nav-link {
+    @apply relative py-2 text-sm font-medium text-slate-700 transition-colors duration-200 hover:text-slate-900;
   }
 }

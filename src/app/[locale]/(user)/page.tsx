@@ -15,7 +15,7 @@ export default async function Home() {
     <div className="bg-white text-slate-900">
       <HeroSection latestPost={latestPost} />
 
-      <main className="px-6">
+      <main>
         <AboutSection />
         <BlogPreview posts={latestPosts} />
         <ServicesSection />
