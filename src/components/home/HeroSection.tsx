@@ -175,7 +175,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
               >
                 <Link
                   href={`/post/${latestPost.slug}`}
-                  className="group relative block overflow-hidden rounded-3xl border border-white/35 bg-white/10 p-4 text-white shadow-[0_0_35px_rgba(16,185,129,0.25)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/80 hover:shadow-[0_0_48px_rgba(16,185,129,0.4)]"
+                  className="group relative block overflow-hidden rounded-3xl border border-white/35 bg-white/10 p-3.5 text-white shadow-[0_0_35px_rgba(16,185,129,0.25)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/80 hover:shadow-[0_0_48px_rgba(16,185,129,0.4)]"
                 >
                   <m.div
                     animate={{ opacity: [0.2, 0.45, 0.2] }}
@@ -192,19 +192,19 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
                           alt={latestPost.title || "Featured news image"}
                           width={900}
                           height={540}
-                          className="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-105"
+                          className="aspect-[16/9] w-full object-cover transition duration-500 group-hover:scale-105"
                         />
                       ) : (
-                        <div className="aspect-[16/10] w-full bg-gradient-to-br from-emerald-500/25 to-slate-900/90" />
+                        <div className="aspect-[16/9] w-full bg-gradient-to-br from-emerald-500/25 to-slate-900/90" />
                       )}
                     </div>
 
-                    <h3 className="mt-4 line-clamp-2 text-2xl font-semibold leading-tight text-white">
+                    <h3 className="mt-3.5 line-clamp-2 text-xl font-semibold leading-tight text-white">
                       {latestPost.title}
                     </h3>
-                    <p className="mt-3 line-clamp-3 text-sm leading-6 text-white/80">{latestPost.excerpt}</p>
+                    <p className="mt-2.5 line-clamp-2 text-sm leading-6 text-white/80">{latestPost.excerpt}</p>
 
-                    <span className="mt-5 inline-flex items-center rounded-full border border-white/40 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition group-hover:border-emerald-300 group-hover:bg-emerald-500/20">
+                    <span className="mt-4 inline-flex items-center rounded-full border border-white/40 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white transition group-hover:border-emerald-300 group-hover:bg-emerald-500/20">
                       Read more
                     </span>
                   </div>
