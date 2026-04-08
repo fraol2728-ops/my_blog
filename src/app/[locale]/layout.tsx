@@ -1,12 +1,10 @@
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { routing } from "@/i18n/routing";
+import { defaultLocale, isValidLocale, type AppLocale } from "@/i18n/config";
+import { getMessages } from "@/i18n/get-messages";
+import { I18nProvider } from "@/i18n/I18nProvider";
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -15,15 +13,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
+  if (!isValidLocale(locale)) {
     notFound();
   }
 
-  const t = await getTranslations({ locale, namespace: "meta" });
+  const messages = getMessages(locale as AppLocale);
 
   return {
-    title: t("homeTitle"),
-    description: t("description"),
+    title: messages.meta.homeTitle,
+    description: messages.meta.description,
     alternates: {
       canonical: `/${locale}`,
       languages: {
@@ -43,13 +41,15 @@ export default async function LocaleLayout({
 }>) {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
+  if (!isValidLocale(locale)) {
     notFound();
   }
 
-  setRequestLocale(locale);
+  const messages = getMessages(locale ?? defaultLocale);
 
-  const messages = await getMessages();
-
-  return <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>;
+  return (
+    <I18nProvider locale={locale as AppLocale} messages={messages}>
+      {children}
+    </I18nProvider>
+  );
 }

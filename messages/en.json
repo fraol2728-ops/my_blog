@@ -1,8 +1,8 @@
 {
   "meta": {
-    "siteName": "SolarPeak",
-    "description": "SolarPeak delivers residential and commercial solar installation, maintenance, and clean energy consulting services.",
-    "homeTitle": "SolarPeak | Solar Energy Solutions"
+    "siteName": "Master Premier",
+    "description": "Master Premier delivers residential and commercial solar installation, maintenance, and clean energy consulting services.",
+    "homeTitle": "Master Premier | Solar Energy Solutions"
   },
   "nav": {
     "brand": "Master Premier",
@@ -31,5 +31,13 @@
     "servicesMaintenance": "Maintenance & Support",
     "servicesConsultancy": "Consultancy",
     "servicesCustom": "Custom Projects"
+  },
+  "contact": {
+    "heading": "Get in Touch with Our Solar Experts",
+    "subheading": "Ready to switch to solar? Contact us today for a free consultation.",
+    "mapTitle": "Solar Company Location"
+  },
+  "news": {
+    "empty": "No news articles published yet."
   }
 }

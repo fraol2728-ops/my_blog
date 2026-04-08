@@ -1,11 +1,11 @@
 {
   "meta": {
-    "siteName": "ሶላርፒክ",
-    "description": "ሶላርፒክ ለመኖሪያ እና ለንግድ የፀሐይ ኃይል ግጥሚያ፣ ጥገና እና የንጹህ ኃይል ምክር አገልግሎቶችን ያቀርባል።",
-    "homeTitle": "ሶላርፒክ | የፀሐይ ኃይል መፍትሄዎች"
+    "siteName": "Master Premier",
+    "description": "Master Premier ለመኖሪያ እና ለንግድ የፀሐይ ኃይል ግጥሚያ፣ ጥገና እና የንጹህ ኃይል ምክር አገልግሎቶችን ያቀርባል።",
+    "homeTitle": "Master Premier | የፀሐይ ኃይል መፍትሄዎች"
   },
   "nav": {
-    "brand": "ማስተር ፕሪሚየር",
+    "brand": "Master Premier",
     "home": "መነሻ",
     "about": "ስለ እኛ",
     "services": "አገልግሎቶች",
@@ -31,5 +31,13 @@
     "servicesMaintenance": "ጥገና እና ድጋፍ",
     "servicesConsultancy": "ምክር",
     "servicesCustom": "ብጁ ፕሮጀክቶች"
+  },
+  "contact": {
+    "heading": "ከፀሐይ ኃይል ባለሙያዎቻችን ጋር ይገናኙ",
+    "subheading": "ወደ ፀሐይ ኃይል ለመቀየር ዝግጁ ነዎት? ለነጻ ምክር ዛሬ ያግኙን።",
+    "mapTitle": "የኩባንያ አድራሻ"
+  },
+  "news": {
+    "empty": "እስካሁን የታተሙ የዜና ጽሑፎች የሉም።"
   }
 }

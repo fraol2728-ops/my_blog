@@ -7,9 +7,11 @@ import clsx from "clsx";
 import { Button } from "./button";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { useLocale, useTranslations } from "next-intl";
-import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import type { AppLocale } from "@/i18n/routing";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "@/i18n/I18nProvider";
+import type { AppLocale } from "@/i18n/config";
+import LanguageSwitcher from "./language-switcher";
 
 type DropdownItem = {
   href: string;
@@ -28,9 +30,9 @@ const isActivePath = (pathname: string, href: string) => {
 };
 
 export default function Navbar() {
-  const t = useTranslations("nav");
+  const t = useTranslations;
   const locale = useLocale() as AppLocale;
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [desktopOpenDropdown, setDesktopOpenDropdown] = useState<string | null>(null);
@@ -39,32 +41,32 @@ export default function Navbar() {
   const [mobileKeyword, setMobileKeyword] = useState("");
 
   const navLinks: NavItem[] = [
-    { href: "/", label: t("home") },
+    { href: "/", label: t("nav.home") },
     {
-      label: t("about"),
+      label: t("nav.about"),
       dropdownItems: [
-        { href: "/about#company-overview", label: t("aboutOverview") },
-        { href: "/about#vision-mission", label: t("aboutVision") },
-        { href: "/about#our-values", label: t("aboutValues") },
-        { href: "/about#leadership", label: t("aboutLeadership") },
-        { href: "/about#our-projects", label: t("aboutProjects") },
-        { href: "/about#sustainability", label: t("aboutSustainability") },
+        { href: "/about#company-overview", label: t("nav.aboutOverview") },
+        { href: "/about#vision-mission", label: t("nav.aboutVision") },
+        { href: "/about#our-values", label: t("nav.aboutValues") },
+        { href: "/about#leadership", label: t("nav.aboutLeadership") },
+        { href: "/about#our-projects", label: t("nav.aboutProjects") },
+        { href: "/about#sustainability", label: t("nav.aboutSustainability") },
       ],
     },
     {
-      label: t("services"),
+      label: t("nav.services"),
       dropdownItems: [
-        { href: "/services#solar-energy-solutions", label: t("servicesSolar") },
-        { href: "/services#epc", label: t("servicesEpc") },
-        { href: "/services#energy-storage-systems", label: t("servicesStorage") },
-        { href: "/services#maintenance-support", label: t("servicesMaintenance") },
-        { href: "/services#consultancy", label: t("servicesConsultancy") },
-        { href: "/services#custom-projects", label: t("servicesCustom") },
+        { href: "/services#solar-energy-solutions", label: t("nav.servicesSolar") },
+        { href: "/services#epc", label: t("nav.servicesEpc") },
+        { href: "/services#energy-storage-systems", label: t("nav.servicesStorage") },
+        { href: "/services#maintenance-support", label: t("nav.servicesMaintenance") },
+        { href: "/services#consultancy", label: t("nav.servicesConsultancy") },
+        { href: "/services#custom-projects", label: t("nav.servicesCustom") },
       ],
     },
-    { href: "/news", label: t("news") },
-    { href: "/contact#faqs", label: t("faqs") },
-    { href: "/contact", label: t("contact") },
+    { href: "/news", label: t("nav.news") },
+    { href: "/contact#faqs", label: t("nav.faqs") },
+    { href: "/contact", label: t("nav.contact") },
   ];
 
   useEffect(() => {
@@ -83,16 +85,19 @@ export default function Navbar() {
     const trimmedKeyword = keyword.trim();
 
     if (!trimmedKeyword) {
-      router.push("/news");
+      router.push(localizedHref("/news"));
       return;
     }
 
-    router.push(`/news?q=${encodeURIComponent(trimmedKeyword)}`);
+    router.push(`${localizedHref("/news")}?q=${encodeURIComponent(trimmedKeyword)}`);
   };
 
-  const switchLocale = (nextLocale: AppLocale) => {
-    router.replace(pathname, { locale: nextLocale });
+  const localizedHref = (href: string) => {
+    if (href.startsWith("http") || href.startsWith("#")) return href;
+
+    return `/${locale}${href === "/" ? "" : href}`;
   };
+
 
   return (
     <Disclosure
@@ -109,7 +114,7 @@ export default function Navbar() {
             isScrolled ? "h-[72px]" : "h-20"
           )}
         >
-          <Link href="/" className="group flex items-center gap-3" aria-label="Go to homepage">
+          <Link href={localizedHref("/")} className="group flex items-center gap-3" aria-label="Go to homepage">
             <Image
               src="/logo.png"
               alt="Master Premier Green Energy Co. Ltd"
@@ -118,7 +123,7 @@ export default function Navbar() {
               className="h-11 w-11 rounded-md object-contain transition-transform duration-300 group-hover:scale-105"
               priority
             />
-            <span className="hidden text-base font-semibold text-slate-900 sm:block">{t("brand")}</span>
+            <span className="hidden text-base font-semibold text-slate-900 sm:block">{t("nav.brand")}</span>
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex">
@@ -127,7 +132,7 @@ export default function Navbar() {
                 return (
                   <Link
                     key={item.label}
-                    href={item.href!}
+                    href={localizedHref(item.href!)}
                     className={clsx(
                       "group relative py-2 text-sm font-medium transition-colors duration-200",
                       isActivePath(pathname, item.href!) ? "text-emerald-600" : "text-slate-700 hover:text-slate-900"
@@ -179,7 +184,7 @@ export default function Navbar() {
                           {item.dropdownItems.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.label}
-                              href={dropdownItem.href}
+                              href={localizedHref(dropdownItem.href)}
                               className="block rounded-md px-3 py-2 text-sm text-slate-700 transition-colors duration-200 hover:bg-green-50 hover:text-green-600"
                             >
                               {dropdownItem.label}
@@ -195,24 +200,7 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <div className="flex items-center rounded-full border border-slate-200 bg-white p-1">
-              {([
-                { code: "en", label: t("english") },
-                { code: "am", label: t("amharic") },
-              ] as const).map((lang) => (
-                <button
-                  key={lang.code}
-                  type="button"
-                  onClick={() => switchLocale(lang.code)}
-                  className={clsx(
-                    "rounded-full px-3 py-1 text-xs font-semibold",
-                    locale === lang.code ? "bg-emerald-600 text-white" : "text-slate-700"
-                  )}
-                >
-                  {lang.label}
-                </button>
-              ))}
-            </div>
+            <LanguageSwitcher />
 
             <form
               className="flex items-center gap-2"
@@ -226,57 +214,38 @@ export default function Navbar() {
                 name="q"
                 value={desktopKeyword}
                 onChange={(event) => setDesktopKeyword(event.target.value)}
-                placeholder={t("searchPlaceholder")}
-                aria-label={t("searchLabel")}
+                placeholder={t("nav.searchPlaceholder")}
+                aria-label={t("nav.searchLabel")}
                 className="ui-input w-44 rounded-full"
               />
               <button
                 type="submit"
-                aria-label={t("searchLabel")}
+                aria-label={t("nav.searchLabel")}
                 className="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
               >
                 <MagnifyingGlassIcon className="size-5" />
               </button>
             </form>
-            <Button href="/contact" variant="primary" className="shadow-sm">
-              {t("quote")}
+            <Button href={localizedHref("/contact")} variant="primary" className="shadow-sm">
+              {t("nav.quote")}
             </Button>
           </div>
 
           <DisclosureButton className="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-700 lg:hidden">
-            <span className="sr-only">{t("toggleMenu")}</span>
+            <span className="sr-only">{t("nav.toggleMenu")}</span>
             {open ? <XMarkIcon className="size-6" /> : <Bars3Icon className="size-6" />}
           </DisclosureButton>
 
           <DisclosurePanel className="absolute inset-x-0 top-full border-b border-slate-200/70 bg-white/95 shadow-sm backdrop-blur-2xl lg:hidden">
             <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-5">
-              <div className="mb-2 flex items-center justify-end gap-2">
-                {([
-                  { code: "en", label: t("english") },
-                  { code: "am", label: t("amharic") },
-                ] as const).map((lang) => (
-                  <button
-                    key={lang.code}
-                    type="button"
-                    onClick={() => switchLocale(lang.code)}
-                    className={clsx(
-                      "rounded-full border px-3 py-1 text-xs font-semibold",
-                      locale === lang.code
-                        ? "border-emerald-600 bg-emerald-600 text-white"
-                        : "border-slate-200 text-slate-700"
-                    )}
-                  >
-                    {lang.label}
-                  </button>
-                ))}
-              </div>
+              <LanguageSwitcher mobile />
 
               {navLinks.map((item) => {
                 if (!item.dropdownItems || !item.dropdownItems.length) {
                   return (
                     <Link
                       key={item.label}
-                      href={item.href!}
+                      href={localizedHref(item.href!)}
                       className={clsx(
                         "rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200",
                         isActivePath(pathname, item.href!)
@@ -315,7 +284,7 @@ export default function Navbar() {
                           {item.dropdownItems.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.label}
-                              href={dropdownItem.href}
+                              href={localizedHref(dropdownItem.href)}
                               className="block rounded-md px-3 py-2 text-sm text-slate-700 transition-colors duration-200 hover:bg-green-50 hover:text-green-600"
                             >
                               {dropdownItem.label}
@@ -341,20 +310,20 @@ export default function Navbar() {
                     name="q"
                     value={mobileKeyword}
                     onChange={(event) => setMobileKeyword(event.target.value)}
-                    placeholder={t("searchPlaceholder")}
-                    aria-label={t("searchLabel")}
+                    placeholder={t("nav.searchPlaceholder")}
+                    aria-label={t("nav.searchLabel")}
                     className="ui-input w-full"
                   />
                   <button
                     type="submit"
-                    aria-label={t("searchLabel")}
+                    aria-label={t("nav.searchLabel")}
                     className="rounded-lg border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
                   >
                     <MagnifyingGlassIcon className="size-5" />
                   </button>
                 </form>
-                <Button href="/contact" variant="primary" className="flex-1 justify-center">
-                  {t("quote")}
+                <Button href={localizedHref("/contact")} variant="primary" className="flex-1 justify-center">
+                  {t("nav.quote")}
                 </Button>
               </div>
             </nav>
