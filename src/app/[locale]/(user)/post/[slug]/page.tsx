@@ -83,7 +83,7 @@ const SinglePostPage = async ({
     datePublished: post.publishedAt,
     author: {
       "@type": "Person",
-      name: post.author?.name ?? "Xyberosec Editorial Team",
+      name: post.author?.name ?? "Master Premier Editorial Team",
     },
     image: post.mainImage ? [urlFor(post.mainImage).url()] : [ogImageUrl(`/post/${slug}`, locale as AppLocale, post.title)],
     mainEntityOfPage: `${SITE_URL}/${locale}/post/${slug}`,

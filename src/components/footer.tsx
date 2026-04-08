@@ -2,22 +2,22 @@
 
 import Link from "next/link";
 import React from "react";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Logo from "./logo";
 import { useLocale } from "@/i18n/I18nProvider";
 
 const services = [
-  { href: "/services", label: "Managed SOC monitoring services" },
-  { href: "/services", label: "Cloud security architecture advisory" },
-  { href: "/services", label: "Incident response and recovery support" },
-  { href: "/services", label: "Penetration testing and risk assessments" },
+  { href: "/services", label: "Energy audit & feasibility studies" },
+  { href: "/services", label: "Energy management plans" },
+  { href: "/services", label: "System design & commercial proposals" },
+  { href: "/services", label: "Installation & after-service support" },
 ];
 
 const socialLinks = [
-  { href: "https://facebook.com", label: "Facebook", icon: Facebook },
-  { href: "https://twitter.com", label: "Twitter", icon: Twitter },
-  { href: "https://instagram.com", label: "Instagram", icon: Instagram },
-  { href: "https://linkedin.com", label: "LinkedIn", icon: Linkedin },
+  { href: "mailto:mpgenergy@gmail.com", label: "Email", icon: Mail },
+  { href: "tel:+211982004848", label: "Phone 1", icon: Phone },
+  { href: "tel:+211928004848", label: "Phone 2", icon: Phone },
+  { href: "https://maps.google.com/?q=Thongping,Florian+Road,Block+3,Plot+No.+258,+Juba,+South+Sudan", label: "Location", icon: MapPin },
 ];
 
 export default function Footer() {
@@ -25,11 +25,11 @@ export default function Footer() {
   const localized = (path: string) => `/${locale}${path === "/" ? "" : path}`;
 
   const quickLinks = [
-    { href: localized("/"), label: "Cybersecurity home" },
-    { href: localized("/about"), label: "About Xyberosec" },
-    { href: localized("/services"), label: "Security services" },
-    { href: localized("/news"), label: "Threat intelligence blog" },
-    { href: localized("/contact"), label: "Contact security experts" },
+    { href: localized("/"), label: "Home" },
+    { href: localized("/about"), label: "About Master Premier" },
+    { href: localized("/services"), label: "Our Services" },
+    { href: localized("/news"), label: "News & Updates" },
+    { href: localized("/contact"), label: "Contact Us" },
   ];
 
   return (
@@ -39,8 +39,8 @@ export default function Footer() {
           <div className="space-y-5">
             <Logo className="px-0 text-white" />
             <p className="max-w-sm text-sm leading-6 text-white/70">
-              Xyberosec helps security and technology teams reduce cyber risk through managed defense,
-              security engineering, and practical incident readiness.
+              Master Premier Green Energy Co. Ltd provides engineering and clean energy advisory services
+              that help customers access reliable, affordable, and sustainable solar power solutions.
             </p>
           </div>
 
@@ -84,9 +84,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="mailto:hello@xyberosec.com">
+                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="mailto:mpgenergy@gmail.com">
                   <Mail className="h-4 w-4" />
-                  hello@xyberosec.com
+                  mpgenergy@gmail.com
                 </a>
               </li>
             </ul>
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-5 border-t border-white/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-white/60">© {new Date().getFullYear()} Xyberosec. All rights reserved.</p>
+          <p className="text-sm text-white/60">© {new Date().getFullYear()} Master Premier Green Energy Co. Ltd. All rights reserved.</p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => {
               const Icon = social.icon;

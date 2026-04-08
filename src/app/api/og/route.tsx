@@ -5,11 +5,11 @@ export const runtime = "edge";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get("title") ?? "Cybersecurity Solutions";
+  const title = searchParams.get("title") ?? "Renewable Energy Solutions";
   const locale = searchParams.get("locale") ?? "en";
   const path = searchParams.get("path") ?? "/";
 
-  const subtitle = locale === "am" ? "የሳይበር ደህንነት አገልግሎቶች" : "Managed SOC • Incident Response • Cloud Security";
+  const subtitle = locale === "am" ? "የታዳሽ ኃይል ምህንድስና እና አማካሪ አገልግሎቶች" : "Engineering • Advisory • Solar Access";
 
   return new ImageResponse(
     (

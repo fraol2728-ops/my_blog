@@ -5,13 +5,13 @@ import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
 import { SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const defaultDescription =
-  "Xyberosec delivers managed SOC, cloud security, and incident response services that help teams detect threats early, reduce risk exposure, and strengthen resilience.";
+  "Master Premier Green Energy Co. Ltd delivers reliable, modern, and intelligent renewable energy engineering and advisory solutions for institutions and communities across South Sudan.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_NAME,
-    template: "%s | Xyberosec",
+    template: "%s | Master Premier Green Energy Co. Ltd",
   },
   description: defaultDescription,
   keywords: SEO_KEYWORDS,
@@ -36,10 +36,9 @@ const organizationSchema = {
   url: SITE_URL,
   logo: `${SITE_URL}/logo.png`,
   sameAs: [
-    "https://www.linkedin.com/company/xyberosec",
-    "https://x.com/xyberosec",
-    "https://www.facebook.com/xyberosec",
-    "https://github.com/xyberosec",
+    "mailto:mpgenergy@gmail.com",
+    "tel:+211982004848",
+    "tel:+211928004848",
   ],
 };
 

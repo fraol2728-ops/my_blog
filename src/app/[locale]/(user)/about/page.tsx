@@ -23,9 +23,9 @@ export async function generateMetadata({
   return pageMetadata({
     locale: locale as AppLocale,
     path: "/about",
-    title: "About Xyberosec Cybersecurity Team and Mission",
+    title: "About Master Premier Green Energy Co. Ltd",
     description:
-      "Learn how Xyberosec secures modern organizations through expert-led threat defense, practical security architecture, and measurable cyber risk reduction programs.",
+      "Learn how Master Premier Green Energy Co. Ltd delivers renewable energy engineering, advisory services, and reliable solar access solutions across South Sudan.",
   });
 }
 

@@ -26,9 +26,9 @@ export async function generateMetadata({
   return pageMetadata({
     locale: locale as AppLocale,
     path: `/category/${slug}`,
-    title: `Cybersecurity articles in ${slug} category`,
+    title: `Renewable energy articles in ${slug} category`,
     description:
-      "Browse curated Xyberosec articles by category to discover focused cybersecurity guidance, threat intelligence, and implementation best practices.",
+      "Browse Master Premier Green Energy articles by category to discover practical renewable energy guidance and project insights.",
   });
 }
 
