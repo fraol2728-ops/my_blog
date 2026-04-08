@@ -27,7 +27,8 @@
     "react-dom": "^19.2.4",
     "react-hook-form": "^7.54.2",
     "sanity": "^3.70.0",
-    "styled-components": "^6.1.14"
+    "styled-components": "^6.1.14",
+    "next-intl": "^3.26.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",

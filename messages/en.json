@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "siteName": "SolarPeak",
+    "description": "SolarPeak delivers residential and commercial solar installation, maintenance, and clean energy consulting services.",
+    "homeTitle": "SolarPeak | Solar Energy Solutions"
+  },
+  "nav": {
+    "brand": "Master Premier",
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "news": "News",
+    "faqs": "FAQs",
+    "contact": "Contact",
+    "quote": "Get a Quote",
+    "searchPlaceholder": "Search news...",
+    "toggleMenu": "Toggle menu",
+    "searchLabel": "Search news",
+    "language": "Language",
+    "english": "English",
+    "amharic": "አማርኛ",
+    "aboutOverview": "Company Overview",
+    "aboutVision": "Vision & Mission",
+    "aboutValues": "Our Values",
+    "aboutLeadership": "Leadership",
+    "aboutProjects": "Our Projects",
+    "aboutSustainability": "Sustainability",
+    "servicesSolar": "Solar Energy Solutions",
+    "servicesEpc": "EPC (Engineering, Procurement & Construction)",
+    "servicesStorage": "Energy Storage Systems",
+    "servicesMaintenance": "Maintenance & Support",
+    "servicesConsultancy": "Consultancy",
+    "servicesCustom": "Custom Projects"
+  }
+}

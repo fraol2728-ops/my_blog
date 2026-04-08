@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "siteName": "ሶላርፒክ",
+    "description": "ሶላርፒክ ለመኖሪያ እና ለንግድ የፀሐይ ኃይል ግጥሚያ፣ ጥገና እና የንጹህ ኃይል ምክር አገልግሎቶችን ያቀርባል።",
+    "homeTitle": "ሶላርፒክ | የፀሐይ ኃይል መፍትሄዎች"
+  },
+  "nav": {
+    "brand": "ማስተር ፕሪሚየር",
+    "home": "መነሻ",
+    "about": "ስለ እኛ",
+    "services": "አገልግሎቶች",
+    "news": "ዜና",
+    "faqs": "ተደጋጋሚ ጥያቄዎች",
+    "contact": "አግኙን",
+    "quote": "ዋጋ ይጠይቁ",
+    "searchPlaceholder": "ዜና ፈልግ...",
+    "toggleMenu": "ሜኑ ቀያይር",
+    "searchLabel": "ዜና ፈልግ",
+    "language": "ቋንቋ",
+    "english": "English",
+    "amharic": "አማርኛ",
+    "aboutOverview": "የኩባንያ አጠቃላይ እይታ",
+    "aboutVision": "ራዕይ እና ተልዕኮ",
+    "aboutValues": "እሴቶቻችን",
+    "aboutLeadership": "አመራር",
+    "aboutProjects": "ፕሮጀክቶቻችን",
+    "aboutSustainability": "ዘላቂነት",
+    "servicesSolar": "የፀሐይ ኃይል መፍትሄዎች",
+    "servicesEpc": "EPC (ኢንጂነሪንግ፣ ግዥ እና ግንባታ)",
+    "servicesStorage": "የኃይል ማከማቻ ስርዓቶች",
+    "servicesMaintenance": "ጥገና እና ድጋፍ",
+    "servicesConsultancy": "ምክር",
+    "servicesCustom": "ብጁ ፕሮጀክቶች"
+  }
+}
