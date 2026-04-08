@@ -8,6 +8,28 @@ import ServicesOverview, {
   type ServiceOverviewItem,
 } from "@/components/services/ServicesOverview";
 import WhyChooseUs from "@/components/services/WhyChooseUs";
+import { isValidLocale, type AppLocale } from "@/i18n/config";
+import { pageMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!isValidLocale(locale)) notFound();
+
+  return pageMetadata({
+    locale: locale as AppLocale,
+    path: "/services",
+    title: "Cybersecurity Services for Cloud, Apps, and SOC",
+    description:
+      "Explore Xyberosec services including managed SOC, penetration testing, cloud hardening, and incident response to strengthen your end-to-end security posture.",
+  });
+}
 
 const services: ServiceDetail[] = [
   {

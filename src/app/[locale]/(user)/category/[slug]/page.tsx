@@ -1,21 +1,46 @@
 import { Button } from "@/components/button";
 import Categories from "@/components/categories";
 import Container from "@/components/container";
+import { isValidLocale, type AppLocale } from "@/i18n/config";
+import { pageMetadata } from "@/lib/seo";
 import { urlFor } from "@/sanity/lib/image";
 import { getCategoryPost } from "@/sanity/queries";
 import { Post } from "@/types";
 import dayjs from "dayjs";
 import { ChevronRightIcon, FileX2 } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import React from "react";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+
+  if (!isValidLocale(locale)) notFound();
+
+  return pageMetadata({
+    locale: locale as AppLocale,
+    path: `/category/${slug}`,
+    title: `Cybersecurity articles in ${slug} category`,
+    description:
+      "Browse curated Xyberosec articles by category to discover focused cybersecurity guidance, threat intelligence, and implementation best practices.",
+  });
+}
 
 const CategoryPage = async ({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) => {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+
+  if (!isValidLocale(locale)) notFound();
+
   const posts: Post[] = (await getCategoryPost(slug)) ?? [];
   return (
     <div>
@@ -62,11 +87,11 @@ const CategoryPage = async ({
                       </p>
                       <div className="mt-4">
                         <Link
-                          href={`/post/${post?.slug}`}
+                          href={`/${locale}/post/${post?.slug}`}
                           className="flex items-center gap-1 text-sm/5 font-medium"
                         >
                           <span className="absolute inset-4" />
-                          Read more{" "}
+                          Read detailed article
                           <ChevronRightIcon className="size-4 text-gray-400" />
                         </Link>
                       </div>
@@ -92,7 +117,7 @@ const CategoryPage = async ({
                   </span>{" "}
                   category.
                 </p>
-                <Button href="/">Back to Home</Button>
+                <Button href={`/${locale}`}>Back to Home</Button>
               </div>
             )}
           </div>

@@ -7,6 +7,27 @@ import { Post, PostCategory } from "@/types";
 import { getMessages } from "@/i18n/get-messages";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!isValidLocale(locale)) notFound();
+
+  return pageMetadata({
+    locale: locale as AppLocale,
+    path: "/news",
+    title: "Xyberosec Newsroom and Cybersecurity Updates Hub",
+    description:
+      "Stay current with Xyberosec cybersecurity updates, incident trends, and expert guidance to improve governance, detection, and response readiness.",
+  });
+}
 
 export default async function NewsPage({
   params,

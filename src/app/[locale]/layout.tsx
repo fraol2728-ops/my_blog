@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 import { defaultLocale, isValidLocale, type AppLocale } from "@/i18n/config";
 import { getMessages } from "@/i18n/get-messages";
 import { I18nProvider } from "@/i18n/I18nProvider";
-
-export const dynamic = "force-dynamic";
+import { getLocalizedHomeMeta, pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -17,19 +16,14 @@ export async function generateMetadata({
     notFound();
   }
 
-  const messages = getMessages(locale as AppLocale);
+  const localized = getLocalizedHomeMeta(locale as AppLocale);
 
-  return {
-    title: messages.meta.homeTitle,
-    description: messages.meta.description,
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        en: "/en",
-        am: "/am",
-      },
-    },
-  };
+  return pageMetadata({
+    locale: locale as AppLocale,
+    path: "/",
+    title: localized.title,
+    description: localized.description,
+  });
 }
 
 export default async function LocaleLayout({

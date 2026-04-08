@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import { auth } from "../../../../auth";
 import { redirect } from "next/navigation";
 import { clientFetch } from "@/sanity/lib/client";
 import { defineQuery } from "next-sanity";
 import dayjs from "dayjs";
 import Link from "next/link";
+
+
+export const metadata: Metadata = {
+  title: "Admin Dashboard",
+  robots: { index: false, follow: false },
+};
 
 const LEADS_QUERY = defineQuery(`*[_type == "lead"] | order(submittedAt desc)[0...100]{
   _id,
