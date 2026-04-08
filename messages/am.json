@@ -39,5 +39,74 @@
   },
   "news": {
     "empty": "እስካሁን የታተሙ የዜና ጽሑፎች የሉም።"
+  },
+  "chatbot": {
+    "title": "Xyberosec Assistant",
+    "status": "Online",
+    "welcome": "ሰላም 👋 እኔ ረዳትዎ ነኝ። ዛሬ እንዴት ልረዳዎ?",
+    "preview": "አገልግሎት ለመምረጥ እገዛ ይፈልጋሉ?",
+    "open": "ረዳቱን ክፈት",
+    "close": "ረዳቱን ዝጋ",
+    "send": "ላክ",
+    "inputPlaceholder": "መልእክትዎን ይጻፉ...",
+    "fallback": "በሙሉ አልገባኝም። ከእነዚህ አንዱን ይሞክሩ፦",
+    "quick": {
+      "exploreServices": "አገልግሎቶችን ያስሱ",
+      "pricing": "ዋጋ",
+      "contact": "አግኙን",
+      "companyProfile": "የኩባንያ መግለጫ"
+    },
+    "services": {
+      "question": "ምን እየፈለጉ ነው?",
+      "energyAudit": "የኃይል ኦዲት እና ተቀባይነት",
+      "systemDesign": "የስርዓት ዲዛይን ፕሮፖዛል",
+      "installation": "መጫን እና አገልግሎት",
+      "energyAuditReply": "ለታዳሽ ኃይል ፕሮጀክቶች ቴክኒካዊ ጥናት፣ ኦዲት እና ተቀባይነት እንሰጣለን።",
+      "systemDesignReply": "ለፍላጎትዎ የስርዓት ዲዛይን እና ኮሜርሻል ፕሮፖዛል እናዘጋጃለን።",
+      "installationReply": "ቡድናችን መጫን፣ ኮሚሽኒንግ እና ከግዢ በኋላ ድጋፍ ይሰጣል።"
+    },
+    "courses": {
+      "question": "ምን ዓይነት ስልጠና ይፈልጋሉ?",
+      "beginner": "የጀማሪ ኮርስ",
+      "teamTraining": "የቡድን ስልጠና",
+      "beginnerReply": "ለጀማሪዎች ተስማሚ የንጹህ ኃይል እና ቴክኒካዊ ስልጠና እንመራዎታለን።",
+      "teamReply": "ለቡድን የተስተካከለ የአቅም ግንባታ ስልጠና እንሰጣለን።"
+    },
+    "pricing": {
+      "question": "ፈጣን ግምት ይፈልጋሉ ወይስ ብጁ ዋጋ?",
+      "requestQuote": "ዋጋ ይጠይቁ",
+      "comparePlans": "ፕላኖችን ያነፃፅሩ",
+      "quoteReply": "ጥሩ። የፕሮጀክት ስፋትና ቦታ ያጋሩ እና ብጁ ዋጋ እናቀርባለን።",
+      "compareReply": "ፓኬጆች በስርዓት መጠን፣ የቦታ ሁኔታ እና ጥገና ፍላጎት ይለያያሉ።"
+    },
+    "contact": {
+      "question": "ከእኛ ጋር እንዴት መገናኘት ይፈልጋሉ?",
+      "bookCall": "ይደውሉ",
+      "sendMessage": "ኢሜይል ይላኩ",
+      "viewAddress": "አድራሻ ይመልከቱ",
+      "bookReply": "ይደውሉ: +211 982 004 848 ወይም +211 928 004 848።",
+      "messageReply": "በዚህ ኢሜይል ይጻፉ: mpgenergy@gmail.com።",
+      "addressReply": "Thongping, Florian Road, Block 3, Plot No. 258, Juba, South Sudan።"
+    },
+    "company": {
+      "question": "ስለ Master Premier Green Energy ፈጣን አጠቃላይ መረጃ ይፈልጋሉ?",
+      "mission": "ተልዕኮአችን",
+      "whySolar": "ለምን ፀሐይ",
+      "quality": "የጥራት ቃል ኪዳን",
+      "missionReply": "አረንጓዴ ኢኮኖሚ እና የገጠር ኃይል ተደራሽነት የሚያበረታታ ዘመናዊ መፍትሄ እንሰጣለን።",
+      "whySolarReply": "ፀሐይ ኃይል ክፍያን ይቀንሳል፣ የኃይል ደህንነትን ያሻሽላል እና አካባቢን ይጠብቃል።",
+      "qualityReply": "በመረጋጋት፣ ጥንካሬ፣ ታማኝነት እና ከፍተኛ ጥራት ንጥረ ነገሮች ላይ እናተኩራለን።"
+    },
+    "common": {
+      "back": "ተመለስ",
+      "restart": "እንደገና ጀምር",
+      "backMessage": "እሺ—ወደ ቀድሞው ደረጃ እመልስዎታለሁ።",
+      "lastChoice": "የመጨረሻ ምርጫ"
+    },
+    "links": {
+      "services": "የአገልግሎት ገጽ",
+      "company": "ስለ እኛ ገጽ",
+      "contact": "የመገናኛ ገጽ"
+    }
   }
 }

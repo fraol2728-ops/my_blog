@@ -39,5 +39,74 @@
   },
   "news": {
     "empty": "No news articles published yet."
+  },
+  "chatbot": {
+    "title": "Xyberosec Assistant",
+    "status": "Online",
+    "welcome": "Hi 👋 I'm your assistant. How can I help you today?",
+    "preview": "Need help choosing a service?",
+    "open": "Open assistant",
+    "close": "Close assistant",
+    "send": "Send message",
+    "inputPlaceholder": "Type your message...",
+    "fallback": "I didn’t fully understand. Try one of these:",
+    "quick": {
+      "exploreServices": "Explore Services",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "companyProfile": "Company Profile"
+    },
+    "services": {
+      "question": "What are you looking for?",
+      "energyAudit": "Energy Audit & Feasibility",
+      "systemDesign": "System Design Proposal",
+      "installation": "Installation & Servicing",
+      "energyAuditReply": "We provide technical studies, audits, and feasibility for renewable projects.",
+      "systemDesignReply": "We can prepare system design and commercial proposals for your goals.",
+      "installationReply": "Our team handles installation, commissioning, and after-service support."
+    },
+    "courses": {
+      "question": "What kind of training do you need?",
+      "beginner": "Beginner Course",
+      "teamTraining": "Team Training",
+      "beginnerReply": "We can guide you to beginner clean-energy and technical training paths.",
+      "teamReply": "We also run capacity-building and customized team training modules."
+    },
+    "pricing": {
+      "question": "Would you like a quick estimate or a custom quote?",
+      "requestQuote": "Request Quote",
+      "comparePlans": "Compare Plans",
+      "quoteReply": "Great. Share scope and location, and we’ll prepare a tailored quotation.",
+      "compareReply": "Plans vary by system size, site conditions, and maintenance requirements."
+    },
+    "contact": {
+      "question": "How would you like to connect with us?",
+      "bookCall": "Call Us",
+      "sendMessage": "Email Us",
+      "viewAddress": "View Address",
+      "bookReply": "Call us: +211 982 004 848 or +211 928 004 848.",
+      "messageReply": "Email us anytime at mpgenergy@gmail.com.",
+      "addressReply": "Thongping, Florian Road, Block 3, Plot No. 258, Juba, South Sudan."
+    },
+    "company": {
+      "question": "Want a quick overview of Master Premier Green Energy?",
+      "mission": "Our Mission",
+      "whySolar": "Why Solar",
+      "quality": "Quality Promise",
+      "missionReply": "We deliver reliable, modern renewable energy solutions for green economies and rural access.",
+      "whySolarReply": "Solar helps reduce bills, improve energy security, and protect the environment.",
+      "qualityReply": "We focus on stability, durability, reliability, and superior Tier-1 materials."
+    },
+    "common": {
+      "back": "Back",
+      "restart": "Restart",
+      "backMessage": "Sure—going back to your previous step.",
+      "lastChoice": "Last choice"
+    },
+    "links": {
+      "services": "Services page",
+      "company": "About page",
+      "contact": "Contact page"
+    }
   }
 }

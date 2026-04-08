@@ -1,6 +1,7 @@
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { GradientBackground } from "@/components/gradient";
+import AssistantLauncher from "@/components/chatbot/AssistantLauncher";
 
 export default function UserLocaleLayout({
   children,
@@ -13,6 +14,7 @@ export default function UserLocaleLayout({
       <Navbar />
       <main>{children}</main>
       <Footer />
+      <AssistantLauncher />
     </>
   );
 }

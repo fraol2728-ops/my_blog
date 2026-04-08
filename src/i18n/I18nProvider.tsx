@@ -45,3 +45,17 @@ export function useTranslations(key: string) {
   const message = resolveMessage(context.messages, key);
   return typeof message === "string" ? message : key;
 }
+
+
+export function useTranslator() {
+  const context = useContext(I18nContext);
+
+  if (!context) {
+    throw new Error("useTranslator must be used within I18nProvider");
+  }
+
+  return (key: string) => {
+    const message = resolveMessage(context.messages, key);
+    return typeof message === "string" ? message : key;
+  };
+}
