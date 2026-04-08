@@ -7,10 +7,10 @@ import Logo from "./logo";
 import { useLocale } from "@/i18n/I18nProvider";
 
 const services = [
-  { href: "/services", label: "Energy audit & feasibility studies" },
-  { href: "/services", label: "Energy management plans" },
-  { href: "/services", label: "System design & commercial proposals" },
-  { href: "/services", label: "Installation & after-service support" },
+  { href: "/services", en: "Energy audit & feasibility studies", am: "የኃይል ኦዲት እና የአዋጭነት ጥናቶች" },
+  { href: "/services", en: "Energy management plans", am: "የኃይል አስተዳደር እቅዶች" },
+  { href: "/services", en: "System design & commercial proposals", am: "የስርዓት ንድፍ እና የንግድ ፕሮፖዛሎች" },
+  { href: "/services", en: "Installation & after-service support", am: "ተከላ እና ከአገልግሎት በኋላ ድጋፍ" },
 ];
 
 const socialLinks = [
@@ -22,14 +22,15 @@ const socialLinks = [
 
 export default function Footer() {
   const locale = useLocale();
+  const isAmharic = locale === "am";
   const localized = (path: string) => `/${locale}${path === "/" ? "" : path}`;
 
   const quickLinks = [
-    { href: localized("/"), label: "Home" },
-    { href: localized("/about"), label: "About Master Premier" },
-    { href: localized("/services"), label: "Our Services" },
-    { href: localized("/news"), label: "News & Updates" },
-    { href: localized("/contact"), label: "Contact Us" },
+    { href: localized("/"), label: isAmharic ? "መነሻ" : "Home" },
+    { href: localized("/about"), label: isAmharic ? "ስለ Master Premier" : "About Master Premier" },
+    { href: localized("/services"), label: isAmharic ? "አገልግሎቶቻችን" : "Our Services" },
+    { href: localized("/news"), label: isAmharic ? "ዜና እና ዝመናዎች" : "News & Updates" },
+    { href: localized("/contact"), label: isAmharic ? "አግኙን" : "Contact Us" },
   ];
 
   return (
@@ -40,12 +41,14 @@ export default function Footer() {
             <Logo className="px-0 text-white" />
             <p className="max-w-sm text-sm leading-6 text-white/70">
               Master Premier Green Energy Co. Ltd provides engineering and clean energy advisory services
-              that help customers access reliable, affordable, and sustainable solar power solutions.
+              {isAmharic
+                ? " የምህንድስና እና የንፁህ ኃይል አማካሪ አገልግሎቶችን በመስጠት ደንበኞች ታማኝ፣ ተመጣጣኝ እና ዘላቂ የፀሐይ ኃይል መፍትሄ እንዲያገኙ ያግዛል።"
+                : " that help customers access reliable, affordable, and sustainable solar power solutions."}
             </p>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">Quick Links</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isAmharic ? "ፈጣን አገናኞች" : "Quick Links"}</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               {quickLinks.map((link) => (
                 <li key={link.href + link.label}>
@@ -58,12 +61,12 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">Core Services</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isAmharic ? "ዋና አገልግሎቶች" : "Core Services"}</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               {services.map((service) => (
-                <li key={service.label}>
+                <li key={service.en}>
                   <Link className="inline-flex hover:text-emerald-300" href={localized(service.href)}>
-                    {service.label}
+                    {isAmharic ? service.am : service.en}
                   </Link>
                 </li>
               ))}
@@ -71,7 +74,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">Contact</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isAmharic ? "ያግኙን" : "Contact"}</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white" />
@@ -94,7 +97,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-5 border-t border-white/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-white/60">© {new Date().getFullYear()} Master Premier Green Energy Co. Ltd. All rights reserved.</p>
+          <p className="text-sm text-white/60">
+            © {new Date().getFullYear()} Master Premier Green Energy Co. Ltd.{" "}
+            {isAmharic ? "መብቶቹ በሙሉ የተጠበቁ ናቸው።" : "All rights reserved."}
+          </p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => {
               const Icon = social.icon;

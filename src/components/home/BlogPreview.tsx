@@ -1,12 +1,14 @@
 "use client";
 
 import BlogCard from "@/components/BlogCard";
+import { useLocale } from "@/i18n/I18nProvider";
 import { Reveal } from "@/components/ui/reveal";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Post } from "@/types";
 import Link from "next/link";
 
 export default function BlogPreview({ posts }: { posts: Post[] | null }) {
+  const isAmharic = useLocale() === "am";
   if (!posts || posts.length === 0) {
     return null;
   }
@@ -16,11 +18,11 @@ export default function BlogPreview({ posts }: { posts: Post[] | null }) {
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeader
-            kicker="News & Insights"
-            title="Latest updates from our solar team"
+            kicker={isAmharic ? "ዜና እና ግንዛቤ" : "News & Insights"}
+            title={isAmharic ? "ከፀሐይ ኃይል ቡድናችን የቅርብ ጊዜ መረጃዎች" : "Latest updates from our solar team"}
           />
           <Link href="/news" className="text-sm font-semibold text-slate-700 transition hover:text-emerald-600">
-            View all posts
+            {isAmharic ? "ሁሉንም ዜናዎች ይመልከቱ" : "View all posts"}
           </Link>
         </div>
 

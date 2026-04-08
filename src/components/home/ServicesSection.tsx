@@ -2,6 +2,7 @@
 
 import { Reveal } from "@/components/ui/reveal";
 import { Section, SectionHeader } from "@/components/ui/section";
+import { useLocale } from "@/i18n/I18nProvider";
 import { CheckCircle } from "lucide-react";
 import Image from "next/image";
 
@@ -57,19 +58,37 @@ const services = [
 ];
 
 export default function ServicesSection() {
+  const isAmharic = useLocale() === "am";
+  const localizedServices = isAmharic
+    ? services.map((service) => ({
+        ...service,
+        title:
+          {
+            "Solar System Installation": "የፀሐይ ኃይል ስርዓት ተከላ",
+            "Solar Equipment & Product Supply": "የፀሐይ መሳሪያና ምርት አቅርቦት",
+            "Local Solar Panel Manufacturing": "የአካባቢ የፀሐይ ፓነል ማምረት",
+            "Maintenance & Technical Support": "ጥገና እና ቴክኒካል ድጋፍ",
+          }[service.title] ?? service.title,
+      }))
+    : services;
+
   return (
     <Section className="max-w-6xl">
       <Reveal>
         <SectionHeader
           align="center"
-          kicker="Our Services"
-          title="Comprehensive Solar Solutions for Every Need"
-          subtitle="We provide complete solar energy solutions, from installation to manufacturing and long-term support."
+          kicker={isAmharic ? "አገልግሎቶቻችን" : "Our Services"}
+          title={isAmharic ? "ለሁሉም ፍላጎት ሁሉን አቀፍ የፀሐይ ኃይል መፍትሄዎች" : "Comprehensive Solar Solutions for Every Need"}
+          subtitle={
+            isAmharic
+              ? "ከተከላ እስከ ማምረት እና ረጅም ጊዜ ድጋፍ ድረስ ሙሉ የፀሐይ ኃይል መፍትሄዎችን እንሰጣለን።"
+              : "We provide complete solar energy solutions, from installation to manufacturing and long-term support."
+          }
         />
       </Reveal>
 
       <div className="mt-16 space-y-12">
-        {services.map((service, index) => {
+        {localizedServices.map((service, index) => {
           const imageFirst = index % 2 === 0;
 
           return (

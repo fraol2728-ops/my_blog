@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LazyMotion, AnimatePresence, domAnimation, m } from "motion/react";
 import { ArrowLeft, ArrowRight, Factory, Smile, Wrench, Zap } from "lucide-react";
+import { useLocale } from "@/i18n/I18nProvider";
 import { urlFor } from "@/sanity/lib/image";
 import type { Post } from "@/types";
 
@@ -83,6 +84,8 @@ type HeroSectionProps = {
 };
 
 export default function HeroSection({ latestPost }: HeroSectionProps) {
+  const locale = useLocale();
+  const isAmharic = locale === "am";
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -94,6 +97,22 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
   }, []);
 
   const activeImage = useMemo(() => sliderImages[activeIndex], [activeIndex]);
+  const localizedStats = useMemo(
+    () =>
+      stats.map((item) => ({
+        ...item,
+        label:
+          isAmharic
+            ? {
+                "Projects Completed": "የተጠናቀቁ ፕሮጀክቶች",
+                "Energy Generated": "የተመነጨ ኃይል",
+                "Client Satisfaction": "የደንበኛ እርካታ",
+                "Years Experience": "የልምድ ዓመታት",
+              }[item.label] ?? item.label
+            : item.label,
+      })),
+    [isAmharic],
+  );
 
   const handlePrev = () => setActiveIndex((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
   const handleNext = () => setActiveIndex((prev) => (prev + 1) % sliderImages.length);
@@ -140,14 +159,15 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
               className="max-w-2xl text-center md:text-left"
             >
               <p className="inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
-                Clean Energy Infrastructure
+                {isAmharic ? "የንፁህ ኃይል መሠረተ ልማት" : "Clean Energy Infrastructure"}
               </p>
               <h1 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
                 Master Premier Green Energy Co. Ltd
               </h1>
               <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/80 md:mx-0 md:text-lg">
-                Delivering engineering, advisory, installation and servicing solutions for renewable energy access
-                across South Sudan.
+                {isAmharic
+                  ? "በደቡብ ሱዳን ውስጥ የታዳሽ ኃይል ተደራሽነትን ለማሳደግ የምህንድስና፣ አማካሪ፣ ተከላ እና የጥገና አገልግሎቶችን እንሰጣለን።"
+                  : "Delivering engineering, advisory, installation and servicing solutions for renewable energy access across South Sudan."}
               </p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row md:justify-start">
@@ -155,13 +175,13 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
                   href="/contact"
                   className="rounded-xl bg-emerald-600 px-7 py-3.5 text-center font-semibold text-white shadow-lg shadow-emerald-600/35 transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-500"
                 >
-                  Get a Free Quote
+                  {isAmharic ? "ነፃ የዋጋ ጥያቄ ያቅርቡ" : "Get a Free Quote"}
                 </Link>
                 <Link
                   href="/services"
                   className="rounded-xl border border-white/60 bg-transparent px-7 py-3.5 text-center font-semibold text-white transition-all duration-200 hover:-translate-y-1 hover:bg-white/10"
                 >
-                  Explore Services
+                  {isAmharic ? "አገልግሎቶቻችንን ይመልከቱ" : "Explore Services"}
                 </Link>
               </div>
             </m.div>
@@ -183,7 +203,9 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
                     className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-emerald-400/35 blur-3xl"
                   />
                   <div className="relative">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/90">Featured News</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/90">
+                      {isAmharic ? "ተመራጭ ዜና" : "Featured News"}
+                    </p>
 
                     <div className="mt-2.5 overflow-hidden rounded-2xl border border-white/20">
                       {latestPost.mainImage ? (
@@ -205,7 +227,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
                     <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/80">{latestPost.excerpt}</p>
 
                     <span className="mt-3.5 inline-flex items-center rounded-full border border-white/40 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white transition group-hover:border-emerald-300 group-hover:bg-emerald-500/20">
-                      Read more
+                      {isAmharic ? "ተጨማሪ ያንብቡ" : "Read more"}
                     </span>
                   </div>
                 </Link>
@@ -218,7 +240,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
           <button
             type="button"
             onClick={handlePrev}
-            aria-label="Previous slide"
+            aria-label={isAmharic ? "ያለፈው ስላይድ" : "Previous slide"}
             className="pointer-events-auto rounded-full border border-white/25 bg-black/30 p-3 text-white/90 backdrop-blur transition hover:scale-105 hover:bg-black/50"
           >
             <ArrowLeft className="h-5 w-5" />
@@ -226,7 +248,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
           <button
             type="button"
             onClick={handleNext}
-            aria-label="Next slide"
+            aria-label={isAmharic ? "ቀጣይ ስላይድ" : "Next slide"}
             className="pointer-events-auto rounded-full border border-white/25 bg-black/30 p-3 text-white/90 backdrop-blur transition hover:scale-105 hover:bg-black/50"
           >
             <ArrowRight className="h-5 w-5" />
@@ -239,7 +261,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
               key={index}
               type="button"
               onClick={() => setActiveIndex(index)}
-              aria-label={`Go to slide ${index + 1}`}
+              aria-label={isAmharic ? `${index + 1}ኛው ስላይድ ይክፈቱ` : `Go to slide ${index + 1}`}
               className={`h-2 rounded-full transition-all duration-300 ${
                 activeIndex === index ? "w-8 bg-emerald-500" : "w-2.5 bg-white/55 hover:bg-white/80"
               }`}
@@ -250,7 +272,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
         <div className="relative z-30 mx-auto mt-8 w-[92%] max-w-6xl md:absolute md:bottom-10 md:left-1/2 md:mt-0 md:-translate-x-1/2">
           <div className="rounded-2xl border border-white/15 bg-black/40 p-4 shadow-2xl shadow-black/35 backdrop-blur-lg md:p-6">
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
-              {stats.map((item, index) => (
+              {localizedStats.map((item, index) => (
                 <StatItem key={item.label} {...item} index={index} />
               ))}
             </div>
