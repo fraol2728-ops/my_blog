@@ -31,6 +31,19 @@ const sendWithEmailJs = async (payload: FormState) => {
     throw new Error("emailjs_not_configured");
   }
 
+  const formattedMessage = [
+    `Name: ${payload.fullName}`,
+    `Email: ${payload.email}`,
+    `Phone: ${payload.phone}`,
+    `Company: ${payload.company || "-"}`,
+    `Service: ${payload.service}`,
+    `Budget: ${payload.budget || "-"}`,
+    `Source: ${payload.source}`,
+    "",
+    "Message:",
+    payload.message,
+  ].join("\n");
+
   const response = await fetch(EMAILJS_ENDPOINT, {
     method: "POST",
     headers: {
@@ -41,14 +54,22 @@ const sendWithEmailJs = async (payload: FormState) => {
       template_id: EMAILJS_TEMPLATE_ID,
       user_id: EMAILJS_PUBLIC_KEY,
       template_params: {
-        full_name: payload.fullName,
+        // Common EmailJS variable names (for broader template compatibility)
+        name: payload.fullName,
+        from_name: payload.fullName,
         email: payload.email,
+        reply_to: payload.email,
         phone: payload.phone,
         company: payload.company || "-",
         service: payload.service,
         budget: payload.budget || "-",
-        message: payload.message,
         source: payload.source,
+        // Preserve existing keys
+        full_name: payload.fullName,
+        fullName: payload.fullName,
+        message: formattedMessage,
+        raw_message: payload.message,
+        message_with_details: formattedMessage,
       },
     }),
   });
