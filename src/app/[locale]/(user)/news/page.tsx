@@ -2,12 +2,12 @@ import FeaturedPost from "@/components/news/FeaturedPost";
 import NewsGrid from "@/components/news/NewsGrid";
 import NewsHero from "@/components/news/NewsHero";
 import Newsletter from "@/components/news/Newsletter";
-import { getCategories, getFilteredPosts } from "@/sanity/queries";
+import { getAllPosts, getCategories } from "@/sanity/queries";
 import { Post, PostCategory } from "@/types";
 
 export default async function NewsPage() {
   const [postsResponse, categoriesResponse] = await Promise.allSettled([
-    getFilteredPosts({ quantity: 50 }),
+    getAllPosts(50),
     getCategories(),
   ]);
 
