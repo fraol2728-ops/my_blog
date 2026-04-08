@@ -4,17 +4,17 @@ import { useEffect, useMemo, useState, type ComponentType } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { LazyMotion, AnimatePresence, domAnimation, m } from "motion/react";
-import { ArrowLeft, ArrowRight, Factory, TowerControl, Wrench, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight, Factory, Smile, Wrench, Zap } from "lucide-react";
 import { urlFor } from "@/sanity/lib/image";
 import type { Post } from "@/types";
 
 const sliderImages = ["/project1.jpg", "/project2.jpg", "/project3.jpg", "/project4.jpg"];
 
 const stats = [
-  { icon: TowerControl, label: "Transmission Lines", value: 420, suffix: "+" },
-  { icon: Wrench, label: "Ongoing Projects", value: 86, suffix: "" },
-  { icon: Factory, label: "Completed Projects", value: 1375, suffix: "+" },
-  { icon: Zap, label: "Substations", value: 210, suffix: "" },
+  { icon: Factory, label: "Projects Completed", value: 200, suffix: "+" },
+  { icon: Zap, label: "Energy Generated", value: 50, suffix: "MW" },
+  { icon: Smile, label: "Client Satisfaction", value: 98, suffix: "%" },
+  { icon: Wrench, label: "Years Experience", value: 10, suffix: "+" },
 ];
 
 function useCountUp(end: number, duration = 1700) {
@@ -175,7 +175,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
               >
                 <Link
                   href={`/post/${latestPost.slug}`}
-                  className="group relative block overflow-hidden rounded-3xl border border-white/35 bg-white/10 p-3.5 text-white shadow-[0_0_35px_rgba(16,185,129,0.25)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/80 hover:shadow-[0_0_48px_rgba(16,185,129,0.4)]"
+                  className="group relative block overflow-hidden rounded-3xl border border-white/35 bg-white/10 p-3 text-white shadow-[0_0_35px_rgba(16,185,129,0.25)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/80 hover:shadow-[0_0_48px_rgba(16,185,129,0.4)]"
                 >
                   <m.div
                     animate={{ opacity: [0.2, 0.45, 0.2] }}
@@ -185,26 +185,26 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
                   <div className="relative">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/90">Featured News</p>
 
-                    <div className="mt-3 overflow-hidden rounded-2xl border border-white/20">
+                    <div className="mt-2.5 overflow-hidden rounded-2xl border border-white/20">
                       {latestPost.mainImage ? (
                         <Image
                           src={urlFor(latestPost.mainImage).width(900).height(540).url()}
                           alt={latestPost.title || "Featured news image"}
                           width={900}
                           height={540}
-                          className="aspect-[16/9] w-full object-cover transition duration-500 group-hover:scale-105"
+                          className="aspect-[16/8] w-full object-cover transition duration-500 group-hover:scale-105"
                         />
                       ) : (
                         <div className="aspect-[16/9] w-full bg-gradient-to-br from-emerald-500/25 to-slate-900/90" />
                       )}
                     </div>
 
-                    <h3 className="mt-3.5 line-clamp-2 text-xl font-semibold leading-tight text-white">
+                    <h3 className="mt-3 line-clamp-2 text-lg font-semibold leading-tight text-white">
                       {latestPost.title}
                     </h3>
-                    <p className="mt-2.5 line-clamp-2 text-sm leading-6 text-white/80">{latestPost.excerpt}</p>
+                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/80">{latestPost.excerpt}</p>
 
-                    <span className="mt-4 inline-flex items-center rounded-full border border-white/40 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white transition group-hover:border-emerald-300 group-hover:bg-emerald-500/20">
+                    <span className="mt-3.5 inline-flex items-center rounded-full border border-white/40 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white transition group-hover:border-emerald-300 group-hover:bg-emerald-500/20">
                       Read more
                     </span>
                   </div>
