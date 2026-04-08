@@ -21,13 +21,12 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true, id: createdLead._id });
   } catch (error) {
-    console.error("Failed to create lead", error);
+    console.error("Failed to create lead in Sanity. Continuing without CRM persistence.", error);
 
-    return NextResponse.json(
-      {
-        message: "We couldn't submit your request right now. Please try again shortly.",
-      },
-      { status: 500 },
-    );
+    return NextResponse.json({
+      ok: true,
+      stored: false,
+      warning: "Lead was received but could not be stored in CRM.",
+    });
   }
 }
