@@ -23,9 +23,9 @@ export async function generateMetadata({
   return pageMetadata({
     locale: locale as AppLocale,
     path: "/news",
-    title: "Xyberosec Newsroom and Cybersecurity Updates Hub",
+    title: "Master Premier News and Clean Energy Updates",
     description:
-      "Stay current with Xyberosec cybersecurity updates, incident trends, and expert guidance to improve governance, detection, and response readiness.",
+      "Stay updated on Master Premier Green Energy projects, renewable energy insights, and clean energy access developments in South Sudan.",
   });
 }
 

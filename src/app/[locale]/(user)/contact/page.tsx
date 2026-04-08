@@ -20,9 +20,9 @@ export async function generateMetadata({
   return pageMetadata({
     locale: locale as AppLocale,
     path: "/contact",
-    title: "Contact Xyberosec Cybersecurity Experts Today",
+    title: "Contact Master Premier Green Energy Co. Ltd",
     description:
-      "Speak with Xyberosec experts about managed SOC, incident response, and security assessments tailored to your infrastructure, risk profile, and goals.",
+      "Contact our team in Juba for renewable energy engineering, advisory support, and solar project consultation.",
   });
 }
 
@@ -60,7 +60,7 @@ export default async function ContactPage({
           <div className="overflow-hidden rounded-2xl border border-gray-200">
             <iframe
               title={t.contact.mapTitle}
-              src="https://www.google.com/maps?q=San+Diego,+CA&output=embed"
+              src="https://www.google.com/maps?q=Thongping,+Florian+Road,+Block+3,+Plot+No.+258,+Juba,+South+Sudan&output=embed"
               className="h-80 w-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

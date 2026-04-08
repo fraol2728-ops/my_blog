@@ -25,9 +25,9 @@ export async function generateMetadata({
   return pageMetadata({
     locale: locale as AppLocale,
     path: "/services",
-    title: "Cybersecurity Services for Cloud, Apps, and SOC",
+    title: "Solar Engineering, Advisory, and Installation Services",
     description:
-      "Explore Xyberosec services including managed SOC, penetration testing, cloud hardening, and incident response to strengthen your end-to-end security posture.",
+      "Explore Master Premier Green Energy services including energy audits, feasibility studies, system design, installation, and after-service support.",
   });
 }
 

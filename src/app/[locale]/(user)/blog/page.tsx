@@ -15,9 +15,9 @@ export async function generateMetadata({
   return pageMetadata({
     locale: locale as AppLocale,
     path: "/blog",
-    title: "Cybersecurity Insights and Threat Intelligence Blog",
+    title: "Renewable Energy Insights and Project Stories",
     description:
-      "Read expert analysis from Xyberosec on cyber threats, SOC operations, compliance strategy, and practical guidance for building resilient security programs.",
+      "Read updates from Master Premier Green Energy on solar deployment, energy access, and clean energy best practices.",
   });
 }
 

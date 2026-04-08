@@ -1,31 +1,31 @@
 import type { Metadata } from "next";
 import type { AppLocale } from "@/i18n/config";
 
-export const SITE_NAME = "Xyberosec";
-export const SITE_URL = "https://www.xyberosec.com";
+export const SITE_NAME = "Master Premier Green Energy Co. Ltd";
+export const SITE_URL = "https://masterpremiergreenenergy.com";
 export const DEFAULT_LOCALE: AppLocale = "en";
 
 export const SEO_KEYWORDS = [
-  "Xyberosec",
-  "cybersecurity",
-  "managed security services",
-  "security operations",
-  "threat detection",
-  "incident response",
-  "penetration testing",
-  "cloud security",
-  "zero trust",
-  "security consulting",
+  "Master Premier Green Energy Co. Ltd",
+  "South Sudan renewable energy",
+  "solar energy solutions",
+  "clean energy advisory",
+  "energy audit",
+  "feasibility study",
+  "solar system design",
+  "solar installation",
+  "energy management plan",
+  "rural energy access",
 ];
 
 const localizedHomeTitle: Record<AppLocale, string> = {
-  en: "Cybersecurity Services and Managed SOC Solutions",
-  am: "የሳይበር ደህንነት አገልግሎቶች እና የSOC መፍትሄዎች",
+  en: "Renewable Energy Engineering and Advisory Services",
+  am: "የታዳሽ ኃይል ምህንድስና እና አማካሪ አገልግሎቶች",
 };
 
 const localizedHomeDescription: Record<AppLocale, string> = {
-  en: "Xyberosec helps organizations prevent attacks with managed SOC, cloud security, and incident response services designed for fast, measurable risk reduction.",
-  am: "Xyberosec ድርጅቶችን ከጥቃቶች ለመከላከል የተቀናጀ SOC፣ cloud ደህንነት እና incident response አገልግሎቶችን ይሰጣል።",
+  en: "Master Premier Green Energy Co. Ltd provides renewable energy engineering, technical support, and clean energy advisory services to expand reliable power access across South Sudan.",
+  am: "Master Premier Green Energy Co. Ltd በደቡብ ሱዳን የታማኝ ኃይል ተደራሽነትን ለማስፋፋት የታዳሽ ኃይል ምህንድስና፣ ቴክኒካል ድጋፍ እና የንጹህ ኃይል አማካሪ አገልግሎቶችን ይሰጣል።",
 };
 
 export const getLocalizedHomeMeta = (locale: AppLocale) => ({
