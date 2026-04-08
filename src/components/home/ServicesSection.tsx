@@ -1,7 +1,8 @@
 "use client";
 
+import { Reveal } from "@/components/ui/reveal";
+import { Section, SectionHeader } from "@/components/ui/section";
 import { CheckCircle } from "lucide-react";
-import { motion } from "motion/react";
 import Image from "next/image";
 
 const services = [
@@ -57,70 +58,56 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section>
-      <div className="section-shell max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="mx-auto max-w-3xl text-center"
-        >
-          <p className="ui-kicker">Our Services</p>
-          <h2 className="ui-title">Comprehensive Solar Solutions for Every Need</h2>
-          <p className="ui-subtitle">
-            We provide complete solar energy solutions, from installation to manufacturing and
-            long-term support.
-          </p>
-        </motion.div>
+    <Section className="max-w-6xl">
+      <Reveal>
+        <SectionHeader
+          align="center"
+          kicker="Our Services"
+          title="Comprehensive Solar Solutions for Every Need"
+          subtitle="We provide complete solar energy solutions, from installation to manufacturing and long-term support."
+        />
+      </Reveal>
 
-        <div className="mt-16 space-y-12">
-          {services.map((service, index) => {
-            const imageFirst = index % 2 === 0;
+      <div className="mt-16 space-y-12">
+        {services.map((service, index) => {
+          const imageFirst = index % 2 === 0;
 
-            return (
-              <motion.article
-                key={service.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
-                className="ui-card ui-card-hover grid items-center gap-8 p-6 md:grid-cols-2 md:p-8"
-              >
-                <div className={imageFirst ? "order-1" : "order-2 md:order-2"}>
-                  <div className="overflow-hidden rounded-2xl">
-                    <Image
-                      src={service.image}
-                      alt={service.alt}
-                      width={1200}
-                      height={800}
-                      className="h-[400px] w-full object-cover transition duration-500 hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
+          return (
+            <Reveal
+              key={service.title}
+              delay={index * 0.08}
+              className="ui-card ui-card-hover grid items-center gap-8 p-6 md:grid-cols-2 md:p-8"
+            >
+              <div className={imageFirst ? "order-1" : "order-2 md:order-2"}>
+                <div className="overflow-hidden rounded-2xl">
+                  <Image
+                    src={service.image}
+                    alt={service.alt}
+                    width={1200}
+                    height={800}
+                    className="h-[400px] w-full object-cover transition duration-500 hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </div>
+              </div>
 
-                <div className={imageFirst ? "order-2" : "order-1 md:order-1"}>
-                  <h3 className="text-2xl font-semibold text-slate-900 md:text-3xl">{service.title}</h3>
-                  <p className="mt-4 text-base text-slate-600 md:text-lg">{service.description}</p>
+              <div className={imageFirst ? "order-2" : "order-1 md:order-1"}>
+                <h3 className="text-2xl font-semibold text-slate-900 md:text-3xl">{service.title}</h3>
+                <p className="mt-4 text-base text-slate-600 md:text-lg">{service.description}</p>
 
-                  <ul className="mt-6 space-y-3">
-                    {service.highlights.map((highlight) => (
-                      <li key={highlight} className="flex items-start gap-3">
-                        <CheckCircle
-                          className="mt-0.5 h-5 w-5 shrink-0 text-[#458137]"
-                          aria-hidden="true"
-                        />
-                        <span className="text-base text-slate-700">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.article>
-            );
-          })}
-        </div>
+                <ul className="mt-6 space-y-3">
+                  {service.highlights.map((highlight) => (
+                    <li key={highlight} className="flex items-start gap-3">
+                      <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />
+                      <span className="text-base text-slate-700">{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          );
+        })}
       </div>
-    </section>
+    </Section>
   );
 }

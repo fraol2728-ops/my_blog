@@ -28,7 +28,7 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="border-t border-slate-200 bg-slate-950 text-white">
-      <div className="section-shell py-20">
+      <div className="section-shell">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-5">
             <Logo className="px-0 text-white" />
@@ -43,7 +43,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               {quickLinks.map((link) => (
                 <li key={link.href + link.label}>
-                  <Link className="inline-flex transition-colors hover:text-primary" href={link.href}>
+                  <Link className="inline-flex hover:text-emerald-300" href={link.href}>
                     {link.label}
                   </Link>
                 </li>
@@ -56,7 +56,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               {services.map((service) => (
                 <li key={service.label}>
-                  <Link className="inline-flex transition-colors hover:text-primary" href={service.href}>
+                  <Link className="inline-flex hover:text-emerald-300" href={service.href}>
                     {service.label}
                   </Link>
                 </li>
@@ -72,16 +72,13 @@ export default function Footer() {
                 <span>123 Solar Avenue, San Diego, CA</span>
               </li>
               <li>
-                <a className="inline-flex items-center gap-2 transition-colors hover:text-primary" href="tel:+15551234567">
+                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="tel:+15551234567">
                   <Phone className="h-4 w-4" />
                   +1 (555) 123-4567
                 </a>
               </li>
               <li>
-                <a
-                  className="inline-flex items-center gap-2 transition-colors hover:text-primary"
-                  href="mailto:hello@solarpeak.com"
-                >
+                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="mailto:hello@solarpeak.com">
                   <Mail className="h-4 w-4" />
                   hello@solarpeak.com
                 </a>
@@ -99,7 +96,7 @@ export default function Footer() {
                 <a
                   key={social.label}
                   aria-label={social.label}
-                  className="rounded-full p-2 text-white/80 transition-all duration-200 hover:-translate-y-0.5 hover:text-primary"
+                  className="rounded-full p-2 text-white/80 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 hover:text-emerald-300"
                   href={social.href}
                   rel="noreferrer"
                   target="_blank"

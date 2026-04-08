@@ -98,8 +98,8 @@ export default function Navbar() {
     <Disclosure
       as="header"
       className={clsx(
-        "sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl transition-all duration-300",
-        isScrolled ? "shadow-lg shadow-slate-900/5" : "shadow-sm shadow-slate-900/5"
+        "sticky top-0 z-50 border-b border-slate-200/70 bg-white/75 backdrop-blur-2xl transition-all duration-300",
+        isScrolled ? "shadow-lg shadow-slate-900/10" : "shadow-sm shadow-slate-900/5"
       )}
     >
       {({ open }) => (
@@ -156,7 +156,7 @@ export default function Navbar() {
                   <button
                     type="button"
                     className={clsx(
-                      "flex items-center gap-1 py-2 text-sm font-medium transition-colors duration-200",
+                      "ui-nav-link flex items-center gap-1",
                       isOpen ? "text-emerald-600" : "text-slate-700 hover:text-slate-900"
                     )}
                   >
@@ -173,7 +173,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.24 }}
-                        className="absolute left-1/2 top-full mt-3 w-[240px] -translate-x-1/2 rounded-xl bg-white p-4 shadow-lg"
+                        className="ui-card absolute left-1/2 top-full mt-3 w-[240px] -translate-x-1/2 p-4 shadow-lg"
                       >
                         <div className="space-y-1">
                           {item.dropdownItems.map((dropdownItem) => (
@@ -248,7 +248,7 @@ export default function Navbar() {
             {open ? <XMarkIcon className="size-6" /> : <Bars3Icon className="size-6" />}
           </DisclosureButton>
 
-          <DisclosurePanel className="absolute inset-x-0 top-full border-b border-slate-200/70 bg-white/95 shadow-sm backdrop-blur-lg lg:hidden">
+          <DisclosurePanel className="absolute inset-x-0 top-full border-b border-slate-200/70 bg-white/95 shadow-sm backdrop-blur-2xl lg:hidden">
             <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-5">
               <div className="mb-2 flex items-center justify-end gap-2">
                 {([
