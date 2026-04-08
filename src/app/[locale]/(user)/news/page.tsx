@@ -4,8 +4,23 @@ import NewsHero from "@/components/news/NewsHero";
 import Newsletter from "@/components/news/Newsletter";
 import { getAllPosts, getCategories } from "@/sanity/queries";
 import { Post, PostCategory } from "@/types";
+import { getMessages } from "@/i18n/get-messages";
+import { isValidLocale, type AppLocale } from "@/i18n/config";
+import { notFound } from "next/navigation";
 
-export default async function NewsPage() {
+export default async function NewsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  if (!isValidLocale(locale)) {
+    notFound();
+  }
+
+  const t = getMessages(locale as AppLocale);
+
   const [postsResponse, categoriesResponse] = await Promise.allSettled([
     getAllPosts(50),
     getCategories(),
@@ -28,7 +43,7 @@ export default async function NewsPage() {
             <FeaturedPost post={featuredPost} />
           ) : (
             <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">
-              No news articles published yet.
+              {t.news.empty}
             </div>
           )}
         </section>
