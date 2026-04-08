@@ -13,7 +13,7 @@ const bulletPoints = [
 
 export default function AboutSection() {
   return (
-    <section className="px-4 py-24">
+    <section className="px-4 py-20">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

@@ -40,19 +40,17 @@ const reasons = [
 
 export default function WhyChooseUsSection() {
   return (
-    <section className="py-24 px-4">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+    <section>
+      <div className="section-shell max-w-6xl grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <p className="text-sm uppercase tracking-[0.2em] text-black">Why Choose Us</p>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
-            Delivering Reliable Solar Solutions You Can Trust
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed text-gray-600">
+          <p className="ui-kicker">Why Choose Us</p>
+          <h2 className="ui-title">Delivering Reliable Solar Solutions You Can Trust</h2>
+          <p className="ui-subtitle">
             We combine advanced technology, expert engineering, and local manufacturing to
             deliver solar solutions that are efficient, durable, and built for long-term
             performance.
@@ -60,7 +58,7 @@ export default function WhyChooseUsSection() {
 
           <ul className="mt-10 space-y-6">
             {reasons.map(({ title, description, icon: Icon }) => (
-              <li key={title} className="flex items-start gap-4">
+              <li key={title} className="ui-card flex items-start gap-4 p-4">
                 <Icon className="mt-0.5 size-5 shrink-0 text-[#458137]" aria-hidden="true" />
                 <div>
                   <h3 className="font-semibold text-slate-900">{title}</h3>
@@ -70,10 +68,7 @@ export default function WhyChooseUsSection() {
             ))}
           </ul>
 
-          <Link
-            href="#contact"
-            className="mt-10 inline-flex rounded-xl bg-[#458137] px-6 py-3 text-white transition hover:bg-[#3b6f2f]"
-          >
+          <Link href="#contact" className="mt-10 inline-flex rounded-xl bg-emerald-600 px-6 py-3 text-white transition hover:bg-emerald-500">
             Get a Free Consultation
           </Link>
         </motion.div>

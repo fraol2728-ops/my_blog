@@ -12,18 +12,18 @@ export default function BlogCard({ post }: BlogCardProps) {
   const authorName = post?.author?.name || "SolarPeak Editorial Team";
 
   return (
-    <article className="group flex h-full flex-col">
-      <Link href={`/post/${post?.slug}`} className="block overflow-hidden rounded-2xl">
+    <article className="ui-card ui-card-hover group flex h-full flex-col p-4">
+      <Link href={`/post/${post?.slug}`} className="block overflow-hidden rounded-xl">
         {post?.mainImage ? (
           <Image
             src={urlFor(post.mainImage).width(1000).height(680).url()}
             alt={post?.title || "News post image"}
             width={1000}
             height={680}
-            className="aspect-[4/3] w-full rounded-2xl object-cover transition duration-500 group-hover:scale-[1.03]"
+            className="aspect-[4/3] w-full rounded-xl object-cover transition duration-500 group-hover:scale-[1.03]"
           />
         ) : (
-          <div className="aspect-[4/3] w-full rounded-2xl bg-gradient-to-br from-emerald-50 to-slate-100" />
+          <div className="aspect-[4/3] w-full rounded-xl bg-gradient-to-br from-emerald-50 to-slate-100" />
         )}
       </Link>
 

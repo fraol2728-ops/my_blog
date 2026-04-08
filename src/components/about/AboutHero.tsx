@@ -13,7 +13,7 @@ export default function AboutHero() {
       />
       <div className="absolute inset-0 bg-slate-950/65" />
 
-      <div className="relative mx-auto flex min-h-[70vh] max-w-6xl items-center justify-center px-6 py-24 text-center">
+      <div className="relative mx-auto flex min-h-[70vh] max-w-6xl items-center justify-center px-6 py-20 text-center">
         <div className="max-w-3xl space-y-6">
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-green-300">
             About SolarPeak

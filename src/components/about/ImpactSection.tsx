@@ -1,6 +1,6 @@
 export default function ImpactSection() {
   return (
-    <section className="bg-slate-100 px-6 py-24">
+    <section className="bg-slate-100 px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-4xl space-y-6">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-green-700">

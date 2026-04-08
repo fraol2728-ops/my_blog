@@ -26,7 +26,7 @@ type ServicesOverviewProps = {
 
 export default function ServicesOverview({ services }: ServicesOverviewProps) {
   return (
-    <section id="services-overview" className="px-6 py-24">
+    <section id="services-overview" className="px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">

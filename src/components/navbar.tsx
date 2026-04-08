@@ -92,8 +92,8 @@ export default function Navbar() {
     <Disclosure
       as="header"
       className={clsx(
-        "sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-lg transition-all duration-300",
-        isScrolled ? "shadow-lg shadow-black/5" : "shadow-sm"
+        "sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl transition-all duration-300",
+        isScrolled ? "shadow-lg shadow-slate-900/5" : "shadow-sm shadow-slate-900/5"
       )}
     >
       {({ open }) => (
@@ -203,12 +203,12 @@ export default function Navbar() {
                 onChange={(event) => setDesktopKeyword(event.target.value)}
                 placeholder="Search news..."
                 aria-label="Search news"
-                className="w-40 rounded-full border border-slate-200 px-3 py-2 text-sm text-slate-700 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-200"
+                className="ui-input w-44 rounded-full"
               />
               <button
                 type="submit"
                 aria-label="Search news"
-                className="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-200 hover:text-emerald-600"
+                className="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
               >
                 <MagnifyingGlassIcon className="size-5" />
               </button>
@@ -216,18 +216,18 @@ export default function Navbar() {
             <Button
               href="/contact"
               variant="primary"
-              className="rounded-xl bg-emerald-600 shadow-sm hover:bg-emerald-700 focus-visible:ring-emerald-500/40"
+              className="shadow-sm"
             >
               Get a Quote
             </Button>
           </div>
 
-          <DisclosureButton className="inline-flex items-center justify-center rounded-md p-2 text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-700 lg:hidden">
+          <DisclosureButton className="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-700 lg:hidden">
             <span className="sr-only">Toggle menu</span>
             {open ? <XMarkIcon className="size-6" /> : <Bars3Icon className="size-6" />}
           </DisclosureButton>
 
-          <DisclosurePanel className="absolute inset-x-0 top-full border-b border-black/5 bg-white/95 shadow-sm backdrop-blur lg:hidden">
+          <DisclosurePanel className="absolute inset-x-0 top-full border-b border-slate-200/70 bg-white/95 shadow-sm backdrop-blur-lg lg:hidden">
             <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-5">
               {navLinks.map((item) => {
                 if (!item.dropdownItems || !item.dropdownItems.length) {
@@ -301,12 +301,12 @@ export default function Navbar() {
                     onChange={(event) => setMobileKeyword(event.target.value)}
                     placeholder="Search news..."
                     aria-label="Search news"
-                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-200"
+                    className="ui-input w-full"
                   />
                   <button
                     type="submit"
                     aria-label="Search news"
-                    className="rounded-lg border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-200 hover:text-emerald-600"
+                    className="rounded-lg border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
                   >
                     <MagnifyingGlassIcon className="size-5" />
                   </button>
@@ -314,7 +314,7 @@ export default function Navbar() {
                 <Button
                   href="/contact"
                   variant="primary"
-                  className="flex-1 justify-center rounded-xl bg-emerald-600 hover:bg-emerald-700 focus-visible:ring-emerald-500/40"
+                  className="flex-1 justify-center"
                 >
                   Get a Quote
                 </Button>

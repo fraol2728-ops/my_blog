@@ -16,7 +16,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-24">
+      <section className="py-20">
         <div className="mx-auto grid max-w-6xl gap-12 px-4 md:grid-cols-2">
           <ContactForm />
           <ContactInfo />

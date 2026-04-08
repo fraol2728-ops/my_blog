@@ -17,7 +17,7 @@ export default function ServicesHero() {
       />
       <div className="absolute inset-0 bg-slate-950/70" />
 
-      <div className="relative mx-auto flex min-h-[72vh] max-w-7xl items-center px-6 py-24">
+      <div className="relative mx-auto flex min-h-[72vh] max-w-7xl items-center px-6 py-20">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

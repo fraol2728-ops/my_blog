@@ -54,7 +54,7 @@ const detailedServices = [
 
 export default function DetailedServices() {
   return (
-    <section className="px-6 py-24">
+    <section className="px-6 py-20">
       <div className="mx-auto max-w-6xl space-y-24">
         {detailedServices.map((service, index) => {
           const imageFirst = index % 2 === 0;
