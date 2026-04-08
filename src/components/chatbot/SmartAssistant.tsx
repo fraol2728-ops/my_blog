@@ -17,7 +17,7 @@ type QuickAction = {
   value: string;
 };
 
-type ConversationStep = "root" | "services" | "courses" | "pricing" | "contact";
+type ConversationStep = "root" | "services" | "courses" | "pricing" | "contact" | "company";
 
 const INITIAL_MESSAGE_ID = "welcome-msg";
 
@@ -25,6 +25,7 @@ export default function SmartAssistant() {
   const t = useTranslator();
   const locale = useLocale();
   const pathname = usePathname();
+
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
@@ -33,24 +34,29 @@ export default function SmartAssistant() {
   const [step, setStep] = useState<ConversationStep>("root");
   const [lastSelected, setLastSelected] = useState<string | null>(null);
   const [history, setHistory] = useState<Array<{ step: ConversationStep; lastSelected: string | null }>>([]);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: INITIAL_MESSAGE_ID,
-      role: "bot",
-      text: t("chatbot.welcome"),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([{ id: INITIAL_MESSAGE_ID, role: "bot", text: t("chatbot.welcome") }]);
 
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const triggeredRef = useRef(false);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const localeBasePath = `/${locale}`;
+  const routeLinks = useMemo(
+    () => ({
+      services: `${localeBasePath}/services`,
+      courses: `${localeBasePath}/blog`,
+      pricing: `${localeBasePath}/contact`,
+      contact: `${localeBasePath}/contact`,
+      company: `${localeBasePath}/about`,
+    }),
+    [localeBasePath],
+  );
+
   const quickActions = useMemo<QuickAction[]>(() => {
     if (step === "services") {
       return [
-        { label: t("chatbot.services.webDevelopment"), value: "service_web" },
-        { label: t("chatbot.services.uiux"), value: "service_uiux" },
-        { label: t("chatbot.services.cybersecurity"), value: "service_cyber" },
+        { label: t("chatbot.services.energyAudit"), value: "service_audit" },
+        { label: t("chatbot.services.systemDesign"), value: "service_design" },
+        { label: t("chatbot.services.installation"), value: "service_install" },
         { label: t("chatbot.common.back"), value: "back" },
       ];
     }
@@ -75,27 +81,30 @@ export default function SmartAssistant() {
       return [
         { label: t("chatbot.contact.bookCall"), value: "contact_book" },
         { label: t("chatbot.contact.sendMessage"), value: "contact_message" },
+        { label: t("chatbot.contact.viewAddress"), value: "contact_address" },
+        { label: t("chatbot.common.restart"), value: "restart" },
+      ];
+    }
+
+    if (step === "company") {
+      return [
+        { label: t("chatbot.company.mission"), value: "company_mission" },
+        { label: t("chatbot.company.whySolar"), value: "company_why_solar" },
+        { label: t("chatbot.company.quality"), value: "company_quality" },
         { label: t("chatbot.common.restart"), value: "restart" },
       ];
     }
 
     return [
       { label: t("chatbot.quick.exploreServices"), value: "services" },
-      { label: t("chatbot.quick.viewCourses"), value: "courses" },
       { label: t("chatbot.quick.pricing"), value: "pricing" },
       { label: t("chatbot.quick.contact"), value: "contact" },
+      { label: t("chatbot.quick.companyProfile"), value: "company" },
     ];
   }, [step, t]);
 
-  const pushBotMessage = useCallback((text: string) => {
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: `bot-${Date.now()}-${Math.random()}`,
-        role: "bot",
-        text,
-      },
-    ]);
+  const pushMessage = useCallback((role: "bot" | "user", text: string) => {
+    setMessages((prev) => [...prev, { id: `${role}-${Date.now()}-${Math.random()}`, role, text }]);
   }, []);
 
   const delayedBotMessage = useCallback(
@@ -103,14 +112,14 @@ export default function SmartAssistant() {
       setTyping(true);
       const delay = Math.floor(Math.random() * 700) + 500;
       window.setTimeout(() => {
-        pushBotMessage(text);
+        pushMessage("bot", text);
         setTyping(false);
       }, delay);
     },
-    [pushBotMessage],
+    [pushMessage],
   );
 
-  const saveConversationState = useCallback(
+  const updateStep = useCallback(
     (nextStep: ConversationStep, selected: string | null) => {
       setHistory((prev) => [...prev, { step, lastSelected }]);
       setStep(nextStep);
@@ -120,16 +129,10 @@ export default function SmartAssistant() {
   );
 
   const handleRestart = useCallback(() => {
-    setMessages([
-      {
-        id: INITIAL_MESSAGE_ID,
-        role: "bot",
-        text: t("chatbot.welcome"),
-      },
-    ]);
     setStep("root");
     setLastSelected(null);
     setHistory([]);
+    setMessages([{ id: INITIAL_MESSAGE_ID, role: "bot", text: t("chatbot.welcome") }]);
   }, [t]);
 
   const handleBack = useCallback(() => {
@@ -138,94 +141,54 @@ export default function SmartAssistant() {
         return prev;
       }
 
-      const next = [...prev];
-      const previous = next.pop();
+      const clone = [...prev];
+      const previous = clone.pop();
       if (previous) {
         setStep(previous.step);
         setLastSelected(previous.lastSelected);
         delayedBotMessage(t("chatbot.common.backMessage"));
       }
 
-      return next;
+      return clone;
     });
   }, [delayedBotMessage, t]);
 
-  const routeLinks = useMemo(
+  const openAssistant = useCallback(() => {
+    setIsOpen(true);
+    setShowBadge(false);
+    setShowPreview(false);
+    window.localStorage.setItem("assistant-opened", "1");
+  }, []);
+
+  const responseMap = useMemo<Record<string, string>>(
     () => ({
-      services: `${localeBasePath}/services`,
-      courses: `${localeBasePath}/blog`,
-      pricing: `${localeBasePath}/contact`,
-      contact: `${localeBasePath}/contact`,
+      service_audit: t("chatbot.services.energyAuditReply"),
+      service_design: t("chatbot.services.systemDesignReply"),
+      service_install: t("chatbot.services.installationReply"),
+      course_beginner: t("chatbot.courses.beginnerReply"),
+      course_team: t("chatbot.courses.teamReply"),
+      pricing_quote: t("chatbot.pricing.quoteReply"),
+      pricing_compare: t("chatbot.pricing.compareReply"),
+      contact_book: t("chatbot.contact.bookReply"),
+      contact_message: t("chatbot.contact.messageReply"),
+      contact_address: t("chatbot.contact.addressReply"),
+      company_mission: t("chatbot.company.missionReply"),
+      company_why_solar: t("chatbot.company.whySolarReply"),
+      company_quality: t("chatbot.company.qualityReply"),
     }),
-    [localeBasePath],
+    [t],
   );
 
-  const handleAction = useCallback(
-    (value: string, label: string) => {
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: `user-${Date.now()}-${Math.random()}`,
-          role: "user",
-          text: label,
-        },
-      ]);
+  const detectIntent = useCallback((text: string): ConversationStep | null => {
+    const normalized = text.toLowerCase();
 
-      if (value === "restart") {
-        handleRestart();
-        return;
-      }
-
-      if (value === "back") {
-        handleBack();
-        return;
-      }
-
-      if (value === "services") {
-        saveConversationState("services", label);
-        delayedBotMessage(t("chatbot.services.question"));
-        return;
-      }
-
-      if (value === "courses") {
-        saveConversationState("courses", label);
-        delayedBotMessage(t("chatbot.courses.question"));
-        return;
-      }
-
-      if (value === "pricing") {
-        saveConversationState("pricing", label);
-        delayedBotMessage(t("chatbot.pricing.question"));
-        return;
-      }
-
-      if (value === "contact") {
-        saveConversationState("contact", label);
-        delayedBotMessage(t("chatbot.contact.question"));
-        return;
-      }
-
-      const responseMap: Record<string, string> = {
-        service_web: t("chatbot.services.webDevelopmentReply"),
-        service_uiux: t("chatbot.services.uiuxReply"),
-        service_cyber: t("chatbot.services.cyberReply"),
-        course_beginner: t("chatbot.courses.beginnerReply"),
-        course_team: t("chatbot.courses.teamReply"),
-        pricing_quote: t("chatbot.pricing.quoteReply"),
-        pricing_compare: t("chatbot.pricing.compareReply"),
-        contact_book: t("chatbot.contact.bookReply"),
-        contact_message: t("chatbot.contact.messageReply"),
-      };
-
-      delayedBotMessage(responseMap[value] ?? t("chatbot.fallback"));
-    },
-    [delayedBotMessage, handleBack, handleRestart, saveConversationState, t],
-  );
-
-  const detectIntent = useCallback((value: string): ConversationStep | null => {
-    const normalized = value.toLowerCase();
-
-    if (normalized.includes("website") || normalized.includes("web") || normalized.includes("site")) {
+    if (
+      normalized.includes("service") ||
+      normalized.includes("website") ||
+      normalized.includes("web") ||
+      normalized.includes("design") ||
+      normalized.includes("solar")
+    ) {
       return "services";
     }
 
@@ -237,12 +200,60 @@ export default function SmartAssistant() {
       return "pricing";
     }
 
-    if (normalized.includes("contact") || normalized.includes("call") || normalized.includes("email")) {
+    if (
+      normalized.includes("contact") ||
+      normalized.includes("call") ||
+      normalized.includes("email") ||
+      normalized.includes("address") ||
+      normalized.includes("phone")
+    ) {
       return "contact";
+    }
+
+    if (normalized.includes("company") || normalized.includes("profile") || normalized.includes("mission")) {
+      return "company";
     }
 
     return null;
   }, []);
+
+  const stepQuestionMap: Record<ConversationStep, string> = useMemo(
+    () => ({
+      root: t("chatbot.welcome"),
+      services: t("chatbot.services.question"),
+      courses: t("chatbot.courses.question"),
+      pricing: t("chatbot.pricing.question"),
+      contact: t("chatbot.contact.question"),
+      company: t("chatbot.company.question"),
+    }),
+    [t],
+  );
+
+  const handleAction = useCallback(
+    (value: string, label: string) => {
+      if (value === "restart") {
+        handleRestart();
+        return;
+      }
+
+      if (value === "back") {
+        handleBack();
+        return;
+      }
+
+      pushMessage("user", label);
+
+      if (["services", "courses", "pricing", "contact", "company"].includes(value)) {
+        const nextStep = value as ConversationStep;
+        updateStep(nextStep, label);
+        delayedBotMessage(stepQuestionMap[nextStep]);
+        return;
+      }
+
+      delayedBotMessage(responseMap[value] ?? t("chatbot.fallback"));
+    },
+    [delayedBotMessage, handleBack, handleRestart, pushMessage, responseMap, stepQuestionMap, t, updateStep],
+  );
 
   const sendText = useCallback(() => {
     const trimmed = input.trim();
@@ -250,58 +261,33 @@ export default function SmartAssistant() {
       return;
     }
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: `user-${Date.now()}-${Math.random()}`,
-        role: "user",
-        text: trimmed,
-      },
-    ]);
-
+    pushMessage("user", trimmed);
     const intent = detectIntent(trimmed);
+
     if (!intent) {
       delayedBotMessage(t("chatbot.fallback"));
       setInput("");
       return;
     }
 
-    saveConversationState(intent, trimmed);
-    if (intent === "services") {
-      delayedBotMessage(t("chatbot.services.question"));
-    }
-    if (intent === "courses") {
-      delayedBotMessage(t("chatbot.courses.question"));
-    }
-    if (intent === "pricing") {
-      delayedBotMessage(t("chatbot.pricing.question"));
-    }
-    if (intent === "contact") {
-      delayedBotMessage(t("chatbot.contact.question"));
-    }
-
+    updateStep(intent, trimmed);
+    delayedBotMessage(stepQuestionMap[intent]);
     setInput("");
-  }, [delayedBotMessage, detectIntent, input, saveConversationState, t]);
+  }, [delayedBotMessage, detectIntent, input, pushMessage, stepQuestionMap, t, updateStep]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, typing]);
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
     const hasOpened = window.localStorage.getItem("assistant-opened") === "1";
     if (hasOpened) {
       return;
     }
 
-    const timer = window.setTimeout(() => {
-      setShowBadge(true);
-    }, 4000);
+    const badgeTimer = window.setTimeout(() => setShowBadge(true), 4000);
 
-    const setPreview = () => {
+    const triggerPreview = () => {
       if (triggeredRef.current) {
         return;
       }
@@ -311,48 +297,37 @@ export default function SmartAssistant() {
       setShowBadge(true);
     };
 
-    const triggerTimer = window.setTimeout(setPreview, 5000);
-
+    const stayTimer = window.setTimeout(triggerPreview, 5000);
     const isPriorityPage = pathname.includes("/services") || pathname.includes("/pricing");
 
     if (isPriorityPage) {
-      const priorityTimer = window.setTimeout(setPreview, 2500);
+      const priorityTimer = window.setTimeout(triggerPreview, 2500);
       return () => {
-        clearTimeout(timer);
-        clearTimeout(triggerTimer);
+        clearTimeout(badgeTimer);
+        clearTimeout(stayTimer);
         clearTimeout(priorityTimer);
       };
     }
 
     const onScroll = () => {
-      const scrollTop = window.scrollY;
-      const height = document.documentElement.scrollHeight - window.innerHeight;
-      if (height <= 0) {
+      const available = document.documentElement.scrollHeight - window.innerHeight;
+      if (available <= 0) {
         return;
       }
 
-      if (scrollTop / height >= 0.5) {
-        setPreview();
+      if (window.scrollY / available >= 0.5) {
+        triggerPreview();
       }
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      clearTimeout(timer);
-      clearTimeout(triggerTimer);
+      clearTimeout(badgeTimer);
+      clearTimeout(stayTimer);
       window.removeEventListener("scroll", onScroll);
     };
   }, [pathname]);
-
-  const openAssistant = useCallback(() => {
-    setIsOpen(true);
-    setShowBadge(false);
-    setShowPreview(false);
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("assistant-opened", "1");
-    }
-  }, []);
 
   return (
     <>
@@ -369,8 +344,8 @@ export default function SmartAssistant() {
       <button
         type="button"
         onClick={openAssistant}
-        className="fixed bottom-6 right-6 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg shadow-emerald-900/30 transition duration-300 hover:scale-105"
         aria-label={t("chatbot.open")}
+        className="fixed bottom-6 right-6 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg shadow-emerald-900/30 transition duration-300 hover:scale-105"
       >
         <MessageCircle className="h-6 w-6" />
         {!isOpen ? <span className="assistant-pulse-ring" /> : null}
@@ -397,7 +372,7 @@ export default function SmartAssistant() {
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`max-w-[90%] rounded-2xl px-3 py-2 text-sm ${
+                className={`max-w-[90%] whitespace-pre-line rounded-2xl px-3 py-2 text-sm ${
                   message.role === "bot" ? "bg-white text-slate-700 shadow-sm" : "ml-auto bg-emerald-600 text-white"
                 }`}
               >
@@ -436,8 +411,8 @@ export default function SmartAssistant() {
               <Link href={routeLinks.services} className="text-emerald-700 underline underline-offset-2">
                 {t("chatbot.links.services")}
               </Link>
-              <Link href={routeLinks.courses} className="text-emerald-700 underline underline-offset-2">
-                {t("chatbot.links.courses")}
+              <Link href={routeLinks.company} className="text-emerald-700 underline underline-offset-2">
+                {t("chatbot.links.company")}
               </Link>
               <Link href={routeLinks.contact} className="text-emerald-700 underline underline-offset-2">
                 {t("chatbot.links.contact")}
@@ -462,8 +437,8 @@ export default function SmartAssistant() {
               <button
                 type="button"
                 onClick={sendText}
-                className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-600 text-white"
                 aria-label={t("chatbot.send")}
+                className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-600 text-white"
               >
                 <SendHorizontal className="h-4 w-4" />
               </button>

@@ -52,39 +52,50 @@
     "fallback": "በሙሉ አልገባኝም። ከእነዚህ አንዱን ይሞክሩ፦",
     "quick": {
       "exploreServices": "አገልግሎቶችን ያስሱ",
-      "viewCourses": "ኮርሶችን ይመልከቱ",
       "pricing": "ዋጋ",
-      "contact": "አግኙን"
+      "contact": "አግኙን",
+      "companyProfile": "የኩባንያ መግለጫ"
     },
     "services": {
       "question": "ምን እየፈለጉ ነው?",
-      "webDevelopment": "ድህረ ገጽ ግንባታ",
-      "uiux": "UI/UX ዲዛይን",
-      "cybersecurity": "ሳይበር ደህንነት",
-      "webDevelopmentReply": "በጣም ጥሩ። ፈጣን እና ዘመናዊ የንግድ ድህረ ገጾችን እንገነባለን።",
-      "uiuxReply": "ጥሩ ምርጫ። ቡድናችን ንጹህ እና ውጤታማ UX ይዘጋጃል።",
-      "cyberReply": "በጣም ጥሩ። ዲጂታል ደህንነትዎን ለማጠናከር ግምገማ እና መፍትሄ እንሰጣለን።"
+      "energyAudit": "የኃይል ኦዲት እና ተቀባይነት",
+      "systemDesign": "የስርዓት ዲዛይን ፕሮፖዛል",
+      "installation": "መጫን እና አገልግሎት",
+      "energyAuditReply": "ለታዳሽ ኃይል ፕሮጀክቶች ቴክኒካዊ ጥናት፣ ኦዲት እና ተቀባይነት እንሰጣለን።",
+      "systemDesignReply": "ለፍላጎትዎ የስርዓት ዲዛይን እና ኮሜርሻል ፕሮፖዛል እናዘጋጃለን።",
+      "installationReply": "ቡድናችን መጫን፣ ኮሚሽኒንግ እና ከግዢ በኋላ ድጋፍ ይሰጣል።"
     },
     "courses": {
-      "question": "ምን ዓይነት ትምህርት ይፈልጋሉ?",
+      "question": "ምን ዓይነት ስልጠና ይፈልጋሉ?",
       "beginner": "የጀማሪ ኮርስ",
       "teamTraining": "የቡድን ስልጠና",
-      "beginnerReply": "በተግባራዊ ፕሮጀክቶች የተዘጋጀ የጀማሪ ኮርስ እንመክራለን።",
-      "teamReply": "የቡድን ስልጠና አለ። ለሰራተኞችዎ ተስማሚ ሞጁሎችን እናዘጋጃለን።"
+      "beginnerReply": "ለጀማሪዎች ተስማሚ የንጹህ ኃይል እና ቴክኒካዊ ስልጠና እንመራዎታለን።",
+      "teamReply": "ለቡድን የተስተካከለ የአቅም ግንባታ ስልጠና እንሰጣለን።"
     },
     "pricing": {
       "question": "ፈጣን ግምት ይፈልጋሉ ወይስ ብጁ ዋጋ?",
       "requestQuote": "ዋጋ ይጠይቁ",
       "comparePlans": "ፕላኖችን ያነፃፅሩ",
-      "quoteReply": "ጥሩ። የፕሮጀክትዎን ዝርዝር ያጋሩ እና ብጁ ዋጋ እናቀርባለን።",
-      "compareReply": "በጊዜ እና በውስብስብነት መሠረት ተለዋዋጭ ፓኬጆች እንሰጣለን።"
+      "quoteReply": "ጥሩ። የፕሮጀክት ስፋትና ቦታ ያጋሩ እና ብጁ ዋጋ እናቀርባለን።",
+      "compareReply": "ፓኬጆች በስርዓት መጠን፣ የቦታ ሁኔታ እና ጥገና ፍላጎት ይለያያሉ።"
     },
     "contact": {
       "question": "ከእኛ ጋር እንዴት መገናኘት ይፈልጋሉ?",
-      "bookCall": "ጥሪ ይመዝግቡ",
-      "sendMessage": "መልእክት ይላኩ",
-      "bookReply": "በጣም ጥሩ። በዚህ ሳምንት አጭር የመጀመሪያ ጥሪ ማዘጋጀት እንችላለን።",
-      "messageReply": "በጣም ጥሩ። የእኛን የመገናኛ ገጽ ይጠቀሙ እና ፈጥነን እንመልሳለን።"
+      "bookCall": "ይደውሉ",
+      "sendMessage": "ኢሜይል ይላኩ",
+      "viewAddress": "አድራሻ ይመልከቱ",
+      "bookReply": "ይደውሉ: +211 982 004 848 ወይም +211 928 004 848።",
+      "messageReply": "በዚህ ኢሜይል ይጻፉ: mpgenergy@gmail.com።",
+      "addressReply": "Thongping, Florian Road, Block 3, Plot No. 258, Juba, South Sudan።"
+    },
+    "company": {
+      "question": "ስለ Master Premier Green Energy ፈጣን አጠቃላይ መረጃ ይፈልጋሉ?",
+      "mission": "ተልዕኮአችን",
+      "whySolar": "ለምን ፀሐይ",
+      "quality": "የጥራት ቃል ኪዳን",
+      "missionReply": "አረንጓዴ ኢኮኖሚ እና የገጠር ኃይል ተደራሽነት የሚያበረታታ ዘመናዊ መፍትሄ እንሰጣለን።",
+      "whySolarReply": "ፀሐይ ኃይል ክፍያን ይቀንሳል፣ የኃይል ደህንነትን ያሻሽላል እና አካባቢን ይጠብቃል።",
+      "qualityReply": "በመረጋጋት፣ ጥንካሬ፣ ታማኝነት እና ከፍተኛ ጥራት ንጥረ ነገሮች ላይ እናተኩራለን።"
     },
     "common": {
       "back": "ተመለስ",
@@ -94,7 +105,7 @@
     },
     "links": {
       "services": "የአገልግሎት ገጽ",
-      "courses": "የኮርስ ገጽ",
+      "company": "ስለ እኛ ገጽ",
       "contact": "የመገናኛ ገጽ"
     }
   }
