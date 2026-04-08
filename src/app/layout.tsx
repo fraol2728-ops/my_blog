@@ -27,6 +27,14 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     description: defaultDescription,
   },
+  icons: {
+    icon: [
+      { url: "/fav.jpg", type: "image/jpeg" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/fav.jpg",
+    apple: "/fav.jpg",
+  },
 };
 
 const organizationSchema = {
