@@ -1,21 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import Logo from "./logo";
-
-const quickLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
+import { useLocale } from "@/i18n/I18nProvider";
 
 const services = [
-  { href: "/services", label: "Solar Panel Installation" },
-  { href: "/services", label: "Energy Consultation" },
-  { href: "/services", label: "Battery Storage" },
-  { href: "/services", label: "System Maintenance" },
+  { href: "/services", label: "Managed SOC monitoring services" },
+  { href: "/services", label: "Cloud security architecture advisory" },
+  { href: "/services", label: "Incident response and recovery support" },
+  { href: "/services", label: "Penetration testing and risk assessments" },
 ];
 
 const socialLinks = [
@@ -26,6 +21,17 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const locale = useLocale();
+  const localized = (path: string) => `/${locale}${path === "/" ? "" : path}`;
+
+  const quickLinks = [
+    { href: localized("/"), label: "Cybersecurity home" },
+    { href: localized("/about"), label: "About Xyberosec" },
+    { href: localized("/services"), label: "Security services" },
+    { href: localized("/news"), label: "Threat intelligence blog" },
+    { href: localized("/contact"), label: "Contact security experts" },
+  ];
+
   return (
     <footer className="border-t border-slate-200 bg-slate-950 text-white">
       <div className="section-shell">
@@ -33,8 +39,8 @@ export default function Footer() {
           <div className="space-y-5">
             <Logo className="px-0 text-white" />
             <p className="max-w-sm text-sm leading-6 text-white/70">
-              Master Premier Green Energy Co. Ltd provides reliable, modern and intelligent renewable energy
-              solutions to build green economies, create sustainable living and promote rural access.
+              Xyberosec helps security and technology teams reduce cyber risk through managed defense,
+              security engineering, and practical incident readiness.
             </p>
           </div>
 
@@ -52,11 +58,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">Services</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">Core Services</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               {services.map((service) => (
                 <li key={service.label}>
-                  <Link className="inline-flex hover:text-emerald-300" href={service.href}>
+                  <Link className="inline-flex hover:text-emerald-300" href={localized(service.href)}>
                     {service.label}
                   </Link>
                 </li>
@@ -78,15 +84,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="tel:+211928004848">
-                  <Phone className="h-4 w-4" />
-                  +211 928 004 848
-                </a>
-              </li>
-              <li>
-                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="mailto:mpgenergy@gmail.com">
+                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="mailto:hello@xyberosec.com">
                   <Mail className="h-4 w-4" />
-                  mpgenergy@gmail.com
+                  hello@xyberosec.com
                 </a>
               </li>
             </ul>
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-5 border-t border-white/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-white/60">© {new Date().getFullYear()} All rights reserved.</p>
+          <p className="text-sm text-white/60">© {new Date().getFullYear()} Xyberosec. All rights reserved.</p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => {
               const Icon = social.icon;

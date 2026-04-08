@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { auth, signIn } from "../../../auth";
 import { Button } from "@/components/button";
@@ -7,6 +8,12 @@ import { CheckIcon } from "lucide-react";
 import Logo from "@/components/logo";
 import { redirect } from "next/navigation";
 import { GradientBackground } from "@/components/gradient";
+
+
+export const metadata: Metadata = {
+  title: "Login",
+  robots: { index: false, follow: false },
+};
 
 const LoginPage = async () => {
   const session = await auth();

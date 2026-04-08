@@ -4,6 +4,27 @@ import FAQSection from "@/components/contact/FAQSection";
 import { getMessages } from "@/i18n/get-messages";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!isValidLocale(locale)) notFound();
+
+  return pageMetadata({
+    locale: locale as AppLocale,
+    path: "/contact",
+    title: "Contact Xyberosec Cybersecurity Experts Today",
+    description:
+      "Speak with Xyberosec experts about managed SOC, incident response, and security assessments tailored to your infrastructure, risk profile, and goals.",
+  });
+}
 
 export default async function ContactPage({
   params,

@@ -1,6 +1,8 @@
 import { Button } from "@/components/button";
 import Container from "@/components/container";
 import OtherPosts from "@/components/otherPosts";
+import { isValidLocale, type AppLocale } from "@/i18n/config";
+import { ogImageUrl, pageMetadata, SITE_URL } from "@/lib/seo";
 import { urlFor } from "@/sanity/lib/image";
 import { getOtherPosts, getPost } from "@/sanity/queries";
 import { Post, PostCategory } from "@/types";
@@ -13,27 +15,51 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
-type PageParams = { slug: string };
+type PageParams = { locale: string; slug: string };
 
 export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+
+  if (!isValidLocale(locale)) notFound();
+
   const post = await getPost(slug);
 
   if (!post) {
-    return {
+    return pageMetadata({
+      locale: locale as AppLocale,
+      path: `/post/${slug}`,
       title: "Post not found",
-    };
+      description: "The requested article could not be found.",
+    });
   }
 
+  const title = post?.seo?.metaTitle ?? post.title;
+  const description = post?.seo?.metaDescription ?? post.excerpt;
+  const canonicalPath = `/${locale}/post/${slug}`;
+  const imageUrl = post?.mainImage ? urlFor(post.mainImage).url() : ogImageUrl(`/post/${slug}`, locale as AppLocale, title);
+
   return {
-    title: post?.seo?.metaTitle ?? post.title,
-    description: post?.seo?.metaDescription ?? post.excerpt,
+    ...pageMetadata({
+      locale: locale as AppLocale,
+      path: `/post/${slug}`,
+      title,
+      description,
+    }),
     keywords: post?.seo?.keywords,
     robots: post?.seo?.noIndex ? "noindex, nofollow" : "index, follow",
     openGraph: {
-      title: post?.seo?.metaTitle ?? post.title,
-      description: post?.seo?.metaDescription ?? post.excerpt,
-      images: post?.mainImage ? [urlFor(post.mainImage).url()] : [],
+      type: "article",
+      locale: locale === "en" ? "en_US" : "am_ET",
+      url: canonicalPath,
+      title,
+      description,
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
     },
   };
 }
@@ -41,14 +67,34 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
 const SinglePostPage = async ({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<PageParams>;
 }) => {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+
+  if (!isValidLocale(locale)) notFound();
+
   const post = ((await getPost(slug)) as Post | null) || notFound();
   const otherPosts = await getOtherPosts(slug, 3);
 
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    datePublished: post.publishedAt,
+    author: {
+      "@type": "Person",
+      name: post.author?.name ?? "Xyberosec Editorial Team",
+    },
+    image: post.mainImage ? [urlFor(post.mainImage).url()] : [ogImageUrl(`/post/${slug}`, locale as AppLocale, post.title)],
+    mainEntityOfPage: `${SITE_URL}/${locale}/post/${slug}`,
+  };
+
   return (
     <div className="overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
       <Container className="mt-16">
         <p className="font-mono text-xs/5 font-semibold uppercase tracking-widest text-gray-500">
           {dayjs(post?.publishedAt).format("dddd, MMMM D, YYYY")}
@@ -77,7 +123,7 @@ const SinglePostPage = async ({
                 {(post?.categories as PostCategory[])?.map((category: PostCategory) => (
                   <Link
                     key={category?.slug}
-                    href={`/category/${category?.slug}`}
+                    href={`/${locale}/category/${category?.slug}`}
                     className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium text-gray-500"
                   >
                     {category?.title}
@@ -185,7 +231,7 @@ const SinglePostPage = async ({
                   />
                 )}
                 <div className="mt-10">
-                  <Button variant="outline" href={"/news"}>
+                  <Button variant="outline" href={`/${locale}/news`}>
                     <ChevronLeftIcon className="size-4" />
                     Back to News
                   </Button>
