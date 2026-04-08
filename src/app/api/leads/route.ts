@@ -10,13 +10,24 @@ export async function POST(request: Request) {
     return NextResponse.json({ errors: validation.errors }, { status: 400 });
   }
 
-  const normalized = normalizeLeadPayload(payload);
+  try {
+    const normalized = normalizeLeadPayload(payload);
 
-  const createdLead = await client.create({
-    _type: "lead",
-    ...normalized,
-    submittedAt: new Date().toISOString(),
-  });
+    const createdLead = await client.create({
+      _type: "lead",
+      ...normalized,
+      submittedAt: new Date().toISOString(),
+    });
 
-  return NextResponse.json({ ok: true, id: createdLead._id });
+    return NextResponse.json({ ok: true, id: createdLead._id });
+  } catch (error) {
+    console.error("Failed to create lead", error);
+
+    return NextResponse.json(
+      {
+        message: "We couldn't submit your request right now. Please try again shortly.",
+      },
+      { status: 500 },
+    );
+  }
 }

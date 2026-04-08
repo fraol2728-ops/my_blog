@@ -26,6 +26,7 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const canSubmit = useMemo(
     () => !isSubmitting && form.fullName && form.email && form.phone && form.service && form.message,
@@ -36,33 +37,43 @@ export default function ContactForm() {
     event.preventDefault();
     setIsSubmitting(true);
     setIsSuccess(false);
+    setSubmitError("");
     setErrors({});
 
-    const response = await fetch("/api/leads", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-    const data = await response.json();
+      const data = await response.json().catch(() => ({}));
 
-    if (!response.ok) {
-      setErrors(data.errors ?? {});
+      if (!response.ok) {
+        setErrors(data.errors ?? {});
+        setSubmitError(
+          data.message ??
+            (isAmharic ? "ጥያቄዎን መላክ አልተቻለም። እባክዎ እንደገና ይሞክሩ።" : "Unable to send your request. Please try again."),
+        );
+        setIsSubmitting(false);
+        return;
+      }
+
+      trackEvent({
+        event: "lead_submitted",
+        payload: {
+          service: form.service,
+          hasCompany: Boolean(form.company),
+        },
+      });
+
+      setForm(initialState);
+      setIsSuccess(true);
+    } catch {
+      setSubmitError(isAmharic ? "የኔትወርክ ችግር ተፈጥሯል። እባክዎ ደግመው ይሞክሩ።" : "A network error occurred. Please try again.");
+    } finally {
       setIsSubmitting(false);
-      return;
     }
-
-    trackEvent({
-      event: "lead_submitted",
-      payload: {
-        service: form.service,
-        hasCompany: Boolean(form.company),
-      },
-    });
-
-    setForm(initialState);
-    setIsSuccess(true);
-    setIsSubmitting(false);
   };
 
   return (
@@ -143,6 +154,8 @@ export default function ContactForm() {
             : "Thanks! Your request has been received. We&apos;ll contact you within one business day."}
         </p>
       )}
+
+      {submitError && <p className="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{submitError}</p>}
     </form>
   );
 }
