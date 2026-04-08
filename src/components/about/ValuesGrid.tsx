@@ -2,6 +2,7 @@
 
 import { BarChart3, Handshake, Leaf, Lightbulb, ShieldCheck, Users } from "lucide-react";
 import { motion } from "motion/react";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const values = [
   {
@@ -37,15 +38,16 @@ const values = [
 ];
 
 export default function ValuesGrid() {
+  const isAmharic = useLocale() === "am";
   return (
     <section id="our-values" className="bg-slate-50 px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            Core Values
+            {isAmharic ? "ዋና እሴቶች" : "Core Values"}
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            Principles That Guide Every Project
+            {isAmharic ? "እያንዳንዱን ፕሮጀክት የሚመሩ መርሆች" : "Principles That Guide Every Project"}
           </h2>
         </div>
 

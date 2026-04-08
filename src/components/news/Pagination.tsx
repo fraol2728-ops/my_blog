@@ -1,5 +1,8 @@
 "use client";
 
+import { useLocale } from "@/i18n/I18nProvider";
+
+
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -7,12 +10,14 @@ interface PaginationProps {
 }
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
+  const isAmharic = useLocale() === "am";
+
   if (totalPages <= 1) {
     return null;
   }
 
   return (
-    <nav className="mt-10 flex flex-wrap items-center justify-center gap-2" aria-label="Pagination">
+    <nav className="mt-10 flex flex-wrap items-center justify-center gap-2" aria-label={isAmharic ? "ገጽ መቀየሪያ" : "Pagination"}>
       {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => {
         const isActive = currentPage === page;
 

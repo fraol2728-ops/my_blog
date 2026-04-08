@@ -1,4 +1,7 @@
+"use client";
+
 import { Clock3, Mail, MapPin, Phone } from "lucide-react";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const contactItems = [
   {
@@ -29,15 +32,36 @@ const contactItems = [
 ];
 
 export default function ContactInfo() {
+  const isAmharic = useLocale() === "am";
+  const localizedItems = isAmharic
+    ? contactItems.map((item) => ({
+        ...item,
+        label:
+          {
+            Address: "አድራሻ",
+            "Phone 1": "ስልክ 1",
+            "Phone 2": "ስልክ 2",
+            Email: "ኢሜይል",
+            "Working Hours": "የስራ ሰዓት",
+          }[item.label] ?? item.label,
+        value:
+          {
+            "Mon - Fri: 8:00 AM - 6:00 PM": "ሰኞ - ዓርብ፡ 8:00 ጥዋት - 6:00 ማታ",
+          }[item.value] ?? item.value,
+      }))
+    : contactItems;
+
   return (
     <aside className="rounded-2xl border border-green-100 bg-green-50/60 p-6 sm:p-8">
-      <h2 className="text-2xl font-semibold text-gray-900">Contact Information</h2>
+      <h2 className="text-2xl font-semibold text-gray-900">
+        {isAmharic ? "የመገኛ መረጃ" : "Contact Information"}
+      </h2>
       <p className="mt-2 text-sm text-gray-600">
-        Reach out directly or send your request through the form.
+        {isAmharic ? "በቀጥታ ያግኙን ወይም በቅጹ እንዲደርሰን ጥያቄዎን ይላኩ።" : "Reach out directly or send your request through the form."}
       </p>
 
       <div className="mt-6 space-y-5">
-        {contactItems.map((item) => {
+        {localizedItems.map((item) => {
           const Icon = item.icon;
 
           return (

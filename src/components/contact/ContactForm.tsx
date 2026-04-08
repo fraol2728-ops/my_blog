@@ -79,7 +79,7 @@ export default function ContactForm() {
       <div className="mt-6 space-y-4">
         <div>
           <label htmlFor="fullName" className="text-sm font-medium text-gray-700">{isAmharic ? "ሙሉ ስም" : "Full Name"}</label>
-          <input id="fullName" name="fullName" type="text" value={form.fullName} onChange={(e) => setForm((prev) => ({ ...prev, fullName: e.target.value }))} placeholder="John Doe" className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/30" />
+          <input id="fullName" name="fullName" type="text" value={form.fullName} onChange={(e) => setForm((prev) => ({ ...prev, fullName: e.target.value }))} placeholder={isAmharic ? "ሙሉ ስምዎን ያስገቡ" : "John Doe"} className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/30" />
           {errors.fullName && <p className="mt-1 text-xs text-red-600">{errors.fullName}</p>}
         </div>
 
@@ -92,12 +92,12 @@ export default function ContactForm() {
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
             <label htmlFor="phone" className="text-sm font-medium text-gray-700">{isAmharic ? "ስልክ" : "Phone"}</label>
-            <input id="phone" name="phone" type="tel" value={form.phone} onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value }))} placeholder="(555) 123-4567" className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/30" />
+            <input id="phone" name="phone" type="tel" value={form.phone} onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value }))} placeholder={isAmharic ? "ስልክ ቁጥርዎን ያስገቡ" : "(555) 123-4567"} className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/30" />
             {errors.phone && <p className="mt-1 text-xs text-red-600">{errors.phone}</p>}
           </div>
           <div>
             <label htmlFor="company" className="text-sm font-medium text-gray-700">{isAmharic ? "ኩባንያ (አማራጭ)" : "Company (Optional)"}</label>
-            <input id="company" name="company" type="text" value={form.company} onChange={(e) => setForm((prev) => ({ ...prev, company: e.target.value }))} placeholder="Acme Energy" className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/30" />
+            <input id="company" name="company" type="text" value={form.company} onChange={(e) => setForm((prev) => ({ ...prev, company: e.target.value }))} placeholder={isAmharic ? "የድርጅት ስም (ከነበረ)" : "Acme Energy"} className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/30" />
           </div>
         </div>
 
@@ -117,17 +117,17 @@ export default function ContactForm() {
             <label htmlFor="budget" className="text-sm font-medium text-gray-700">{isAmharic ? "በጀት (አማራጭ)" : "Budget (Optional)"}</label>
             <select id="budget" name="budget" value={form.budget} onChange={(e) => setForm((prev) => ({ ...prev, budget: e.target.value }))} className="mt-2 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/30">
               <option value="">{isAmharic ? "የበጀት ክልል ይምረጡ" : "Select budget range"}</option>
-              <option value="under-10k">Under $10k</option>
+              <option value="under-10k">{isAmharic ? "ከ$10k በታች" : "Under $10k"}</option>
               <option value="10k-50k">$10k - $50k</option>
               <option value="50k-100k">$50k - $100k</option>
-              <option value="100k+">$100k+</option>
+              <option value="100k+">{isAmharic ? "ከ$100k በላይ" : "$100k+"}</option>
             </select>
           </div>
         </div>
 
         <div>
           <label htmlFor="message" className="text-sm font-medium text-gray-700">{isAmharic ? "መልዕክት" : "Message"}</label>
-          <textarea id="message" name="message" rows={5} value={form.message} onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))} placeholder="Tell us about your property and energy goals..." className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/30" />
+          <textarea id="message" name="message" rows={5} value={form.message} onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))} placeholder={isAmharic ? "ስለ ንብረትዎ እና የኃይል ፍላጎትዎ ያስረዱን..." : "Tell us about your property and energy goals..."} className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/30" />
           {errors.message && <p className="mt-1 text-xs text-red-600">{errors.message}</p>}
         </div>
       </div>

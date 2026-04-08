@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const projects = [
   { title: "North Ridge Logistics Hub", type: "Commercial Solar", image: "/project1.jpg" },
@@ -11,15 +12,16 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
+  const isAmharic = useLocale() === "am";
   return (
     <section id="our-projects" className="bg-slate-50 px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            Featured Projects
+            {isAmharic ? "ተመራጭ ፕሮጀክቶች" : "Featured Projects"}
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            Proven Delivery Across Diverse Energy Environments
+            {isAmharic ? "በተለያዩ የኃይል አካባቢዎች የተረጋገጠ አፈጻጸም" : "Proven Delivery Across Diverse Energy Environments"}
           </h2>
         </div>
 

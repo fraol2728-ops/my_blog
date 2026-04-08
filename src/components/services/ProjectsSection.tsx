@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const projects = [
   { title: "200kW Retail Campus", image: "/project1.jpg" },
@@ -11,11 +12,12 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
+  const isAmharic = useLocale() === "am";
   return (
     <section className="bg-slate-50 px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          Featured Projects
+          {isAmharic ? "ተመራጭ ፕሮጀክቶች" : "Featured Projects"}
         </h2>
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {projects.map((project) => (
