@@ -20,6 +20,44 @@ const initialState: FormState = {
   source: "contact-page",
 };
 
+const EMAILJS_ENDPOINT = "https://api.emailjs.com/api/v1.0/email/send";
+
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+const sendWithEmailJs = async (payload: FormState) => {
+  if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+    throw new Error("emailjs_not_configured");
+  }
+
+  const response = await fetch(EMAILJS_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      service_id: EMAILJS_SERVICE_ID,
+      template_id: EMAILJS_TEMPLATE_ID,
+      user_id: EMAILJS_PUBLIC_KEY,
+      template_params: {
+        full_name: payload.fullName,
+        email: payload.email,
+        phone: payload.phone,
+        company: payload.company || "-",
+        service: payload.service,
+        budget: payload.budget || "-",
+        message: payload.message,
+        source: payload.source,
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("emailjs_send_failed");
+  }
+};
+
 export default function ContactForm() {
   const isAmharic = useLocale() === "am";
   const [form, setForm] = useState<FormState>(initialState);
@@ -59,6 +97,8 @@ export default function ContactForm() {
         return;
       }
 
+      await sendWithEmailJs(form);
+
       trackEvent({
         event: "lead_submitted",
         payload: {
@@ -69,8 +109,18 @@ export default function ContactForm() {
 
       setForm(initialState);
       setIsSuccess(true);
-    } catch {
-      setSubmitError(isAmharic ? "የኔትወርክ ችግር ተፈጥሯል። እባክዎ ደግመው ይሞክሩ።" : "A network error occurred. Please try again.");
+    } catch (error) {
+      if (error instanceof Error && error.message === "emailjs_not_configured") {
+        setSubmitError(
+          isAmharic
+            ? "የኢሜይል አገልግሎት አልተዋቀረም። እባክዎ በኋላ ደግመው ይሞክሩ።"
+            : "Email service is not configured yet. Please try again later.",
+        );
+      } else {
+        setSubmitError(
+          isAmharic ? "የኔትወርክ ችግር ተፈጥሯል። እባክዎ ደግመው ይሞክሩ።" : "A network error occurred. Please try again.",
+        );
+      }
     } finally {
       setIsSubmitting(false);
     }
