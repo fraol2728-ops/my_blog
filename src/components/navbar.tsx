@@ -1,15 +1,15 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 import { Bars3Icon, ChevronDownIcon, MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { Button } from "./button";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import type { AppLocale } from "@/i18n/routing";
 
 type DropdownItem = {
   href: string;
@@ -22,41 +22,14 @@ type NavItem = {
   dropdownItems?: DropdownItem[];
 };
 
-const navLinks: NavItem[] = [
-  { href: "/", label: "Home" },
-  {
-    label: "About Us",
-    dropdownItems: [
-      { href: "/about#company-overview", label: "Company Overview" },
-      { href: "/about#vision-mission", label: "Vision & Mission" },
-      { href: "/about#our-values", label: "Our Values" },
-      { href: "/about#leadership", label: "Leadership" },
-      { href: "/about#our-projects", label: "Our Projects" },
-      { href: "/about#sustainability", label: "Sustainability" },
-    ],
-  },
-  {
-    label: "Services",
-    dropdownItems: [
-      { href: "/services#solar-energy-solutions", label: "Solar Energy Solutions" },
-      { href: "/services#epc", label: "EPC (Engineering, Procurement & Construction)" },
-      { href: "/services#energy-storage-systems", label: "Energy Storage Systems" },
-      { href: "/services#maintenance-support", label: "Maintenance & Support" },
-      { href: "/services#consultancy", label: "Consultancy" },
-      { href: "/services#custom-projects", label: "Custom Projects" },
-    ],
-  },
-  { href: "/news", label: "News" },
-  { href: "/contact#faqs", label: "FAQs" },
-  { href: "/contact", label: "Contact" },
-];
-
 const isActivePath = (pathname: string, href: string) => {
   const basePath = href.split("#")[0];
   return basePath === "/" ? pathname === "/" : pathname === basePath || pathname.startsWith(`${basePath}/`);
 };
 
 export default function Navbar() {
+  const t = useTranslations("nav");
+  const locale = useLocale() as AppLocale;
   const pathname = usePathname();
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -64,6 +37,35 @@ export default function Navbar() {
   const [mobileOpenDropdowns, setMobileOpenDropdowns] = useState<Record<string, boolean>>({});
   const [desktopKeyword, setDesktopKeyword] = useState("");
   const [mobileKeyword, setMobileKeyword] = useState("");
+
+  const navLinks: NavItem[] = [
+    { href: "/", label: t("home") },
+    {
+      label: t("about"),
+      dropdownItems: [
+        { href: "/about#company-overview", label: t("aboutOverview") },
+        { href: "/about#vision-mission", label: t("aboutVision") },
+        { href: "/about#our-values", label: t("aboutValues") },
+        { href: "/about#leadership", label: t("aboutLeadership") },
+        { href: "/about#our-projects", label: t("aboutProjects") },
+        { href: "/about#sustainability", label: t("aboutSustainability") },
+      ],
+    },
+    {
+      label: t("services"),
+      dropdownItems: [
+        { href: "/services#solar-energy-solutions", label: t("servicesSolar") },
+        { href: "/services#epc", label: t("servicesEpc") },
+        { href: "/services#energy-storage-systems", label: t("servicesStorage") },
+        { href: "/services#maintenance-support", label: t("servicesMaintenance") },
+        { href: "/services#consultancy", label: t("servicesConsultancy") },
+        { href: "/services#custom-projects", label: t("servicesCustom") },
+      ],
+    },
+    { href: "/news", label: t("news") },
+    { href: "/contact#faqs", label: t("faqs") },
+    { href: "/contact", label: t("contact") },
+  ];
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 24);
@@ -86,6 +88,10 @@ export default function Navbar() {
     }
 
     router.push(`/news?q=${encodeURIComponent(trimmedKeyword)}`);
+  };
+
+  const switchLocale = (nextLocale: AppLocale) => {
+    router.replace(pathname, { locale: nextLocale });
   };
 
   return (
@@ -112,7 +118,7 @@ export default function Navbar() {
               className="h-11 w-11 rounded-md object-contain transition-transform duration-300 group-hover:scale-105"
               priority
             />
-            <span className="hidden text-base font-semibold text-slate-900 sm:block">Master Premier</span>
+            <span className="hidden text-base font-semibold text-slate-900 sm:block">{t("brand")}</span>
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex">
@@ -189,6 +195,25 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
+            <div className="flex items-center rounded-full border border-slate-200 bg-white p-1">
+              {([
+                { code: "en", label: t("english") },
+                { code: "am", label: t("amharic") },
+              ] as const).map((lang) => (
+                <button
+                  key={lang.code}
+                  type="button"
+                  onClick={() => switchLocale(lang.code)}
+                  className={clsx(
+                    "rounded-full px-3 py-1 text-xs font-semibold",
+                    locale === lang.code ? "bg-emerald-600 text-white" : "text-slate-700"
+                  )}
+                >
+                  {lang.label}
+                </button>
+              ))}
+            </div>
+
             <form
               className="flex items-center gap-2"
               onSubmit={(event) => {
@@ -201,34 +226,51 @@ export default function Navbar() {
                 name="q"
                 value={desktopKeyword}
                 onChange={(event) => setDesktopKeyword(event.target.value)}
-                placeholder="Search news..."
-                aria-label="Search news"
+                placeholder={t("searchPlaceholder")}
+                aria-label={t("searchLabel")}
                 className="ui-input w-44 rounded-full"
               />
               <button
                 type="submit"
-                aria-label="Search news"
+                aria-label={t("searchLabel")}
                 className="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
               >
                 <MagnifyingGlassIcon className="size-5" />
               </button>
             </form>
-            <Button
-              href="/contact"
-              variant="primary"
-              className="shadow-sm"
-            >
-              Get a Quote
+            <Button href="/contact" variant="primary" className="shadow-sm">
+              {t("quote")}
             </Button>
           </div>
 
           <DisclosureButton className="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-700 lg:hidden">
-            <span className="sr-only">Toggle menu</span>
+            <span className="sr-only">{t("toggleMenu")}</span>
             {open ? <XMarkIcon className="size-6" /> : <Bars3Icon className="size-6" />}
           </DisclosureButton>
 
           <DisclosurePanel className="absolute inset-x-0 top-full border-b border-slate-200/70 bg-white/95 shadow-sm backdrop-blur-lg lg:hidden">
             <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-5">
+              <div className="mb-2 flex items-center justify-end gap-2">
+                {([
+                  { code: "en", label: t("english") },
+                  { code: "am", label: t("amharic") },
+                ] as const).map((lang) => (
+                  <button
+                    key={lang.code}
+                    type="button"
+                    onClick={() => switchLocale(lang.code)}
+                    className={clsx(
+                      "rounded-full border px-3 py-1 text-xs font-semibold",
+                      locale === lang.code
+                        ? "border-emerald-600 bg-emerald-600 text-white"
+                        : "border-slate-200 text-slate-700"
+                    )}
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
+
               {navLinks.map((item) => {
                 if (!item.dropdownItems || !item.dropdownItems.length) {
                   return (
@@ -299,24 +341,20 @@ export default function Navbar() {
                     name="q"
                     value={mobileKeyword}
                     onChange={(event) => setMobileKeyword(event.target.value)}
-                    placeholder="Search news..."
-                    aria-label="Search news"
+                    placeholder={t("searchPlaceholder")}
+                    aria-label={t("searchLabel")}
                     className="ui-input w-full"
                   />
                   <button
                     type="submit"
-                    aria-label="Search news"
+                    aria-label={t("searchLabel")}
                     className="rounded-lg border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
                   >
                     <MagnifyingGlassIcon className="size-5" />
                   </button>
                 </form>
-                <Button
-                  href="/contact"
-                  variant="primary"
-                  className="flex-1 justify-center"
-                >
-                  Get a Quote
+                <Button href="/contact" variant="primary" className="flex-1 justify-center">
+                  {t("quote")}
                 </Button>
               </div>
             </nav>

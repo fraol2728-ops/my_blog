@@ -1,13 +1,13 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
 
 export const metadata: Metadata = {
-  title: "Admin | My Blog",
-  description:
-    "Stay informed with product updates, company news, and insights on how to sell smarter at your company.",
+  title: "SolarPeak",
+  description: "Clean energy solutions and industry insights.",
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
