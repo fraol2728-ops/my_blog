@@ -118,7 +118,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
             >
               <Image
                 src={activeImage}
-                alt="Master Premier renewable energy project"
+                alt="Master Premier Green Energy renewable energy project"
                 fill
                 priority={activeIndex === 0}
                 sizes="100vw"
@@ -143,11 +143,11 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
                 Clean Energy Infrastructure
               </p>
               <h1 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-                Powering the Future of Sustainable Energy
+                Master Premier Green Energy Co. Ltd
               </h1>
               <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/80 md:mx-0 md:text-lg">
-                Delivering advanced solar and energy infrastructure solutions for industries, governments, and
-                communities.
+                Delivering engineering, advisory, installation and servicing solutions for renewable energy access
+                across South Sudan.
               </p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row md:justify-start">

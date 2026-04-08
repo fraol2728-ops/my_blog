@@ -2,33 +2,33 @@ import { BadgeCheck, Handshake, Leaf, ShieldCheck, Zap } from "lucide-react";
 
 const values = [
   {
-    title: "Quality First",
+    title: "Stability",
     description:
-      "We apply strict engineering and installation standards to every project.",
+      "We deliver outstanding and efficient services that strengthen customer trust and long-term loyalty.",
     icon: BadgeCheck,
   },
   {
-    title: "Integrity",
+    title: "Durability",
     description:
-      "Transparent pricing, realistic timelines, and honest guidance at every step.",
+      "We focus on quality-tested photovoltaic modules designed for stable performance and strong return on investment.",
     icon: Handshake,
-  },
-  {
-    title: "Sustainability",
-    description:
-      "Every solution is designed to maximize long-term environmental impact.",
-    icon: Leaf,
   },
   {
     title: "Reliability",
     description:
-      "Performance monitoring and proactive service keep systems operating efficiently.",
+      "Our systems are built to withstand demanding environmental conditions and maintain dependable output.",
+    icon: Leaf,
+  },
+  {
+    title: "Superior Materials",
+    description:
+      "We use high-grade components from trusted suppliers to ensure consistent module performance.",
     icon: ShieldCheck,
   },
   {
     title: "Innovation",
     description:
-      "We continuously adopt proven technologies to improve output and resilience.",
+      "We continually expand innovative products and services at affordable prices for South Sudan.",
     icon: Zap,
   },
 ];
@@ -42,7 +42,7 @@ export default function ValuesSection() {
             Core Values
           </p>
           <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            Principles That Shape Every Solar Project
+            Principles That Shape Every Project
           </h2>
         </div>
 

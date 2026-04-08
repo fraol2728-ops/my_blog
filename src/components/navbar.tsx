@@ -116,14 +116,13 @@ export default function Navbar() {
         >
           <Link href={localizedHref("/")} className="group flex items-center gap-3" aria-label="Go to homepage">
             <Image
-              src="/logo.png"
-              alt="Master Premier Green Energy Co. Ltd"
-              width={44}
-              height={44}
-              className="h-11 w-11 rounded-md object-contain transition-transform duration-300 group-hover:scale-105"
+              src="/fulllogo.png"
+              alt="Company logo"
+              width={200}
+              height={56}
+              className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               priority
             />
-            <span className="hidden text-base font-semibold text-slate-900 sm:block">{t("nav.brand")}</span>
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex">

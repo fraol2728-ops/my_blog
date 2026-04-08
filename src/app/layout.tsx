@@ -4,8 +4,8 @@ import { SessionProvider } from "next-auth/react";
 import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
 
 export const metadata: Metadata = {
-  title: "SolarPeak",
-  description: "Clean energy solutions and industry insights.",
+  title: "Master Premier Green Energy Co. Ltd",
+  description: "Engineering and clean energy advisory services in South Sudan.",
 };
 
 export default function RootLayout({
