@@ -69,6 +69,34 @@ export default function ServicesSection() {
             "Local Solar Panel Manufacturing": "የአካባቢ የፀሐይ ፓነል ማምረት",
             "Maintenance & Technical Support": "ጥገና እና ቴክኒካል ድጋፍ",
           }[service.title] ?? service.title,
+        description:
+          {
+            "From site survey to final commissioning, we design and install high-performance solar systems tailored to your property and energy goals.":
+              "ከቦታ ጥናት እስከ መጨረሻ ኮሚሽን ድረስ ለእርስዎ ንብረትና የኃይል ፍላጎት የሚስማማ ከፍተኛ ብቃት ያለው የፀሐይ ስርዓት እንዘጋጃለን እና እንጫናለን።",
+            "We supply premium solar panels, inverters, batteries, and accessories to ensure every project is built for efficiency, durability, and long-term value.":
+              "እያንዳንዱ ፕሮጀክት በውጤታማነት፣ በጽናት እና በረጅም ጊዜ ዋጋ እንዲገነባ ጥራት ያላቸው ፓነሎች፣ ኢንቨርተሮች፣ ባትሪዎች እና ተጨማሪ እቃዎችን እናቀርባለን።",
+            "Our local manufacturing capabilities help deliver quality-controlled solar modules while reducing lead times and supporting regional clean energy growth.":
+              "የአካባቢ ማምረቻ ብቃታችን ጥራት የተቆጣጠረ የፀሐይ ሞጁል እንድናቀርብ ያግዛል፤ እንዲሁም የአቅርቦት ጊዜን ያሳንሳል እና የክልሉን ንጹህ ኃይል እድገት ይደግፋል።",
+            "Keep your solar investment performing at its best with preventive maintenance, diagnostics, and responsive technical support from certified specialists.":
+              "የፀሐይ ኢንቨስትመንትዎ በከፍተኛ አፈጻጸም እንዲቆይ በቅድመ ጥገና፣ በምርመራ እና ፈጣን ቴክኒካል ድጋፍ ከተረጋገጡ ባለሙያዎች ጋር እንረዳዎታለን።",
+          }[service.description] ?? service.description,
+        highlights: service.highlights.map(
+          (highlight) =>
+            ({
+              "Detailed site evaluation and system sizing": "ዝርዝር የቦታ ግምገማ እና የስርዓት መጠን ማስተካከያ",
+              "Professional rooftop and ground-mount installation": "በባለሙያ የጣሪያ እና የመሬት ላይ ተከላ",
+              "Grid integration and commissioning support": "የግሪድ ግንኙነት እና የኮሚሽን ድጋፍ",
+              "Tier-1 panels and trusted inverter brands": "Tier-1 ፓነሎች እና ታማኝ የኢንቨርተር ብራንዶች",
+              "Battery storage and backup power components": "የባትሪ ማከማቻ እና የተተኪ ኃይል ክፍሎች",
+              "Fast, reliable procurement and delivery": "ፈጣን እና ታማኝ ግዥ እና አቅርቦት",
+              "Locally produced modules with strict QA": "በጥብቅ የጥራት ቁጥጥር የተመረቱ የአካባቢ ሞጁሎች",
+              "Scalable output for residential and commercial demand": "ለመኖሪያ እና ለንግድ ፍላጎት የሚለዋወጥ ምርት",
+              "Reduced logistics time and project delays": "የሎጂስቲክስ ጊዜን እና የፕሮጀክት መዘግየትን መቀነስ",
+              "Routine inspections and performance checks": "መደበኛ ምርመራ እና የአፈጻጸም ቁጥጥር",
+              "Rapid troubleshooting and repair services": "ፈጣን መላ ፍለጋ እና የጥገና አገልግሎት",
+              "Long-term monitoring and optimization": "የረጅም ጊዜ ክትትል እና ማሻሻያ",
+            }[highlight] ?? highlight),
+        ),
       }))
     : services;
 

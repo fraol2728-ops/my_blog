@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Leaf, Recycle, Zap } from "lucide-react";
 import { motion } from "motion/react";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const pillars = [
   {
@@ -23,6 +24,7 @@ const pillars = [
 ];
 
 export default function SustainabilitySection() {
+  const isAmharic = useLocale() === "am";
   return (
     <section id="sustainability" className="px-6 py-20 scroll-mt-24">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
@@ -34,16 +36,15 @@ export default function SustainabilitySection() {
           className="space-y-6"
         >
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            Sustainability Commitment
+            {isAmharic ? "የዘላቂነት ቃል ኪዳን" : "Sustainability Commitment"}
           </p>
           <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            Turning Climate Goals into Practical Energy Outcomes
+            {isAmharic ? "የአየር ንብረት ግቦችን ወደ ተግባራዊ የኃይል ውጤቶች መቀየር" : "Turning Climate Goals into Practical Energy Outcomes"}
           </h2>
           <p className="leading-relaxed text-slate-600">
-            Sustainability is built into every stage of our delivery model—from
-            design assumptions to post-installation optimization. We help
-            clients build future-ready infrastructure with strong environmental
-            and economic returns.
+            {isAmharic
+              ? "ዘላቂነት በአገልግሎታችን እያንዳንዱ ደረጃ ውስጥ ተካትቷል፤ ከዲዛይን ግምቶች እስከ ከተከላ በኋላ ማሻሻያ ድረስ። ደንበኞቻችን ጠንካራ አካባቢያዊ እና ኢኮኖሚያዊ ተመላሽ ያለው የወደፊት ዝግጁ መሠረተ ልማት እንዲገነቡ እንረዳለን።"
+              : "Sustainability is built into every stage of our delivery model—from design assumptions to post-installation optimization. We help clients build future-ready infrastructure with strong environmental and economic returns."}
           </p>
 
           <div className="space-y-4">

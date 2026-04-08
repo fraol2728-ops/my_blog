@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { Factory, PackageCheck, ShieldCheck, SunMedium } from "lucide-react";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const iconMap = {
   installation: SunMedium,
@@ -25,15 +26,17 @@ type ServicesOverviewProps = {
 };
 
 export default function ServicesOverview({ services }: ServicesOverviewProps) {
+  const isAmharic = useLocale() === "am";
+
   return (
     <section id="services-overview" className="px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            Services Overview
+            {isAmharic ? "የአገልግሎት አጠቃላይ እይታ" : "Services Overview"}
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            Choose the Solution You Need
+            {isAmharic ? "የሚፈልጉትን መፍትሄ ይምረጡ" : "Choose the Solution You Need"}
           </h2>
         </div>
 

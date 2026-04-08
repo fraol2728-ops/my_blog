@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { Building2, Factory, Hospital, Hotel, Landmark, Warehouse } from "lucide-react";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const industries = [
   { title: "Commercial Real Estate", icon: Building2 },
@@ -13,11 +14,12 @@ const industries = [
 ];
 
 export default function IndustriesSection() {
+  const isAmharic = useLocale() === "am";
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          Industries We Power
+          {isAmharic ? "የምናገለግላቸው ዘርፎች" : "Industries We Power"}
         </h2>
         <motion.div
           initial="hidden"

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const team = [
   { name: "Alicia Morgan", role: "Chief Executive Officer", image: "/project1.jpg" },
@@ -11,15 +12,16 @@ const team = [
 ];
 
 export default function TeamSection() {
+  const isAmharic = useLocale() === "am";
   return (
     <section id="leadership" className="px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            Leadership Team
+            {isAmharic ? "የአመራር ቡድን" : "Leadership Team"}
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            Experienced Leaders Driving Energy Transformation
+            {isAmharic ? "የኃይል ለውጥን የሚመሩ ባለልምድ መሪዎች" : "Experienced Leaders Driving Energy Transformation"}
           </h2>
         </div>
 

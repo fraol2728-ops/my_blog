@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Post, PostCategory } from "@/types";
+import { useLocale } from "@/i18n/I18nProvider";
 import CategoryFilter from "./CategoryFilter";
 import NewsCard from "./NewsCard";
 import Pagination from "./Pagination";
@@ -16,6 +17,7 @@ interface NewsGridProps {
 }
 
 export default function NewsGrid({ posts, categories }: NewsGridProps) {
+  const isAmharic = useLocale() === "am";
   const [activeCategory, setActiveCategory] = useState("all");
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -77,7 +79,7 @@ export default function NewsGrid({ posts, categories }: NewsGridProps) {
 
         {paginatedPosts.length === 0 && (
           <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">
-            No news matched your current filters.
+            {isAmharic ? "ከአሁኑ ማጣሪያዎች ጋር የሚመጣጠን ዜና አልተገኘም።" : "No news matched your current filters."}
           </div>
         )}
 

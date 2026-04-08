@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale } from "@/i18n/I18nProvider";
 
 export type ServiceDetail = {
   id: string;
@@ -20,6 +21,8 @@ type ServiceBlockProps = {
 };
 
 export default function ServiceBlock({ service, reverse = false }: ServiceBlockProps) {
+  const isAmharic = useLocale() === "am";
+
   return (
     <motion.article
       id={service.id}
@@ -62,7 +65,7 @@ export default function ServiceBlock({ service, reverse = false }: ServiceBlockP
             href="/contact"
             className="mt-7 inline-flex rounded-xl bg-[#16a34a] px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-green-600"
           >
-            Talk to an Expert
+            {isAmharic ? "ከባለሙያ ጋር ይነጋገሩ" : "Talk to an Expert"}
           </Link>
         </div>
       </div>

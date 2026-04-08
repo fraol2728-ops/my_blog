@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { BadgeCheck, BarChart3, Headphones, ShieldCheck } from "lucide-react";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const reasons = [
   {
@@ -27,11 +28,12 @@ const reasons = [
 ];
 
 export default function WhyChooseUs() {
+  const isAmharic = useLocale() === "am";
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-7xl rounded-xl bg-white p-10 shadow-lg sm:p-12">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          Why Leading Organizations Choose Us
+          {isAmharic ? "መሪ ድርጅቶች ለምን እኛን ይመርጣሉ?" : "Why Leading Organizations Choose Us"}
         </h2>
         <motion.div
           initial="hidden"

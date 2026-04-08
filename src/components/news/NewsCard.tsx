@@ -6,8 +6,10 @@ import dayjs from "dayjs";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale } from "@/i18n/I18nProvider";
 
 export default function NewsCard({ post }: { post: Post }) {
+  const isAmharic = useLocale() === "am";
   const imageUrl = post.mainImage ? urlFor(post.mainImage).width(800).height(500).url() : null;
   const category = Array.isArray(post.categories) ? post.categories[0] : undefined;
   const categoryLabel = typeof category === "string" ? category : category?.title;
@@ -43,7 +45,7 @@ export default function NewsCard({ post }: { post: Post }) {
           <h3 className="mt-3 line-clamp-2 text-xl font-semibold text-slate-900">{post.title}</h3>
           {post.excerpt && <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">{post.excerpt}</p>}
           <p className="mt-5 text-sm text-slate-500">
-            {dayjs(post.publishedAt).format("MMM D, YYYY")} · {post.author?.name ?? "Editorial Team"}
+            {dayjs(post.publishedAt).format("MMM D, YYYY")} · {post.author?.name ?? (isAmharic ? "የኤዲቶሪያል ቡድን" : "Editorial Team")}
           </p>
         </div>
       </Link>

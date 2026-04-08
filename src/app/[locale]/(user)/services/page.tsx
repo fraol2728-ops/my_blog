@@ -113,15 +113,55 @@ const serviceOverviewItems: ServiceOverviewItem[] = [
   },
 ];
 
-export default function ServicesPage() {
+export default async function ServicesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const isAmharic = locale === "am";
+
+  const localizedServices = isAmharic
+    ? services.map((service) => ({
+        ...service,
+        title:
+          {
+            "Solar System Installation": "የፀሐይ ስርዓት ተከላ",
+            "Solar Equipment Supply": "የፀሐይ መሳሪያ አቅርቦት",
+            "Solar Panel Manufacturing": "የፀሐይ ፓነል ማምረት",
+            "Maintenance & Lifecycle Support": "ጥገና እና የህይወት ዑደት ድጋፍ",
+          }[service.title] ?? service.title,
+      }))
+    : services;
+
+  const localizedOverviewItems = isAmharic
+    ? serviceOverviewItems.map((item) => ({
+        ...item,
+        title:
+          {
+            Installation: "ተከላ",
+            "Equipment Supply": "መሳሪያ አቅርቦት",
+            Manufacturing: "ማምረት",
+            Maintenance: "ጥገና",
+          }[item.title] ?? item.title,
+        summary:
+          {
+            "Turnkey deployment from design to commissioning.": "ከዲዛይን እስከ ኮሚሽን ድረስ ሙሉ አፈጻጸም።",
+            "Premium components with transparent procurement.": "ጥራት ያላቸው ክፍሎች በግልጽ ግዥ ሂደት።",
+            "Scalable, QA-driven module production.": "የጥራት ቁጥጥር ያለው ሊስፋፋ የሚችል ምርት።",
+            "Proactive support to protect long-term ROI.": "የረጅም ጊዜ ተመላሽን የሚጠብቅ ንቁ ድጋፍ።",
+          }[item.summary] ?? item.summary,
+      }))
+    : serviceOverviewItems;
+
   return (
     <main className="bg-white text-slate-900">
       <ServicesHero />
-      <ServicesOverview services={serviceOverviewItems} />
+      <ServicesOverview services={localizedOverviewItems} />
 
       <section className="px-6 py-10 sm:py-14">
         <div className="mx-auto max-w-7xl space-y-8">
-          {services.map((service, index) => (
+          {localizedServices.map((service, index) => (
             <ServiceBlock
               key={service.id}
               service={service}

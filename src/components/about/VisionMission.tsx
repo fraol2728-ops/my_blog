@@ -2,6 +2,7 @@
 
 import { Eye, Target } from "lucide-react";
 import { motion } from "motion/react";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const cards = [
   {
@@ -19,6 +20,18 @@ const cards = [
 ];
 
 export default function VisionMission() {
+  const isAmharic = useLocale() === "am";
+  const localizedCards = isAmharic
+    ? cards.map((card) => ({
+        ...card,
+        title: card.title === "Our Mission" ? "ተልዕኳችን" : "ራዕያችን",
+        description:
+          card.title === "Our Mission"
+            ? "የኃይል ወጪን የሚቀንሱ፣ ቋቋሚነትን የሚጨምሩ እና ወደ ንጹህ አሰራር ሽግግርን የሚፋጠኑ ከፍተኛ ተፅእኖ ያላቸው የታዳሽ ኃይል ስርዓቶችን ማቅረብ።"
+            : "ዘላቂ እና የኃይል ደህንነት ያለው ወደፊት ለሚገነቡ ድርጅቶች እጅግ ታማኝ የንጹህ ኃይል አፈጻጸም አጋር መሆን።",
+      }))
+    : cards;
+
   return (
     <section id="vision-mission" className="px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl">
@@ -35,7 +48,7 @@ export default function VisionMission() {
           viewport={{ once: true, amount: 0.25 }}
           className="grid gap-6 md:grid-cols-2"
         >
-          {cards.map(({ title, description, icon: Icon }) => (
+          {localizedCards.map(({ title, description, icon: Icon }) => (
             <motion.article
               key={title}
               variants={{

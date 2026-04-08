@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { ClipboardCheck, HardHat, Leaf, Settings, Wrench } from "lucide-react";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const processSteps = [
   { title: "Discovery", icon: ClipboardCheck, detail: "Energy audit, goals, and viability analysis." },
@@ -12,11 +13,13 @@ const processSteps = [
 ];
 
 export default function ProcessSection() {
+  const isAmharic = useLocale() === "am";
+
   return (
     <section className="bg-slate-50 px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          Our Proven Delivery Process
+          {isAmharic ? "የተረጋገጠ የስራ አፈጻጸም ሂደታችን" : "Our Proven Delivery Process"}
         </h2>
         <motion.ol
           initial="hidden"
@@ -33,7 +36,7 @@ export default function ProcessSection() {
             >
               <step.icon className="h-8 w-8 text-[#16a34a]" />
               <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-green-700">
-                Step {idx + 1}
+                {isAmharic ? `ደረጃ ${idx + 1}` : `Step ${idx + 1}`}
               </p>
               <h3 className="mt-1 text-lg font-semibold text-slate-900">{step.title}</h3>
               <p className="mt-2 text-sm text-slate-600">{step.detail}</p>

@@ -2,6 +2,7 @@
 
 import { PostCategory } from "@/types";
 import { motion } from "motion/react";
+import { useLocale } from "@/i18n/I18nProvider";
 
 interface CategoryFilterProps {
   categories: PostCategory[];
@@ -10,9 +11,11 @@ interface CategoryFilterProps {
 }
 
 export default function CategoryFilter({ categories, activeCategory, onChange }: CategoryFilterProps) {
+  const isAmharic = useLocale() === "am";
+
   return (
     <div className="no-scrollbar flex items-center gap-2 overflow-x-auto pb-1">
-      {[{ title: "All", slug: "all" }, ...categories].map((category) => {
+      {[{ title: isAmharic ? "ሁሉም" : "All", slug: "all" }, ...categories].map((category) => {
         const isActive = activeCategory === category.slug;
 
         return (
