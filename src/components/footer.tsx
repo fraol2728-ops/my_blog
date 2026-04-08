@@ -33,8 +33,8 @@ export default function Footer() {
           <div className="space-y-5">
             <Logo className="px-0 text-white" />
             <p className="max-w-sm text-sm leading-6 text-white/70">
-              SolarPeak provides reliable residential and commercial solar solutions designed to reduce energy costs
-              and support a cleaner tomorrow.
+              Master Premier Green Energy Co. Ltd provides reliable, modern and intelligent renewable energy
+              solutions to build green economies, create sustainable living and promote rural access.
             </p>
           </div>
 
@@ -69,18 +69,24 @@ export default function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white" />
-                <span>123 Solar Avenue, San Diego, CA</span>
+                <span>Thongping, Florian Road, Block 3, Plot No. 258 - Juba, South Sudan</span>
               </li>
               <li>
-                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="tel:+15551234567">
+                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="tel:+211982004848">
                   <Phone className="h-4 w-4" />
-                  +1 (555) 123-4567
+                  +211 982 004 848
                 </a>
               </li>
               <li>
-                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="mailto:hello@solarpeak.com">
+                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="tel:+211928004848">
+                  <Phone className="h-4 w-4" />
+                  +211 928 004 848
+                </a>
+              </li>
+              <li>
+                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="mailto:mpgenergy@gmail.com">
                   <Mail className="h-4 w-4" />
-                  hello@solarpeak.com
+                  mpgenergy@gmail.com
                 </a>
               </li>
             </ul>
@@ -88,7 +94,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-5 border-t border-white/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-white/60">© {new Date().getFullYear()} SolarPeak. All rights reserved.</p>
+          <p className="text-sm text-white/60">© {new Date().getFullYear()} All rights reserved.</p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => {
               const Icon = social.icon;

@@ -5,9 +5,9 @@ import { CheckCircle2 } from "lucide-react";
 import { motion } from "motion/react";
 
 const highlights = [
-  "15+ years delivering commercial and utility-scale solar projects",
-  "End-to-end services from feasibility to long-term maintenance",
-  "Data-driven performance monitoring and transparent reporting",
+  "Engineering support from energy audits and feasibility studies to installation and servicing",
+  "Clean energy advisory including market analysis, policy development and capacity building",
+  "Locally integrated solar solutions designed for reliability, durability and affordability",
 ];
 
 export default function CompanyOverview() {
@@ -42,13 +42,12 @@ export default function CompanyOverview() {
             Company Overview
           </p>
           <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            A Professional Renewable Partner Focused on Long-Term Value
+            A Professional Renewable Energy Partner in South Sudan
           </h2>
           <p className="text-lg leading-relaxed text-slate-600">
-            Solvora Energy helps organizations transition to clean power with
-            strategic planning, precise engineering, and dependable delivery.
-            Our multidisciplinary teams align each solution with operational
-            needs, financial targets, and ESG commitments.
+            Master Premier Green Energy Co. Ltd provides technical and advisory services for renewable energy and
+            energy access solutions. Our teams plan, design and deliver solar systems that balance quality,
+            performance and affordability for communities and institutions.
           </p>
 
           <ul className="space-y-3">

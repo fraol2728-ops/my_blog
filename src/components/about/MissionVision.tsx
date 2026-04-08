@@ -4,13 +4,13 @@ const cards = [
   {
     title: "Mission",
     description:
-      "Deliver accessible, high-efficiency solar solutions that lower operating costs and improve long-term energy independence.",
+      "Provide reliable, modern and intelligent renewable energy solutions to build green economies, create sustainable living and promote rural access.",
     icon: Target,
   },
   {
     title: "Vision",
     description:
-      "Lead the transition to cleaner infrastructure by making dependable renewable energy a practical standard for every property.",
+      "Be a trusted leader in South Sudan's renewable transition through world-class engineering, advisory excellence and customer-focused delivery.",
     icon: Eye,
   },
 ];

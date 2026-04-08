@@ -7,10 +7,10 @@ import { CheckCircle } from "lucide-react";
 import Image from "next/image";
 
 const bulletPoints = [
-  "Advanced solar technology and premium materials",
-  "Expert installation and engineering team",
-  "Locally manufactured solar solutions",
-  "Long-term performance and warranty assurance",
+  "Energy audit and feasibility study",
+  "System design and commercial proposal",
+  "Installation, servicing, and after-service support",
+  "Clean energy advisory and capacity building",
 ];
 
 export default function AboutSection() {
@@ -31,8 +31,8 @@ export default function AboutSection() {
         <Reveal className="space-y-6" delay={0.1}>
           <SectionHeader
             kicker="About Us"
-            title="Powering a Sustainable Future with Reliable Solar Solutions"
-            subtitle="We are a forward-thinking solar energy provider committed to delivering high-quality, efficient, and sustainable power solutions."
+            title="Powering South Sudan with Reliable Renewable Solutions"
+            subtitle="Master Premier Green Energy Co. Ltd is a South Sudan based renewable energy company focused on engineering excellence and clean energy advisory services."
           />
 
           <ul className="space-y-4">

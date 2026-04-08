@@ -4,17 +4,22 @@ const contactItems = [
   {
     icon: MapPin,
     label: "Address",
-    value: "2400 Green Valley Ave, San Diego, CA 92108",
+    value: "Thongping, Florian Road, Block 3, Plot No. 258 - Juba, South Sudan",
   },
   {
     icon: Phone,
-    label: "Phone",
-    value: "+1 (619) 555-0199",
+    label: "Phone 1",
+    value: "+211 982 004 848",
+  },
+  {
+    icon: Phone,
+    label: "Phone 2",
+    value: "+211 928 004 848",
   },
   {
     icon: Mail,
     label: "Email",
-    value: "hello@solarpeak.com",
+    value: "mpgenergy@gmail.com",
   },
   {
     icon: Clock3,
