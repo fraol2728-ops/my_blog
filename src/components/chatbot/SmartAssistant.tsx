@@ -88,9 +88,11 @@ export default function SmartAssistant() {
 
     if (step === "company") {
       return [
+        { label: t("chatbot.company.about"), value: "company_about" },
         { label: t("chatbot.company.mission"), value: "company_mission" },
         { label: t("chatbot.company.whySolar"), value: "company_why_solar" },
         { label: t("chatbot.company.quality"), value: "company_quality" },
+        { label: t("chatbot.company.legal"), value: "company_legal" },
         { label: t("chatbot.common.restart"), value: "restart" },
       ];
     }
@@ -172,9 +174,11 @@ export default function SmartAssistant() {
       contact_book: t("chatbot.contact.bookReply"),
       contact_message: t("chatbot.contact.messageReply"),
       contact_address: t("chatbot.contact.addressReply"),
+      company_about: t("chatbot.company.aboutReply"),
       company_mission: t("chatbot.company.missionReply"),
       company_why_solar: t("chatbot.company.whySolarReply"),
       company_quality: t("chatbot.company.qualityReply"),
+      company_legal: t("chatbot.company.legalReply"),
     }),
     [t],
   );
@@ -210,7 +214,15 @@ export default function SmartAssistant() {
       return "contact";
     }
 
-    if (normalized.includes("company") || normalized.includes("profile") || normalized.includes("mission")) {
+    if (
+      normalized.includes("company") ||
+      normalized.includes("profile") ||
+      normalized.includes("mission") ||
+      normalized.includes("legal") ||
+      normalized.includes("reliability") ||
+      normalized.includes("durability") ||
+      normalized.includes("quality")
+    ) {
       return "company";
     }
 
