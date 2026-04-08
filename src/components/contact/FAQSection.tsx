@@ -1,3 +1,5 @@
+import { useLocale } from "@/i18n/I18nProvider";
+
 const faqs = [
   {
     question: "How long does solar installation take?",
@@ -22,16 +24,41 @@ const faqs = [
 ];
 
 export default function FAQSection() {
+  const isAmharic = useLocale() === "am";
+  const localizedFaqs = isAmharic
+    ? [
+        {
+          question: "የፀሐይ ስርዓት ተከላ ምን ያህል ጊዜ ይወስዳል?",
+          answer: "አብዛኛዎቹ የመኖሪያ ፕሮጀክቶች ፈቃድና የዩቲሊቲ ፍቃዶች ከተጠናቀቁ በኋላ በ1-3 ቀናት ውስጥ ይጠናቀቃሉ።",
+        },
+        {
+          question: "የፋይናንስ አማራጮች አሉ?",
+          answer: "አዎ። በተወዳዳሪ ዋጋ ተለዋዋጭ የፋይናንስ እቅዶችን እናቀርባለን።",
+        },
+        {
+          question: "ፀሐይ ፓነሎች ደመናማ ቀን ላይ ይሰራሉ?",
+          answer: "በፍጹም። በደመና ጊዜም ኤሌክትሪክ ያመነጫሉ፣ ነገር ግን አፈጻጸሙ በፀሐይ ብርሃን ቀን ከሚኖረው ያነሰ ሊሆን ይችላል።",
+        },
+        {
+          question: "ምን ዓይነት ጥገና ያስፈልጋል?",
+          answer: "የፀሐይ ስርዓቶች እጅግ ትንሽ ጥገና ይፈልጋሉ። አልፎ አልፎ ማጽዳት እና ዓመታዊ ምርመራ እንመክራለን።",
+        },
+      ]
+    : faqs;
   return (
     <section className="py-20">
       <div className="mx-auto max-w-6xl px-4">
         <div className="text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">Frequently Asked Questions</h2>
-          <p className="mt-3 text-gray-600">Quick answers to help you make a confident solar decision.</p>
+          <h2 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+            {isAmharic ? "ተደጋጋሚ ጥያቄዎች" : "Frequently Asked Questions"}
+          </h2>
+          <p className="mt-3 text-gray-600">
+            {isAmharic ? "በፀሐይ ኃይል ውሳኔዎ ላይ እርግጠኛ እንዲሆኑ ፈጣን መልሶች።" : "Quick answers to help you make a confident solar decision."}
+          </p>
         </div>
 
         <div className="mt-10 space-y-4">
-          {faqs.map((faq) => (
+          {localizedFaqs.map((faq) => (
             <details key={faq.question} className="group rounded-xl border border-gray-200 bg-white p-5">
               <summary className="cursor-pointer list-none pr-8 text-left text-base font-semibold text-gray-900 marker:content-none">
                 {faq.question}

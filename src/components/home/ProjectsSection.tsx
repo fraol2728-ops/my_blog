@@ -2,6 +2,7 @@
 
 import { Reveal } from "@/components/ui/reveal";
 import { Section, SectionHeader } from "@/components/ui/section";
+import { useLocale } from "@/i18n/I18nProvider";
 import { CheckCircle } from "lucide-react";
 import Image from "next/image";
 
@@ -36,14 +37,19 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
+  const isAmharic = useLocale() === "am";
   return (
     <Section>
       <Reveal>
         <SectionHeader
           align="center"
-          kicker="Our Projects"
-          title="Delivering Solar Solutions That Make an Impact"
-          subtitle="From residential systems to large-scale installations, our projects reflect our commitment to quality, performance, and sustainability."
+          kicker={isAmharic ? "ፕሮጀክቶቻችን" : "Our Projects"}
+          title={isAmharic ? "ተፅዕኖ የሚፈጥሩ የፀሐይ ኃይል መፍትሄዎችን እናቀርባለን" : "Delivering Solar Solutions That Make an Impact"}
+          subtitle={
+            isAmharic
+              ? "ከመኖሪያ ቤት ስርዓቶች እስከ ትልቅ መጠን ያላቸው ተከላዎች ድረስ ፕሮጀክቶቻችን ለጥራት፣ ለአፈጻጸም እና ለዘላቂነት ያለን ቁርጠኝነት ያሳያሉ።"
+              : "From residential systems to large-scale installations, our projects reflect our commitment to quality, performance, and sustainability."
+          }
         />
       </Reveal>
 
