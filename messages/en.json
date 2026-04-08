@@ -43,13 +43,13 @@
   "chatbot": {
     "title": "Xyberosec Assistant",
     "status": "Online",
-    "welcome": "Hi 👋 I'm your assistant. How can I help you today?",
+    "welcome": "Hi 👋 I’m the Master Premier Green Energy assistant. I can share our company profile, services, mission, and contacts.",
     "preview": "Need help choosing a service?",
     "open": "Open assistant",
     "close": "Close assistant",
     "send": "Send message",
     "inputPlaceholder": "Type your message...",
-    "fallback": "I didn’t fully understand. Try one of these:",
+    "fallback": "I didn’t fully understand. Try asking about services, company profile, mission, solar benefits, quality, or contact details.",
     "quick": {
       "exploreServices": "Explore Services",
       "pricing": "Pricing",
@@ -89,13 +89,17 @@
       "addressReply": "Thongping, Florian Road, Block 3, Plot No. 258, Juba, South Sudan."
     },
     "company": {
-      "question": "Want a quick overview of Master Premier Green Energy?",
-      "mission": "Our Mission",
-      "whySolar": "Why Solar",
-      "quality": "Quality Promise",
-      "missionReply": "We deliver reliable, modern renewable energy solutions for green economies and rural access.",
-      "whySolarReply": "Solar helps reduce bills, improve energy security, and protect the environment.",
-      "qualityReply": "We focus on stability, durability, reliability, and superior Tier-1 materials."
+      "question": "What would you like to know about Master Premier Green Energy Co. Ltd?",
+      "mission": "Mission & Vision",
+      "whySolar": "Why Solar Energy",
+      "quality": "Stability & Quality",
+      "missionReply": "Our mission is to deliver reliable, modern, and intelligent renewable energy solutions that build green economies, support sustainable living, and improve rural energy access.",
+      "whySolarReply": "Solar helps reduce or eliminate electricity bills, protects against rising energy costs, increases property value, and supports environmental sustainability compared with fossil-fuel-based power.",
+      "qualityReply": "We focus on stability, durability, reliability, and superior materials. We emphasize strict PV module testing and quality components from Tier 1 Grade A suppliers for long-term performance.",
+      "about": "About the Company",
+      "legal": "Legal & Contact Info",
+      "aboutReply": "Master Premier Green Energy Co. Ltd is a South Sudan-based renewable energy company in Juba. We provide engineering and technical support across project management, energy audits, feasibility studies, system design, equipment tendering, installation, and after-service monitoring.",
+      "legalReply": "Address: Thongping, Florian Road, Block 3, Plot No. 258, Juba, South Sudan. Tel: +211 982 004 848 | +211 928 004 848. Email: mpgenergy@gmail.com. Legal company profile documents are available on request."
     },
     "common": {
       "back": "Back",
