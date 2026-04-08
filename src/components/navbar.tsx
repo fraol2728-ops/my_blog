@@ -56,12 +56,10 @@ export default function Navbar() {
     {
       label: t("nav.services"),
       dropdownItems: [
-        { href: "/services#solar-energy-solutions", label: t("nav.servicesSolar") },
-        { href: "/services#epc", label: t("nav.servicesEpc") },
-        { href: "/services#energy-storage-systems", label: t("nav.servicesStorage") },
+        { href: "/services#solar-installation", label: t("nav.servicesSolar") },
+        { href: "/services#equipment-supply", label: t("nav.servicesEpc") },
+        { href: "/services#panel-manufacturing", label: t("nav.servicesStorage") },
         { href: "/services#maintenance-support", label: t("nav.servicesMaintenance") },
-        { href: "/services#consultancy", label: t("nav.servicesConsultancy") },
-        { href: "/services#custom-projects", label: t("nav.servicesCustom") },
       ],
     },
     { href: "/news", label: t("nav.news") },
