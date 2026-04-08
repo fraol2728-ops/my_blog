@@ -39,5 +39,63 @@
   },
   "news": {
     "empty": "እስካሁን የታተሙ የዜና ጽሑፎች የሉም።"
+  },
+  "chatbot": {
+    "title": "Xyberosec Assistant",
+    "status": "Online",
+    "welcome": "ሰላም 👋 እኔ ረዳትዎ ነኝ። ዛሬ እንዴት ልረዳዎ?",
+    "preview": "አገልግሎት ለመምረጥ እገዛ ይፈልጋሉ?",
+    "open": "ረዳቱን ክፈት",
+    "close": "ረዳቱን ዝጋ",
+    "send": "ላክ",
+    "inputPlaceholder": "መልእክትዎን ይጻፉ...",
+    "fallback": "በሙሉ አልገባኝም። ከእነዚህ አንዱን ይሞክሩ፦",
+    "quick": {
+      "exploreServices": "አገልግሎቶችን ያስሱ",
+      "viewCourses": "ኮርሶችን ይመልከቱ",
+      "pricing": "ዋጋ",
+      "contact": "አግኙን"
+    },
+    "services": {
+      "question": "ምን እየፈለጉ ነው?",
+      "webDevelopment": "ድህረ ገጽ ግንባታ",
+      "uiux": "UI/UX ዲዛይን",
+      "cybersecurity": "ሳይበር ደህንነት",
+      "webDevelopmentReply": "በጣም ጥሩ። ፈጣን እና ዘመናዊ የንግድ ድህረ ገጾችን እንገነባለን።",
+      "uiuxReply": "ጥሩ ምርጫ። ቡድናችን ንጹህ እና ውጤታማ UX ይዘጋጃል።",
+      "cyberReply": "በጣም ጥሩ። ዲጂታል ደህንነትዎን ለማጠናከር ግምገማ እና መፍትሄ እንሰጣለን።"
+    },
+    "courses": {
+      "question": "ምን ዓይነት ትምህርት ይፈልጋሉ?",
+      "beginner": "የጀማሪ ኮርስ",
+      "teamTraining": "የቡድን ስልጠና",
+      "beginnerReply": "በተግባራዊ ፕሮጀክቶች የተዘጋጀ የጀማሪ ኮርስ እንመክራለን።",
+      "teamReply": "የቡድን ስልጠና አለ። ለሰራተኞችዎ ተስማሚ ሞጁሎችን እናዘጋጃለን።"
+    },
+    "pricing": {
+      "question": "ፈጣን ግምት ይፈልጋሉ ወይስ ብጁ ዋጋ?",
+      "requestQuote": "ዋጋ ይጠይቁ",
+      "comparePlans": "ፕላኖችን ያነፃፅሩ",
+      "quoteReply": "ጥሩ። የፕሮጀክትዎን ዝርዝር ያጋሩ እና ብጁ ዋጋ እናቀርባለን።",
+      "compareReply": "በጊዜ እና በውስብስብነት መሠረት ተለዋዋጭ ፓኬጆች እንሰጣለን።"
+    },
+    "contact": {
+      "question": "ከእኛ ጋር እንዴት መገናኘት ይፈልጋሉ?",
+      "bookCall": "ጥሪ ይመዝግቡ",
+      "sendMessage": "መልእክት ይላኩ",
+      "bookReply": "በጣም ጥሩ። በዚህ ሳምንት አጭር የመጀመሪያ ጥሪ ማዘጋጀት እንችላለን።",
+      "messageReply": "በጣም ጥሩ። የእኛን የመገናኛ ገጽ ይጠቀሙ እና ፈጥነን እንመልሳለን።"
+    },
+    "common": {
+      "back": "ተመለስ",
+      "restart": "እንደገና ጀምር",
+      "backMessage": "እሺ—ወደ ቀድሞው ደረጃ እመልስዎታለሁ።",
+      "lastChoice": "የመጨረሻ ምርጫ"
+    },
+    "links": {
+      "services": "የአገልግሎት ገጽ",
+      "courses": "የኮርስ ገጽ",
+      "contact": "የመገናኛ ገጽ"
+    }
   }
 }

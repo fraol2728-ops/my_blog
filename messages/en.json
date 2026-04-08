@@ -39,5 +39,63 @@
   },
   "news": {
     "empty": "No news articles published yet."
+  },
+  "chatbot": {
+    "title": "Xyberosec Assistant",
+    "status": "Online",
+    "welcome": "Hi 👋 I'm your assistant. How can I help you today?",
+    "preview": "Need help choosing a service?",
+    "open": "Open assistant",
+    "close": "Close assistant",
+    "send": "Send message",
+    "inputPlaceholder": "Type your message...",
+    "fallback": "I didn’t fully understand. Try one of these:",
+    "quick": {
+      "exploreServices": "Explore Services",
+      "viewCourses": "View Courses",
+      "pricing": "Pricing",
+      "contact": "Contact"
+    },
+    "services": {
+      "question": "What are you looking for?",
+      "webDevelopment": "Web Development",
+      "uiux": "UI/UX Design",
+      "cybersecurity": "Cybersecurity",
+      "webDevelopmentReply": "Great choice. We build fast, modern business websites.",
+      "uiuxReply": "Perfect. Our design team can craft clean, conversion-focused UX.",
+      "cyberReply": "Excellent. We can audit and strengthen your digital security posture."
+    },
+    "courses": {
+      "question": "What kind of learning do you need?",
+      "beginner": "Beginner Course",
+      "teamTraining": "Team Training",
+      "beginnerReply": "We recommend our beginner-friendly tracks with practical projects.",
+      "teamReply": "Team training is available. We can tailor modules for your staff."
+    },
+    "pricing": {
+      "question": "Would you like a quick estimate or a custom quote?",
+      "requestQuote": "Request Quote",
+      "comparePlans": "Compare Plans",
+      "quoteReply": "Great. Share your project scope and we will prepare a tailored quote.",
+      "compareReply": "We offer flexible packages based on timeline and project complexity."
+    },
+    "contact": {
+      "question": "How would you like to connect with us?",
+      "bookCall": "Book a Call",
+      "sendMessage": "Send a Message",
+      "bookReply": "Perfect. We can schedule a quick discovery call this week.",
+      "messageReply": "Awesome. Use our contact page and we will respond shortly."
+    },
+    "common": {
+      "back": "Back",
+      "restart": "Restart",
+      "backMessage": "Sure—going back to your previous step.",
+      "lastChoice": "Last choice"
+    },
+    "links": {
+      "services": "Services page",
+      "courses": "Courses page",
+      "contact": "Contact page"
+    }
   }
 }
