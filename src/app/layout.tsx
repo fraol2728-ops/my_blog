@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
 
 export const metadata: Metadata = {
   title: "Admin | My Blog",
@@ -21,7 +22,10 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased overflow-x-hidden">
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider>
+          <AnalyticsProvider />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );

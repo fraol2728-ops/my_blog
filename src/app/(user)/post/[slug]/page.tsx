@@ -6,11 +6,37 @@ import { getOtherPosts, getPost } from "@/sanity/queries";
 import { Post, PostCategory } from "@/types";
 import dayjs from "dayjs";
 import { ChevronLeftIcon } from "lucide-react";
+import type { Metadata } from "next";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
+
+type PageParams = { slug: string };
+
+export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  if (!post) {
+    return {
+      title: "Post not found",
+    };
+  }
+
+  return {
+    title: post?.seo?.metaTitle ?? post.title,
+    description: post?.seo?.metaDescription ?? post.excerpt,
+    keywords: post?.seo?.keywords,
+    robots: post?.seo?.noIndex ? "noindex, nofollow" : "index, follow",
+    openGraph: {
+      title: post?.seo?.metaTitle ?? post.title,
+      description: post?.seo?.metaDescription ?? post.excerpt,
+      images: post?.mainImage ? [urlFor(post.mainImage).url()] : [],
+    },
+  };
+}
 
 const SinglePostPage = async ({
   params,
@@ -48,8 +74,7 @@ const SinglePostPage = async ({
             )}
             {Array.isArray(post?.categories) && (
               <div className="flex flex-wrap gap-2">
-                {(post?.categories as PostCategory[])?.map(
-                  (category: PostCategory) => (
+                {(post?.categories as PostCategory[])?.map((category: PostCategory) => (
                   <Link
                     key={category?.slug}
                     href={`/category/${category?.slug}`}
@@ -57,8 +82,7 @@ const SinglePostPage = async ({
                   >
                     {category?.title}
                   </Link>
-                  ),
-                )}
+                ))}
               </div>
             )}
           </div>
@@ -80,9 +104,7 @@ const SinglePostPage = async ({
                     components={{
                       block: {
                         normal: ({ children }) => (
-                          <p className="my-2 text-base/8 first:mt-0 last:mb-0">
-                            {children}
-                          </p>
+                          <p className="my-2 text-base/8 first:mt-0 last:mb-0">{children}</p>
                         ),
                         h2: ({ children }) => (
                           <h2 className="my-5 text-2xl/8 font-medium tracking-tight text-gray-950 first:mt-0 last:mb-0">
@@ -113,9 +135,7 @@ const SinglePostPage = async ({
                         separator: ({ value }) => {
                           switch (value.style) {
                             case "line":
-                              return (
-                                <hr className="my-8 border-t border-gray-200" />
-                              );
+                              return <hr className="my-8 border-t border-gray-200" />;
                             case "space":
                               return <div className="my-8" />;
                             default:
@@ -125,44 +145,28 @@ const SinglePostPage = async ({
                       },
                       list: {
                         bullet: ({ children }) => (
-                          <ul className="list-disc pl-4 text-base/8 marker:text-gray-400">
-                            {children}
-                          </ul>
+                          <ul className="list-disc pl-4 text-base/8 marker:text-gray-400">{children}</ul>
                         ),
                         number: ({ children }) => (
-                          <ol className="list-decimal pl-4 text-base/8 marker:text-gray-400">
-                            {children}
-                          </ol>
+                          <ol className="list-decimal pl-4 text-base/8 marker:text-gray-400">{children}</ol>
                         ),
                       },
                       listItem: {
                         bullet: ({ children }) => {
-                          return (
-                            <li className="my-2 pl-2 has-[br]:mb-8">
-                              {children}
-                            </li>
-                          );
+                          return <li className="my-2 pl-2 has-[br]:mb-8">{children}</li>;
                         },
                         number: ({ children }) => {
-                          return (
-                            <li className="my-2 pl-2 has-[br]:mb-8">
-                              {children}
-                            </li>
-                          );
+                          return <li className="my-2 pl-2 has-[br]:mb-8">{children}</li>;
                         },
                       },
                       marks: {
                         strong: ({ children }) => (
-                          <strong className="font-semibold text-gray-950">
-                            {children}
-                          </strong>
+                          <strong className="font-semibold text-gray-950">{children}</strong>
                         ),
                         code: ({ children }) => (
                           <>
                             <span aria-hidden>`</span>
-                            <code className="text-[15px]/8 font-semibold text-gray-950">
-                              {children}
-                            </code>
+                            <code className="text-[15px]/8 font-semibold text-gray-950">{children}</code>
                             <span aria-hidden>`</span>
                           </>
                         ),

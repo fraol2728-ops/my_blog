@@ -10,6 +10,7 @@ export const postType = defineType({
     defineField({
       name: "title",
       type: "string",
+      validation: (Rule) => Rule.required().min(10).max(120),
     }),
     defineField({
       name: "slug",
@@ -17,11 +18,13 @@ export const postType = defineType({
       options: {
         source: "title",
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "author",
       type: "reference",
       to: { type: "author" },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "mainImage",
@@ -34,6 +37,7 @@ export const postType = defineType({
           name: "alt",
           type: "string",
           title: "Alternative text",
+          validation: (Rule) => Rule.required(),
         },
       ],
     }),
@@ -41,14 +45,17 @@ export const postType = defineType({
       name: "categories",
       type: "array",
       of: [defineArrayMember({ type: "reference", to: { type: "category" } })],
+      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: "publishedAt",
       type: "datetime",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "body",
       type: "blockContent",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "isFeatured",
@@ -61,6 +68,39 @@ export const postType = defineType({
       name: "excerpt",
       title: "Excerpt",
       type: "text",
+      validation: (Rule) => Rule.required().min(40).max(180),
+    }),
+    defineField({
+      name: "seo",
+      title: "SEO",
+      type: "object",
+      fields: [
+        defineField({
+          name: "metaTitle",
+          title: "Meta Title",
+          type: "string",
+          validation: (Rule) => Rule.max(60),
+        }),
+        defineField({
+          name: "metaDescription",
+          title: "Meta Description",
+          type: "text",
+          validation: (Rule) => Rule.max(160),
+        }),
+        defineField({
+          name: "keywords",
+          title: "Keywords",
+          type: "array",
+          of: [{ type: "string" }],
+          options: { layout: "tags" },
+        }),
+        defineField({
+          name: "noIndex",
+          title: "No Index",
+          type: "boolean",
+          initialValue: false,
+        }),
+      ],
     }),
   ],
   preview: {

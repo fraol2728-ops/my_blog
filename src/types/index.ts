@@ -1,5 +1,12 @@
 import type { TypedObject } from "sanity";
 
+export interface PostSeo {
+  metaTitle?: string;
+  metaDescription?: string;
+  keywords?: string[];
+  noIndex?: boolean;
+}
+
 export interface PostImage {
   alt?: string;
   [key: string]: unknown;
@@ -25,4 +32,6 @@ export interface Post {
   description: string;
   excerpt?: string;
   body?: TypedObject[] | null;
+  seo?: PostSeo;
 }
+
