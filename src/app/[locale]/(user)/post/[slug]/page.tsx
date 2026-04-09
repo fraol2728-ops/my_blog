@@ -2,7 +2,7 @@ import { Button } from "@/components/button";
 import Container from "@/components/container";
 import OtherPosts from "@/components/otherPosts";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
-import { ogImageUrl, pageMetadata, SITE_URL } from "@/lib/seo";
+import { mergeKeywords, ogImageUrl, pageMetadata, SITE_URL } from "@/lib/seo";
 import { urlFor } from "@/sanity/lib/image";
 import { getOtherPosts, getPost } from "@/sanity/queries";
 import { Post, PostCategory } from "@/types";
@@ -45,7 +45,11 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
       title,
       description,
     }),
-    keywords: post?.seo?.keywords,
+    keywords: mergeKeywords(
+      post?.seo?.keywords,
+      post?.categories?.map((category: PostCategory) => `${category.title} clean energy`),
+      [post.title, "renewable energy insights", "solar project guidance"],
+    ),
     robots: post?.seo?.noIndex ? "noindex, nofollow" : "index, follow",
     openGraph: {
       type: "article",

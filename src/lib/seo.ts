@@ -8,14 +8,19 @@ export const DEFAULT_LOCALE: AppLocale = "en";
 export const SEO_KEYWORDS = [
   "Master Premier Green Energy Co. Ltd",
   "South Sudan renewable energy",
-  "solar energy solutions",
+  "solar energy company in Juba",
+  "solar EPC South Sudan",
+  "renewable energy engineering",
   "clean energy advisory",
-  "energy audit",
-  "feasibility study",
-  "solar system design",
-  "solar installation",
+  "energy audit services",
+  "feasibility study for solar projects",
+  "solar system design and installation",
+  "off-grid solar solutions",
+  "commercial solar power systems",
+  "industrial solar energy solutions",
+  "rural electrification South Sudan",
   "energy management plan",
-  "rural energy access",
+  "solar maintenance and lifecycle support",
 ];
 
 const localizedHomeTitle: Record<AppLocale, string> = {
@@ -44,16 +49,35 @@ export const ogImageUrl = (path: string, locale: AppLocale, title: string) => {
   return `${SITE_URL}/api/og?${search.toString()}`;
 };
 
+export const mergeKeywords = (...keywordSets: Array<readonly string[] | string[] | undefined>) => {
+  const ordered = new Set<string>();
+
+  for (const keywords of keywordSets) {
+    if (!keywords) continue;
+
+    for (const keyword of keywords) {
+      const trimmed = keyword.trim();
+      if (trimmed.length > 0) {
+        ordered.add(trimmed);
+      }
+    }
+  }
+
+  return Array.from(ordered);
+};
+
 export const pageMetadata = ({
   locale,
   path,
   title,
   description,
+  keywords,
 }: {
   locale: AppLocale;
   path: string;
   title: string;
   description: string;
+  keywords?: readonly string[];
 }): Metadata => {
   const canonicalPath = `/${locale}${path === "/" ? "" : path}`;
   const ogImage = ogImageUrl(path, locale, title);
@@ -61,7 +85,7 @@ export const pageMetadata = ({
   return {
     title,
     description,
-    keywords: SEO_KEYWORDS,
+    keywords: mergeKeywords(SEO_KEYWORDS, keywords),
     alternates: {
       canonical: canonicalPath,
       languages: {

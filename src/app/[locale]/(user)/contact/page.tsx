@@ -23,6 +23,12 @@ export async function generateMetadata({
     title: "Contact Master Premier Green Energy Co. Ltd",
     description:
       "Contact our team in Juba for renewable energy engineering, advisory support, and solar project consultation.",
+    keywords: [
+      "contact solar company Juba",
+      "renewable energy consultation South Sudan",
+      "solar project inquiry",
+      "clean energy advisory contact",
+    ],
   });
 }
 

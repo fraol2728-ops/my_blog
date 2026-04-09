@@ -28,6 +28,12 @@ export async function generateMetadata({
     path: "/",
     title: localized.title,
     description: localized.description,
+    keywords: [
+      "renewable energy company South Sudan",
+      "solar engineering services Juba",
+      "clean energy technical support",
+      "sustainable power solutions",
+    ],
   });
 }
 

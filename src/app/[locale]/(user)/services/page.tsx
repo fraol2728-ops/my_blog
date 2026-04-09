@@ -28,6 +28,13 @@ export async function generateMetadata({
     title: "Solar Engineering, Advisory, and Installation Services",
     description:
       "Explore Master Premier Green Energy services including energy audits, feasibility studies, system design, installation, and after-service support.",
+    keywords: [
+      "solar installation services South Sudan",
+      "solar feasibility study",
+      "energy audit and advisory",
+      "commercial solar EPC",
+      "solar operations and maintenance",
+    ],
   });
 }
 

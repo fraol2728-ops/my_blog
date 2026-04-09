@@ -26,6 +26,12 @@ export async function generateMetadata({
     title: "About Master Premier Green Energy Co. Ltd",
     description:
       "Learn how Master Premier Green Energy Co. Ltd delivers renewable energy engineering, advisory services, and reliable solar access solutions across South Sudan.",
+    keywords: [
+      "about master premier green energy",
+      "renewable energy experts South Sudan",
+      "solar mission and vision",
+      "clean energy leadership in Juba",
+    ],
   });
 }
 

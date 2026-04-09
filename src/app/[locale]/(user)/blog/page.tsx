@@ -18,6 +18,12 @@ export async function generateMetadata({
     title: "Renewable Energy Insights and Project Stories",
     description:
       "Read updates from Master Premier Green Energy on solar deployment, energy access, and clean energy best practices.",
+    keywords: [
+      "solar blog South Sudan",
+      "renewable energy best practices",
+      "energy access stories",
+      "clean energy case studies",
+    ],
   });
 }
 

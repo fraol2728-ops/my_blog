@@ -26,6 +26,12 @@ export async function generateMetadata({
     title: "Master Premier News and Clean Energy Updates",
     description:
       "Stay updated on Master Premier Green Energy projects, renewable energy insights, and clean energy access developments in South Sudan.",
+    keywords: [
+      "renewable energy news South Sudan",
+      "solar project updates",
+      "clean energy insights Africa",
+      "energy access developments",
+    ],
   });
 }
 
