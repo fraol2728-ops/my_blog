@@ -13,7 +13,8 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ categories, recentPosts, search, onSearchChange }: SidebarProps) {
-  const isAmharic = useLocale() === "am";
+  const locale = useLocale();
+  const isAmharic = locale === "am";
 
   return (
     <aside className="space-y-6 lg:sticky lg:top-24">
@@ -33,7 +34,7 @@ export default function Sidebar({ categories, recentPosts, search, onSearchChang
         <ul className="mt-4 space-y-4">
           {recentPosts.map((post) => (
             <li key={post.slug}>
-              <Link href={`/post/${post.slug}`} className="text-sm font-medium text-slate-800 hover:text-green-600">
+              <Link href={`/${locale}/post/${post.slug}`} className="text-sm font-medium text-slate-800 hover:text-green-600">
                 {post.title}
               </Link>
               <p className="mt-1 text-xs text-slate-500">{dayjs(post.publishedAt).format("MMM D, YYYY")}</p>

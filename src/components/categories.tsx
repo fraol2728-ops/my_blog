@@ -10,9 +10,11 @@ import Link from "next/link";
 export default async function Categories({
   currentCategory,
   noFeed,
+  locale = "en",
 }: {
   currentCategory?: string;
   noFeed?: boolean;
+  locale?: string;
 }) {
   const categories: PostCategory[] = (await getCategories()) ?? [];
   if (categories?.length === 0) {
@@ -31,7 +33,7 @@ export default async function Categories({
         >
           <MenuItem>
             <Link
-              href={"/"}
+              href={`/${locale}`}
               className="grid grid-cols-[1rem,1fr] items-center gap-2 rounded-md px-2 py-1 data-[focus]:bg-gray-950/5"
             >
               <p className="col-start-2 text-sm/6">All categories</p>
@@ -40,7 +42,7 @@ export default async function Categories({
           {categories?.map((category: PostCategory) => (
             <MenuItem key={category?.slug}>
               <Link
-                href={`/category/${category?.slug}`}
+                href={`/${locale}/category/${category?.slug}`}
                 className="grid grid-cols-[1rem,1fr] items-center gap-2 rounded-md px-2 py-1 data-[focus]:bg-gray-950/5 capitalize"
               >
                 <p className="col-start-2 text-sm/6">{category?.title}</p>

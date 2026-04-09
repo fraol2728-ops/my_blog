@@ -9,7 +9,8 @@ import Link from "next/link";
 import { useLocale } from "@/i18n/I18nProvider";
 
 export default function NewsCard({ post }: { post: Post }) {
-  const isAmharic = useLocale() === "am";
+  const locale = useLocale();
+  const isAmharic = locale === "am";
   const imageUrl = post.mainImage ? urlFor(post.mainImage).width(800).height(500).url() : null;
   const category = Array.isArray(post.categories) ? post.categories[0] : undefined;
   const categoryLabel = typeof category === "string" ? category : category?.title;
@@ -23,7 +24,7 @@ export default function NewsCard({ post }: { post: Post }) {
       transition={{ duration: 0.3 }}
       className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-xl"
     >
-      <Link href={`/post/${post.slug}`} className="block">
+      <Link href={`/${locale}/post/${post.slug}`} className="block">
         <div className="relative h-52 w-full overflow-hidden">
           {imageUrl ? (
             <Image

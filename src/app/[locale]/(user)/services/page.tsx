@@ -9,7 +9,7 @@ import ServicesOverview, {
 } from "@/components/services/ServicesOverview";
 import WhyChooseUs from "@/components/services/WhyChooseUs";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
-import { pageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema, pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -119,7 +119,15 @@ export default async function ServicesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  if (!isValidLocale(locale)) notFound();
   const isAmharic = locale === "am";
+  const breadcrumbSchema = buildBreadcrumbSchema({
+    locale: locale as AppLocale,
+    items: [
+      { name: "Home", path: "/" },
+      { name: "Services", path: "/services" },
+    ],
+  });
 
   const localizedServices = isAmharic
     ? services.map((service) => ({
@@ -156,6 +164,10 @@ export default async function ServicesPage({
 
   return (
     <main className="bg-white text-slate-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <ServicesHero />
       <ServicesOverview services={localizedOverviewItems} />
 

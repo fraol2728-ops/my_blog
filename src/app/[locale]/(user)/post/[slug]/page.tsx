@@ -2,7 +2,7 @@ import { Button } from "@/components/button";
 import Container from "@/components/container";
 import OtherPosts from "@/components/otherPosts";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
-import { ogImageUrl, pageMetadata, SITE_URL } from "@/lib/seo";
+import { buildBreadcrumbSchema, ogImageUrl, pageMetadata, SITE_URL } from "@/lib/seo";
 import { urlFor } from "@/sanity/lib/image";
 import { getOtherPosts, getPost } from "@/sanity/queries";
 import { Post, PostCategory } from "@/types";
@@ -89,11 +89,24 @@ const SinglePostPage = async ({
     mainEntityOfPage: `${SITE_URL}/${locale}/post/${slug}`,
   };
 
+  const breadcrumbSchema = buildBreadcrumbSchema({
+    locale: locale as AppLocale,
+    items: [
+      { name: "Home", path: "/" },
+      { name: "News", path: "/news" },
+      { name: post.title, path: `/post/${slug}` },
+    ],
+  });
+
   return (
     <div className="overflow-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Container className="mt-16">
         <p className="font-mono text-xs/5 font-semibold uppercase tracking-widest text-gray-500">
@@ -241,7 +254,7 @@ const SinglePostPage = async ({
           </div>
         </div>
       </Container>
-      <OtherPosts otherPosts={otherPosts} />
+      <OtherPosts otherPosts={otherPosts} locale={locale} />
     </div>
   );
 };

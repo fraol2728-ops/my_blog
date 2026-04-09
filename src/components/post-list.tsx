@@ -1,4 +1,7 @@
+"use client";
+
 import { urlFor } from "@/sanity/lib/image";
+import { useLocale } from "@/i18n/I18nProvider";
 import { Post } from "@/types";
 import dayjs from "dayjs";
 import { ChevronRightIcon } from "lucide-react";
@@ -18,6 +21,7 @@ export default function PostList({
   emptyMessage?: string;
   readMoreLabel?: string;
 }) {
+  const locale = useLocale();
   if (!posts || posts.length === 0) {
     return (
       <div className="rounded-2xl border border-dashed border-gray-300 p-8 text-center text-gray-600">
@@ -67,7 +71,7 @@ export default function PostList({
             <p className="mt-3 text-sm text-gray-600">{post?.excerpt}</p>
             <div className="mt-4">
               <Link
-                href={`/post/${post?.slug}`}
+                href={`/${locale}/post/${post?.slug}`}
                 className="inline-flex items-center gap-1 text-sm font-medium text-emerald-700"
               >
                 {readMoreLabel} <ChevronRightIcon className="size-4" />

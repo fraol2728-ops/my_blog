@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
-import { SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { buildSiteNavigationSchema, SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const defaultDescription =
   "Master Premier Green Energy Co. Ltd delivers reliable, modern, and intelligent renewable energy engineering and advisory solutions for institutions and communities across South Sudan.";
@@ -62,6 +62,8 @@ const websiteSchema = {
   },
 };
 
+const siteNavigationSchema = buildSiteNavigationSchema();
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -77,6 +79,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }}
         />
         <SessionProvider>
           <AnalyticsProvider />

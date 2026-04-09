@@ -2,7 +2,7 @@ import { Button } from "@/components/button";
 import Categories from "@/components/categories";
 import Container from "@/components/container";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
-import { pageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { urlFor } from "@/sanity/lib/image";
 import { getCategoryPost } from "@/sanity/queries";
 import { Post } from "@/types";
@@ -42,11 +42,23 @@ const CategoryPage = async ({
   if (!isValidLocale(locale)) notFound();
 
   const posts: Post[] = (await getCategoryPost(slug)) ?? [];
+  const breadcrumbSchema = buildBreadcrumbSchema({
+    locale: locale as AppLocale,
+    items: [
+      { name: "Home", path: "/" },
+      { name: "News", path: "/news" },
+      { name: slug, path: `/category/${slug}` },
+    ],
+  });
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Container>
         <div className="py-10 flex flex-col md:flex-row items-start gap-10">
-          <Categories currentCategory={slug} noFeed={true} />
+          <Categories currentCategory={slug} noFeed={true} locale={locale} />
           <div className="flex-1">
             {posts?.length > 0 ? (
               <div className="mt-2">

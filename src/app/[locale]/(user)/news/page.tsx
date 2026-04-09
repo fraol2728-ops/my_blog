@@ -7,7 +7,7 @@ import { Post, PostCategory } from "@/types";
 import { getMessages } from "@/i18n/get-messages";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
-import { pageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema, pageMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
 
 
@@ -53,9 +53,43 @@ export default async function NewsPage({
 
   const featuredPost = posts[0];
   const nonFeaturedPosts = posts.slice(1);
+  const breadcrumbSchema = buildBreadcrumbSchema({
+    locale: locale as AppLocale,
+    items: [
+      { name: "Home", path: "/" },
+      { name: "News", path: "/news" },
+    ],
+  });
+
+  const newsCollectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Master Premier News and Clean Energy Updates",
+    url: `${SITE_URL}/${locale}/news`,
+    inLanguage: locale,
+    hasPart: posts.slice(0, 20).map((post, index) => ({
+      "@type": "BlogPosting",
+      position: index + 1,
+      headline: post.title,
+      url: `${SITE_URL}/${locale}/post/${post.slug}`,
+      datePublished: post.publishedAt,
+      author: {
+        "@type": "Person",
+        name: post.author?.name ?? "Master Premier Editorial Team",
+      },
+    })),
+  };
 
   return (
     <div className="bg-slate-50 py-16 sm:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(newsCollectionSchema) }}
+      />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <NewsHero />
 

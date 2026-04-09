@@ -93,3 +93,45 @@ export const pageMetadata = ({
     },
   };
 };
+
+export const localizedPath = (locale: AppLocale, path: string) =>
+  `/${locale}${path === "/" ? "" : path}`;
+
+export const buildBreadcrumbSchema = ({
+  locale,
+  items,
+}: {
+  locale: AppLocale;
+  items: Array<{ name: string; path: string }>;
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: `${SITE_URL}${localizedPath(locale, item.path)}`,
+  })),
+});
+
+export const buildSiteNavigationSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: [
+    { name: "Home", path: "/en" },
+    { name: "About", path: "/en/about" },
+    { name: "Services", path: "/en/services" },
+    { name: "News", path: "/en/news" },
+    { name: "Contact", path: "/en/contact" },
+    { name: "መነሻ", path: "/am" },
+    { name: "ስለ እኛ", path: "/am/about" },
+    { name: "አገልግሎቶች", path: "/am/services" },
+    { name: "ዜና", path: "/am/news" },
+    { name: "አግኙን", path: "/am/contact" },
+  ].map((item, index) => ({
+    "@type": "SiteNavigationElement",
+    position: index + 1,
+    name: item.name,
+    url: `${SITE_URL}${item.path}`,
+  })),
+});
