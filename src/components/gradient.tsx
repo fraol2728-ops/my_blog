@@ -18,14 +18,16 @@ export function Gradient({
 
 export const GradientBackground = () => {
   return (
-    <div className="pointer-events-none relative mx-auto max-w-7xl">
-      <div
-        className={clsx(
-          "absolute -right-44 -top-36 h-56 w-[28rem] transform-gpu md:right-0",
-          "bg-[linear-gradient(120deg,var(--tw-gradient-stops))] from-primary/40 via-primary/20 to-transparent",
-          "rotate-[-10deg] rounded-full blur-3xl"
-        )}
-      />
+    <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-0 overflow-x-clip">
+      <div className="relative mx-auto max-w-7xl">
+        <div
+          className={clsx(
+            "absolute -right-44 -top-36 h-56 w-[28rem] transform-gpu md:right-0",
+            "bg-[linear-gradient(120deg,var(--tw-gradient-stops))] from-primary/40 via-primary/20 to-transparent",
+            "rotate-[-10deg] rounded-full blur-3xl"
+          )}
+        />
+      </div>
     </div>
   );
 };
