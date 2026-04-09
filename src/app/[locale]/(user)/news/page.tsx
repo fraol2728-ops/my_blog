@@ -7,18 +7,32 @@ import { Post, PostCategory } from "@/types";
 import { getMessages } from "@/i18n/get-messages";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
-import { buildBreadcrumbSchema, pageMetadata, SITE_URL } from "@/lib/seo";
+import { buildBreadcrumbSchema, buildSanityKeywordSignals, pageMetadata, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
 
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ q?: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { q } = await searchParams;
 
   if (!isValidLocale(locale)) notFound();
+
+  const [postsResponse, categoriesResponse] = await Promise.allSettled([
+    getAllPosts(50),
+    getCategories(),
+  ]);
+
+  const posts: Post[] = postsResponse.status === "fulfilled" ? postsResponse.value ?? [] : [];
+  const categories: PostCategory[] =
+    categoriesResponse.status === "fulfilled" ? categoriesResponse.value ?? [] : [];
+  const sanityKeywords = buildSanityKeywordSignals({ posts, categories });
+  const queryKeyword = q?.trim();
 
   return pageMetadata({
     locale: locale as AppLocale,
@@ -26,15 +40,19 @@ export async function generateMetadata({
     title: "Master Premier News and Clean Energy Updates",
     description:
       "Stay updated on Master Premier Green Energy projects, renewable energy insights, and clean energy access developments in South Sudan.",
+    keywords: queryKeyword ? [...sanityKeywords, queryKeyword] : sanityKeywords,
   });
 }
 
 export default async function NewsPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ q?: string }>;
 }) {
   const { locale } = await params;
+  const { q } = await searchParams;
 
   if (!isValidLocale(locale)) {
     notFound();
@@ -103,7 +121,7 @@ export default async function NewsPage({
           )}
         </section>
 
-        <NewsGrid posts={nonFeaturedPosts} categories={categories} />
+        <NewsGrid posts={nonFeaturedPosts} categories={categories} initialSearch={q?.trim() ?? ""} />
 
         <section className="mt-16">
           <Newsletter />

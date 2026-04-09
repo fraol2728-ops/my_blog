@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { AppLocale } from "@/i18n/config";
+import type { Post, PostCategory } from "@/types";
 
 export const SITE_NAME = "Master Premier Green Energy Co. Ltd";
 export const SITE_URL = "https://masterpremiergreenenergy.com";
@@ -17,6 +18,50 @@ export const SEO_KEYWORDS = [
   "energy management plan",
   "rural energy access",
 ];
+
+export const BRAND_KEYWORDS = [
+  "Master Premier",
+  "Master Premier Green Energy",
+  "Master Premier Green Energy Co. Ltd",
+  "MPGE",
+];
+
+const RELATED_SEO_KEYWORDS = [
+  "renewable energy company",
+  "solar company South Sudan",
+  "energy consulting South Sudan",
+];
+
+export const buildKeywordSet = (keywords: Array<string | undefined | null>) =>
+  Array.from(
+    new Set(
+      keywords
+        .map((keyword) => keyword?.trim())
+        .filter((keyword): keyword is string => Boolean(keyword)),
+    ),
+  );
+
+export const buildDynamicSeoKeywords = ({
+  sanityKeywords = [],
+  extraKeywords = [],
+}: {
+  sanityKeywords?: string[];
+  extraKeywords?: string[];
+}) =>
+  buildKeywordSet([...SEO_KEYWORDS, ...BRAND_KEYWORDS, ...RELATED_SEO_KEYWORDS, ...sanityKeywords, ...extraKeywords]);
+
+export const buildSanityKeywordSignals = ({
+  posts,
+  categories,
+}: {
+  posts: Post[];
+  categories: PostCategory[];
+}) =>
+  buildKeywordSet([
+    ...posts.flatMap((post) => post.seo?.keywords ?? []),
+    ...posts.map((post) => post.author?.name),
+    ...categories.map((category) => category.title),
+  ]);
 
 const localizedHomeTitle: Record<AppLocale, string> = {
   en: "Renewable Energy Engineering and Advisory Services",
@@ -49,11 +94,13 @@ export const pageMetadata = ({
   path,
   title,
   description,
+  keywords,
 }: {
   locale: AppLocale;
   path: string;
   title: string;
   description: string;
+  keywords?: string[];
 }): Metadata => {
   const canonicalPath = `/${locale}${path === "/" ? "" : path}`;
   const ogImage = ogImageUrl(path, locale, title);
@@ -61,7 +108,7 @@ export const pageMetadata = ({
   return {
     title,
     description,
-    keywords: SEO_KEYWORDS,
+    keywords: buildDynamicSeoKeywords({ sanityKeywords: keywords }),
     alternates: {
       canonical: canonicalPath,
       languages: {
