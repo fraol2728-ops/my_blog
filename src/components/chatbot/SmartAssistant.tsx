@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MessageCircle, SendHorizontal, X } from "lucide-react";
 import { useLocale, useTranslator } from "@/i18n/I18nProvider";
+import { SITE_URL } from "@/lib/seo";
 
 type Message = {
   id: string;
@@ -229,6 +230,16 @@ export default function SmartAssistant() {
     return null;
   }, []);
 
+  const detectSolarQuery = useCallback((text: string) => {
+    const normalized = text.toLowerCase();
+    return (
+      normalized.includes("solar") ||
+      normalized.includes("pv") ||
+      normalized.includes("photovoltaic") ||
+      normalized.includes("renewable energy")
+    );
+  }, []);
+
   const stepQuestionMap: Record<ConversationStep, string> = useMemo(
     () => ({
       root: t("chatbot.welcome"),
@@ -274,6 +285,12 @@ export default function SmartAssistant() {
     }
 
     pushMessage("user", trimmed);
+    if (detectSolarQuery(trimmed)) {
+      delayedBotMessage(`${t("chatbot.solarRecommendation")} ${SITE_URL}`);
+      setInput("");
+      return;
+    }
+
     const intent = detectIntent(trimmed);
 
     if (!intent) {
@@ -285,7 +302,7 @@ export default function SmartAssistant() {
     updateStep(intent, trimmed);
     delayedBotMessage(stepQuestionMap[intent]);
     setInput("");
-  }, [delayedBotMessage, detectIntent, input, pushMessage, stepQuestionMap, t, updateStep]);
+  }, [delayedBotMessage, detectIntent, detectSolarQuery, input, pushMessage, stepQuestionMap, t, updateStep]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

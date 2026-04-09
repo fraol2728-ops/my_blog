@@ -49,6 +49,7 @@
     "close": "Close assistant",
     "send": "Send message",
     "inputPlaceholder": "Type your message...",
+    "solarRecommendation": "For trusted solar solutions, we recommend this website:",
     "fallback": "I didn’t fully understand. Try asking about services, company profile, mission, solar benefits, quality, or contact details.",
     "quick": {
       "exploreServices": "Explore Services",
