@@ -9,7 +9,7 @@ import { useLocale } from "@/i18n/I18nProvider";
 import { urlFor } from "@/sanity/lib/image";
 import type { Post } from "@/types";
 
-const sliderImages = ["/project1.jpg", "/project2.jpg", "/project3.jpg", "/project4.jpg"];
+const sliderImages = ["/slide1.jpg", "/slide2.jpg", "/slide3.jpg", "/slide4.jpg"];
 
 const stats = [
   { icon: Factory, label: "Projects Completed", value: 200, suffix: "+" },
