@@ -4,7 +4,7 @@ import FAQSection from "@/components/contact/FAQSection";
 import { getMessages } from "@/i18n/get-messages";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
-import { pageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema, pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
 
@@ -38,9 +38,20 @@ export default async function ContactPage({
   }
 
   const t = getMessages(locale as AppLocale);
+  const breadcrumbSchema = buildBreadcrumbSchema({
+    locale: locale as AppLocale,
+    items: [
+      { name: "Home", path: "/" },
+      { name: "Contact", path: "/contact" },
+    ],
+  });
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <section className="py-20">
         <div className="mx-auto max-w-6xl px-4 text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">{t.contact.heading}</h1>

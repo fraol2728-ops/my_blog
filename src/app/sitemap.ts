@@ -1,7 +1,8 @@
 import type { Post } from "@/types";
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
-import { getAllPosts } from "@/sanity/queries";
+import { getAllPosts, getCategories } from "@/sanity/queries";
+import type { PostCategory } from "@/types";
 
 const locales = ["en", "am"] as const;
 const staticPaths = ["", "/about", "/services", "/blog", "/news", "/contact"];
@@ -25,11 +26,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   let posts: Post[] = [];
+  let categories: PostCategory[] = [];
 
   try {
     posts = (await getAllPosts(500)) ?? [];
   } catch {
     posts = [];
+  }
+
+  try {
+    categories = (await getCategories()) ?? [];
+  } catch {
+    categories = [];
   }
 
   const blogEntries: MetadataRoute.Sitemap = posts.flatMap((post) =>
@@ -47,5 +55,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   );
 
-  return [...staticEntries, ...blogEntries];
+  const categoryEntries: MetadataRoute.Sitemap = categories.flatMap((category) =>
+    locales.map((locale) => ({
+      url: `${SITE_URL}/${locale}/category/${category.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.6,
+      alternates: {
+        languages: {
+          en: `${SITE_URL}/en/category/${category.slug}`,
+          am: `${SITE_URL}/am/category/${category.slug}`,
+        },
+      },
+    })),
+  );
+
+  return [...staticEntries, ...blogEntries, ...categoryEntries];
 }

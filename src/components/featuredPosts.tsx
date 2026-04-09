@@ -6,7 +6,7 @@ import React from "react";
 import dayjs from "dayjs";
 import Link from "next/link";
 
-export default async function FeaturedPosts() {
+export default async function FeaturedPosts({ locale = "en" }: { locale?: string }) {
   const featuredPosts: Post[] = (await getFeaturedPosts(3)) ?? [];
   if (featuredPosts?.length === 0) {
     return;
@@ -37,7 +37,7 @@ export default async function FeaturedPosts() {
                 {dayjs(post?.publishedAt).format("dddd, MMMM D, YYYY")}
               </p>
               <div className="mt-2 text-base/7 font-medium">
-                <Link href={`/post/${post?.slug}`}>
+                <Link href={`/${locale}/post/${post?.slug}`}>
                   <span className="absolute inset-0" />
                   {post?.title}
                 </Link>

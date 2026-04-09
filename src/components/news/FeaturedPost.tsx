@@ -8,7 +8,8 @@ import dayjs from "dayjs";
 import { useLocale } from "@/i18n/I18nProvider";
 
 export default function FeaturedPost({ post }: { post: Post }) {
-  const isAmharic = useLocale() === "am";
+  const locale = useLocale();
+  const isAmharic = locale === "am";
   const imageUrl = post.mainImage ? urlFor(post.mainImage).width(1400).height(700).url() : null;
 
   return (
@@ -34,7 +35,7 @@ export default function FeaturedPost({ post }: { post: Post }) {
         <h2 className="mt-3 text-2xl font-semibold leading-tight sm:text-4xl">{post.title}</h2>
         {post.excerpt && <p className="mt-4 max-w-3xl text-white/90">{post.excerpt}</p>}
         <Link
-          href={`/post/${post.slug}`}
+          href={`/${locale}/post/${post.slug}`}
           className="mt-6 inline-flex rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-500"
         >
           {isAmharic ? "ሙሉ ዜናውን ያንብቡ" : "Read Full Story"}

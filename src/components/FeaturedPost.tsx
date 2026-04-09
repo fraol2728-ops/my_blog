@@ -1,4 +1,7 @@
+"use client";
+
 import { urlFor } from "@/sanity/lib/image";
+import { useLocale } from "@/i18n/I18nProvider";
 import { Post } from "@/types";
 import dayjs from "dayjs";
 import Image from "next/image";
@@ -9,11 +12,13 @@ interface FeaturedPostProps {
 }
 
 export default function FeaturedPost({ post }: FeaturedPostProps) {
+  const locale = useLocale();
   const authorName = post?.author?.name || "SolarPeak Editorial Team";
+  const postHref = `/${locale}/post/${post?.slug}`;
 
   return (
     <article className="grid items-stretch gap-8 rounded-2xl border border-slate-200/70 bg-white p-4 shadow-lg shadow-slate-900/5 md:grid-cols-2 md:p-6">
-      <Link href={`/post/${post?.slug}`} className="group block overflow-hidden rounded-2xl">
+      <Link href={postHref} className="group block overflow-hidden rounded-2xl">
         {post?.mainImage ? (
           <Image
             src={urlFor(post.mainImage).width(1400).height(900).url()}
@@ -32,7 +37,7 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">Featured article</p>
 
         <Link
-          href={`/post/${post?.slug}`}
+          href={postHref}
           className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 transition hover:text-emerald-700 sm:text-3xl"
         >
           {post?.title}
@@ -45,7 +50,7 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
         </p>
 
         <Link
-          href={`/post/${post?.slug}`}
+          href={postHref}
           className="mt-6 inline-flex items-center text-sm font-semibold text-emerald-700 transition hover:text-emerald-600"
         >
           Read Full Article →

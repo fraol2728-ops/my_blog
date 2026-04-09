@@ -6,7 +6,7 @@ import ProjectsSection from "@/components/home/ProjectsSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import WhySolarSection from "@/components/home/WhySolarSection";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
-import { getLocalizedHomeMeta, pageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema, getLocalizedHomeMeta, pageMetadata } from "@/lib/seo";
 import { getAllPosts, getFeaturedPosts } from "@/sanity/queries";
 import type { Post } from "@/types";
 import type { Metadata } from "next";
@@ -31,7 +31,19 @@ export async function generateMetadata({
   });
 }
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!isValidLocale(locale)) notFound();
+
+  const breadcrumbSchema = buildBreadcrumbSchema({
+    locale: locale as AppLocale,
+    items: [{ name: "Home", path: "/" }],
+  });
+
   let latestPosts: Post[] = [];
   let featuredPosts: Post[] = [];
 
@@ -46,6 +58,10 @@ export default async function Home() {
 
   return (
     <div className="bg-white text-slate-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <HeroSection latestPost={latestPost} />
 
       <main>
