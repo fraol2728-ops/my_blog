@@ -6,8 +6,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: ["/", "/en/", "/am/"],
-        disallow: ["/api", "/admin", "/private"],
+        allow: ["/", "/en/", "/am/", "/_next/static/", "/_next/image/"],
+        disallow: ["/api/", "/admin", "/private", "/*?*preview=*"],
       },
       {
         userAgent: "Googlebot",
@@ -15,7 +15,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/private", "/api/auth"],
       },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    sitemap: [`${SITE_URL}/sitemap.xml`],
     host: SITE_URL,
   };
 }

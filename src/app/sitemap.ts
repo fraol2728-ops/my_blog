@@ -4,7 +4,7 @@ import { getAllPosts, getCategories } from "@/sanity/queries";
 import type { Post, PostCategory } from "@/types";
 
 const locales = ["en", "am"] as const;
-const localizedStaticPaths = ["", "/about", "/services", "/news", "/contact"];
+const localizedStaticPaths = ["", "/about", "/services", "/news", "/blog", "/contact"];
 
 type SupportedLocale = (typeof locales)[number];
 
@@ -15,11 +15,47 @@ const withLocalePath = (locale: SupportedLocale, path: string) => {
   return normalized.length > 0 ? `/${locale}/${normalized}` : `/${locale}`;
 };
 
-const buildLanguageAlternates = (path: string) =>
-  Object.fromEntries(locales.map((locale) => [locale, `${SITE_URL}${withLocalePath(locale, path)}`]));
+const buildLanguageAlternates = (path: string) => {
+  const languages = Object.fromEntries(
+    locales.map((locale) => [locale, `${SITE_URL}${withLocalePath(locale, path)}`]),
+  ) as Record<SupportedLocale, string>;
+
+  return {
+    ...languages,
+    "x-default": languages.en,
+  };
+};
 
 const isValidSlug = (value: string | undefined | null): value is string =>
   Boolean(value && normalizeSegment(value).length > 0);
+
+const staticPathPriority = (path: string) => {
+  switch (path) {
+    case "":
+      return 1;
+    case "/services":
+      return 0.9;
+    case "/news":
+    case "/blog":
+      return 0.8;
+    default:
+      return 0.7;
+  }
+};
+
+const resolvePostChangeFrequency = (lastModified: Date): MetadataRoute.Sitemap[number]["changeFrequency"] => {
+  const daysSinceUpdate = Math.floor((Date.now() - lastModified.getTime()) / (1000 * 60 * 60 * 24));
+
+  if (daysSinceUpdate <= 14) {
+    return "daily";
+  }
+
+  if (daysSinceUpdate <= 60) {
+    return "weekly";
+  }
+
+  return "monthly";
+};
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -35,6 +71,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: now,
     changeFrequency: "daily",
     priority: 0.9,
+    alternates: {
+      languages: {
+        "x-default": `${SITE_URL}/en`,
+      },
+    },
   });
 
   for (const path of localizedStaticPaths) {
@@ -43,7 +84,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${SITE_URL}${withLocalePath(locale, path)}`,
         lastModified: now,
         changeFrequency: path === "" ? "daily" : "weekly",
-        priority: path === "" ? 1 : 0.8,
+        priority: staticPathPriority(path),
         alternates: {
           languages: buildLanguageAlternates(path),
         },
@@ -70,13 +111,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   for (const post of indexablePosts) {
     const slug = normalizeSegment(post.slug);
-    const lastModified = post.publishedAt ? new Date(post.publishedAt) : now;
+    const lastModified = new Date(post.updatedAt ?? post.publishedAt ?? now.toISOString());
 
     for (const locale of locales) {
       addEntry({
         url: `${SITE_URL}${withLocalePath(locale, `/post/${slug}`)}`,
         lastModified,
-        changeFrequency: "weekly",
+        changeFrequency: resolvePostChangeFrequency(lastModified),
         priority: 0.7,
         alternates: {
           languages: buildLanguageAlternates(`/post/${slug}`),

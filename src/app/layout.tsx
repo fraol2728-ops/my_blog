@@ -15,6 +15,14 @@ export const metadata: Metadata = {
   },
   description: defaultDescription,
   keywords: SEO_KEYWORDS,
+  alternates: {
+    canonical: "/",
+    languages: {
+      en: "/en",
+      am: "/am",
+      "x-default": "/en",
+    },
+  },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
@@ -26,6 +34,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_NAME,
     description: defaultDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   icons: {
     icon: [
@@ -43,10 +62,24 @@ const organizationSchema = {
   name: SITE_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/logo.png`,
-  sameAs: [
-    "mailto:mpgenergy@gmail.com",
-    "tel:+211982004848",
-    "tel:+211928004848",
+  email: "mailto:mpgenergy@gmail.com",
+  telephone: "+211982004848",
+  areaServed: "SS",
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: "mpgenergy@gmail.com",
+      telephone: "+211982004848",
+      areaServed: "SS",
+      availableLanguage: ["en", "am"],
+    },
+  ],
+  knowsAbout: [
+    "Renewable energy engineering",
+    "Solar system design",
+    "Energy audits",
+    "Clean energy advisory",
   ],
 };
 
@@ -55,6 +88,12 @@ const websiteSchema = {
   "@type": "WebSite",
   name: SITE_NAME,
   url: SITE_URL,
+  inLanguage: ["en", "am"],
+  publisher: {
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+  },
   potentialAction: {
     "@type": "SearchAction",
     target: `${SITE_URL}/en/news?q={search_term_string}`,
