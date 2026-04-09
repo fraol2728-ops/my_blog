@@ -97,10 +97,23 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-5 border-t border-white/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-white/60">
-            © {new Date().getFullYear()} Master Premier Green Energy Co. Ltd.{" "}
-            {isAmharic ? "መብቶቹ በሙሉ የተጠበቁ ናቸው።" : "All rights reserved."}
-          </p>
+          <div className="space-y-1">
+            <p className="text-sm text-white/60">
+              © {new Date().getFullYear()} Master Premier Green Energy Co. Ltd.{" "}
+              {isAmharic ? "መብቶቹ በሙሉ የተጠበቁ ናቸው።" : "All rights reserved."}
+            </p>
+            <p className="text-sm text-white/60">
+              {isAmharic ? "ኮድ አርቲስት:" : "Code artist:"}{" "}
+              <a
+                className="text-white/80 underline-offset-4 transition-colors hover:text-emerald-300 hover:underline"
+                href="https://www.devfraol.com.et/services/web-development"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Fraol Belachew
+              </a>
+            </p>
+          </div>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => {
               const Icon = social.icon;
