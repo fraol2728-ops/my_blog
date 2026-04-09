@@ -29,6 +29,7 @@ export interface Post {
   author: PostAuthor;
   categories: string[] | PostCategory[];
   publishedAt: string;
+  updatedAt?: string;
   description: string;
   excerpt?: string;
   body?: TypedObject[] | null;

@@ -6,6 +6,7 @@ const FEATURED_POSTS_QUERY =
     title,
     'slug':slug.current,
     publishedAt,
+    "updatedAt": _updatedAt,
     mainImage,
     excerpt,
     author->{
@@ -26,6 +27,7 @@ const ALL_POSTS_QUERY = defineQuery(`*[
   title,
   "slug": slug.current,
   publishedAt,
+  "updatedAt": _updatedAt,
   mainImage,
   excerpt,
   seo,
@@ -59,6 +61,7 @@ export const getCategories = async () => {
 
 const POST_QUERY = defineQuery(`*[_type=='post' && slug.current == $slug][0]{
    publishedAt,
+  "updatedAt": _updatedAt,
   title,
   mainImage,
   excerpt,
@@ -96,6 +99,7 @@ const CATEGORY_POST = defineQuery(`*[
   title,
   "slug": slug.current,
   publishedAt,
+  "updatedAt": _updatedAt,
   mainImage,
   excerpt,
   author->{
@@ -130,6 +134,7 @@ const FILTERED_POSTS_QUERY = defineQuery(`*[
   title,
   "slug": slug.current,
   publishedAt,
+  "updatedAt": _updatedAt,
   mainImage,
   excerpt,
   seo,
@@ -175,6 +180,7 @@ const GET_OTHERS_POSTS_QUERY = defineQuery(`*[
   && slug.current != $currentSlug
 ]|order(publishedAt desc)[0...$quantity]{
   publishedAt,
+  "updatedAt": _updatedAt,
   title,
   mainImage,
   excerpt,

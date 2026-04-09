@@ -170,11 +170,13 @@ export const buildSiteNavigationSchema = () => ({
     { name: "Services", path: "/en/services" },
     { name: "News", path: "/en/news" },
     { name: "Contact", path: "/en/contact" },
+    { name: "Blog", path: "/en/blog" },
     { name: "መነሻ", path: "/am" },
     { name: "ስለ እኛ", path: "/am/about" },
     { name: "አገልግሎቶች", path: "/am/services" },
     { name: "ዜና", path: "/am/news" },
     { name: "አግኙን", path: "/am/contact" },
+    { name: "ብሎግ", path: "/am/blog" },
   ].map((item, index) => ({
     "@type": "SiteNavigationElement",
     position: index + 1,
