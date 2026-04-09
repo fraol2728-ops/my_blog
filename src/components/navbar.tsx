@@ -5,7 +5,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react
 import { Bars3Icon, ChevronDownIcon, MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { Button } from "./button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -39,6 +39,7 @@ export default function Navbar() {
   const [mobileOpenDropdowns, setMobileOpenDropdowns] = useState<Record<string, boolean>>({});
   const [desktopKeyword, setDesktopKeyword] = useState("");
   const [mobileKeyword, setMobileKeyword] = useState("");
+  const headerRef = useRef<HTMLElement | null>(null);
 
   const navLinks: NavItem[] = [
     { href: "/", label: t("nav.home") },
@@ -75,6 +76,28 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    const headerElement = headerRef.current;
+
+    if (!headerElement) return;
+
+    const syncHeaderHeight = () => {
+      root.style.setProperty("--site-header-height", `${headerElement.offsetHeight}px`);
+    };
+
+    syncHeaderHeight();
+
+    const resizeObserver = new ResizeObserver(syncHeaderHeight);
+    resizeObserver.observe(headerElement);
+    window.addEventListener("resize", syncHeaderHeight, { passive: true });
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", syncHeaderHeight);
+    };
+  }, [isScrolled]);
+
   const toggleMobileDropdown = (label: string) => {
     setMobileOpenDropdowns((prev) => ({ ...prev, [label]: !prev[label] }));
   };
@@ -100,6 +123,7 @@ export default function Navbar() {
   return (
     <Disclosure
       as="header"
+      ref={headerRef}
       className={clsx(
         "sticky top-0 z-50 border-b border-slate-200/70 bg-white/75 backdrop-blur-2xl transition-all duration-300",
         isScrolled ? "shadow-lg shadow-slate-900/10" : "shadow-sm shadow-slate-900/5"
