@@ -173,13 +173,13 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
               <div className="mt-10 flex flex-col gap-4 sm:flex-row md:justify-start">
                 <Link
                   href="/contact"
-                  className="rounded-xl bg-emerald-600 px-7 py-3.5 text-center font-semibold text-white shadow-lg shadow-emerald-600/35 transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-500"
+                  className="ui-glow-btn rounded-xl bg-emerald-600 px-7 py-3.5 text-center font-semibold text-white shadow-lg shadow-emerald-600/35 transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-500"
                 >
                   {isAmharic ? "ነፃ የዋጋ ጥያቄ ያቅርቡ" : "Get a Free Quote"}
                 </Link>
                 <Link
                   href="/services"
-                  className="rounded-xl border border-white/60 bg-transparent px-7 py-3.5 text-center font-semibold text-white transition-all duration-200 hover:-translate-y-1 hover:bg-white/10"
+                  className="ui-glow-btn rounded-xl border border-white/60 bg-transparent px-7 py-3.5 text-center font-semibold text-white transition-all duration-200 hover:-translate-y-1 hover:bg-white/10"
                 >
                   {isAmharic ? "አገልግሎቶቻችንን ይመልከቱ" : "Explore Services"}
                 </Link>
@@ -195,7 +195,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
               >
                 <Link
                   href={`/post/${latestPost.slug}`}
-                  className="group relative block overflow-hidden rounded-3xl border border-white/35 bg-white/10 p-3 text-white shadow-[0_0_35px_rgba(16,185,129,0.25)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/80 hover:shadow-[0_0_48px_rgba(16,185,129,0.4)]"
+                  className="ui-glow-card group relative block overflow-hidden rounded-3xl border border-white/35 bg-white/10 p-3 text-white shadow-[0_0_35px_rgba(16,185,129,0.25)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/80 hover:shadow-[0_0_48px_rgba(16,185,129,0.4)]"
                 >
                   <m.div
                     animate={{ opacity: [0.2, 0.45, 0.2] }}

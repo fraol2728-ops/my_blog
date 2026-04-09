@@ -19,7 +19,7 @@ export default function CTASection() {
         <div className="mt-9">
           <Button
             href="/contact"
-            className="rounded-2xl bg-[#458137] px-8 py-3.5 text-white shadow-lg shadow-[#458137]/30 transition data-[hover]:-translate-y-0.5 data-[hover]:bg-[#3b6f2f]"
+            className="ui-glow-btn rounded-2xl bg-[#458137] px-8 py-3.5 text-white shadow-lg shadow-[#458137]/30 transition data-[hover]:-translate-y-0.5 data-[hover]:bg-[#3b6f2f]"
           >
             Request a Free Quote
           </Button>
