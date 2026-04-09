@@ -28,6 +28,7 @@ const ALL_POSTS_QUERY = defineQuery(`*[
   publishedAt,
   mainImage,
   excerpt,
+  seo,
   categories[]->{
     title,
     "slug": slug.current,
@@ -117,6 +118,11 @@ const FILTERED_POSTS_QUERY = defineQuery(`*[
       title match $searchPattern
       || excerpt match $searchPattern
       || pt::text(body) match $searchPattern
+      || seo.metaTitle match $searchPattern
+      || seo.metaDescription match $searchPattern
+      || count(seo.keywords[@ match $searchPattern]) > 0
+      || author->name match $searchPattern
+      || count(categories[]->title[@ match $searchPattern]) > 0
     ),
     true
   )
@@ -126,6 +132,7 @@ const FILTERED_POSTS_QUERY = defineQuery(`*[
   publishedAt,
   mainImage,
   excerpt,
+  seo,
   categories[]->{
     title,
     "slug": slug.current,

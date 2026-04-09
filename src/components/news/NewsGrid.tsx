@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Post, PostCategory } from "@/types";
 import { useLocale } from "@/i18n/I18nProvider";
+import { BRAND_KEYWORDS } from "@/lib/seo";
 import CategoryFilter from "./CategoryFilter";
 import NewsCard from "./NewsCard";
 import Pagination from "./Pagination";
@@ -14,12 +15,13 @@ const POSTS_PER_PAGE = 6;
 interface NewsGridProps {
   posts: Post[];
   categories: PostCategory[];
+  initialSearch?: string;
 }
 
-export default function NewsGrid({ posts, categories }: NewsGridProps) {
+export default function NewsGrid({ posts, categories, initialSearch = "" }: NewsGridProps) {
   const isAmharic = useLocale() === "am";
   const [activeCategory, setActiveCategory] = useState("all");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(initialSearch);
   const [currentPage, setCurrentPage] = useState(1);
 
   const filteredPosts = useMemo(() => {
@@ -37,7 +39,13 @@ export default function NewsGrid({ posts, categories }: NewsGridProps) {
             return category.slug === activeCategory;
           }));
 
-      const haystack = [post.title, post.excerpt, post.author?.name]
+      const haystack = [
+        post.title,
+        post.excerpt,
+        post.author?.name,
+        ...(post.seo?.keywords ?? []),
+        ...BRAND_KEYWORDS,
+      ]
         .filter(Boolean)
         .join(" ")
         .toLowerCase();
