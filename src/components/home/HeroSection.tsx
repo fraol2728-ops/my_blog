@@ -149,6 +149,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-black/25" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
         <div className="relative mx-auto flex min-h-[calc(100svh-var(--site-header-height,0px))] w-full max-w-7xl items-center px-6 pb-16 pt-[clamp(2rem,3vw,3rem)] md:pb-28 lg:px-8">
           <div className="grid w-full items-center gap-12 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-10">
