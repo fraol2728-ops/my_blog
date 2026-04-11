@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, type ComponentType } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { LazyMotion, AnimatePresence, domAnimation, m } from "motion/react";
-import { ArrowLeft, ArrowRight, Factory, Smile, Wrench, Zap } from "lucide-react";
+import { Factory, Smile, Wrench, Zap } from "lucide-react";
 import { useLocale } from "@/i18n/I18nProvider";
 import { urlFor } from "@/sanity/lib/image";
 import type { Post } from "@/types";
@@ -113,9 +113,6 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
       })),
     [isAmharic],
   );
-
-  const handlePrev = () => setActiveIndex((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
-  const handleNext = () => setActiveIndex((prev) => (prev + 1) % sliderImages.length);
 
   return (
     <LazyMotion features={domAnimation}>
@@ -235,25 +232,6 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
               </m.div>
             )}
           </div>
-        </div>
-
-        <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:px-8">
-          <button
-            type="button"
-            onClick={handlePrev}
-            aria-label={isAmharic ? "ያለፈው ስላይድ" : "Previous slide"}
-            className="pointer-events-auto rounded-full border border-white/25 bg-black/30 p-3 text-white/90 backdrop-blur transition hover:scale-105 hover:bg-black/50"
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            onClick={handleNext}
-            aria-label={isAmharic ? "ቀጣይ ስላይድ" : "Next slide"}
-            className="pointer-events-auto rounded-full border border-white/25 bg-black/30 p-3 text-white/90 backdrop-blur transition hover:scale-105 hover:bg-black/50"
-          >
-            <ArrowRight className="h-5 w-5" />
-          </button>
         </div>
 
         <div className="absolute bottom-32 left-1/2 z-20 flex -translate-x-1/2 gap-2.5">
