@@ -148,7 +148,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-black/25" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
-        <div className="relative mx-auto flex min-h-[calc(100svh-var(--site-header-height,0px))] w-full max-w-7xl items-center px-6 pb-16 pt-[clamp(2rem,3vw,3rem)] md:pb-28 lg:px-8">
+        <div className="relative mx-auto flex min-h-[calc(100svh-var(--site-header-height,0px))] w-full max-w-7xl items-center px-6 pb-8 pt-[clamp(2rem,3vw,3rem)] md:pb-12 lg:px-8">
           <div className="grid w-full items-center gap-12 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-10">
             <m.div
               initial={{ opacity: 0, y: 36 }}
@@ -234,7 +234,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
           </div>
         </div>
 
-        <div className="absolute bottom-32 left-1/2 z-20 flex -translate-x-1/2 gap-2.5">
+        <div className="relative z-20 mx-auto mt-1 flex w-fit gap-2.5 md:mt-2">
           {sliderImages.map((_, index) => (
             <button
               key={index}
@@ -248,7 +248,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
           ))}
         </div>
 
-        <div className="relative z-30 mx-auto mt-8 w-[92%] max-w-6xl pb-8 md:mt-10">
+        <div className="relative z-30 mx-auto mt-3 w-[92%] max-w-6xl pb-8 md:mt-4">
           <div className="rounded-2xl border border-white/15 bg-black/40 p-4 shadow-2xl shadow-black/35 backdrop-blur-lg md:p-6">
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
               {localizedStats.map((item, index) => (
