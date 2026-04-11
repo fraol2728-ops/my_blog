@@ -30,7 +30,9 @@
     "servicesStorage": "የኃይል ማከማቻ ስርዓቶች",
     "servicesMaintenance": "ጥገና እና ድጋፍ",
     "servicesConsultancy": "ምክር",
-    "servicesCustom": "ብጁ ፕሮጀክቶች"
+    "servicesCustom": "ብጁ ፕሮጀክቶች",
+    "contactInfo": "ያግኙን",
+    "phoneNumber": "+251 911 234 567"
   },
   "contact": {
     "heading": "ከፀሐይ ኃይል ባለሙያዎቻችን ጋር ይገናኙ",

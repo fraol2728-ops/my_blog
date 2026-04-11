@@ -2,7 +2,13 @@
 
 import Image from "next/image";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
-import { Bars3Icon, ChevronDownIcon, MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+  PhoneIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { Button } from "./button";
 import { useEffect, useRef, useState } from "react";
@@ -119,150 +125,191 @@ export default function Navbar() {
     return `/${locale}${href === "/" ? "" : href}`;
   };
 
-
   return (
     <Disclosure
       as="header"
       ref={headerRef}
       className={clsx(
-        "sticky top-0 z-50 border-b border-slate-200/70 bg-white/75 backdrop-blur-2xl transition-all duration-300",
+        "sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-2xl transition-all duration-300",
         isScrolled ? "shadow-lg shadow-slate-900/10" : "shadow-sm shadow-slate-900/5"
       )}
     >
       {({ open }) => (
-        <div
-          className={clsx(
-            "mx-auto flex w-full max-w-7xl items-center justify-between px-6 transition-all duration-300 lg:px-8",
-            isScrolled ? "h-[72px]" : "h-20"
-          )}
-        >
-          <Link href={localizedHref("/")} className="group flex items-center gap-3" aria-label="Go to homepage">
-            <Image
-              src="/logo.png"
-              alt="Company logo"
-              width={200}
-              height={56}
-              className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-              priority
-            />
-            <span className="max-w-[220px] text-sm font-semibold leading-tight text-slate-800 transition-colors duration-200 group-hover:text-emerald-700 sm:text-base">
-              {t("nav.brand")}
-            </span>
-          </Link>
-
-          <nav className="hidden items-center gap-7 lg:flex">
-            {navLinks.map((item) => {
-              if (!item.dropdownItems || !item.dropdownItems.length) {
-                return (
-                  <Link
-                    key={item.label}
-                    href={localizedHref(item.href!)}
-                    className={clsx(
-                      "group relative py-2 text-sm font-medium transition-colors duration-200",
-                      isActivePath(pathname, item.href!) ? "text-emerald-600" : "text-slate-700 hover:text-slate-900"
-                    )}
-                  >
-                    {item.label}
-                    <span
-                      className={clsx(
-                        "absolute -bottom-0.5 left-0 h-0.5 bg-emerald-600 transition-all duration-300",
-                        isActivePath(pathname, item.href!) ? "w-full" : "w-0 group-hover:w-full"
-                      )}
-                    />
-                  </Link>
-                );
-              }
-
-              const isOpen = desktopOpenDropdown === item.label;
-
-              return (
-                <div
-                  key={item.label}
-                  className="relative"
-                  onMouseEnter={() => setDesktopOpenDropdown(item.label)}
-                  onMouseLeave={() => setDesktopOpenDropdown(null)}
-                >
-                  <button
-                    type="button"
-                    className={clsx(
-                      "ui-nav-link flex items-center gap-1",
-                      isOpen ? "text-emerald-600" : "text-slate-700 hover:text-slate-900"
-                    )}
-                  >
-                    <span>{item.label}</span>
-                    <ChevronDownIcon
-                      className={clsx("size-4 transition-transform duration-200", isOpen && "rotate-180")}
-                    />
-                  </button>
-
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.24 }}
-                        className="ui-card absolute left-1/2 top-full mt-3 w-[240px] -translate-x-1/2 p-4 shadow-lg"
-                      >
-                        <div className="space-y-1">
-                          {item.dropdownItems.map((dropdownItem) => (
-                            <Link
-                              key={dropdownItem.label}
-                              href={localizedHref(dropdownItem.href)}
-                              className="block rounded-md px-3 py-2 text-sm text-slate-700 transition-colors duration-200 hover:bg-green-50 hover:text-green-600"
-                            >
-                              {dropdownItem.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </nav>
-
-          <div className="hidden items-center gap-3 lg:flex">
-            <LanguageSwitcher />
-
-            <form
-              className="flex items-center gap-2"
-              onSubmit={(event) => {
-                event.preventDefault();
-                submitSearch(desktopKeyword);
-              }}
-            >
-              <input
-                type="search"
-                name="q"
-                value={desktopKeyword}
-                onChange={(event) => setDesktopKeyword(event.target.value)}
-                placeholder={t("nav.searchPlaceholder")}
-                aria-label={t("nav.searchLabel")}
-                className="ui-input w-44 rounded-full"
+        <>
+          <div className="mx-auto hidden w-full max-w-7xl items-center justify-between border-b border-slate-200/70 px-6 py-3 lg:flex lg:px-8">
+            <Link href={localizedHref("/")} className="group flex items-center gap-3" aria-label="Go to homepage">
+              <Image
+                src="/logo.png"
+                alt="Company logo"
+                width={200}
+                height={56}
+                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                priority
               />
-              <button
-                type="submit"
-                aria-label={t("nav.searchLabel")}
-                className="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
+              <span className="max-w-[220px] text-sm font-semibold leading-tight text-slate-800 transition-colors duration-200 group-hover:text-emerald-700 sm:text-base">
+                {t("nav.brand")}
+              </span>
+            </Link>
+
+            <div className="flex items-center gap-5 text-sm text-slate-700">
+              <LanguageSwitcher />
+              <Link href={localizedHref("/contact")} className="font-medium text-slate-700 hover:text-emerald-600">
+                {t("nav.contactInfo")}
+              </Link>
+              <a
+                href={`tel:${t("nav.phoneNumber").replace(/[^+\d]/g, "")}`}
+                className="inline-flex items-center gap-2 font-semibold text-slate-900 hover:text-emerald-600"
               >
-                <MagnifyingGlassIcon className="size-5" />
-              </button>
-            </form>
-            <Button href={localizedHref("/contact")} variant="primary" className="shadow-sm">
-              {t("nav.quote")}
-            </Button>
+                <PhoneIcon className="size-4" />
+                <span>{t("nav.phoneNumber")}</span>
+              </a>
+            </div>
           </div>
 
-          <DisclosureButton className="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-700 lg:hidden">
-            <span className="sr-only">{t("nav.toggleMenu")}</span>
-            {open ? <XMarkIcon className="size-6" /> : <Bars3Icon className="size-6" />}
-          </DisclosureButton>
+          <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3 lg:px-8">
+            <Link href={localizedHref("/")} className="group flex items-center gap-3 lg:hidden" aria-label="Go to homepage">
+              <Image
+                src="/logo.png"
+                alt="Company logo"
+                width={180}
+                height={50}
+                className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                priority
+              />
+              <span className="max-w-[180px] text-sm font-semibold leading-tight text-slate-800 transition-colors duration-200 group-hover:text-emerald-700">
+                {t("nav.brand")}
+              </span>
+            </Link>
+
+            <div className="hidden lg:block lg:flex-1" />
+
+            <nav className="hidden items-center justify-center gap-7 lg:flex lg:flex-1">
+              {navLinks.map((item) => {
+                if (!item.dropdownItems || !item.dropdownItems.length) {
+                  return (
+                    <Link
+                      key={item.label}
+                      href={localizedHref(item.href!)}
+                      className={clsx(
+                        "group relative py-2 text-sm font-medium transition-colors duration-200",
+                        isActivePath(pathname, item.href!) ? "text-emerald-600" : "text-slate-700 hover:text-slate-900"
+                      )}
+                    >
+                      {item.label}
+                      <span
+                        className={clsx(
+                          "absolute -bottom-0.5 left-0 h-0.5 bg-emerald-600 transition-all duration-300",
+                          isActivePath(pathname, item.href!) ? "w-full" : "w-0 group-hover:w-full"
+                        )}
+                      />
+                    </Link>
+                  );
+                }
+
+                const isOpen = desktopOpenDropdown === item.label;
+
+                return (
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => setDesktopOpenDropdown(item.label)}
+                    onMouseLeave={() => setDesktopOpenDropdown(null)}
+                  >
+                    <button
+                      type="button"
+                      className={clsx(
+                        "ui-nav-link flex items-center gap-1",
+                        isOpen ? "text-emerald-600" : "text-slate-700 hover:text-slate-900"
+                      )}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDownIcon
+                        className={clsx("size-4 transition-transform duration-200", isOpen && "rotate-180")}
+                      />
+                    </button>
+
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.24 }}
+                          className="ui-card absolute left-1/2 top-full mt-3 w-[240px] -translate-x-1/2 p-4 shadow-lg"
+                        >
+                          <div className="space-y-1">
+                            {item.dropdownItems.map((dropdownItem) => (
+                              <Link
+                                key={dropdownItem.label}
+                                href={localizedHref(dropdownItem.href)}
+                                className="block rounded-md px-3 py-2 text-sm text-slate-700 transition-colors duration-200 hover:bg-green-50 hover:text-green-600"
+                              >
+                                {dropdownItem.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </nav>
+
+            <div className="hidden items-center justify-end gap-3 lg:flex lg:flex-1">
+              <form
+                className="flex items-center gap-2"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  submitSearch(desktopKeyword);
+                }}
+              >
+                <input
+                  type="search"
+                  name="q"
+                  value={desktopKeyword}
+                  onChange={(event) => setDesktopKeyword(event.target.value)}
+                  placeholder={t("nav.searchPlaceholder")}
+                  aria-label={t("nav.searchLabel")}
+                  className="ui-input w-44 rounded-full"
+                />
+                <button
+                  type="submit"
+                  aria-label={t("nav.searchLabel")}
+                  className="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
+                >
+                  <MagnifyingGlassIcon className="size-5" />
+                </button>
+              </form>
+              <Button href={localizedHref("/contact")} variant="primary" className="shadow-sm">
+                {t("nav.quote")}
+              </Button>
+            </div>
+
+            <DisclosureButton className="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-700 lg:hidden">
+              <span className="sr-only">{t("nav.toggleMenu")}</span>
+              {open ? <XMarkIcon className="size-6" /> : <Bars3Icon className="size-6" />}
+            </DisclosureButton>
+          </div>
 
           <DisclosurePanel className="absolute inset-x-0 top-full border-b border-slate-200/70 bg-white/95 shadow-sm backdrop-blur-2xl lg:hidden">
             <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-5">
               <LanguageSwitcher mobile />
+
+              <Link
+                href={localizedHref("/contact")}
+                className="rounded-md px-3 py-2 text-sm font-medium text-slate-700 transition-colors duration-200 hover:bg-emerald-50 hover:text-emerald-700"
+              >
+                {t("nav.contactInfo")}
+              </Link>
+
+              <a
+                href={`tel:${t("nav.phoneNumber").replace(/[^+\d]/g, "")}`}
+                className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-slate-800 transition-colors duration-200 hover:bg-emerald-50 hover:text-emerald-700"
+              >
+                <PhoneIcon className="size-4" />
+                <span>{t("nav.phoneNumber")}</span>
+              </a>
 
               {navLinks.map((item) => {
                 if (!item.dropdownItems || !item.dropdownItems.length) {
@@ -352,7 +399,7 @@ export default function Navbar() {
               </div>
             </nav>
           </DisclosurePanel>
-        </div>
+        </>
       )}
     </Disclosure>
   );

@@ -30,7 +30,9 @@
     "servicesStorage": "Energy Storage Systems",
     "servicesMaintenance": "Maintenance & Support",
     "servicesConsultancy": "Consultancy",
-    "servicesCustom": "Custom Projects"
+    "servicesCustom": "Custom Projects",
+    "contactInfo": "Contact us",
+    "phoneNumber": "+1 (202) 555-0148"
   },
   "contact": {
     "heading": "Get in Touch with Our Solar Experts",
