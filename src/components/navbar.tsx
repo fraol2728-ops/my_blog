@@ -138,7 +138,7 @@ export default function Navbar() {
         >
           <Link href={localizedHref("/")} className="group flex items-center gap-3" aria-label="Go to homepage">
             <Image
-              src="/fulllogo.png"
+              src="/logo.png"
               alt="Company logo"
               width={200}
               height={56}
