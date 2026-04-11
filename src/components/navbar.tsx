@@ -145,6 +145,9 @@ export default function Navbar() {
               className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               priority
             />
+            <span className="max-w-[220px] text-sm font-semibold leading-tight text-slate-800 transition-colors duration-200 group-hover:text-emerald-700 sm:text-base">
+              {t("nav.brand")}
+            </span>
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex">
