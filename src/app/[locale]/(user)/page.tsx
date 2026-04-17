@@ -7,8 +7,8 @@ import ServicesSection from "@/components/home/ServicesSection";
 import WhySolarSection from "@/components/home/WhySolarSection";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { buildBreadcrumbSchema, getLocalizedHomeMeta, pageMetadata } from "@/lib/seo";
-import { getAllPosts, getFeaturedPosts } from "@/sanity/queries";
-import type { Post } from "@/types";
+import { getAllPosts, getFeaturedProjects, getProjects } from "@/sanity/queries";
+import type { Post, Project } from "@/types";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -45,16 +45,22 @@ export default async function Home({
   });
 
   let latestPosts: Post[] = [];
-  let featuredPosts: Post[] = [];
+  let featuredProjects: Project[] = [];
+  let latestProjects: Project[] = [];
 
   try {
-    [latestPosts, featuredPosts] = await Promise.all([getAllPosts(3), getFeaturedPosts(1)]);
+    [latestPosts, featuredProjects, latestProjects] = await Promise.all([
+      getAllPosts(3),
+      getFeaturedProjects(1),
+      getProjects(),
+    ]);
   } catch {
     latestPosts = [];
-    featuredPosts = [];
+    featuredProjects = [];
+    latestProjects = [];
   }
 
-  const latestPost = featuredPosts?.[0] ?? latestPosts?.[0] ?? null;
+  const featuredProject = featuredProjects?.[0] ?? latestProjects?.[0] ?? null;
 
   return (
     <div className="bg-white text-slate-900">
@@ -62,7 +68,7 @@ export default async function Home({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <HeroSection latestPost={latestPost} />
+      <HeroSection featuredProject={featuredProject} />
 
       <main>
         <AboutSection />
