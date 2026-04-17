@@ -7,7 +7,7 @@ import { LazyMotion, AnimatePresence, domAnimation, m } from "motion/react";
 import { Factory, Smile, Wrench, Zap } from "lucide-react";
 import { useLocale } from "@/i18n/I18nProvider";
 import { urlFor } from "@/sanity/lib/image";
-import type { Post } from "@/types";
+import type { Project } from "@/types";
 
 const sliderImages = ["/slide1.jpg", "/slide2.jpg", "/slide3.jpg", "/slide4.jpg"];
 
@@ -80,10 +80,10 @@ function StatItem({
 }
 
 type HeroSectionProps = {
-  latestPost: Post | null;
+  featuredProject: Project | null;
 };
 
-export default function HeroSection({ latestPost }: HeroSectionProps) {
+export default function HeroSection({ featuredProject }: HeroSectionProps) {
   const locale = useLocale();
   const isAmharic = locale === "am";
   const [activeIndex, setActiveIndex] = useState(0);
@@ -184,7 +184,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
               </div>
             </m.div>
 
-            {latestPost?.slug && (
+            {featuredProject?.slug && (
               <m.div
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -192,7 +192,7 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
                 className="hidden lg:block"
               >
                 <Link
-                  href={`/${locale}/post/${latestPost.slug}`}
+                  href={`/${locale}/projects/${featuredProject.slug}`}
                   className="ui-glow-card group relative block overflow-hidden rounded-3xl border border-white/35 bg-white/10 p-3 text-white shadow-[0_0_35px_rgba(16,185,129,0.25)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/80 hover:shadow-[0_0_48px_rgba(16,185,129,0.4)]"
                 >
                   <m.div
@@ -202,14 +202,14 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
                   />
                   <div className="relative">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/90">
-                      {isAmharic ? "ተመራጭ ዜና" : "Featured News"}
+                      {isAmharic ? "ተመራጭ ፕሮጀክት" : "Featured Project"}
                     </p>
 
                     <div className="mt-2.5 overflow-hidden rounded-2xl border border-white/20">
-                      {latestPost.mainImage ? (
+                      {featuredProject.mainImage ? (
                         <Image
-                          src={urlFor(latestPost.mainImage).width(900).height(540).url()}
-                          alt={latestPost.title || "Featured news image"}
+                          src={urlFor(featuredProject.mainImage).width(900).height(540).url()}
+                          alt={featuredProject.title || "Featured project image"}
                           width={900}
                           height={540}
                           className="aspect-[16/8] w-full object-cover transition duration-500 group-hover:scale-105"
@@ -220,12 +220,14 @@ export default function HeroSection({ latestPost }: HeroSectionProps) {
                     </div>
 
                     <h3 className="mt-3 line-clamp-2 text-lg font-semibold leading-tight text-white">
-                      {latestPost.title}
+                      {featuredProject.title}
                     </h3>
-                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/80">{latestPost.excerpt}</p>
+                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/80">
+                      {featuredProject.overview}
+                    </p>
 
                     <span className="mt-3.5 inline-flex items-center rounded-full border border-white/40 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white transition group-hover:border-emerald-300 group-hover:bg-emerald-500/20">
-                      {isAmharic ? "ተጨማሪ ያንብቡ" : "Read more"}
+                      {isAmharic ? "ፕሮጀክቱን ይመልከቱ" : "View project"}
                     </span>
                   </div>
                 </Link>
