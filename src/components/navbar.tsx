@@ -146,7 +146,8 @@ export default function Navbar() {
               priority
             />
             <span className="max-w-[220px] text-sm font-semibold leading-tight text-slate-800 transition-colors duration-200 group-hover:text-emerald-700 sm:text-base">
-              {t("nav.brand")}
+              <span className="block">Master Premier</span>
+              <span className="block">Green Energy</span>
             </span>
           </Link>
 
