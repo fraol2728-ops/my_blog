@@ -58,7 +58,7 @@ const services = [
 ];
 
 export default function ServicesSection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   const localizedServices = isAmharic
     ? services.map((service) => ({
         ...service,

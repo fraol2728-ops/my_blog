@@ -12,7 +12,7 @@ const highlights = [
 ];
 
 export default function CompanyOverview() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   const localizedHighlights = isAmharic
     ? [
         "ከኃይል ግምገማ እና አዋጭነት ጥናት እስከ ተከላ እና አገልግሎት ድረስ የምህንድስና ድጋፍ",

@@ -3,7 +3,7 @@ import { SITE_URL } from "@/lib/seo";
 import { getAllPosts, getCategories } from "@/sanity/queries";
 import type { Post, PostCategory } from "@/types";
 
-const locales = ["en", "am"] as const;
+const locales = ["en", "ar"] as const;
 const localizedStaticPaths = ["", "/about", "/services", "/news", "/blog", "/contact"];
 
 type SupportedLocale = (typeof locales)[number];

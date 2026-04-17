@@ -80,7 +80,7 @@ const sendWithEmailJs = async (payload: FormState) => {
 };
 
 export default function ContactForm() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   const [form, setForm] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<Errors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);

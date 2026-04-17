@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function BlogPreview({ posts }: { posts: Post[] | null }) {
   const locale = useLocale();
-  const isAmharic = locale === "am";
+  const isAmharic = locale === ("am" as string);
   if (!posts || posts.length === 0) {
     return null;
   }

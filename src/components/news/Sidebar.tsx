@@ -14,7 +14,7 @@ interface SidebarProps {
 
 export default function Sidebar({ categories, recentPosts, search, onSearchChange }: SidebarProps) {
   const locale = useLocale();
-  const isAmharic = locale === "am";
+  const isAmharic = locale === ("am" as string);
 
   return (
     <aside className="space-y-6 lg:sticky lg:top-24">

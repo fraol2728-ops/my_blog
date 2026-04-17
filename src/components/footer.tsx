@@ -22,7 +22,7 @@ const socialLinks = [
 
 export default function Footer() {
   const locale = useLocale();
-  const isAmharic = locale === "am";
+  const isAmharic = locale === ("am" as string);
   const localized = (path: string) => `/${locale}${path === "/" ? "" : path}`;
 
   const quickLinks = [

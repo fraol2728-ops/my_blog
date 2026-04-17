@@ -65,12 +65,12 @@ export const buildSanityKeywordSignals = ({
 
 const localizedHomeTitle: Record<AppLocale, string> = {
   en: "Renewable Energy Engineering and Advisory Services",
-  am: "የታዳሽ ኃይል ምህንድስና እና አማካሪ አገልግሎቶች",
+  ar: "Renewable Energy Engineering and Advisory Services",
 };
 
 const localizedHomeDescription: Record<AppLocale, string> = {
   en: "Master Premier Green Energy Co. Ltd provides renewable energy engineering, technical support, and clean energy advisory services to expand reliable power access across South Sudan.",
-  am: "Master Premier Green Energy Co. Ltd በደቡብ ሱዳን የታማኝ ኃይል ተደራሽነትን ለማስፋፋት የታዳሽ ኃይል ምህንድስና፣ ቴክኒካል ድጋፍ እና የንጹህ ኃይል አማካሪ አገልግሎቶችን ይሰጣል።",
+  ar: "Master Premier Green Energy Co. Ltd provides renewable energy engineering, technical support, and clean energy advisory services to expand reliable power access across South Sudan.",
 };
 
 export const getLocalizedHomeMeta = (locale: AppLocale) => ({
@@ -113,12 +113,12 @@ export const pageMetadata = ({
       canonical: canonicalPath,
       languages: {
         en: `/en${path === "/" ? "" : path}`,
-        am: `/am${path === "/" ? "" : path}`,
+        ar: `/ar${path === "/" ? "" : path}`,
       },
     },
     openGraph: {
       type: "website",
-      locale: locale === "en" ? "en_US" : "am_ET",
+      locale: locale === "en" ? "en_US" : "ar_SA",
       url: canonicalPath,
       title,
       description,
@@ -171,12 +171,12 @@ export const buildSiteNavigationSchema = () => ({
     { name: "News", path: "/en/news" },
     { name: "Contact", path: "/en/contact" },
     { name: "Blog", path: "/en/blog" },
-    { name: "መነሻ", path: "/am" },
-    { name: "ስለ እኛ", path: "/am/about" },
-    { name: "አገልግሎቶች", path: "/am/services" },
-    { name: "ዜና", path: "/am/news" },
-    { name: "አግኙን", path: "/am/contact" },
-    { name: "ብሎግ", path: "/am/blog" },
+    { name: "الرئيسية", path: "/ar" },
+    { name: "من نحن", path: "/ar/about" },
+    { name: "الخدمات", path: "/ar/services" },
+    { name: "الأخبار", path: "/ar/news" },
+    { name: "اتصل بنا", path: "/ar/contact" },
+    { name: "المدونة", path: "/ar/blog" },
   ].map((item, index) => ({
     "@type": "SiteNavigationElement",
     position: index + 1,

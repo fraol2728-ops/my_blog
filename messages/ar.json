@@ -16,7 +16,7 @@
     "searchPlaceholder": "Search news...",
     "toggleMenu": "Toggle menu",
     "searchLabel": "Search news",
-    "language": "Language",
+    "language": "اللغة",
     "english": "English",
     "aboutOverview": "Company Overview",
     "aboutVision": "Vision & Mission",
@@ -30,7 +30,7 @@
     "servicesMaintenance": "Maintenance & Support",
     "servicesConsultancy": "Consultancy",
     "servicesCustom": "Custom Projects",
-    "arabic": "Arabic"
+    "arabic": "العربية"
   },
   "contact": {
     "heading": "Get in Touch with Our Solar Experts",

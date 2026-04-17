@@ -26,7 +26,7 @@ export default function LanguageSwitcher({ mobile = false }: { mobile?: boolean 
     <div className={wrapperClass}>
       {([
         { code: "en", label: t("nav.english") },
-        { code: "am", label: t("nav.amharic") },
+        { code: "ar", label: t("nav.arabic") },
       ] as const).map((lang) => (
         <button
           key={lang.code}

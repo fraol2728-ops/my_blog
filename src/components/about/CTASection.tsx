@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { useLocale } from "@/i18n/I18nProvider";
 
 export default function CTASection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
 
   return (
     <section className="bg-slate-900 px-6 py-20">

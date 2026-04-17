@@ -37,7 +37,7 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   return (
     <Section>
       <Reveal>

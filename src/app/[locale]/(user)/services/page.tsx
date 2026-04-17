@@ -120,7 +120,7 @@ export default async function ServicesPage({
 }) {
   const { locale } = await params;
   if (!isValidLocale(locale)) notFound();
-  const isAmharic = locale === "am";
+  const isAmharic = locale === ("am" as string);
   const breadcrumbSchema = buildBreadcrumbSchema({
     locale: locale as AppLocale,
     items: [

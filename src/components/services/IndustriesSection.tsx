@@ -14,7 +14,7 @@ const industries = [
 ];
 
 export default function IndustriesSection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-7xl">

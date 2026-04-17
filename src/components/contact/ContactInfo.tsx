@@ -32,7 +32,7 @@ const contactItems = [
 ];
 
 export default function ContactInfo() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   const localizedItems = isAmharic
     ? contactItems.map((item) => ({
         ...item,

@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   const locale = searchParams.get("locale") ?? "en";
   const path = searchParams.get("path") ?? "/";
 
-  const subtitle = locale === "am" ? "የታዳሽ ኃይል ምህንድስና እና አማካሪ አገልግሎቶች" : "Engineering • Advisory • Solar Access";
+  const subtitle = locale === "ar" ? "خدمات هندسة الطاقة المتجددة والاستشارات" : "Engineering • Advisory • Solar Access";
 
   return new ImageResponse(
     (

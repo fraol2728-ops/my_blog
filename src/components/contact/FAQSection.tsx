@@ -26,7 +26,7 @@ const faqs = [
 ];
 
 export default function FAQSection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   const localizedFaqs = isAmharic
     ? [
         {

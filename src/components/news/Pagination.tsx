@@ -10,7 +10,7 @@ interface PaginationProps {
 }
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
 
   if (totalPages <= 1) {
     return null;

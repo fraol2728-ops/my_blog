@@ -8,7 +8,7 @@ import { CheckCircle } from "lucide-react";
 import Image from "next/image";
 
 export default function AboutSection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   const bulletPoints = isAmharic
     ? [
         "የኃይል ኦዲት እና የአዋጭነት ጥናት",

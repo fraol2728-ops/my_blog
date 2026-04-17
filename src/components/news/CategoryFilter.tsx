@@ -11,7 +11,7 @@ interface CategoryFilterProps {
 }
 
 export default function CategoryFilter({ categories, activeCategory, onChange }: CategoryFilterProps) {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
 
   return (
     <div className="no-scrollbar flex items-center gap-2 overflow-x-auto pb-1">

@@ -9,7 +9,7 @@ import { useLocale } from "@/i18n/I18nProvider";
 
 export default function FeaturedPost({ post }: { post: Post }) {
   const locale = useLocale();
-  const isAmharic = locale === "am";
+  const isAmharic = locale === ("am" as string);
   const imageUrl = post.mainImage ? urlFor(post.mainImage).width(1400).height(700).url() : null;
 
   return (

@@ -3,7 +3,7 @@
 import { useLocale } from "@/i18n/I18nProvider";
 
 export default function NewsHero() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
 
   return (
     <section className="rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-slate-100 sm:p-12">

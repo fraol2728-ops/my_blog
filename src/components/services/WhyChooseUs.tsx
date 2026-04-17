@@ -28,7 +28,7 @@ const reasons = [
 ];
 
 export default function WhyChooseUs() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-7xl rounded-xl bg-white p-10 shadow-lg sm:p-12">

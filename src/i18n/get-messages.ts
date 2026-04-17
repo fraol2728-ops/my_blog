@@ -1,9 +1,9 @@
 import type { AppLocale } from "./config";
 
 import en from "../../messages/en.json";
-import am from "../../messages/am.json";
+import ar from "../../messages/ar.json";
 
-const catalogs = { en, am } as const;
+const catalogs = { en, ar } as const;
 
 export type Messages = typeof en;
 

@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { useLocale } from "@/i18n/I18nProvider";
 
 export default function HeroAbout() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
 
   return (
     <section className="relative isolate min-h-[65vh] overflow-hidden">

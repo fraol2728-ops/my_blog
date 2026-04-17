@@ -38,7 +38,7 @@ const values = [
 ];
 
 export default function ValuesGrid() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   return (
     <section id="our-values" className="bg-slate-50 px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">

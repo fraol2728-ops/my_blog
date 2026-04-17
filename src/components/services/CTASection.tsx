@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useLocale } from "@/i18n/I18nProvider";
 
 export default function CTASection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   return (
     <section className="px-6 pb-24">
       <motion.div

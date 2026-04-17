@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
     robots: post?.seo?.noIndex ? "noindex, nofollow" : "index, follow",
     openGraph: {
       type: "article",
-      locale: locale === "en" ? "en_US" : "am_ET",
+      locale: locale === "en" ? "en_US" : "ar_SA",
       url: canonicalPath,
       title,
       description,

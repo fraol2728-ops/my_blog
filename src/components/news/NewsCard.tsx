@@ -10,7 +10,7 @@ import { useLocale } from "@/i18n/I18nProvider";
 
 export default function NewsCard({ post }: { post: Post }) {
   const locale = useLocale();
-  const isAmharic = locale === "am";
+  const isAmharic = locale === ("am" as string);
   const imageUrl = post.mainImage ? urlFor(post.mainImage).width(800).height(500).url() : null;
   const category = Array.isArray(post.categories) ? post.categories[0] : undefined;
   const categoryLabel = typeof category === "string" ? category : category?.title;

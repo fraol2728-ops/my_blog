@@ -12,7 +12,7 @@ const team = [
 ];
 
 export default function TeamSection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   return (
     <section id="leadership" className="px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">

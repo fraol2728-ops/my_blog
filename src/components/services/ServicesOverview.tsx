@@ -26,7 +26,7 @@ type ServicesOverviewProps = {
 };
 
 export default function ServicesOverview({ services }: ServicesOverviewProps) {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
 
   return (
     <section id="services-overview" className="px-6 py-20">

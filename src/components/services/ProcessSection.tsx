@@ -13,7 +13,7 @@ const processSteps = [
 ];
 
 export default function ProcessSection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
 
   return (
     <section className="bg-slate-50 px-6 py-20">

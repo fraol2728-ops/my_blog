@@ -19,7 +19,7 @@ interface NewsGridProps {
 }
 
 export default function NewsGrid({ posts, categories, initialSearch = "" }: NewsGridProps) {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
   const [activeCategory, setActiveCategory] = useState("all");
   const [search, setSearch] = useState(initialSearch);
   const [currentPage, setCurrentPage] = useState(1);

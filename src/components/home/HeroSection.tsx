@@ -85,7 +85,7 @@ type HeroSectionProps = {
 
 export default function HeroSection({ latestPost }: HeroSectionProps) {
   const locale = useLocale();
-  const isAmharic = locale === "am";
+  const isAmharic = locale === ("am" as string);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {

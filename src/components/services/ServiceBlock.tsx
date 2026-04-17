@@ -21,7 +21,7 @@ type ServiceBlockProps = {
 };
 
 export default function ServiceBlock({ service, reverse = false }: ServiceBlockProps) {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === ("am" as string);
 
   return (
     <motion.article
