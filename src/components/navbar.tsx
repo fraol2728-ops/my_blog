@@ -64,7 +64,7 @@ export default function Navbar() {
       ],
     },
     { href: "/news", label: t("nav.news") },
-    { href: "/contact#faqs", label: t("nav.faqs") },
+    { href: "/projects", label: t("nav.projects") },
     { href: "/contact", label: t("nav.contact") },
   ];
 

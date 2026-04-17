@@ -217,7 +217,15 @@ const PROJECTS_QUERY = defineQuery(`*[_type == "project"] | order(date desc){
   overview,
   challenge,
   solution,
-  results
+  results,
+  latitude,
+  longitude,
+  beforeImage,
+  afterImage,
+  videoUrl,
+  testimonial,
+  isVerified,
+  completionStatus
 }`);
 
 export const getProjects = async () => {
@@ -241,7 +249,15 @@ const FEATURED_PROJECTS_QUERY = defineQuery(`*[_type == "project" && featured ==
   overview,
   challenge,
   solution,
-  results
+  results,
+  latitude,
+  longitude,
+  beforeImage,
+  afterImage,
+  videoUrl,
+  testimonial,
+  isVerified,
+  completionStatus
 }`);
 
 export const getFeaturedProjects = async (quantity = 3) => {
@@ -266,7 +282,15 @@ const PROJECT_BY_SLUG_QUERY = defineQuery(`*[_type == "project" && slug.current 
   overview,
   challenge,
   solution,
-  results
+  results,
+  latitude,
+  longitude,
+  beforeImage,
+  afterImage,
+  videoUrl,
+  testimonial,
+  isVerified,
+  completionStatus
 }`);
 
 export const getProjectBySlug = async (slug: string) => {
