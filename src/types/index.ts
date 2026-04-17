@@ -36,3 +36,33 @@ export interface Post {
   seo?: PostSeo;
 }
 
+
+export type ProjectCategory = "residential" | "commercial" | "government";
+
+export interface ProjectImage {
+  alt?: string;
+  [key: string]: unknown;
+}
+
+export interface ProjectResultMetrics {
+  energyOutput?: string;
+  peopleServed?: string;
+  costSavings?: string;
+}
+
+export interface Project {
+  _id: string;
+  title: string;
+  slug: string;
+  mainImage: ProjectImage | null;
+  gallery?: ProjectImage[];
+  location: string;
+  category: ProjectCategory;
+  featured?: boolean;
+  capacity: string;
+  date: string;
+  overview: string;
+  challenge: string;
+  solution: string;
+  results?: ProjectResultMetrics;
+}

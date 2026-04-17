@@ -202,3 +202,86 @@ export const getOtherPosts = async (currentSlug: string, quantity: number) => {
     params: { currentSlug, quantity },
   });
 };
+
+const PROJECTS_QUERY = defineQuery(`*[_type == "project"] | order(date desc){
+  _id,
+  title,
+  "slug": slug.current,
+  mainImage,
+  gallery,
+  location,
+  category,
+  featured,
+  capacity,
+  date,
+  overview,
+  challenge,
+  solution,
+  results
+}`);
+
+export const getProjects = async () => {
+  return await clientFetch({
+    query: PROJECTS_QUERY,
+    tags: ["project"],
+  });
+};
+
+const FEATURED_PROJECTS_QUERY = defineQuery(`*[_type == "project" && featured == true] | order(date desc)[0...$quantity]{
+  _id,
+  title,
+  "slug": slug.current,
+  mainImage,
+  gallery,
+  location,
+  category,
+  featured,
+  capacity,
+  date,
+  overview,
+  challenge,
+  solution,
+  results
+}`);
+
+export const getFeaturedProjects = async (quantity = 3) => {
+  return await clientFetch({
+    query: FEATURED_PROJECTS_QUERY,
+    params: { quantity },
+    tags: ["project"],
+  });
+};
+
+const PROJECT_BY_SLUG_QUERY = defineQuery(`*[_type == "project" && slug.current == $slug][0]{
+  _id,
+  title,
+  "slug": slug.current,
+  mainImage,
+  gallery,
+  location,
+  category,
+  featured,
+  capacity,
+  date,
+  overview,
+  challenge,
+  solution,
+  results
+}`);
+
+export const getProjectBySlug = async (slug: string) => {
+  return await clientFetch({
+    query: PROJECT_BY_SLUG_QUERY,
+    params: { slug },
+    tags: ["project"],
+  });
+};
+
+const PROJECT_SLUGS_QUERY = defineQuery(`*[_type == "project" && defined(slug.current)]{ "slug": slug.current }`);
+
+export const getProjectSlugs = async () => {
+  return await clientFetch({
+    query: PROJECT_SLUGS_QUERY,
+    tags: ["project"],
+  });
+};
