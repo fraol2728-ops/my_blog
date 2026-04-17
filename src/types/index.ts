@@ -36,7 +36,6 @@ export interface Post {
   seo?: PostSeo;
 }
 
-
 export type ProjectCategory = "residential" | "commercial" | "government";
 
 export interface ProjectImage {
@@ -48,6 +47,12 @@ export interface ProjectResultMetrics {
   energyOutput?: string;
   peopleServed?: string;
   costSavings?: string;
+}
+
+export interface ProjectTestimonial {
+  quote?: string;
+  name?: string;
+  role?: string;
 }
 
 export interface Project {
@@ -65,4 +70,12 @@ export interface Project {
   challenge: string;
   solution: string;
   results?: ProjectResultMetrics;
+  latitude?: number;
+  longitude?: number;
+  beforeImage?: ProjectImage | null;
+  afterImage?: ProjectImage | null;
+  videoUrl?: string;
+  testimonial?: ProjectTestimonial;
+  isVerified?: boolean;
+  completionStatus?: string;
 }

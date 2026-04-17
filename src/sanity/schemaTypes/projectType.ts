@@ -48,6 +48,16 @@ export const projectType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "latitude",
+      type: "number",
+      validation: (Rule) => Rule.required().min(-90).max(90),
+    }),
+    defineField({
+      name: "longitude",
+      type: "number",
+      validation: (Rule) => Rule.required().min(-180).max(180),
+    }),
+    defineField({
       name: "category",
       type: "string",
       options: {
@@ -73,6 +83,24 @@ export const projectType = defineType({
       description: "Installed capacity (e.g., 50kW)",
     }),
     defineField({
+      name: "completionStatus",
+      type: "string",
+      initialValue: "Completed",
+      options: {
+        list: [
+          { title: "Completed", value: "Completed" },
+          { title: "In Progress", value: "In Progress" },
+          { title: "Planned", value: "Planned" },
+        ],
+      },
+    }),
+    defineField({
+      name: "isVerified",
+      title: "Verified project",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "date",
       type: "date",
       validation: (Rule) => Rule.required(),
@@ -96,6 +124,33 @@ export const projectType = defineType({
       validation: (Rule) => Rule.required().min(40),
     }),
     defineField({
+      name: "beforeImage",
+      type: "image",
+      options: { hotspot: true },
+      fields: [{ name: "alt", type: "string", title: "Alternative text" }],
+    }),
+    defineField({
+      name: "afterImage",
+      type: "image",
+      options: { hotspot: true },
+      fields: [{ name: "alt", type: "string", title: "Alternative text" }],
+    }),
+    defineField({
+      name: "videoUrl",
+      title: "Video URL",
+      type: "string",
+      description: "YouTube/Vimeo embed URL or public MP4 URL",
+    }),
+    defineField({
+      name: "testimonial",
+      type: "object",
+      fields: [
+        defineField({ name: "quote", type: "text", rows: 3 }),
+        defineField({ name: "name", type: "string" }),
+        defineField({ name: "role", type: "string" }),
+      ],
+    }),
+    defineField({
       name: "results",
       type: "object",
       fields: [
@@ -112,12 +167,14 @@ export const projectType = defineType({
       capacity: "capacity",
       media: "mainImage",
       featured: "featured",
+      completionStatus: "completionStatus",
+      isVerified: "isVerified",
     },
-    prepare({ title, location, capacity, media, featured }) {
+    prepare({ title, location, capacity, media, featured, completionStatus, isVerified }) {
       return {
         title,
         media,
-        subtitle: `${featured ? "Featured · " : ""}${location} · ${capacity}`,
+        subtitle: `${featured ? "Featured · " : ""}${isVerified ? "Verified · " : ""}${location} · ${capacity}${completionStatus ? ` · ${completionStatus}` : ""}`,
       };
     },
   },
