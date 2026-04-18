@@ -2,6 +2,7 @@ import AboutSection from "@/components/home/AboutSection";
 import BlogPreview from "@/components/home/BlogPreview";
 import FeasibilityInsightsSection from "@/components/feasibility/FeasibilityInsightsSection";
 import HeroSection from "@/components/home/HeroSection";
+import PartnersSection from "@/components/home/PartnersSection";
 import ProcessSection from "@/components/home/ProcessSection";
 import ProjectsSection from "@/components/home/ProjectsSection";
 import ServicesSection from "@/components/home/ServicesSection";
@@ -81,6 +82,7 @@ export default async function Home({
       <HeroSection featuredProject={featuredProject} />
 
       <main>
+        <PartnersSection locale={locale} />
         <AboutSection />
         <BlogPreview posts={latestPosts} />
         <FeasibilityInsightsSection
