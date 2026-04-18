@@ -203,6 +203,68 @@ export const getOtherPosts = async (currentSlug: string, quantity: number) => {
   });
 };
 
+const FEASIBILITY_POSTS_QUERY = defineQuery(`*[_type == "feasibilityPost"] | order(publishedAt desc){
+  _id,
+  title,
+  "slug": slug.current,
+  mainImage,
+  gallery,
+  shortDescription,
+  content,
+  category,
+  publishedAt,
+  isFeatured
+}`);
+
+export const getFeasibilityPosts = async () => {
+  return await clientFetch({
+    query: FEASIBILITY_POSTS_QUERY,
+    tags: ["feasibility-post"],
+  });
+};
+
+const FEATURED_FEASIBILITY_POSTS_QUERY = defineQuery(`*[_type == "feasibilityPost" && isFeatured == true] | order(publishedAt desc)[0...$quantity]{
+  _id,
+  title,
+  "slug": slug.current,
+  mainImage,
+  gallery,
+  shortDescription,
+  content,
+  category,
+  publishedAt,
+  isFeatured
+}`);
+
+export const getFeaturedFeasibilityPosts = async (quantity = 3) => {
+  return await clientFetch({
+    query: FEATURED_FEASIBILITY_POSTS_QUERY,
+    params: { quantity },
+    tags: ["feasibility-post"],
+  });
+};
+
+const FEASIBILITY_POST_BY_SLUG_QUERY = defineQuery(`*[_type == "feasibilityPost" && slug.current == $slug][0]{
+  _id,
+  title,
+  "slug": slug.current,
+  mainImage,
+  gallery,
+  shortDescription,
+  content,
+  category,
+  publishedAt,
+  isFeatured
+}`);
+
+export const getFeasibilityPostBySlug = async (slug: string) => {
+  return await clientFetch({
+    query: FEASIBILITY_POST_BY_SLUG_QUERY,
+    params: { slug },
+    tags: ["feasibility-post"],
+  });
+};
+
 const PROJECTS_QUERY = defineQuery(`*[_type == "project"] | order(date desc){
   _id,
   title,

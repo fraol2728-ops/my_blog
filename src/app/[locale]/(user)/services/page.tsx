@@ -1,4 +1,5 @@
 import CTASection from "@/components/services/CTASection";
+import FeasibilityInsightsSection from "@/components/feasibility/FeasibilityInsightsSection";
 import IndustriesSection from "@/components/services/IndustriesSection";
 import ProcessSection from "@/components/services/ProcessSection";
 import ProjectsSection from "@/components/services/ProjectsSection";
@@ -10,6 +11,8 @@ import ServicesOverview, {
 import WhyChooseUs from "@/components/services/WhyChooseUs";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { buildBreadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { getFeasibilityPosts } from "@/sanity/queries";
+import type { FeasibilityPost } from "@/types";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -162,6 +165,13 @@ export default async function ServicesPage({
       }))
     : serviceOverviewItems;
 
+  let feasibilityPosts: FeasibilityPost[] = [];
+  try {
+    feasibilityPosts = await getFeasibilityPosts();
+  } catch {
+    feasibilityPosts = [];
+  }
+
   return (
     <main className="bg-white text-slate-900">
       <script
@@ -185,6 +195,16 @@ export default async function ServicesPage({
 
       <ProcessSection />
       <IndustriesSection />
+      <FeasibilityInsightsSection
+        kicker={isAmharic ? "ተያያዥ የብቃት ግንዛቤዎች" : "Related Feasibility Insights"}
+        title={isAmharic ? "ከአገልግሎቶቻችን ጋር ተያያዥ ጥናቶች" : "Feasibility insights related to your service goals"}
+        description={
+          isAmharic
+            ? "የእርስዎን ኢንቨስትመንት ውሳኔ ለማጠናከር በእኛ የቅርብ ጊዜ ጥናቶች ይጀምሩ።"
+            : "Use recent studies to compare scope, ROI expectations, and implementation risks across project types."
+        }
+        posts={feasibilityPosts.slice(0, 3)}
+      />
       <ProjectsSection />
       <WhyChooseUs />
       <CTASection />

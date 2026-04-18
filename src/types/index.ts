@@ -79,3 +79,16 @@ export interface Project {
   isVerified?: boolean;
   completionStatus?: string;
 }
+
+export interface FeasibilityPost {
+  _id: string;
+  title: string;
+  slug: string;
+  mainImage: PostImage | null;
+  gallery?: PostImage[];
+  shortDescription: string;
+  content?: TypedObject[] | null;
+  category: string;
+  publishedAt: string;
+  isFeatured?: boolean;
+}

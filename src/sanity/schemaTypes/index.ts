@@ -7,7 +7,17 @@ import { authorType } from "./authorType";
 import { commentType } from "./commentType";
 import { leadType } from "./leadType";
 import { projectType } from "./projectType";
+import { feasibilityPostType } from "./feasibilityPostType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContentType, categoryType, postType, authorType, commentType, leadType, projectType],
+  types: [
+    blockContentType,
+    categoryType,
+    postType,
+    authorType,
+    commentType,
+    leadType,
+    projectType,
+    feasibilityPostType,
+  ],
 };
