@@ -1,22 +1,46 @@
 export const dynamic = "force-dynamic";
 
-import { notFound } from "next/navigation";
+import { PortableText } from "next-sanity";
+import dayjs from "dayjs";
+import { ArrowRight, BadgeCheck, MapPin } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import dayjs from "dayjs";
-import type { Metadata } from "next";
-import { ArrowRight, BadgeCheck, MapPin } from "lucide-react";
+import { notFound } from "next/navigation";
 
+import ProjectGallery from "@/components/projects/ProjectGallery";
+import StickyProjectCTA from "@/components/projects/StickyProjectCTA";
+import { Reveal } from "@/components/ui/reveal";
 import { isValidLocale } from "@/i18n/config";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
 import { urlFor } from "@/sanity/lib/image";
 import { getProjectBySlug } from "@/sanity/queries";
-import ProjectGallery from "@/components/projects/ProjectGallery";
 import { Project } from "@/types";
-import BeforeAfterSlider from "@/components/projects/BeforeAfterSlider";
-import ProjectVideoSection from "@/components/projects/ProjectVideoSection";
-import ProjectTimeline from "@/components/projects/ProjectTimeline";
-import StickyProjectCTA from "@/components/projects/StickyProjectCTA";
+
+const portableTextComponents: any = {
+  block: {
+    h2: ({ children }: any) => <h2 className="mt-12 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{children}</h2>,
+    h3: ({ children }: any) => <h3 className="mt-8 text-2xl font-semibold text-slate-900">{children}</h3>,
+    normal: ({ children }: any) => <p className="mt-5 max-w-3xl text-base leading-8 text-slate-700 sm:text-lg">{children}</p>,
+  },
+  list: {
+    bullet: ({ children }: any) => <ul className="mt-5 max-w-3xl list-disc space-y-2 pl-6 text-base leading-8 text-slate-700 sm:text-lg">{children}</ul>,
+  },
+  marks: {
+    strong: ({ children }: any) => <strong className="font-semibold text-green-700">{children}</strong>,
+    em: ({ children }: any) => <em className="italic text-slate-800">{children}</em>,
+  },
+  types: {
+    image: ({ value }: any) => {
+      const imageUrl = urlFor(value).width(1400).height(900).url();
+      return (
+        <div className="my-8 overflow-hidden rounded-2xl border border-slate-200 shadow-lg shadow-slate-200/60">
+          <Image src={imageUrl} alt={value.alt ?? "Project content image"} width={1400} height={900} className="h-auto w-full object-cover" />
+        </div>
+      );
+    },
+  },
+};
 
 export async function generateMetadata({
   params,
@@ -83,8 +107,6 @@ export default async function ProjectCaseStudyPage({
 
   const heroImage = project.mainImage ? urlFor(project.mainImage).width(1800).height(1100).url() : null;
   const gallery = project.gallery ?? [];
-  const agreementPreviews = gallery.slice(0, 2);
-  const videoThumbnail = project.mainImage ? urlFor(project.mainImage).width(1600).height(900).url() : null;
 
   return (
     <div className="bg-white py-12 sm:py-16">
@@ -93,7 +115,7 @@ export default async function ProjectCaseStudyPage({
           ← Back to Projects
         </Link>
 
-        <header className="mt-6">
+        <Reveal className="mt-6">
           <div className="flex flex-wrap gap-2">
             <p className="inline-flex items-center gap-2 rounded-full bg-green-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-green-700">
               {project.category}
@@ -103,42 +125,47 @@ export default async function ProjectCaseStudyPage({
                 <BadgeCheck className="size-3.5" /> Verified Project
               </p>
             )}
-            {project.completionStatus && (
-              <p className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{project.completionStatus}</p>
-            )}
           </div>
           <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">{project.title}</h1>
           <div className="mt-4 flex flex-wrap gap-4 text-sm text-slate-600">
-            <p className="inline-flex items-center gap-1"><MapPin className="size-4" /> {project.location}</p>
+            <p className="inline-flex items-center gap-1">
+              <MapPin className="size-4" /> {project.location}
+            </p>
             <p>{dayjs(project.date).format("MMMM D, YYYY")}</p>
-            <p>{project.capacity}</p>
+            <p className="font-semibold text-green-700">{project.capacity}</p>
           </div>
-        </header>
+        </Reveal>
 
         {heroImage && (
-          <div className="relative mt-8 overflow-hidden rounded-3xl border border-slate-200">
-            <Image src={heroImage} alt={project.mainImage?.alt ?? project.title} width={1800} height={1100} priority className="h-[420px] w-full object-cover sm:h-[520px]" />
-          </div>
+          <Reveal className="relative mt-8 overflow-hidden rounded-3xl border border-slate-200" delay={0.08}>
+            <Image
+              src={heroImage}
+              alt={project.mainImage?.alt ?? project.title}
+              width={1800}
+              height={1100}
+              priority
+              className="h-[360px] w-full object-cover sm:h-[520px]"
+            />
+          </Reveal>
         )}
 
-        <section className="mt-12 grid gap-8 lg:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200 p-6">
-            <h2 className="text-2xl font-semibold text-slate-900">Overview</h2>
-            <p className="mt-4 leading-7 text-slate-600">{project.overview}</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 p-6">
-            <h2 className="text-2xl font-semibold text-slate-900">The Challenge</h2>
-            <p className="mt-4 leading-7 text-slate-600">{project.challenge}</p>
-          </div>
-        </section>
+        <Reveal className="mt-12 rounded-3xl border border-slate-200 bg-slate-50/60 p-6 sm:p-8" delay={0.1}>
+          <h2 className="text-2xl font-semibold text-slate-900 sm:text-3xl">Project Details</h2>
+          {project.body?.length ? (
+            <div className="mt-4 space-y-2">
+              <PortableText value={project.body} components={portableTextComponents} />
+            </div>
+          ) : (
+            <div className="mt-4 space-y-4">
+              <p className="max-w-3xl text-base leading-8 text-slate-700 sm:text-lg">{project.overview}</p>
+              <p className="max-w-3xl text-base leading-8 text-slate-700 sm:text-lg">{project.challenge}</p>
+              <p className="max-w-3xl text-base leading-8 text-slate-700 sm:text-lg">{project.solution}</p>
+            </div>
+          )}
+        </Reveal>
 
-        <section className="mt-8 rounded-2xl border border-slate-200 p-6 sm:p-8">
-          <h2 className="text-2xl font-semibold text-slate-900">The Solution</h2>
-          <p className="mt-4 leading-7 text-slate-600">{project.solution}</p>
-        </section>
-
-        <section className="mt-8 rounded-2xl border border-green-100 bg-green-50/60 p-6 sm:p-8">
-          <h2 className="text-2xl font-semibold text-slate-900">Results</h2>
+        <Reveal className="mt-8 rounded-3xl border border-green-100 bg-green-50/60 p-6 sm:p-8" delay={0.12}>
+          <h2 className="text-2xl font-semibold text-slate-900">Results Snapshot</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             <div className="rounded-xl bg-white p-4">
               <p className="text-xs uppercase tracking-[0.14em] text-slate-500">Energy Output</p>
@@ -153,55 +180,19 @@ export default async function ProjectCaseStudyPage({
               <p className="mt-2 text-2xl font-semibold text-green-700">{project.results?.costSavings ?? "—"}</p>
             </div>
           </div>
-        </section>
+        </Reveal>
 
-        <BeforeAfterSlider beforeImage={project.beforeImage} afterImage={project.afterImage} title={project.title} />
+        <Reveal delay={0.14}>
+          <ProjectGallery images={gallery} title={project.title} />
+        </Reveal>
 
-        <ProjectVideoSection videoUrl={project.videoUrl} title={project.title} thumbnail={videoThumbnail} />
-
-        <ProjectTimeline />
-
-        {agreementPreviews.length > 0 && (
-          <section className="mt-10 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8">
-            <h2 className="text-2xl font-semibold text-slate-900">Agreement Previews</h2>
-            <p className="mt-2 text-sm text-slate-600">Confidential sections are blurred while preserving key delivery milestones.</p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {agreementPreviews.map((image, index) => {
-                const url = urlFor(image).width(900).height(620).url();
-                return (
-                  <div key={`${url}-${index}`} className="relative overflow-hidden rounded-2xl border border-slate-200">
-                    <Image src={url} alt={image.alt ?? `Agreement preview ${index + 1}`} width={900} height={620} className="h-56 w-full object-cover" />
-                    <div className="absolute inset-0 bg-white/40 backdrop-blur-sm" />
-                    <p className="absolute left-3 top-3 rounded-full bg-slate-900/75 px-3 py-1 text-xs font-semibold text-white">Preview</p>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-        )}
-
-        {project.testimonial?.quote && (
-          <section className="mt-10 rounded-3xl border border-emerald-100 bg-emerald-50/40 p-6 sm:p-8">
-            <h2 className="text-2xl font-semibold text-slate-900">Client Testimonial</h2>
-            <blockquote className="mt-4 text-lg leading-8 text-slate-700">“{project.testimonial.quote}”</blockquote>
-            {(project.testimonial.name || project.testimonial.role) && (
-              <p className="mt-3 text-sm font-medium text-slate-500">
-                {project.testimonial.name ?? "Client"}
-                {project.testimonial.role ? ` · ${project.testimonial.role}` : ""}
-              </p>
-            )}
-          </section>
-        )}
-
-        <ProjectGallery images={gallery} title={project.title} />
-
-        <section className="mt-16 rounded-3xl border border-green-100 bg-gradient-to-r from-green-600 to-emerald-600 px-8 py-12 text-white">
-          <h2 className="text-3xl font-semibold">Start Your Project</h2>
-          <p className="mt-3 max-w-2xl text-white/90">Talk to our team about a custom solar design tailored to your facility, budget, and long-term energy goals.</p>
+        <Reveal className="mt-16 rounded-3xl border border-green-100 bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-10 text-white sm:px-8 sm:py-12" delay={0.16}>
+          <h2 className="text-3xl font-semibold">Start Your Own Solar Project</h2>
+          <p className="mt-3 max-w-2xl text-white/90">We&apos;ll design a system around your site, load profile, timeline, and long-term savings goals.</p>
           <Link href={`/${locale}/contact`} className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-green-700 transition hover:bg-green-50">
-            Start Your Project <ArrowRight className="size-4" />
+            Request Free Consultation <ArrowRight className="size-4" />
           </Link>
-        </section>
+        </Reveal>
       </article>
 
       <StickyProjectCTA href={`/${locale}/contact`} />
