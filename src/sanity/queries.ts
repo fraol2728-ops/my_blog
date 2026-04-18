@@ -265,28 +265,27 @@ export const getFeasibilityPostBySlug = async (slug: string) => {
   });
 };
 
-const PROJECTS_QUERY = defineQuery(`*[_type == "project"] | order(date desc){
+const PROJECTS_QUERY = defineQuery(`*[_type == "project"] | order(coalesce(year, date) desc){
   _id,
   title,
   "slug": slug.current,
   mainImage,
   gallery,
   location,
-  category,
+  "projectType": coalesce(projectType, category),
+  "category": coalesce(category, projectType),
   featured,
   capacity,
+  year,
   date,
   overview,
   challenge,
   solution,
-  body,
   results,
+  body,
+  stats,
   latitude,
   longitude,
-  beforeImage,
-  afterImage,
-  videoUrl,
-  testimonial,
   isVerified,
   completionStatus
 }`);
@@ -298,28 +297,27 @@ export const getProjects = async () => {
   });
 };
 
-const FEATURED_PROJECTS_QUERY = defineQuery(`*[_type == "project" && featured == true] | order(date desc)[0...$quantity]{
+const FEATURED_PROJECTS_QUERY = defineQuery(`*[_type == "project" && featured == true] | order(coalesce(year, date) desc)[0...$quantity]{
   _id,
   title,
   "slug": slug.current,
   mainImage,
   gallery,
   location,
-  category,
+  "projectType": coalesce(projectType, category),
+  "category": coalesce(category, projectType),
   featured,
   capacity,
+  year,
   date,
   overview,
   challenge,
   solution,
-  body,
   results,
+  body,
+  stats,
   latitude,
   longitude,
-  beforeImage,
-  afterImage,
-  videoUrl,
-  testimonial,
   isVerified,
   completionStatus
 }`);
@@ -339,21 +337,20 @@ const PROJECT_BY_SLUG_QUERY = defineQuery(`*[_type == "project" && slug.current 
   mainImage,
   gallery,
   location,
-  category,
+  "projectType": coalesce(projectType, category),
+  "category": coalesce(category, projectType),
   featured,
   capacity,
+  year,
   date,
   overview,
   challenge,
   solution,
-  body,
   results,
+  body,
+  stats,
   latitude,
   longitude,
-  beforeImage,
-  afterImage,
-  videoUrl,
-  testimonial,
   isVerified,
   completionStatus
 }`);
