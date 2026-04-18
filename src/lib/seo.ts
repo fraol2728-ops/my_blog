@@ -113,12 +113,11 @@ export const pageMetadata = ({
       canonical: canonicalPath,
       languages: {
         en: `/en${path === "/" ? "" : path}`,
-        am: `/am${path === "/" ? "" : path}`,
       },
     },
     openGraph: {
       type: "website",
-      locale: locale === "en" ? "en_US" : "am_ET",
+      locale: "en_US",
       url: canonicalPath,
       title,
       description,
@@ -171,12 +170,6 @@ export const buildSiteNavigationSchema = () => ({
     { name: "News", path: "/en/news" },
     { name: "Contact", path: "/en/contact" },
     { name: "Blog", path: "/en/blog" },
-    { name: "መነሻ", path: "/am" },
-    { name: "ስለ እኛ", path: "/am/about" },
-    { name: "አገልግሎቶች", path: "/am/services" },
-    { name: "ዜና", path: "/am/news" },
-    { name: "አግኙን", path: "/am/contact" },
-    { name: "ብሎግ", path: "/am/blog" },
   ].map((item, index) => ({
     "@type": "SiteNavigationElement",
     position: index + 1,

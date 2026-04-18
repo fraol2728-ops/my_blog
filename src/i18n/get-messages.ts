@@ -1,14 +1,17 @@
 import type { AppLocale } from "./config";
 
 import en from "../../messages/en.json";
-import am from "../../messages/am.json";
 
-const catalogs = { en, am } as const;
+const catalogs = { en } as const;
 
 export type Messages = typeof en;
 
 export function getMessages(locale: AppLocale): Messages {
-  return catalogs[locale];
+  if (locale === "am") {
+    return catalogs.en;
+  }
+
+  return catalogs.en;
 }
 
 export function resolveMessage(messages: Messages, key: string): string {

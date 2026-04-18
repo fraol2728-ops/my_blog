@@ -11,7 +11,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "@/i18n/I18nProvider";
 import type { AppLocale } from "@/i18n/config";
-import LanguageSwitcher from "./language-switcher";
 
 type DropdownItem = {
   href: string;
@@ -225,7 +224,6 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <LanguageSwitcher />
 
             <form
               className="flex items-center gap-2"
@@ -263,7 +261,6 @@ export default function Navbar() {
 
           <DisclosurePanel className="absolute inset-x-0 top-full border-b border-slate-200/70 bg-white/95 shadow-sm backdrop-blur-2xl lg:hidden">
             <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-5">
-              <LanguageSwitcher mobile />
 
               {navLinks.map((item) => {
                 if (!item.dropdownItems || !item.dropdownItems.length) {

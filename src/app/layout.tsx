@@ -19,7 +19,6 @@ export const metadata: Metadata = {
     canonical: "/",
     languages: {
       en: "/en",
-      am: "/am",
       "x-default": "/en",
     },
   },
@@ -72,7 +71,7 @@ const organizationSchema = {
       email: "mpgenergy@gmail.com",
       telephone: "+211982004848",
       areaServed: "SS",
-      availableLanguage: ["en", "am"],
+      availableLanguage: ["en"],
     },
   ],
   knowsAbout: [
@@ -88,7 +87,7 @@ const websiteSchema = {
   "@type": "WebSite",
   name: SITE_NAME,
   url: SITE_URL,
-  inLanguage: ["en", "am"],
+  inLanguage: ["en"],
   publisher: {
     "@type": "Organization",
     name: SITE_NAME,
