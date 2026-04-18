@@ -69,6 +69,7 @@ export interface Project {
   overview: string;
   challenge: string;
   solution: string;
+  body?: TypedObject[] | null;
   results?: ProjectResultMetrics;
   latitude?: number;
   longitude?: number;

@@ -124,6 +124,34 @@ export const projectType = defineType({
       validation: (Rule) => Rule.required().min(40),
     }),
     defineField({
+      name: "body",
+      title: "Project Details",
+      type: "array",
+      description:
+        "Use this rich case-study field for Introduction, Challenge, Solution, System Details, Results, and Conclusion.",
+      of: [
+        {
+          type: "block",
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "Heading", value: "h2" },
+            { title: "Subheading", value: "h3" },
+          ],
+          lists: [{ title: "Bullet", value: "bullet" }],
+          marks: {
+            decorators: [
+              { title: "Bold", value: "strong" },
+              { title: "Italic", value: "em" },
+            ],
+          },
+        },
+        {
+          type: "image",
+          options: { hotspot: true },
+        },
+      ],
+    }),
+    defineField({
       name: "beforeImage",
       type: "image",
       options: { hotspot: true },
