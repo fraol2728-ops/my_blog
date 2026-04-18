@@ -36,23 +36,16 @@ export interface Post {
   seo?: PostSeo;
 }
 
-export type ProjectCategory = "residential" | "commercial" | "government";
+export type ProjectCategory = "residential" | "commercial" | "government" | "industrial";
 
 export interface ProjectImage {
   alt?: string;
   [key: string]: unknown;
 }
 
-export interface ProjectResultMetrics {
-  energyOutput?: string;
-  peopleServed?: string;
-  costSavings?: string;
-}
-
-export interface ProjectTestimonial {
-  quote?: string;
-  name?: string;
-  role?: string;
+export interface ProjectStat {
+  label: string;
+  value: string;
 }
 
 export interface Project {
@@ -62,21 +55,20 @@ export interface Project {
   mainImage: ProjectImage | null;
   gallery?: ProjectImage[];
   location: string;
-  category: ProjectCategory;
+  projectType: ProjectCategory | string;
+  category?: ProjectCategory | string;
   featured?: boolean;
   capacity: string;
-  date: string;
+  year?: string;
+  date?: string;
   overview: string;
   challenge: string;
   solution: string;
+  results: string;
   body?: TypedObject[] | null;
-  results?: ProjectResultMetrics;
+  stats?: ProjectStat[];
   latitude?: number;
   longitude?: number;
-  beforeImage?: ProjectImage | null;
-  afterImage?: ProjectImage | null;
-  videoUrl?: string;
-  testimonial?: ProjectTestimonial;
   isVerified?: boolean;
   completionStatus?: string;
 }

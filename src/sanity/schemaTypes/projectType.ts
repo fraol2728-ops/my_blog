@@ -22,13 +22,7 @@ export const projectType = defineType({
       name: "mainImage",
       type: "image",
       options: { hotspot: true },
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative text",
-        },
-      ],
+      fields: [{ name: "alt", type: "string", title: "Alternative text" }],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -42,69 +36,39 @@ export const projectType = defineType({
         }),
       ],
     }),
+
     defineField({
       name: "location",
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "latitude",
-      type: "number",
-      validation: (Rule) => Rule.required().min(-90).max(90),
-    }),
-    defineField({
-      name: "longitude",
-      type: "number",
-      validation: (Rule) => Rule.required().min(-180).max(180),
-    }),
-    defineField({
-      name: "category",
+      name: "projectType",
+      title: "Project Type",
       type: "string",
       options: {
         list: [
           { title: "Residential", value: "residential" },
           { title: "Commercial", value: "commercial" },
           { title: "Government", value: "government" },
+          { title: "Industrial", value: "industrial" },
         ],
-        layout: "radio",
       },
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: "featured",
-      title: "Featured",
-      type: "boolean",
-      initialValue: false,
     }),
     defineField({
       name: "capacity",
       type: "string",
       validation: (Rule) => Rule.required(),
-      description: "Installed capacity (e.g., 50kW)",
+      description: "Installed capacity (e.g., 10kW)",
     }),
     defineField({
-      name: "completionStatus",
+      name: "year",
       type: "string",
-      initialValue: "Completed",
-      options: {
-        list: [
-          { title: "Completed", value: "Completed" },
-          { title: "In Progress", value: "In Progress" },
-          { title: "Planned", value: "Planned" },
-        ],
-      },
-    }),
-    defineField({
-      name: "isVerified",
-      title: "Verified project",
-      type: "boolean",
-      initialValue: true,
-    }),
-    defineField({
-      name: "date",
-      type: "date",
+      description: "Completion year (e.g., 2026)",
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: "overview",
       type: "text",
@@ -124,13 +88,18 @@ export const projectType = defineType({
       validation: (Rule) => Rule.required().min(40),
     }),
     defineField({
+      name: "results",
+      type: "text",
+      rows: 4,
+      validation: (Rule) => Rule.required().min(20),
+    }),
+
+    defineField({
       name: "body",
-      title: "Project Details",
+      title: "Optional Rich Body",
       type: "array",
-      description:
-        "Use this rich case-study field for Introduction, Challenge, Solution, System Details, Results, and Conclusion.",
       of: [
-        {
+        defineArrayMember({
           type: "block",
           styles: [
             { title: "Normal", value: "normal" },
@@ -144,48 +113,48 @@ export const projectType = defineType({
               { title: "Italic", value: "em" },
             ],
           },
-        },
-        {
-          type: "image",
-          options: { hotspot: true },
-        },
+        }),
+        defineArrayMember({ type: "image", options: { hotspot: true } }),
       ],
     }),
+
     defineField({
-      name: "beforeImage",
-      type: "image",
-      options: { hotspot: true },
-      fields: [{ name: "alt", type: "string", title: "Alternative text" }],
-    }),
-    defineField({
-      name: "afterImage",
-      type: "image",
-      options: { hotspot: true },
-      fields: [{ name: "alt", type: "string", title: "Alternative text" }],
-    }),
-    defineField({
-      name: "videoUrl",
-      title: "Video URL",
-      type: "string",
-      description: "YouTube/Vimeo embed URL or public MP4 URL",
-    }),
-    defineField({
-      name: "testimonial",
-      type: "object",
-      fields: [
-        defineField({ name: "quote", type: "text", rows: 3 }),
-        defineField({ name: "name", type: "string" }),
-        defineField({ name: "role", type: "string" }),
+      name: "stats",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [
+            defineField({ name: "label", type: "string", validation: (Rule) => Rule.required() }),
+            defineField({ name: "value", type: "string", validation: (Rule) => Rule.required() }),
+          ],
+        }),
       ],
+      validation: (Rule) => Rule.max(6),
+    }),
+
+    defineField({
+      name: "featured",
+      title: "Featured",
+      type: "boolean",
+      initialValue: false,
+    }),
+
+    // Legacy support fields for existing project listing + map features.
+    defineField({
+      name: "latitude",
+      type: "number",
+      validation: (Rule) => Rule.min(-90).max(90),
     }),
     defineField({
-      name: "results",
-      type: "object",
-      fields: [
-        defineField({ name: "energyOutput", title: "Energy Output", type: "string" }),
-        defineField({ name: "peopleServed", title: "People Served", type: "string" }),
-        defineField({ name: "costSavings", title: "Cost Savings", type: "string" }),
-      ],
+      name: "longitude",
+      type: "number",
+      validation: (Rule) => Rule.min(-180).max(180),
+    }),
+    defineField({
+      name: "date",
+      type: "date",
+      description: "Legacy date field used by existing listing schema markup.",
     }),
   ],
   preview: {
@@ -195,14 +164,14 @@ export const projectType = defineType({
       capacity: "capacity",
       media: "mainImage",
       featured: "featured",
-      completionStatus: "completionStatus",
-      isVerified: "isVerified",
+      projectType: "projectType",
+      year: "year",
     },
-    prepare({ title, location, capacity, media, featured, completionStatus, isVerified }) {
+    prepare({ title, location, capacity, media, featured, projectType, year }) {
       return {
         title,
         media,
-        subtitle: `${featured ? "Featured · " : ""}${isVerified ? "Verified · " : ""}${location} · ${capacity}${completionStatus ? ` · ${completionStatus}` : ""}`,
+        subtitle: `${featured ? "Featured · " : ""}${projectType ?? "project"} · ${location} · ${capacity}${year ? ` · ${year}` : ""}`,
       };
     },
   },

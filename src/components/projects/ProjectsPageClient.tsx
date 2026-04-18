@@ -20,6 +20,7 @@ const categoryLabels: Record<CategoryFilter, string> = {
   residential: "Residential",
   commercial: "Commercial",
   government: "Government",
+  industrial: "Industrial",
 };
 
 const capacityLabels: Record<CapacityFilter, string> = {
@@ -56,7 +57,8 @@ export default function ProjectsPageClient({
     const normalizedKeyword = keyword.trim().toLowerCase();
 
     return projects.filter((project) => {
-      const categoryMatch = activeCategory === "all" || project.category === activeCategory;
+      const projectCategory = project.category ?? project.projectType;
+      const categoryMatch = activeCategory === "all" || projectCategory === activeCategory;
       const countryMatch = activeCountry === "all" || projectCountry(project.location) === activeCountry;
 
       const projectCapacity = parseCapacity(project.capacity);
@@ -68,7 +70,7 @@ export default function ProjectsPageClient({
 
       const searchMatch =
         !normalizedKeyword ||
-        [project.title, project.location, project.overview, project.category, project.capacity]
+        [project.title, project.location, project.overview, projectCategory, project.capacity]
           .join(" ")
           .toLowerCase()
           .includes(normalizedKeyword);
@@ -195,7 +197,7 @@ export default function ProjectsPageClient({
                   </div>
                   <div className="p-7 sm:p-8">
                     <div className="flex flex-wrap gap-2">
-                      <span className="inline-flex rounded-full bg-green-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-green-700">{toTitleCase(project.category)}</span>
+                      <span className="inline-flex rounded-full bg-green-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-green-700">{toTitleCase(project.category ?? project.projectType ?? "project")}</span>
                       {project.isVerified && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700"><BadgeCheck className="size-3.5" /> Verified Project</span>
                       )}
@@ -241,7 +243,7 @@ export default function ProjectsPageClient({
                   </div>
                   <div className="p-6">
                     <div className="flex flex-wrap gap-2">
-                      <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-green-700">{toTitleCase(project.category)}</span>
+                      <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-green-700">{toTitleCase(project.category ?? project.projectType ?? "project")}</span>
                       {project.isVerified && <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">Verified</span>}
                       {project.completionStatus && <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">{project.completionStatus}</span>}
                     </div>
