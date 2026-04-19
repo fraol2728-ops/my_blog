@@ -98,6 +98,7 @@ export default async function Home({
               : "Review data-backed technical and financial assessments before starting your next solar project."
           }
           posts={latestFeasibilityPosts.slice(0, 3)}
+          locale={locale}
         />
         <ServicesSection />
         <ProjectsSection />

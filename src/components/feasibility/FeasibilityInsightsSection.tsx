@@ -11,6 +11,7 @@ type FeasibilityInsightsSectionProps = {
   kicker: string;
   description: string;
   posts: FeasibilityPost[];
+  locale?: string;
 };
 
 export default function FeasibilityInsightsSection({
@@ -18,6 +19,7 @@ export default function FeasibilityInsightsSection({
   kicker,
   description,
   posts,
+  locale = "en",
 }: FeasibilityInsightsSectionProps) {
   if (!posts.length) return null;
 
@@ -28,7 +30,7 @@ export default function FeasibilityInsightsSection({
         <h2 className="ui-title">{title}</h2>
         <p className="ui-subtitle max-w-2xl">{description}</p>
         <div className="mt-7">
-          <Button href="/en/contact?service=feasibility-study">Request Free Study</Button>
+          <Button href={`/${locale}/contact?service=feasibility-study`}>Request Free Study</Button>
         </div>
       </Reveal>
 
@@ -36,7 +38,7 @@ export default function FeasibilityInsightsSection({
         {posts.map((post, index) => (
           <Reveal key={post._id} delay={index * 0.06}>
             <article className="ui-card ui-card-hover group flex h-full flex-col overflow-hidden">
-              <Link href={`/feasibility-study/${post.slug}`} className="block">
+              <Link href={`/${locale}/feasibility-study/${post.slug}`} className="block">
                 {post.mainImage ? (
                   <Image
                     src={urlFor(post.mainImage).width(900).height(620).url()}
@@ -57,7 +59,7 @@ export default function FeasibilityInsightsSection({
                 <p className="mt-3 line-clamp-3 text-sm text-slate-600">{post.shortDescription}</p>
                 <div className="mt-5">
                   <Link
-                    href={`/feasibility-study/${post.slug}`}
+                    href={`/${locale}/feasibility-study/${post.slug}`}
                     className="text-sm font-semibold text-emerald-700 transition hover:text-emerald-600"
                   >
                     Read Study →

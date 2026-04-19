@@ -204,6 +204,7 @@ export default async function ServicesPage({
             : "Use recent studies to compare scope, ROI expectations, and implementation risks across project types."
         }
         posts={feasibilityPosts.slice(0, 3)}
+        locale={locale}
       />
       <ProjectsSection />
       <WhyChooseUs />

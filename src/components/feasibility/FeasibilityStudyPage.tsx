@@ -9,10 +9,13 @@ import Link from "next/link";
 export default function FeasibilityStudyPage({
   posts,
   featuredPosts,
+  locale,
 }: {
   posts: FeasibilityPost[];
   featuredPosts: FeasibilityPost[];
+  locale?: string;
 }) {
+  const localizedLocale = locale ?? "en";
   return (
     <main className="bg-white text-slate-900">
       <section className="border-b border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-white">
@@ -27,7 +30,7 @@ export default function FeasibilityStudyPage({
               faster with confidence.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button href="/en/contact?service=feasibility-study">Request Free Study</Button>
+              <Button href={`/${localizedLocale}/contact?service=feasibility-study`}>Request Free Study</Button>
               <Button href="#all-feasibility-posts" variant="secondary">
                 Explore Insights
               </Button>
@@ -46,7 +49,7 @@ export default function FeasibilityStudyPage({
             {featuredPosts.map((post, index) => (
               <Reveal key={post._id} delay={index * 0.08}>
                 <article className="ui-card ui-card-hover group flex h-full flex-col overflow-hidden">
-                  <Link href={`/feasibility-study/${post.slug}`} className="block">
+                  <Link href={`/${localizedLocale}/feasibility-study/${post.slug}`} className="block">
                     {post.mainImage ? (
                       <Image
                         src={urlFor(post.mainImage).width(1200).height(760).url()}
@@ -64,11 +67,11 @@ export default function FeasibilityStudyPage({
                       {post.category} • {dayjs(post.publishedAt).format("MMM D, YYYY")}
                     </p>
                     <h3 className="mt-3 text-2xl font-semibold text-slate-900">
-                      <Link href={`/feasibility-study/${post.slug}`}>{post.title}</Link>
+                      <Link href={`/${localizedLocale}/feasibility-study/${post.slug}`}>{post.title}</Link>
                     </h3>
                     <p className="mt-3 line-clamp-3 text-sm text-slate-600">{post.shortDescription}</p>
                     <div className="mt-6">
-                      <Button href="/en/contact?service=feasibility-study" variant="outline">
+                      <Button href={`/${localizedLocale}/contact?service=feasibility-study`} variant="outline">
                         Request Free Study
                       </Button>
                     </div>
@@ -89,7 +92,7 @@ export default function FeasibilityStudyPage({
           {posts.map((post, index) => (
             <Reveal key={post._id} delay={index * 0.05}>
               <article className="ui-card ui-card-hover group flex h-full flex-col overflow-hidden">
-                <Link href={`/feasibility-study/${post.slug}`} className="block">
+                <Link href={`/${localizedLocale}/feasibility-study/${post.slug}`} className="block">
                   {post.mainImage ? (
                     <Image
                       src={urlFor(post.mainImage).width(900).height(620).url()}
@@ -107,19 +110,19 @@ export default function FeasibilityStudyPage({
                     {post.category} • {dayjs(post.publishedAt).format("MMM D, YYYY")}
                   </p>
                   <h3 className="mt-2 text-xl font-semibold text-slate-900">
-                    <Link href={`/feasibility-study/${post.slug}`} className="hover:text-emerald-700">
+                    <Link href={`/${localizedLocale}/feasibility-study/${post.slug}`} className="hover:text-emerald-700">
                       {post.title}
                     </Link>
                   </h3>
                   <p className="mt-3 line-clamp-3 text-sm text-slate-600">{post.shortDescription}</p>
                   <div className="mt-5 flex items-center justify-between gap-3">
                     <Link
-                      href={`/feasibility-study/${post.slug}`}
+                      href={`/${localizedLocale}/feasibility-study/${post.slug}`}
                       className="text-sm font-semibold text-emerald-700 hover:text-emerald-600"
                     >
                       Read Full Study →
                     </Link>
-                    <Button href="/en/contact?service=feasibility-study" variant="outline">
+                    <Button href={`/${localizedLocale}/contact?service=feasibility-study`} variant="outline">
                       Request Free Study
                     </Button>
                   </div>
