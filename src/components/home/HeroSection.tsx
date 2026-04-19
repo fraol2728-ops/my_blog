@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, type ComponentType } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { LazyMotion, AnimatePresence, domAnimation, m } from "motion/react";
-import { Factory, Smile, Wrench, Zap } from "lucide-react";
+import { Smile, Wrench, Zap } from "lucide-react";
 import { useLocale } from "@/i18n/I18nProvider";
 import { urlFor } from "@/sanity/lib/image";
 import type { Project } from "@/types";
@@ -12,7 +12,6 @@ import type { Project } from "@/types";
 const sliderImages = ["/slide1.jpg", "/slide2.jpg", "/slide3.jpg", "/slide4.jpg"];
 
 const stats = [
-  { icon: Factory, label: "Projects Completed", value: 200, suffix: "+" },
   { icon: Zap, label: "Energy Generated", value: 50, suffix: "MW" },
   { icon: Smile, label: "Client Satisfaction", value: 98, suffix: "%" },
   { icon: Wrench, label: "Years Experience", value: 10, suffix: "+" },
@@ -104,7 +103,6 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
         label:
           isAmharic
             ? {
-                "Projects Completed": "የተጠናቀቁ ፕሮጀክቶች",
                 "Energy Generated": "የተመነጨ ኃይል",
                 "Client Satisfaction": "የደንበኛ እርካታ",
                 "Years Experience": "የልምድ ዓመታት",

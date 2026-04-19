@@ -28,14 +28,6 @@ const services = [
   "Real Estate & Property Management: Renting, leasing, sales, and legal contracts.",
 ];
 
-const imageryNotes = [
-  "Logo: Stylized curved road passing under two bridge arches.",
-  "Architecture: 3D rendering of a modern multi-story building with balconies.",
-  "Fleet: Rows of red Sinotruk heavy-duty trucks showing logistical capacity.",
-  "Machinery: Yellow road-paving and heavy construction equipment.",
-  'Projects: A "Prime Oil" gas station as a completed infrastructure project.',
-  "Design Process: Five phases - Pre-Design, Schematic Design, Design Development, Construction Documents, Construction Administration.",
-];
 
 export default function KilimanjaroPage() {
   return (
@@ -73,13 +65,13 @@ export default function KilimanjaroPage() {
       <Section className="bg-slate-950 py-14">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2">
           <div className="ui-card space-y-3 p-6">
-            <h2 className="text-xl font-semibold text-emerald-300">Location</h2>
-            <p className="text-slate-200">Office: Thongping, Florian Rd Block 3, Plot No 258, Juba, South Sudan.</p>
+            <h2 className="text-xl font-semibold text-emerald-700">Location</h2>
+            <p className="text-slate-700">Office: Thongping, Florian Rd Block 3, Plot No 258, Juba, South Sudan.</p>
           </div>
 
           <div className="ui-card space-y-3 p-6">
-            <h2 className="text-xl font-semibold text-emerald-300">Contact Details</h2>
-            <ul className="space-y-2 text-slate-200">
+            <h2 className="text-xl font-semibold text-emerald-700">Contact Details</h2>
+            <ul className="space-y-2 text-slate-700">
               <li>Phone: +211 928004848 / +211 982004848 / +46762812004</li>
               <li>Email: kilimanjaro.construction1@gmail.com</li>
               <li>Managing Director Email: nalyno.gt@gmail.com</li>
@@ -170,23 +162,6 @@ export default function KilimanjaroPage() {
         </div>
       </Section>
 
-      <Section className="bg-slate-950 py-14">
-        <div className="mx-auto max-w-6xl space-y-6 [&_.ui-kicker]:text-emerald-300 [&_.ui-subtitle]:text-slate-300 [&_.ui-title]:text-white">
-          <SectionHeader
-            kicker="Key Images from the Document"
-            title="Suggested Visual Placements"
-            subtitle="Use the following image references to build a richer Kilimanjaro brand presentation."
-          />
-
-          <ul className="space-y-3 text-slate-200">
-            {imageryNotes.map((note) => (
-              <li key={note} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-                {note}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Section>
     </div>
   );
 }
