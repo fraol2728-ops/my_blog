@@ -49,7 +49,7 @@ export default function KilimanjaroPage() {
             <p className="inline-flex rounded-full border border-emerald-300/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">
               Official Name
             </p>
-            <h1 className="text-3xl font-bold leading-tight sm:text-5xl">
+            <h1 className="text-3xl font-bold leading-tight text-white sm:text-5xl">
               Kilimanjaro Construction Consulting and Design Co. Ltd.
             </h1>
             <p className="max-w-2xl text-base leading-7 text-slate-200 sm:text-lg">
@@ -72,12 +72,12 @@ export default function KilimanjaroPage() {
 
       <Section className="bg-slate-950 py-14">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2">
-          <div className="ui-card space-y-3">
+          <div className="ui-card space-y-3 p-6">
             <h2 className="text-xl font-semibold text-emerald-300">Location</h2>
             <p className="text-slate-200">Office: Thongping, Florian Rd Block 3, Plot No 258, Juba, South Sudan.</p>
           </div>
 
-          <div className="ui-card space-y-3">
+          <div className="ui-card space-y-3 p-6">
             <h2 className="text-xl font-semibold text-emerald-300">Contact Details</h2>
             <ul className="space-y-2 text-slate-200">
               <li>Phone: +211 928004848 / +211 982004848 / +46762812004</li>
@@ -89,7 +89,7 @@ export default function KilimanjaroPage() {
       </Section>
 
       <Section className="bg-slate-900 py-14">
-        <div className="mx-auto max-w-6xl space-y-8">
+        <div className="mx-auto max-w-6xl space-y-8 [&_.ui-kicker]:text-emerald-300 [&_.ui-subtitle]:text-slate-300 [&_.ui-title]:text-white">
           <SectionHeader
             kicker="Corporate Identity"
             title="Mission, Vision, and Core Values"
@@ -97,7 +97,7 @@ export default function KilimanjaroPage() {
           />
 
           <div className="grid gap-6 md:grid-cols-2">
-            <article className="ui-card space-y-4 border border-white/10 bg-white/5">
+            <article className="ui-card space-y-4 border border-white/10 bg-white/5 p-6">
               <h3 className="text-2xl font-semibold text-white">Mission</h3>
               <p className="text-slate-200">
                 To be recognized as the leading construction and general trading company in East Africa,
@@ -105,7 +105,7 @@ export default function KilimanjaroPage() {
               </p>
             </article>
 
-            <article className="ui-card space-y-4 border border-white/10 bg-white/5">
+            <article className="ui-card space-y-4 border border-white/10 bg-white/5 p-6">
               <h3 className="text-2xl font-semibold text-white">Vision</h3>
               <p className="text-slate-200">
                 To create long-lasting relationships by continuously exceeding customer expectations.
@@ -125,7 +125,7 @@ export default function KilimanjaroPage() {
       </Section>
 
       <Section className="bg-slate-950 py-14">
-        <div className="mx-auto max-w-6xl space-y-6">
+        <div className="mx-auto max-w-6xl space-y-6 [&_.ui-kicker]:text-emerald-300 [&_.ui-subtitle]:text-slate-300 [&_.ui-title]:text-white">
           <SectionHeader
             kicker="Our Services"
             title="Construction and Engineering Expertise"
@@ -143,7 +143,7 @@ export default function KilimanjaroPage() {
       </Section>
 
       <Section className="bg-slate-900 py-14">
-        <div className="mx-auto max-w-6xl space-y-8">
+        <div className="mx-auto max-w-6xl space-y-8 [&_.ui-kicker]:text-emerald-300 [&_.ui-subtitle]:text-slate-300 [&_.ui-title]:text-white">
           <SectionHeader
             kicker="Leadership & Team"
             title="Experienced Leadership and Skilled Professionals"
@@ -151,7 +151,7 @@ export default function KilimanjaroPage() {
           />
 
           <div className="grid gap-6 md:grid-cols-2">
-            <article className="ui-card border border-white/10 bg-white/5 text-slate-200">
+            <article className="ui-card border border-white/10 bg-white/5 p-6 text-slate-200">
               <h3 className="text-xl font-semibold text-emerald-300">Chairman</h3>
               <p className="mt-3">
                 Goitom Yohannes Tecle, with more than 26 years of management experience across Sweden,
@@ -159,7 +159,7 @@ export default function KilimanjaroPage() {
               </p>
             </article>
 
-            <article className="ui-card border border-white/10 bg-white/5 text-slate-200">
+            <article className="ui-card border border-white/10 bg-white/5 p-6 text-slate-200">
               <h3 className="text-xl font-semibold text-emerald-300">Team</h3>
               <p className="mt-3">
                 Highly experienced engineers, project management experts, and skilled workers. Most key staff
@@ -171,7 +171,7 @@ export default function KilimanjaroPage() {
       </Section>
 
       <Section className="bg-slate-950 py-14">
-        <div className="mx-auto max-w-6xl space-y-6">
+        <div className="mx-auto max-w-6xl space-y-6 [&_.ui-kicker]:text-emerald-300 [&_.ui-subtitle]:text-slate-300 [&_.ui-title]:text-white">
           <SectionHeader
             kicker="Key Images from the Document"
             title="Suggested Visual Placements"
