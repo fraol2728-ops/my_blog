@@ -11,6 +11,8 @@ import clsx from "clsx";
 import ImpactCounters from "./ImpactCounters";
 import ProjectMap from "./ProjectMap";
 import StickyProjectCTA from "./StickyProjectCTA";
+import { useLanguage } from "@/context/language";
+import { getLocalizedValue } from "@/lib/language";
 
 type CategoryFilter = "all" | ProjectCategory;
 type CapacityFilter = "all" | "small" | "mid" | "large";
@@ -41,6 +43,7 @@ export default function ProjectsPageClient({
   projects: Project[];
   locale: string;
 }) {
+  const { lang } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>("all");
   const [activeCountry, setActiveCountry] = useState<string>("all");
   const [activeCapacity, setActiveCapacity] = useState<CapacityFilter>("all");
@@ -70,7 +73,7 @@ export default function ProjectsPageClient({
 
       const searchMatch =
         !normalizedKeyword ||
-        [project.title, project.location, project.overview, projectCategory, project.capacity]
+        [getLocalizedValue(project.title, lang, ""), project.location, getLocalizedValue(project.overview, lang, ""), projectCategory, project.capacity]
           .join(" ")
           .toLowerCase()
           .includes(normalizedKeyword);
@@ -89,7 +92,7 @@ export default function ProjectsPageClient({
   ];
 
   return (
-    <div className="bg-white pb-20">
+    <div className={clsx("bg-white pb-20 transition-all duration-300", lang === "ar" ? "text-right" : "text-left")}>
       <section className="relative overflow-hidden border-b border-green-100/70 bg-gradient-to-br from-white via-green-50/60 to-emerald-50/70 py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
@@ -190,7 +193,7 @@ export default function ProjectsPageClient({
                 <div className="grid gap-0 md:grid-cols-[1.3fr_1fr]">
                   <div className="relative h-72 overflow-hidden md:h-full">
                     {imageUrl ? (
-                      <Image src={imageUrl} alt={project.mainImage?.alt ?? project.title} fill loading="lazy" className="object-cover transition duration-700 group-hover:scale-105" />
+                      <Image src={imageUrl} alt={project.mainImage?.alt ?? getLocalizedValue(project.title, lang, "Project")} fill loading="lazy" className="object-cover transition duration-700 group-hover:scale-105" />
                     ) : (
                       <div className="h-full w-full bg-slate-200" />
                     )}
@@ -203,9 +206,9 @@ export default function ProjectsPageClient({
                       )}
                       {project.completionStatus && <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">{project.completionStatus}</span>}
                     </div>
-                    <h3 className="mt-3 text-2xl font-semibold text-slate-900">{project.title}</h3>
+                    <h3 className="mt-3 text-2xl font-semibold text-slate-900">{getLocalizedValue(project.title, lang, "")}</h3>
                     <p className="mt-2 text-sm text-slate-500">{project.location} · {project.capacity}</p>
-                    <p className="mt-4 line-clamp-3 text-slate-600">{project.overview}</p>
+                    <p className="mt-4 line-clamp-3 text-slate-600">{getLocalizedValue(project.overview, lang, "")}</p>
                     <Link href={`/${locale}/projects/${project.slug}`} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-green-700 transition group-hover:translate-x-1">
                       View Case Study <ArrowRight className="size-4" />
                     </Link>
@@ -236,7 +239,7 @@ export default function ProjectsPageClient({
                 >
                   <div className="relative h-56 overflow-hidden">
                     {imageUrl ? (
-                      <Image src={imageUrl} alt={project.mainImage?.alt ?? project.title} fill loading="lazy" className="object-cover transition duration-500 group-hover:scale-105" />
+                      <Image src={imageUrl} alt={project.mainImage?.alt ?? getLocalizedValue(project.title, lang, "Project")} fill loading="lazy" className="object-cover transition duration-500 group-hover:scale-105" />
                     ) : (
                       <div className="h-full w-full bg-slate-200" />
                     )}
@@ -247,9 +250,9 @@ export default function ProjectsPageClient({
                       {project.isVerified && <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">Verified</span>}
                       {project.completionStatus && <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">{project.completionStatus}</span>}
                     </div>
-                    <h3 className="mt-4 text-xl font-semibold text-slate-900">{project.title}</h3>
+                    <h3 className="mt-4 text-xl font-semibold text-slate-900">{getLocalizedValue(project.title, lang, "")}</h3>
                     <p className="mt-2 text-xs text-slate-500">{project.location} · {project.capacity}</p>
-                    <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600">{project.overview}</p>
+                    <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600">{getLocalizedValue(project.overview, lang, "")}</p>
                     <Link href={`/${locale}/projects/${project.slug}`} className="mt-5 inline-flex items-center gap-2 rounded-full border border-green-200 px-4 py-2 text-sm font-semibold text-green-700 transition hover:bg-green-50">
                       View Case Study <ArrowRight className="size-4 transition group-hover:translate-x-0.5" />
                     </Link>

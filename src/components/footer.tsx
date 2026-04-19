@@ -5,6 +5,7 @@ import React from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Logo from "./logo";
 import { useLocale } from "@/i18n/I18nProvider";
+import { useLanguage } from "@/context/language";
 
 const services = [
   { href: "/services", en: "Energy audit & feasibility studies", am: "የኃይል ኦዲት እና የአዋጭነት ጥናቶች" },
@@ -22,33 +23,34 @@ const socialLinks = [
 
 export default function Footer() {
   const locale = useLocale();
-  const isAmharic = locale === "am";
+  const { lang } = useLanguage();
+  const isArabic = lang === "ar";
   const localized = (path: string) => `/${locale}${path === "/" ? "" : path}`;
 
   const quickLinks = [
-    { href: localized("/"), label: isAmharic ? "መነሻ" : "Home" },
-    { href: localized("/about"), label: isAmharic ? "ስለ Master Premier" : "About Master Premier" },
-    { href: localized("/services"), label: isAmharic ? "አገልግሎቶቻችን" : "Our Services" },
-    { href: localized("/news"), label: isAmharic ? "ዜና እና ዝመናዎች" : "News & Updates" },
-    { href: localized("/contact"), label: isAmharic ? "አግኙን" : "Contact Us" },
+    { href: localized("/"), label: isArabic ? "الرئيسية" : "Home" },
+    { href: localized("/about"), label: isArabic ? "عن ماستر بريميير" : "About Master Premier" },
+    { href: localized("/services"), label: isArabic ? "خدماتنا" : "Our Services" },
+    { href: localized("/news"), label: isArabic ? "الأخبار والتحديثات" : "News & Updates" },
+    { href: localized("/contact"), label: isArabic ? "اتصل بنا" : "Contact Us" },
   ];
 
   return (
-    <footer className="border-t border-slate-200 bg-slate-950 text-white">
+    <footer className={`border-t border-slate-200 bg-slate-950 text-white ${isArabic ? "text-right" : "text-left"}`}>
       <div className="section-shell">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-5">
             <Logo className="px-0 text-white" />
             <p className="max-w-sm text-sm leading-6 text-white/70">
               Master Premier Green Energy Co. Ltd provides engineering and clean energy advisory services
-              {isAmharic
-                ? " የምህንድስና እና የንፁህ ኃይል አማካሪ አገልግሎቶችን በመስጠት ደንበኞች ታማኝ፣ ተመጣጣኝ እና ዘላቂ የፀሐይ ኃይል መፍትሄ እንዲያገኙ ያግዛል።"
+              {isArabic
+                ? " عبر تقديم خدمات الهندسة والاستشارات للطاقة النظيفة لمساعدة العملاء في الحصول على حلول طاقة شمسية موثوقة ومستدامة."
                 : " that help customers access reliable, affordable, and sustainable solar power solutions."}
             </p>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isAmharic ? "ፈጣን አገናኞች" : "Quick Links"}</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isArabic ? "روابط سريعة" : "Quick Links"}</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               {quickLinks.map((link) => (
                 <li key={link.href + link.label}>
@@ -61,12 +63,12 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isAmharic ? "ዋና አገልግሎቶች" : "Core Services"}</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isArabic ? "الخدمات الأساسية" : "Core Services"}</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               {services.map((service) => (
                 <li key={service.en}>
                   <Link className="inline-flex hover:text-emerald-300" href={localized(service.href)}>
-                    {isAmharic ? service.am : service.en}
+                    {isArabic ? service.en : service.en}
                   </Link>
                 </li>
               ))}
@@ -74,7 +76,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isAmharic ? "ያግኙን" : "Contact"}</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isArabic ? "تواصل معنا" : "Contact"}</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white" />
@@ -100,10 +102,10 @@ export default function Footer() {
           <div className="space-y-1">
             <p className="text-sm text-white/60">
               © {new Date().getFullYear()} Master Premier Green Energy Co. Ltd.{" "}
-              {isAmharic ? "መብቶቹ በሙሉ የተጠበቁ ናቸው።" : "All rights reserved."}
+              {isArabic ? "جميع الحقوق محفوظة." : "All rights reserved."}
             </p>
             <p className="text-sm text-white/60">
-              {isAmharic ? "ኮድ አርቲስት:" : "Code artist:"}{" "}
+              {isArabic ? "مبرمج الموقع:" : "Code artist:"}{" "}
               <a
                 className="text-white/80 underline-offset-4 transition-colors hover:text-emerald-300 hover:underline"
                 href="https://www.devfraol.com.et/services/web-development"

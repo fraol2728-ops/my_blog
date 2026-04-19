@@ -14,6 +14,7 @@ import { SITE_NAME, SITE_URL } from "@/lib/seo";
 import { urlFor } from "@/sanity/lib/image";
 import { getProjectBySlug, getProjects } from "@/sanity/queries";
 import { Project } from "@/types";
+import { getLocalizedValue } from "@/lib/language";
 
 const portableTextComponents: any = {
   block: {
@@ -56,8 +57,11 @@ export async function generateMetadata({
     };
   }
 
-  const pageTitle = `${project.title} | Premium Solar Case Study`;
-  const description = project.overview;
+  const metadataLang: "en" | "ar" = (locale as string) === "ar" ? "ar" : "en";
+  const localizedTitle = getLocalizedValue(project.title, metadataLang, "");
+  const localizedOverview = getLocalizedValue(project.overview, metadataLang, "");
+  const pageTitle = `${localizedTitle} | Premium Solar Case Study`;
+  const description = localizedOverview;
 
   return {
     title: pageTitle,
@@ -77,7 +81,7 @@ export async function generateMetadata({
               url: urlFor(project.mainImage).width(1200).height(630).url(),
               width: 1200,
               height: 630,
-              alt: project.mainImage?.alt ?? project.title,
+              alt: project.mainImage?.alt ?? localizedTitle,
             },
           ]
         : undefined,
@@ -106,6 +110,13 @@ export default async function ProjectCaseStudyPage({
   const relatedProjects = projects.filter((item) => item.slug !== project.slug).slice(0, 3);
   const heroImage = project.mainImage ? urlFor(project.mainImage).width(1900).height(1100).url() : null;
   const gallery = project.gallery ?? [];
+  const lang: "en" | "ar" = (locale as string) === "ar" ? "ar" : "en";
+  const title = getLocalizedValue(project.title, lang, "");
+  const overview = getLocalizedValue(project.overview, lang, "");
+  const challenge = getLocalizedValue(project.challenge, lang, "");
+  const solution = getLocalizedValue(project.solution, lang, "");
+  const results = getLocalizedValue(project.results, lang, "");
+  const body = getLocalizedValue(project.body, lang, []);
 
   const metaItems = [
     { label: "Capacity", value: project.capacity ?? "—", icon: Zap },
@@ -126,7 +137,7 @@ export default async function ProjectCaseStudyPage({
         <Reveal className="relative mt-6 overflow-hidden" delay={0.05}>
           {heroImage ? (
             <div className="relative h-[54vh] min-h-[380px] w-full sm:min-h-[480px]">
-              <Image src={heroImage} alt={project.mainImage?.alt ?? project.title} fill priority className="object-cover" />
+              <Image src={heroImage} alt={project.mainImage?.alt ?? title} fill priority className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/50 to-transparent" />
             </div>
           ) : (
@@ -135,7 +146,7 @@ export default async function ProjectCaseStudyPage({
 
           <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-4 pb-10 text-white sm:px-6 lg:px-8">
             <p className="text-sm uppercase tracking-[0.2em] text-emerald-200">Case Study</p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">{project.title}</h1>
+            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">{title}</h1>
             <div className="mt-4 flex flex-wrap gap-3 text-sm text-white sm:text-base">
               <span className="inline-flex items-center gap-1.5"><MapPin className="size-4" /> {project.location}</span>
               <span className="inline-flex items-center gap-1.5"><Sun className="size-4" /> {project.projectType ?? "Solar Project"}</span>
@@ -160,7 +171,7 @@ export default async function ProjectCaseStudyPage({
 
           <Reveal className="mx-auto mt-16 max-w-3xl" delay={0.1}>
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900">Overview</h2>
-            <p className="mt-5 text-base leading-8 text-slate-700 sm:text-lg">{project.overview}</p>
+            <p className="mt-5 text-base leading-8 text-slate-700 sm:text-lg">{overview}</p>
           </Reveal>
 
           {!!project.stats?.length && (
@@ -180,17 +191,17 @@ export default async function ProjectCaseStudyPage({
           <Reveal className="mt-16 grid gap-6 lg:grid-cols-2" delay={0.14}>
             <section className="rounded-3xl border border-slate-200 bg-slate-50/60 p-6 sm:p-8">
               <h3 className="text-2xl font-semibold text-slate-900">Challenge</h3>
-              <p className="mt-4 text-base leading-8 text-slate-700">{project.challenge}</p>
+              <p className="mt-4 text-base leading-8 text-slate-700">{challenge}</p>
             </section>
             <section className="rounded-3xl border border-emerald-100 bg-emerald-50/60 p-6 sm:p-8">
               <h3 className="text-2xl font-semibold text-slate-900">Solution</h3>
-              <p className="mt-4 text-base leading-8 text-slate-700">{project.solution}</p>
+              <p className="mt-4 text-base leading-8 text-slate-700">{solution}</p>
             </section>
           </Reveal>
 
           <Reveal className="mt-16 rounded-3xl border border-emerald-100 bg-gradient-to-r from-emerald-600 to-green-700 p-7 text-white sm:p-10" delay={0.16}>
             <h2 className="inline-flex items-center gap-2 text-3xl font-semibold tracking-tight"><BarChart3 className="size-7" /> Results</h2>
-            <p className="mt-4 max-w-4xl text-base font-medium leading-8 text-emerald-50 sm:text-lg">{project.results}</p>
+            <p className="mt-4 max-w-4xl text-base font-medium leading-8 text-emerald-50 sm:text-lg">{results}</p>
             <div className="mt-7">
               <Link
                 href={`/${locale}/feasibility-study`}
@@ -206,16 +217,16 @@ export default async function ProjectCaseStudyPage({
               <h2 className="text-3xl font-semibold tracking-tight text-slate-900">Project Gallery</h2>
               <p className="mt-3 text-slate-600">A visual walkthrough of implementation and final delivery.</p>
               <div className="mt-8 [&_img]:transition-transform [&_img]:duration-500 hover:[&_img]:scale-[1.02]">
-                <ProjectGallery images={gallery} title={project.title} />
+                <ProjectGallery images={gallery} title={title} />
               </div>
             </Reveal>
           )}
 
-          {!!project.body?.length && (
+          {!!body?.length && (
             <Reveal className="mx-auto mt-16 max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 sm:p-10" delay={0.2}>
               <h2 className="text-3xl font-semibold tracking-tight text-slate-900">Detailed Case Study</h2>
               <div className="mt-2">
-                <PortableText value={project.body} components={portableTextComponents} />
+                <PortableText value={body} components={portableTextComponents} />
               </div>
             </Reveal>
           )}
@@ -231,13 +242,13 @@ export default async function ProjectCaseStudyPage({
                     <article key={relatedProject._id} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                       <div className="relative h-48 overflow-hidden">
                         {imageUrl ? (
-                          <Image src={imageUrl} alt={relatedProject.mainImage?.alt ?? relatedProject.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
+                          <Image src={imageUrl} alt={relatedProject.mainImage?.alt ?? getLocalizedValue(relatedProject.title, lang, "")} fill className="object-cover transition duration-500 group-hover:scale-105" />
                         ) : (
                           <div className="h-full w-full bg-gradient-to-br from-slate-100 to-slate-200" />
                         )}
                       </div>
                       <div className="p-5">
-                        <h3 className="text-xl font-semibold text-slate-900">{relatedProject.title}</h3>
+                        <h3 className="text-xl font-semibold text-slate-900">{getLocalizedValue(relatedProject.title, lang, "")}</h3>
                         <p className="mt-2 text-sm text-slate-600">{relatedProject.location}</p>
                         <Link
                           href={`/${locale}/projects/${relatedProject.slug}`}

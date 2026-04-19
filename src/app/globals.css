@@ -11,6 +11,10 @@
     @apply bg-slate-50 text-slate-900 antialiased;
   }
 
+  .font-arabic {
+    font-family: "Cairo", "Tajawal", "Noto Naskh Arabic", ui-sans-serif, system-ui, sans-serif;
+  }
+
   h1,
   h2,
   h3,

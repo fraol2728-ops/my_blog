@@ -9,13 +9,17 @@ export const projectType = defineType({
   fields: [
     defineField({
       name: "title",
-      type: "string",
-      validation: (Rule) => Rule.required().min(5).max(120),
+      type: "object",
+      fields: [
+        defineField({ name: "en", title: "English", type: "string", validation: (Rule) => Rule.required().min(5).max(120) }),
+        defineField({ name: "ar", title: "Arabic", type: "string" }),
+      ],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "slug",
       type: "slug",
-      options: { source: "title" },
+      options: { source: "title.en" },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -96,25 +100,55 @@ export const projectType = defineType({
 
     defineField({
       name: "body",
-      title: "Optional Rich Body",
-      type: "array",
-      of: [
-        defineArrayMember({
-          type: "block",
-          styles: [
-            { title: "Normal", value: "normal" },
-            { title: "Heading", value: "h2" },
-            { title: "Subheading", value: "h3" },
+      title: "Optional Rich Body (localized)",
+      type: "object",
+      fields: [
+        defineField({
+          name: "en",
+          title: "English",
+          type: "array",
+          of: [
+            defineArrayMember({
+              type: "block",
+              styles: [
+                { title: "Normal", value: "normal" },
+                { title: "Heading", value: "h2" },
+                { title: "Subheading", value: "h3" },
+              ],
+              lists: [{ title: "Bullet", value: "bullet" }],
+              marks: {
+                decorators: [
+                  { title: "Bold", value: "strong" },
+                  { title: "Italic", value: "em" },
+                ],
+              },
+            }),
+            defineArrayMember({ type: "image", options: { hotspot: true } }),
           ],
-          lists: [{ title: "Bullet", value: "bullet" }],
-          marks: {
-            decorators: [
-              { title: "Bold", value: "strong" },
-              { title: "Italic", value: "em" },
-            ],
-          },
         }),
-        defineArrayMember({ type: "image", options: { hotspot: true } }),
+        defineField({
+          name: "ar",
+          title: "Arabic",
+          type: "array",
+          of: [
+            defineArrayMember({
+              type: "block",
+              styles: [
+                { title: "Normal", value: "normal" },
+                { title: "Heading", value: "h2" },
+                { title: "Subheading", value: "h3" },
+              ],
+              lists: [{ title: "Bullet", value: "bullet" }],
+              marks: {
+                decorators: [
+                  { title: "Bold", value: "strong" },
+                  { title: "Italic", value: "em" },
+                ],
+              },
+            }),
+            defineArrayMember({ type: "image", options: { hotspot: true } }),
+          ],
+        }),
       ],
     }),
 
@@ -159,7 +193,7 @@ export const projectType = defineType({
   ],
   preview: {
     select: {
-      title: "title",
+      title: "title.en",
       location: "location",
       capacity: "capacity",
       media: "mainImage",
