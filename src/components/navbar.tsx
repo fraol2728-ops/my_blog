@@ -51,6 +51,7 @@ export default function Navbar() {
         { href: "/about#leadership", label: t("nav.aboutLeadership") },
         { href: "/about#our-projects", label: t("nav.aboutProjects") },
         { href: "/about#sustainability", label: t("nav.aboutSustainability") },
+        { href: "/about#legal-documents", label: t("nav.aboutLegalDocuments") },
       ],
     },
     {

@@ -1,6 +1,7 @@
 import CTASection from "@/components/about/CTASection";
 import CompanyOverview from "@/components/about/CompanyOverview";
 import HeroAbout from "@/components/about/HeroAbout";
+import LegalDocumentsSection from "@/components/about/LegalDocumentsSection";
 import ProjectsSection from "@/components/about/ProjectsSection";
 import SustainabilitySection from "@/components/about/SustainabilitySection";
 import TeamSection from "@/components/about/TeamSection";
@@ -58,6 +59,7 @@ export default async function AboutPage({
       <TeamSection />
       <ProjectsSection />
       <SustainabilitySection />
+      <LegalDocumentsSection />
       <CTASection />
     </main>
   );
