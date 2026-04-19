@@ -135,8 +135,8 @@ export default async function ProjectCaseStudyPage({
 
           <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-4 pb-10 text-white sm:px-6 lg:px-8">
             <p className="text-sm uppercase tracking-[0.2em] text-emerald-200">Case Study</p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">{project.title}</h1>
-            <div className="mt-4 flex flex-wrap gap-3 text-sm text-white/90 sm:text-base">
+            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">{project.title}</h1>
+            <div className="mt-4 flex flex-wrap gap-3 text-sm text-white sm:text-base">
               <span className="inline-flex items-center gap-1.5"><MapPin className="size-4" /> {project.location}</span>
               <span className="inline-flex items-center gap-1.5"><Sun className="size-4" /> {project.projectType ?? "Solar Project"}</span>
             </div>
