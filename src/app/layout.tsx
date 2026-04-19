@@ -3,6 +3,7 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
 import { buildSiteNavigationSchema, SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { LanguageProvider } from "@/context/language";
 
 const defaultDescription =
   "Master Premier Green Energy Co. Ltd delivers reliable, modern, and intelligent renewable energy engineering and advisory solutions for institutions and communities across South Sudan.";
@@ -108,8 +109,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased overflow-x-hidden font-sans">
+    <html lang="en" dir="ltr" suppressHydrationWarning>
+      <body className="antialiased overflow-x-hidden font-sans transition-all duration-300">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -123,8 +124,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }}
         />
         <SessionProvider>
-          <AnalyticsProvider />
-          {children}
+          <LanguageProvider>
+            <AnalyticsProvider />
+            {children}
+          </LanguageProvider>
         </SessionProvider>
       </body>
     </html>

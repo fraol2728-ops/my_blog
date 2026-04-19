@@ -11,6 +11,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "@/i18n/I18nProvider";
 import type { AppLocale } from "@/i18n/config";
+import { useLanguage } from "@/context/language";
 
 type DropdownItem = {
   href: string;
@@ -30,6 +31,7 @@ const isActivePath = (pathname: string, href: string) => {
 
 export default function Navbar() {
   const t = useTranslations;
+  const { lang, setLang } = useLanguage();
   const locale = useLocale() as AppLocale;
   const pathname = usePathname() ?? "/";
   const router = useRouter();
@@ -38,12 +40,29 @@ export default function Navbar() {
   const [mobileOpenDropdowns, setMobileOpenDropdowns] = useState<Record<string, boolean>>({});
   const [desktopKeyword, setDesktopKeyword] = useState("");
   const [mobileKeyword, setMobileKeyword] = useState("");
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
 
+  const copy = {
+    nav: {
+      home: lang === "ar" ? "الرئيسية" : t("nav.home"),
+      about: lang === "ar" ? "من نحن" : t("nav.about"),
+      services: lang === "ar" ? "الخدمات" : t("nav.services"),
+      news: lang === "ar" ? "الأخبار" : t("nav.news"),
+      projects: lang === "ar" ? "المشاريع" : t("nav.projects"),
+      contact: lang === "ar" ? "تواصل معنا" : t("nav.contact"),
+      quote: lang === "ar" ? "اطلب عرض سعر" : t("nav.quote"),
+      searchPlaceholder: lang === "ar" ? "ابحث في الأخبار..." : t("nav.searchPlaceholder"),
+      searchLabel: lang === "ar" ? "البحث في الأخبار" : t("nav.searchLabel"),
+      language: lang === "ar" ? "اللغة" : "Language",
+      toggleMenu: lang === "ar" ? "تبديل القائمة" : t("nav.toggleMenu"),
+    },
+  };
+
   const navLinks: NavItem[] = [
-    { href: "/", label: t("nav.home") },
+    { href: "/", label: copy.nav.home },
     {
-      label: t("nav.about"),
+      label: copy.nav.about,
       dropdownItems: [
         { href: "/about#company-overview", label: t("nav.aboutOverview") },
         { href: "/about#vision-mission", label: t("nav.aboutVision") },
@@ -54,7 +73,7 @@ export default function Navbar() {
       ],
     },
     {
-      label: t("nav.services"),
+      label: copy.nav.services,
       dropdownItems: [
         { href: "/services#solar-installation", label: t("nav.servicesSolar") },
         { href: "/services#equipment-supply", label: t("nav.servicesEpc") },
@@ -62,9 +81,9 @@ export default function Navbar() {
         { href: "/services#maintenance-support", label: t("nav.servicesMaintenance") },
       ],
     },
-    { href: "/news", label: t("nav.news") },
-    { href: "/projects", label: t("nav.projects") },
-    { href: "/contact", label: t("nav.contact") },
+    { href: "/news", label: copy.nav.news },
+    { href: "/projects", label: copy.nav.projects },
+    { href: "/contact", label: copy.nav.contact },
   ];
 
   useEffect(() => {
@@ -150,7 +169,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className={clsx("hidden items-center gap-7 lg:flex", lang === "ar" ? "text-right" : "text-left")}>
             {navLinks.map((item) => {
               if (!item.dropdownItems || !item.dropdownItems.length) {
                 return (
@@ -224,6 +243,48 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setLanguageMenuOpen((prev) => !prev)}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50"
+              >
+                <span>{copy.nav.language}</span>
+                <ChevronDownIcon className={clsx("size-4 transition-transform", languageMenuOpen && "rotate-180")} />
+              </button>
+
+              <AnimatePresence>
+                {languageMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute end-0 z-50 mt-2 w-44 rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg"
+                  >
+                    {[
+                      { key: "en", label: "🇺🇸 English" },
+                      { key: "ar", label: "🇸🇦 العربية" },
+                    ].map((item) => (
+                      <button
+                        key={item.key}
+                        type="button"
+                        onClick={() => {
+                          setLang(item.key as "en" | "ar");
+                          setLanguageMenuOpen(false);
+                        }}
+                        className={clsx(
+                          "flex w-full items-center rounded-lg px-3 py-2 text-sm transition",
+                          lang === item.key ? "bg-emerald-50 font-semibold text-emerald-700" : "text-slate-700 hover:bg-slate-50"
+                        )}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             <form
               className="flex items-center gap-2"
@@ -237,25 +298,25 @@ export default function Navbar() {
                 name="q"
                 value={desktopKeyword}
                 onChange={(event) => setDesktopKeyword(event.target.value)}
-                placeholder={t("nav.searchPlaceholder")}
-                aria-label={t("nav.searchLabel")}
+                placeholder={copy.nav.searchPlaceholder}
+                aria-label={copy.nav.searchLabel}
                 className="ui-input w-44 rounded-full"
               />
               <button
                 type="submit"
-                aria-label={t("nav.searchLabel")}
+                aria-label={copy.nav.searchLabel}
                 className="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
               >
                 <MagnifyingGlassIcon className="size-5" />
               </button>
             </form>
             <Button href={localizedHref("/contact")} variant="primary" className="shadow-sm">
-              {t("nav.quote")}
+              {copy.nav.quote}
             </Button>
           </div>
 
           <DisclosureButton className="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-700 lg:hidden">
-            <span className="sr-only">{t("nav.toggleMenu")}</span>
+            <span className="sr-only">{copy.nav.toggleMenu}</span>
             {open ? <XMarkIcon className="size-6" /> : <Bars3Icon className="size-6" />}
           </DisclosureButton>
 
@@ -320,6 +381,27 @@ export default function Navbar() {
               })}
 
               <div className="mt-1 flex items-center gap-2">
+                <div className="grid w-full grid-cols-2 gap-2">
+                  {[
+                    { key: "en", label: "🇺🇸 English" },
+                    { key: "ar", label: "🇸🇦 العربية" },
+                  ].map((item) => (
+                    <button
+                      key={item.key}
+                      type="button"
+                      onClick={() => setLang(item.key as "en" | "ar")}
+                      className={clsx(
+                        "rounded-lg border px-3 py-2 text-sm",
+                        lang === item.key ? "border-emerald-300 bg-emerald-50 text-emerald-700" : "border-slate-200 bg-white text-slate-700"
+                      )}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-1 flex items-center gap-2">
                 <form
                   className="flex flex-1 items-center gap-2"
                   onSubmit={(event) => {
@@ -332,20 +414,20 @@ export default function Navbar() {
                     name="q"
                     value={mobileKeyword}
                     onChange={(event) => setMobileKeyword(event.target.value)}
-                    placeholder={t("nav.searchPlaceholder")}
-                    aria-label={t("nav.searchLabel")}
+                    placeholder={copy.nav.searchPlaceholder}
+                    aria-label={copy.nav.searchLabel}
                     className="ui-input w-full"
                   />
                   <button
                     type="submit"
-                    aria-label={t("nav.searchLabel")}
+                    aria-label={copy.nav.searchLabel}
                     className="rounded-lg border border-slate-200 p-2 text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
                   >
                     <MagnifyingGlassIcon className="size-5" />
                   </button>
                 </form>
                 <Button href={localizedHref("/contact")} variant="primary" className="flex-1 justify-center">
-                  {t("nav.quote")}
+                  {copy.nav.quote}
                 </Button>
               </div>
             </nav>

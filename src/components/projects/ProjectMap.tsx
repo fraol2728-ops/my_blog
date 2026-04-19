@@ -4,6 +4,8 @@ import { Project } from "@/types";
 import { MapPin } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useLanguage } from "@/context/language";
+import { getLocalizedValue } from "@/lib/language";
 
 declare global {
   interface Window {
@@ -60,15 +62,16 @@ const ensureLeaflet = async () => {
   ]);
 };
 
-const previewCard = (project: Project) => `
+const previewCard = (project: Project, lang: "en" | "ar") => `
   <div style="min-width:180px;padding:4px 6px">
     <p style="font-size:11px;color:#166534;font-weight:700;letter-spacing:0.12em;text-transform:uppercase">${project.category}</p>
-    <p style="margin:4px 0 0;font-size:14px;font-weight:700;color:#0f172a">${project.title}</p>
+    <p style="margin:4px 0 0;font-size:14px;font-weight:700;color:#0f172a">${getLocalizedValue(project.title, lang, "")}</p>
     <p style="margin:3px 0 0;font-size:12px;color:#334155">${project.location}</p>
   </div>
 `;
 
 export default function ProjectMap({ projects, locale }: { projects: Project[]; locale: string }) {
+  const { lang } = useLanguage();
   const mapNodeRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<LeafletMap | null>(null);
   const router = useRouter();
@@ -110,7 +113,7 @@ export default function ProjectMap({ projects, locale }: { projects: Project[]; 
         L
           .marker(latLng, { icon: markerIcon })
           .addTo(map)
-          .bindTooltip(previewCard(project), { direction: "top", offset: [0, -8], opacity: 0.96 })
+          .bindTooltip(previewCard(project, lang), { direction: "top", offset: [0, -8], opacity: 0.96 })
           .on("click", () => router.push(`/${locale}/projects/${project.slug}`));
       });
 
@@ -130,7 +133,7 @@ export default function ProjectMap({ projects, locale }: { projects: Project[]; 
       mapRef.current?.remove();
       mapRef.current = null;
     };
-  }, [locale, mapProjects, router]);
+  }, [lang, locale, mapProjects, router]);
 
   return (
     <section className="mt-14 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8">
