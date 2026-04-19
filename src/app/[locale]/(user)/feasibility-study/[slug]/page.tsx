@@ -47,27 +47,38 @@ export default async function FeasibilityStudyDetailPage({
   if (!post) notFound();
 
   return (
-    <main className="bg-white text-slate-900">
-      <section className="section-shell pb-12">
-        <Reveal>
-          <Link href={`/${locale}/feasibility-study`} className="text-sm font-semibold text-emerald-700">
-            ← Back to feasibility insights
-          </Link>
-          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-            {post.category} • {dayjs(post.publishedAt).format("MMMM D, YYYY")}
-          </p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-            {post.title}
-          </h1>
-          <p className="mt-5 max-w-3xl text-lg text-slate-600">{post.shortDescription}</p>
-          <div className="mt-8">
-            <Button href={`/${locale}/contact?service=feasibility-study`}>Request Free Study</Button>
-          </div>
-        </Reveal>
+    <main className="bg-slate-50 text-slate-900">
+      <section className="relative overflow-hidden border-b border-emerald-100 bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.35),transparent_45%)]" />
+        <div className="section-shell relative py-14 md:py-20">
+          <Reveal>
+            <Link
+              href={`/${locale}/feasibility-study`}
+              className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-100 transition hover:border-emerald-200 hover:bg-white/15"
+            >
+              ← Back to feasibility insights
+            </Link>
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/90">
+              {post.category} • {dayjs(post.publishedAt).format("MMMM D, YYYY")}
+            </p>
+            <h1 className="mt-4 max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+              {post.title}
+            </h1>
+            <p className="mt-6 max-w-3xl text-base text-slate-200 sm:text-lg">{post.shortDescription}</p>
+            <div className="mt-9 flex flex-wrap gap-4">
+              <Button href={`/${locale}/contact?service=feasibility-study`} className="ui-glow-btn">
+                Request Free Study
+              </Button>
+              <Button href={`/${locale}/projects`} variant="secondary">
+                View Related Projects
+              </Button>
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {post.mainImage && (
-        <section className="px-6">
+        <section className="section-shell -mt-10 md:-mt-14">
           <div className="mx-auto max-w-6xl">
             <Reveal>
               <Image
@@ -75,16 +86,16 @@ export default async function FeasibilityStudyDetailPage({
                 alt={post.mainImage.alt ?? post.title}
                 width={1600}
                 height={950}
-                className="w-full rounded-3xl object-cover"
+                className="w-full rounded-3xl border border-white/60 object-cover shadow-2xl shadow-slate-900/15"
               />
             </Reveal>
           </div>
         </section>
       )}
 
-      <section className="section-shell">
+      <section className="section-shell pt-10">
         <Reveal>
-          <article className="prose prose-lg max-w-none prose-headings:text-slate-900 prose-p:text-slate-700">
+          <article className="prose prose-lg max-w-none rounded-3xl border border-slate-200 bg-white p-6 shadow-sm prose-headings:text-slate-900 prose-headings:scroll-mt-28 prose-p:text-slate-700 prose-a:text-emerald-700 prose-strong:text-slate-900 sm:p-10">
             {post.content && (
               <PortableText
                 value={post.content}
@@ -96,7 +107,7 @@ export default async function FeasibilityStudyDetailPage({
                         alt={value.alt || post.title}
                         width={1400}
                         height={900}
-                        className="w-full rounded-2xl"
+                        className="w-full rounded-2xl border border-slate-200"
                       />
                     ),
                   },
@@ -108,7 +119,7 @@ export default async function FeasibilityStudyDetailPage({
       </section>
 
       {!!post.gallery?.length && (
-        <section className="section-shell pt-0">
+        <section className="section-shell pt-4">
           <Reveal>
             <p className="ui-kicker">Gallery</p>
             <h2 className="mt-4 text-3xl font-semibold text-slate-900">Study snapshots</h2>
@@ -121,7 +132,7 @@ export default async function FeasibilityStudyDetailPage({
                   alt={image.alt ?? `${post.title} gallery image ${index + 1}`}
                   width={900}
                   height={700}
-                  className="h-full min-h-52 w-full rounded-2xl object-cover"
+                  className="h-full min-h-52 w-full rounded-2xl border border-slate-200 object-cover shadow-sm"
                 />
               </Reveal>
             ))}
