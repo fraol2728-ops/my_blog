@@ -64,7 +64,7 @@ export const buildSanityKeywordSignals = ({
   ]);
 
 const localizedHomeTitle: Record<AppLocale, string> = {
-  en: "Renewable Energy Engineering and Advisory Services",
+  en: "Master Premier Green Energy Co. Ltd | Renewable Energy Engineering",
   am: "የታዳሽ ኃይል ምህንድስና እና አማካሪ አገልግሎቶች",
 };
 

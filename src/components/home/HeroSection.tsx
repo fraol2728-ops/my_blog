@@ -62,7 +62,7 @@ function StatItem({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay: 0.15 + index * 0.1 }}
-      className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 px-4 py-4"
+      className="flex w-full max-w-[320px] flex-1 items-center gap-4 rounded-xl border border-white/10 bg-white/5 px-4 py-4"
     >
       <div className="rounded-lg bg-emerald-500/20 p-2.5 text-emerald-300">
         <Icon className="h-5 w-5" />
@@ -142,8 +142,9 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
           </m.div>
         </AnimatePresence>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/20" />
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-black/35" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
         <div className="relative mx-auto flex min-h-[calc(100svh-var(--site-header-height,0px))] w-full max-w-7xl items-center px-6 pb-8 pt-[clamp(2rem,3vw,3rem)] md:pb-12 lg:px-8">
@@ -250,7 +251,7 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
 
         <div className="relative z-30 mx-auto mt-3 w-[92%] max-w-6xl pb-8 md:mt-4">
           <div className="rounded-2xl border border-white/15 bg-black/40 p-4 shadow-2xl shadow-black/35 backdrop-blur-lg md:p-6">
-            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+            <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-3 lg:gap-4">
               {localizedStats.map((item, index) => (
                 <StatItem key={item.label} {...item} index={index} />
               ))}
