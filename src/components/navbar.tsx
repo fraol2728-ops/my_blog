@@ -54,7 +54,7 @@ export default function Navbar() {
       quote: lang === "ar" ? "اطلب عرض سعر" : t("nav.quote"),
       searchPlaceholder: lang === "ar" ? "ابحث في الأخبار..." : t("nav.searchPlaceholder"),
       searchLabel: lang === "ar" ? "البحث في الأخبار" : t("nav.searchLabel"),
-      language: lang === "ar" ? "اللغة" : "Language",
+      language: lang === "ar" ? "اللغة" : "Lan",
       toggleMenu: lang === "ar" ? "تبديل القائمة" : t("nav.toggleMenu"),
     },
   };
