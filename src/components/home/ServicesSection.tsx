@@ -52,7 +52,7 @@ const services = [
       "Rapid troubleshooting and repair services",
       "Long-term monitoring and optimization",
     ],
-    image: "/service4.png",
+    image: "/service4.jpg",
     alt: "Engineer providing technical support for a solar system",
   },
 ];
