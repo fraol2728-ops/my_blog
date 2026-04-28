@@ -1,7 +1,7 @@
 import ContactForm from "@/components/contact/ContactForm";
+import ContactHero from "@/components/contact/ContactHero";
 import ContactInfo from "@/components/contact/ContactInfo";
 import FAQSection from "@/components/contact/FAQSection";
-import { getMessages } from "@/i18n/get-messages";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
 import { buildBreadcrumbSchema, pageMetadata } from "@/lib/seo";
@@ -37,7 +37,6 @@ export default async function ContactPage({
     notFound();
   }
 
-  const t = getMessages(locale as AppLocale);
   const breadcrumbSchema = buildBreadcrumbSchema({
     locale: locale as AppLocale,
     items: [
@@ -52,13 +51,7 @@ export default async function ContactPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <section className="py-20">
-        <div className="mx-auto max-w-6xl px-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">{t.contact.heading}</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-gray-600 sm:text-lg">{t.contact.subheading}</p>
-        </div>
-      </section>
-
+            <ContactHero />
       <section className="py-20">
         <div className="mx-auto grid max-w-6xl gap-12 px-4 md:grid-cols-2">
           <ContactForm />
@@ -70,7 +63,7 @@ export default async function ContactPage({
         <div className="mx-auto max-w-6xl px-4">
           <div className="overflow-hidden rounded-2xl border border-gray-200">
             <iframe
-              title={t.contact.mapTitle}
+              title="Company Location"
               src="https://www.google.com/maps?q=Thongping,+Florian+Road,+Block+3,+Plot+No.+258,+Juba,+South+Sudan&output=embed"
               className="h-80 w-full border-0"
               loading="lazy"

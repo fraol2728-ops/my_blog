@@ -13,24 +13,12 @@ import ProjectMap from "./ProjectMap";
 import StickyProjectCTA from "./StickyProjectCTA";
 import { useLanguage } from "@/context/language";
 import { getLocalizedValue } from "@/lib/language";
+import { getTranslation } from "@/lib/translations";
 
 type CategoryFilter = "all" | ProjectCategory;
 type CapacityFilter = "all" | "small" | "mid" | "large";
 
-const categoryLabels: Record<CategoryFilter, string> = {
-  all: "All",
-  residential: "Residential",
-  commercial: "Commercial",
-  government: "Government",
-  industrial: "Industrial",
-};
 
-const capacityLabels: Record<CapacityFilter, string> = {
-  all: "Any Capacity",
-  small: "0 - 100 kW",
-  mid: "101 - 500 kW",
-  large: "500+ kW",
-};
 
 const toTitleCase = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
 const parseCapacity = (capacity: string) => Number.parseInt(capacity.replace(/[^0-9]/g, ""), 10) || 0;
@@ -44,6 +32,9 @@ export default function ProjectsPageClient({
   locale: string;
 }) {
   const { lang } = useLanguage();
+  const t = getTranslation(lang);
+  const categoryLabels: Record<CategoryFilter, string> = lang === "ar" ? { all: "الكل", residential: "سكني", commercial: "تجاري", government: "حكومي", industrial: "صناعي" } : { all: "All", residential: "Residential", commercial: "Commercial", government: "Government", industrial: "Industrial" };
+  const capacityLabels: Record<CapacityFilter, string> = { all: t.projects.anyCapacity, small: "0 - 100 kW", mid: "101 - 500 kW", large: "500+ kW" };
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>("all");
   const [activeCountry, setActiveCountry] = useState<string>("all");
   const [activeCapacity, setActiveCapacity] = useState<CapacityFilter>("all");
@@ -96,10 +87,10 @@ export default function ProjectsPageClient({
       <section className="relative overflow-hidden border-b border-green-100/70 bg-gradient-to-br from-white via-green-50/60 to-emerald-50/70 py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-green-600">Case Studies</p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">Premium Projects Experience</h1>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-green-600">{t.projects.caseStudies}</p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">{t.projects.premiumExperience}</h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
-              A startup-grade portfolio with interactive mapping, rich filtering, and measurable impact intelligence.
+              {t.projects.intro}
             </p>
           </motion.div>
 
@@ -134,13 +125,13 @@ export default function ProjectsPageClient({
               <input
                 value={keyword}
                 onChange={(event) => setKeyword(event.target.value)}
-                placeholder="Search by title, location, category..."
+                placeholder={t.projects.searchPlaceholder}
                 className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm"
               />
             </label>
 
             <select value={activeCountry} onChange={(event) => setActiveCountry(event.target.value)} className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700">
-              <option value="all">All Countries</option>
+              <option value="all">{t.projects.allCountries}</option>
               {countries.map((country) => (
                 <option key={country} value={country}>{country}</option>
               ))}
@@ -174,8 +165,8 @@ export default function ProjectsPageClient({
       <section className="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between">
           <div>
-            <h2 className="text-3xl font-semibold text-slate-900">Featured Projects</h2>
-            <p className="mt-2 text-slate-600">Flagship deployments with verified outcomes and enterprise-grade execution.</p>
+            <h2 className="text-3xl font-semibold text-slate-900">{t.projects.featuredProjects}</h2>
+            <p className="mt-2 text-slate-600">{t.projects.featuredSubtitle}</p>
           </div>
         </div>
         <div className="mt-8 space-y-6">
@@ -202,7 +193,7 @@ export default function ProjectsPageClient({
                     <div className="flex flex-wrap gap-2">
                       <span className="inline-flex rounded-full bg-green-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-green-700">{toTitleCase(project.category ?? project.projectType ?? "project")}</span>
                       {project.isVerified && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700"><BadgeCheck className="size-3.5" /> Verified Project</span>
+                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700"><BadgeCheck className="size-3.5" /> {t.projects.verifiedProject}</span>
                       )}
                       {project.completionStatus && <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">{project.completionStatus}</span>}
                     </div>
@@ -210,7 +201,7 @@ export default function ProjectsPageClient({
                     <p className="mt-2 text-sm text-slate-500">{project.location} · {project.capacity}</p>
                     <p className="mt-4 line-clamp-3 text-slate-600">{getLocalizedValue(project.overview, lang, "")}</p>
                     <Link href={`/${locale}/projects/${project.slug}`} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-green-700 transition group-hover:translate-x-1">
-                      View Case Study <ArrowRight className="size-4" />
+                      {t.projects.viewCaseStudy} <ArrowRight className="size-4" />
                     </Link>
                   </div>
                 </div>
@@ -221,7 +212,7 @@ export default function ProjectsPageClient({
       </section>
 
       <section className="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-semibold text-slate-900">All Case Studies</h2>
+        <h2 className="text-3xl font-semibold text-slate-900">All {t.projects.caseStudies}</h2>
         <p className="mt-2 text-slate-600">{filteredProjects.length} matching projects</p>
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           <AnimatePresence mode="popLayout">
@@ -254,7 +245,7 @@ export default function ProjectsPageClient({
                     <p className="mt-2 text-xs text-slate-500">{project.location} · {project.capacity}</p>
                     <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600">{getLocalizedValue(project.overview, lang, "")}</p>
                     <Link href={`/${locale}/projects/${project.slug}`} className="mt-5 inline-flex items-center gap-2 rounded-full border border-green-200 px-4 py-2 text-sm font-semibold text-green-700 transition hover:bg-green-50">
-                      View Case Study <ArrowRight className="size-4 transition group-hover:translate-x-0.5" />
+                      {t.projects.viewCaseStudy} <ArrowRight className="size-4 transition group-hover:translate-x-0.5" />
                     </Link>
                   </div>
                 </motion.article>
