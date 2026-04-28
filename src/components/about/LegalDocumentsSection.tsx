@@ -13,7 +13,7 @@ const legalDocuments = [
 ];
 
 export default function LegalDocumentsSection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === "ar";
 
   return (
     <section id="legal-documents" className="bg-white px-6 py-20 scroll-mt-24">

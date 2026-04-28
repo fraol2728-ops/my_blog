@@ -29,7 +29,7 @@ const steps = [
 ];
 
 export default function ProcessSection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === "ar";
   const localizedSteps = isAmharic
     ? steps.map((step) => ({
         ...step,

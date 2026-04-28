@@ -14,7 +14,7 @@ const benefits = [
 ];
 
 export default function WhySolarSection() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === "ar";
   const localizedBenefits = isAmharic
     ? [
         "የኤሌክትሪክ ክፍያዎን ይቀንሱ",

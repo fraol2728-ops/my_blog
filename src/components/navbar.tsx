@@ -138,6 +138,17 @@ export default function Navbar() {
     return `/${locale}${href === "/" ? "" : href}`;
   };
 
+  const switchLanguage = (nextLang: "en" | "ar") => {
+    setLang(nextLang);
+    setLanguageMenuOpen(false);
+
+    const segments = pathname.split("/").filter(Boolean);
+    const rest = segments.slice(1).join("/");
+    const suffix = rest ? `/${rest}` : "";
+    const nextPath = `/${nextLang}${suffix}`;
+    router.push(nextPath);
+  };
+
 
   return (
     <Disclosure
@@ -270,10 +281,7 @@ export default function Navbar() {
                       <button
                         key={item.key}
                         type="button"
-                        onClick={() => {
-                          setLang(item.key as "en" | "ar");
-                          setLanguageMenuOpen(false);
-                        }}
+                        onClick={() => switchLanguage(item.key as "en" | "ar")}
                         className={clsx(
                           "flex w-full items-center rounded-lg px-3 py-2 text-sm transition",
                           lang === item.key ? "bg-emerald-50 font-semibold text-emerald-700" : "text-slate-700 hover:bg-slate-50"
@@ -390,7 +398,7 @@ export default function Navbar() {
                     <button
                       key={item.key}
                       type="button"
-                      onClick={() => setLang(item.key as "en" | "ar")}
+                      onClick={() => switchLanguage(item.key as "en" | "ar")}
                       className={clsx(
                         "rounded-lg border px-3 py-2 text-sm",
                         lang === item.key ? "border-emerald-300 bg-emerald-50 text-emerald-700" : "border-slate-200 bg-white text-slate-700"

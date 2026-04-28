@@ -20,7 +20,7 @@ const cards = [
 ];
 
 export default function VisionMission() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === "ar";
   const localizedCards = isAmharic
     ? cards.map((card) => ({
         ...card,
