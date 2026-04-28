@@ -13,7 +13,7 @@ import ProjectMap from "./ProjectMap";
 import StickyProjectCTA from "./StickyProjectCTA";
 import { useLanguage } from "@/context/language";
 import { getLocalizedValue } from "@/lib/language";
-import { getTranslation } from "@/lib/translations";
+import { translations } from "@/lib/translations";
 
 type CategoryFilter = "all" | ProjectCategory;
 type CapacityFilter = "all" | "small" | "mid" | "large";
@@ -32,7 +32,7 @@ export default function ProjectsPageClient({
   locale: string;
 }) {
   const { lang } = useLanguage();
-  const t = getTranslation(lang);
+  const t = translations[lang];
   const categoryLabels: Record<CategoryFilter, string> = lang === "ar" ? { all: "الكل", residential: "سكني", commercial: "تجاري", government: "حكومي", industrial: "صناعي" } : { all: "All", residential: "Residential", commercial: "Commercial", government: "Government", industrial: "Industrial" };
   const capacityLabels: Record<CapacityFilter, string> = { all: t.projects.anyCapacity, small: "0 - 100 kW", mid: "101 - 500 kW", large: "500+ kW" };
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>("all");

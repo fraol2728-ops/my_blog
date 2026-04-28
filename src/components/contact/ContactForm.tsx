@@ -2,7 +2,7 @@
 
 import { trackEvent } from "@/lib/analytics/events";
 import { useLanguage } from "@/context/language";
-import { getTranslation } from "@/lib/translations";
+import { translations } from "@/lib/translations";
 import { LeadPayload } from "@/lib/validation/lead";
 import { FormEvent, useMemo, useState } from "react";
 
@@ -82,7 +82,7 @@ const sendWithEmailJs = async (payload: FormState) => {
 
 export default function ContactForm() {
   const { lang } = useLanguage();
-  const t = getTranslation(lang);
+  const t = translations[lang];
   const [form, setForm] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<Errors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);

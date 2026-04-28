@@ -6,7 +6,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import Logo from "./logo";
 import { useLocale } from "@/i18n/I18nProvider";
 import { useLanguage } from "@/context/language";
-import { getTranslation } from "@/lib/translations";
+import { translations } from "@/lib/translations";
 
 const socialLinks = [
   { href: "mailto:mpgenergy@gmail.com", label: "Email", icon: Mail },
@@ -22,7 +22,7 @@ const socialLinks = [
 export default function Footer() {
   const locale = useLocale();
   const { lang } = useLanguage();
-  const t = getTranslation(lang);
+  const t = translations[lang];
   const localized = (path: string) => `/${locale}${path === "/" ? "" : path}`;
 
   const quickLinks = [

@@ -2,9 +2,9 @@ import FeaturedPost from "@/components/news/FeaturedPost";
 import NewsGrid from "@/components/news/NewsGrid";
 import NewsHero from "@/components/news/NewsHero";
 import Newsletter from "@/components/news/Newsletter";
+import NewsEmptyState from "@/components/news/NewsEmptyState";
 import { getAllPosts, getCategories } from "@/sanity/queries";
 import { Post, PostCategory } from "@/types";
-import { getMessages } from "@/i18n/get-messages";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
 import { buildBreadcrumbSchema, buildSanityKeywordSignals, pageMetadata, SITE_URL } from "@/lib/seo";
@@ -58,7 +58,6 @@ export default async function NewsPage({
     notFound();
   }
 
-  const t = getMessages(locale as AppLocale);
 
   const [postsResponse, categoriesResponse] = await Promise.allSettled([
     getAllPosts(50),
@@ -115,9 +114,7 @@ export default async function NewsPage({
           {featuredPost ? (
             <FeaturedPost post={featuredPost} />
           ) : (
-            <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">
-              {t.news.empty}
-            </div>
+            <NewsEmptyState />
           )}
         </section>
 

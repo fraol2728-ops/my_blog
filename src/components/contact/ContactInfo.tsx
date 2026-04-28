@@ -2,7 +2,7 @@
 
 import { Clock3, Mail, MapPin, Phone } from "lucide-react";
 import { useLanguage } from "@/context/language";
-import { getTranslation } from "@/lib/translations";
+import { translations } from "@/lib/translations";
 
 const contactItems = [
   { icon: MapPin, label: "Address", value: "Thongping, Florian Road, Block 3, Plot No. 258 - Juba, South Sudan" },
@@ -14,7 +14,7 @@ const contactItems = [
 
 export default function ContactInfo() {
   const { lang } = useLanguage();
-  const t = getTranslation(lang);
+  const t = translations[lang];
 
   return (
     <aside className={`rounded-2xl border border-green-100 bg-green-50/60 p-6 sm:p-8 ${lang === "ar" ? "text-right" : "text-left"}`}>

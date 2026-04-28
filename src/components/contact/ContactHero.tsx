@@ -1,11 +1,11 @@
 "use client";
 
 import { useLanguage } from "@/context/language";
-import { getTranslation } from "@/lib/translations";
+import { translations } from "@/lib/translations";
 
 export default function ContactHero() {
   const { lang } = useLanguage();
-  const t = getTranslation(lang);
+  const t = translations[lang];
 
   return (
     <section className={`py-20 ${lang === "ar" ? "text-right" : "text-left"}`}>

@@ -1,5 +1,3 @@
-import type { Language } from "@/context/language";
-
 export const translations = {
   en: {
     heroTitle: "Master Premier Green Energy Co. Ltd",
@@ -67,6 +65,9 @@ export const translations = {
       verifiedProject: "Verified Project",
       viewCaseStudy: "View Case Study",
     },
+    news: {
+      empty: "No news articles published yet.",
+    },
   },
   ar: {
     heroTitle: "ماستر بريميير للطاقة الخضراء المحدودة",
@@ -132,7 +133,9 @@ export const translations = {
       verifiedProject: "مشروع موثق",
       viewCaseStudy: "عرض دراسة الحالة",
     },
+    news: {
+      empty: "لا توجد أخبار منشورة حتى الآن.",
+    },
   },
 } as const;
 
-export const getTranslation = (lang: Language) => translations[lang] ?? translations.en;

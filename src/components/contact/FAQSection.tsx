@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/context/language";
-import { getTranslation } from "@/lib/translations";
+import { translations } from "@/lib/translations";
 
 const faqs = [
   {
@@ -28,7 +28,7 @@ const faqs = [
 
 export default function FAQSection() {
   const { lang } = useLanguage();
-  const t = getTranslation(lang);
+  const t = translations[lang];
   const isArabic = lang === "ar";
   const localizedFaqs = isArabic
     ? [
