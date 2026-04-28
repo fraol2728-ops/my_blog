@@ -28,12 +28,12 @@ const reasons = [
 ];
 
 export default function WhyChooseUs() {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-7xl rounded-xl bg-white p-10 shadow-lg sm:p-12">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          {isAmharic ? "መሪ ድርጅቶች ለምን እኛን ይመርጣሉ?" : "Why Leading Organizations Choose Us"}
+          {isArabic ? "نص عربي" : "Why Leading Organizations Choose Us"}
         </h2>
         <motion.div
           initial="hidden"

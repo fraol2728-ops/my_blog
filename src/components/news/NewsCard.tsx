@@ -10,7 +10,7 @@ import { useLocale } from "@/i18n/I18nProvider";
 
 export default function NewsCard({ post }: { post: Post }) {
   const locale = useLocale();
-  const isAmharic = locale === "ar";
+  const isArabic = locale === "ar";
   const imageUrl = post.mainImage ? urlFor(post.mainImage).width(800).height(500).url() : null;
   const category = Array.isArray(post.categories) ? post.categories[0] : undefined;
   const categoryLabel = typeof category === "string" ? category : category?.title;
@@ -46,7 +46,7 @@ export default function NewsCard({ post }: { post: Post }) {
           <h3 className="mt-3 line-clamp-2 text-xl font-semibold text-slate-900">{post.title}</h3>
           {post.excerpt && <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">{post.excerpt}</p>}
           <p className="mt-5 text-sm text-slate-500">
-            {dayjs(post.publishedAt).format("MMM D, YYYY")} · {post.author?.name ?? (isAmharic ? "የኤዲቶሪያል ቡድን" : "Editorial Team")}
+            {dayjs(post.publishedAt).format("MMM D, YYYY")} · {post.author?.name ?? (isArabic ? "نص عربي" : "Editorial Team")}
           </p>
         </div>
       </Link>

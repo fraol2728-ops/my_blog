@@ -13,23 +13,23 @@ const legalDocuments = [
 ];
 
 export default function LegalDocumentsSection() {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
 
   return (
     <section id="legal-documents" className="bg-white px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            {isAmharic ? "ሕጋዊ ሰነዶች" : "Legal Documents"}
+            {isArabic ? "نص عربي" : "Legal Documents"}
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {isAmharic
-              ? "የኩባንያችን ኦፊሴላዊ ሕጋዊ ሰነዶች"
+            {isArabic
+              ? "نص عربي"
               : "Our Official Company Legal Documents"}
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm text-slate-600 sm:text-base">
-            {isAmharic
-              ? "ለግልጽነት እና ለእምነት የቀረቡ የምዝገባ እና የሕጋዊ ሰነዶች ምስሎች።"
+            {isArabic
+              ? "نص عربي"
               : "A quick view of registration and legal records that support our compliance and transparency."}
           </p>
         </div>

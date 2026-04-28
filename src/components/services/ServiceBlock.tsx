@@ -21,7 +21,7 @@ type ServiceBlockProps = {
 };
 
 export default function ServiceBlock({ service, reverse = false }: ServiceBlockProps) {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
 
   return (
     <motion.article
@@ -65,7 +65,7 @@ export default function ServiceBlock({ service, reverse = false }: ServiceBlockP
             href="/contact"
             className="mt-7 inline-flex rounded-xl bg-[#16a34a] px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-green-600"
           >
-            {isAmharic ? "ከባለሙያ ጋር ይነጋገሩ" : "Talk to an Expert"}
+            {isArabic ? "نص عربي" : "Talk to an Expert"}
           </Link>
         </div>
       </div>

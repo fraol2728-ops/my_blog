@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useLocale } from "@/i18n/I18nProvider";
 
 export default function ServicesHero() {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
 
   return (
     <section className="relative isolate overflow-hidden">
@@ -28,14 +28,14 @@ export default function ServicesHero() {
           className="max-w-3xl space-y-6"
         >
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-green-300">
-            {isAmharic ? "የድርጅት የፀሐይ ኃይል አገልግሎቶች" : "Enterprise Solar Services"}
+            {isArabic ? "نص عربي" : "Enterprise Solar Services"}
           </p>
           <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            {isAmharic ? "ከመጀመሪያ እስከ መጨረሻ የሚስፋፉ የኃይል መፍትሄዎች" : "End-to-End Energy Solutions Built to Scale"}
+            {isArabic ? "نص عربي" : "End-to-End Energy Solutions Built to Scale"}
           </h1>
           <p className="max-w-2xl text-base text-slate-200 sm:text-lg">
-            {isAmharic
-              ? "ለንግድ፣ ለኢንዱስትሪ እና ለዩቲሊቲ ደንበኞች ግልጽ ተመላሽ እና የረጅም ጊዜ እምነት ያለው ከፍተኛ አፈጻጸም ያለው የፀሐይ ስርዓት እንዘጋጃለን፣ እንጭናለን እና እንጠብቃለን።"
+            {isArabic
+              ? "نص عربي"
               : "We design, deploy, and maintain high-performance solar systems for commercial, industrial, and utility clients with clear ROI and long-term reliability."}
           </p>
           <div className="flex flex-wrap gap-4 pt-2">
@@ -43,13 +43,13 @@ export default function ServicesHero() {
               href="/contact"
               className="inline-flex items-center justify-center rounded-xl bg-[#16a34a] px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-green-600"
             >
-              {isAmharic ? "ፕሮፖዛል ይጠይቁ" : "Request Proposal"}
+              {isArabic ? "نص عربي" : "Request Proposal"}
             </Link>
             <Link
               href="#services-overview"
               className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
             >
-              {isAmharic ? "አገልግሎቶችን ይመልከቱ" : "Explore Services"}
+              {isArabic ? "نص عربي" : "Explore Services"}
             </Link>
           </div>
         </motion.div>

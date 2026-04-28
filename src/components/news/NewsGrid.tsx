@@ -19,7 +19,7 @@ interface NewsGridProps {
 }
 
 export default function NewsGrid({ posts, categories, initialSearch = "" }: NewsGridProps) {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
   const [activeCategory, setActiveCategory] = useState("all");
   const [search, setSearch] = useState(initialSearch);
   const [currentPage, setCurrentPage] = useState(1);
@@ -87,7 +87,7 @@ export default function NewsGrid({ posts, categories, initialSearch = "" }: News
 
         {paginatedPosts.length === 0 && (
           <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">
-            {isAmharic ? "ከአሁኑ ማጣሪያዎች ጋር የሚመጣጠን ዜና አልተገኘም።" : "No news matched your current filters."}
+            {isArabic ? "نص عربي" : "No news matched your current filters."}
           </div>
         )}
 

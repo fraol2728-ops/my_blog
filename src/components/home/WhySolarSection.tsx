@@ -14,20 +14,20 @@ const benefits = [
 ];
 
 export default function WhySolarSection() {
-  const isAmharic = useLocale() === "ar";
-  const localizedBenefits = isAmharic
+  const isArabic = useLocale() === "ar";
+  const localizedBenefits = isArabic
     ? [
-        "የኤሌክትሪክ ክፍያዎን ይቀንሱ",
-        "የኃይል ዋጋ ጭማሪን ይቋቋሙ",
-        "የንብረት ዋጋዎን ያሳድጉ",
-        "ያልተገደበ ታዳሽ ኃይል ይጠቀሙ",
-        "ለአካባቢ ተስማሚ መፍትሄ",
+        "نص عربي",
+        "نص عربي",
+        "نص عربي",
+        "نص عربي",
+        "نص عربي",
       ]
     : benefits;
   return (
     <Section>
       <Reveal className="ui-card mx-auto max-w-6xl p-8 md:p-12">
-        <SectionHeader title={isAmharic ? "ለምን ፀሐይ ኃይል?" : "Why Solar"} />
+        <SectionHeader title={isArabic ? "نص عربي" : "Why Solar"} />
         <ul className="mt-8 grid gap-4 md:grid-cols-2">
           {localizedBenefits.map((benefit) => (
             <li key={benefit} className="flex items-start gap-3 rounded-2xl bg-slate-50 p-4 transition hover:bg-emerald-50/70">

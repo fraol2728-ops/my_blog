@@ -10,14 +10,14 @@ interface PaginationProps {
 }
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
 
   if (totalPages <= 1) {
     return null;
   }
 
   return (
-    <nav className="mt-10 flex flex-wrap items-center justify-center gap-2" aria-label={isAmharic ? "ገጽ መቀየሪያ" : "Pagination"}>
+    <nav className="mt-10 flex flex-wrap items-center justify-center gap-2" aria-label={isArabic ? "نص عربي" : "Pagination"}>
       {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => {
         const isActive = currentPage === page;
 

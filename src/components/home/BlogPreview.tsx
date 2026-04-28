@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function BlogPreview({ posts }: { posts: Post[] | null }) {
   const locale = useLocale();
-  const isAmharic = locale === "ar";
+  const isArabic = locale === "ar";
   if (!posts || posts.length === 0) {
     return null;
   }
@@ -19,11 +19,11 @@ export default function BlogPreview({ posts }: { posts: Post[] | null }) {
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeader
-            kicker={isAmharic ? "ዜና እና ግንዛቤ" : "News & Insights"}
-            title={isAmharic ? "ከፀሐይ ኃይል ቡድናችን የቅርብ ጊዜ መረጃዎች" : "Latest updates from our solar team"}
+            kicker={isArabic ? "نص عربي" : "News & Insights"}
+            title={isArabic ? "نص عربي" : "Latest updates from our solar team"}
           />
           <Link href={`/${locale}/news`} className="text-sm font-semibold text-slate-700 transition hover:text-emerald-600">
-            {isAmharic ? "ሁሉንም ዜናዎች ይመልከቱ" : "View all posts"}
+            {isArabic ? "نص عربي" : "View all posts"}
           </Link>
         </div>
 

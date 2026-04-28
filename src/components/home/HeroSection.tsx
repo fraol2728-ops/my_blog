@@ -84,7 +84,7 @@ type HeroSectionProps = {
 
 export default function HeroSection({ featuredProject }: HeroSectionProps) {
   const locale = useLocale();
-  const isAmharic = locale === "ar";
+  const isArabic = locale === "ar";
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -101,15 +101,15 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
       stats.map((item) => ({
         ...item,
         label:
-          isAmharic
+          isArabic
             ? {
-                "Energy Generated": "የተመነጨ ኃይል",
-                "Client Satisfaction": "የደንበኛ እርካታ",
-                "Years Experience": "የልምድ ዓመታት",
+                "Energy Generated": "نص عربي",
+                "Client Satisfaction": "نص عربي",
+                "Years Experience": "نص عربي",
               }[item.label] ?? item.label
             : item.label,
       })),
-    [isAmharic],
+    [isArabic],
   );
 
   return (
@@ -156,14 +156,14 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
               className="max-w-2xl text-center md:text-left"
             >
               <p className="inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
-                {isAmharic ? "የንፁህ ኃይል መሠረተ ልማት" : "Clean Energy Infrastructure"}
+                {isArabic ? "نص عربي" : "Clean Energy Infrastructure"}
               </p>
               <h1 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
                 Master Premier Green Energy Co. Ltd
               </h1>
               <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/80 md:mx-0 md:text-lg">
-                {isAmharic
-                  ? "በደቡብ ሱዳን ውስጥ የታዳሽ ኃይል ተደራሽነትን ለማሳደግ የምህንድስና፣ አማካሪ፣ ተከላ እና የጥገና አገልግሎቶችን እንሰጣለን።"
+                {isArabic
+                  ? "نص عربي"
                   : "Delivering engineering, advisory, installation and servicing solutions for renewable energy access across South Sudan."}
               </p>
 
@@ -172,13 +172,13 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
                   href={`/${locale}/contact`}
                   className="ui-glow-btn rounded-xl bg-emerald-600 px-7 py-3.5 text-center font-semibold text-white shadow-lg shadow-emerald-600/35 transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-500"
                 >
-                  {isAmharic ? "ነፃ የዋጋ ጥያቄ ያቅርቡ" : "Get a Free Quote"}
+                  {isArabic ? "نص عربي" : "Get a Free Quote"}
                 </Link>
                 <Link
                   href={`/${locale}/services`}
                   className="ui-glow-btn rounded-xl border border-white/60 bg-transparent px-7 py-3.5 text-center font-semibold text-white transition-all duration-200 hover:-translate-y-1 hover:bg-white/10"
                 >
-                  {isAmharic ? "አገልግሎቶቻችንን ይመልከቱ" : "Explore Services"}
+                  {isArabic ? "نص عربي" : "Explore Services"}
                 </Link>
               </div>
             </m.div>
@@ -201,7 +201,7 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
                   />
                   <div className="relative">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/90">
-                      {isAmharic ? "ተመራጭ ፕሮጀክት" : "Featured Project"}
+                      {isArabic ? "نص عربي" : "Featured Project"}
                     </p>
 
                     <div className="mt-2.5 overflow-hidden rounded-2xl border border-white/20">
@@ -226,7 +226,7 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
                     </p>
 
                     <span className="mt-3.5 inline-flex items-center rounded-full border border-white/40 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white transition group-hover:border-emerald-300 group-hover:bg-emerald-500/20">
-                      {isAmharic ? "ፕሮጀክቱን ይመልከቱ" : "View project"}
+                      {isArabic ? "نص عربي" : "View project"}
                     </span>
                   </div>
                 </Link>
@@ -241,7 +241,7 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
               key={index}
               type="button"
               onClick={() => setActiveIndex(index)}
-              aria-label={isAmharic ? `${index + 1}ኛው ስላይድ ይክፈቱ` : `Go to slide ${index + 1}`}
+              aria-label={isArabic ? `الانتقال إلى الشريحة ${index + 1}` : `Go to slide ${index + 1}`}
               className={`h-2 rounded-full transition-all duration-300 ${
                 activeIndex === index ? "w-8 bg-emerald-500" : "w-2.5 bg-white/55 hover:bg-white/80"
               }`}
