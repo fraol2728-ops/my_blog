@@ -5,10 +5,9 @@ import { motion } from "motion/react";
 import { useLocale } from "@/i18n/I18nProvider";
 
 const team = [
-  { name: "Alicia Morgan", role: "Chief Executive Officer", image: "/project1.jpg" },
-  { name: "Daniel Reyes", role: "Director of Engineering", image: "/project2.jpg" },
-  { name: "Maya Patel", role: "Head of Sustainability", image: "/project3.jpg" },
-  { name: "Ethan Brooks", role: "Operations Director", image: "/project4.jpg" },
+  { name: "Eyasu Adamte Wale", role: "Chief Executive Officer", image: "/team1.jpg" },
+  { name: "Goyitom Yohannes Tecle", role: "Director of Engineering", image: "/team3.png" },
+  { name: "Tedros Gebrehiwet Hedgu", role: "Head of Sustainability", image: "/team2.jpg" },
 ];
 
 export default function TeamSection() {
@@ -33,7 +32,7 @@ export default function TeamSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {team.map((member) => (
             <motion.article
