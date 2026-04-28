@@ -6,51 +6,44 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import Logo from "./logo";
 import { useLocale } from "@/i18n/I18nProvider";
 import { useLanguage } from "@/context/language";
-
-const services = [
-  { href: "/services", en: "Energy audit & feasibility studies", am: "የኃይል ኦዲት እና የአዋጭነት ጥናቶች" },
-  { href: "/services", en: "Energy management plans", am: "የኃይል አስተዳደር እቅዶች" },
-  { href: "/services", en: "System design & commercial proposals", am: "የስርዓት ንድፍ እና የንግድ ፕሮፖዛሎች" },
-  { href: "/services", en: "Installation & after-service support", am: "ተከላ እና ከአገልግሎት በኋላ ድጋፍ" },
-];
+import { getTranslation } from "@/lib/translations";
 
 const socialLinks = [
   { href: "mailto:mpgenergy@gmail.com", label: "Email", icon: Mail },
   { href: "tel:+211982004848", label: "Phone 1", icon: Phone },
   { href: "tel:+211928004848", label: "Phone 2", icon: Phone },
-  { href: "https://maps.google.com/?q=Thongping,Florian+Road,Block+3,Plot+No.+258,+Juba,+South+Sudan", label: "Location", icon: MapPin },
+  {
+    href: "https://maps.google.com/?q=Thongping,Florian+Road,Block+3,Plot+No.+258,+Juba,+South+Sudan",
+    label: "Location",
+    icon: MapPin,
+  },
 ];
 
 export default function Footer() {
   const locale = useLocale();
   const { lang } = useLanguage();
-  const isArabic = lang === "ar";
+  const t = getTranslation(lang);
   const localized = (path: string) => `/${locale}${path === "/" ? "" : path}`;
 
   const quickLinks = [
-    { href: localized("/"), label: isArabic ? "الرئيسية" : "Home" },
-    { href: localized("/about"), label: isArabic ? "عن ماستر بريميير" : "About Master Premier" },
-    { href: localized("/services"), label: isArabic ? "خدماتنا" : "Our Services" },
-    { href: localized("/news"), label: isArabic ? "الأخبار والتحديثات" : "News & Updates" },
-    { href: localized("/contact"), label: isArabic ? "اتصل بنا" : "Contact Us" },
+    { href: localized("/"), label: t.footer.home },
+    { href: localized("/about"), label: t.footer.about },
+    { href: localized("/services"), label: t.footer.services },
+    { href: localized("/news"), label: t.footer.news },
+    { href: localized("/contact"), label: t.footer.contactUs },
   ];
 
   return (
-    <footer className={`border-t border-slate-200 bg-slate-950 text-white ${isArabic ? "text-right" : "text-left"}`}>
+    <footer className={`border-t border-slate-200 bg-slate-950 text-white ${lang === "ar" ? "text-right" : "text-left"}`}>
       <div className="section-shell">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-5">
             <Logo className="px-0 text-white" />
-            <p className="max-w-sm text-sm leading-6 text-white/70">
-              Master Premier Green Energy Co. Ltd provides engineering and clean energy advisory services
-              {isArabic
-                ? " عبر تقديم خدمات الهندسة والاستشارات للطاقة النظيفة لمساعدة العملاء في الحصول على حلول طاقة شمسية موثوقة ومستدامة."
-                : " that help customers access reliable, affordable, and sustainable solar power solutions."}
-            </p>
+            <p className="max-w-sm text-sm leading-6 text-white/70">{t.footer.description}</p>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isArabic ? "روابط سريعة" : "Quick Links"}</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{t.footer.quickLinks}</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               {quickLinks.map((link) => (
                 <li key={link.href + link.label}>
@@ -63,12 +56,12 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isArabic ? "الخدمات الأساسية" : "Core Services"}</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{t.footer.coreServices}</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/80">
-              {services.map((service) => (
-                <li key={service.en}>
-                  <Link className="inline-flex hover:text-emerald-300" href={localized(service.href)}>
-                    {isArabic ? service.en : service.en}
+              {t.footer.serviceItems.map((service) => (
+                <li key={service}>
+                  <Link className="inline-flex hover:text-emerald-300" href={localized("/services")}>
+                    {service}
                   </Link>
                 </li>
               ))}
@@ -76,11 +69,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{isArabic ? "تواصل معنا" : "Contact"}</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{t.footer.contact}</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white" />
-                <span>Thongping, Florian Road, Block 3, Plot No. 258 - Juba, South Sudan</span>
+                <span>{t.footer.address}</span>
               </li>
               <li>
                 <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="tel:+211982004848">
@@ -100,18 +93,10 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col gap-5 border-t border-white/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
+            <p className="text-sm text-white/60">© {new Date().getFullYear()} Master Premier Green Energy Co. Ltd. {t.footer.allRightsReserved}</p>
             <p className="text-sm text-white/60">
-              © {new Date().getFullYear()} Master Premier Green Energy Co. Ltd.{" "}
-              {isArabic ? "جميع الحقوق محفوظة." : "All rights reserved."}
-            </p>
-            <p className="text-sm text-white/60">
-              {isArabic ? "مبرمج الموقع:" : "Code artist:"}{" "}
-              <a
-                className="text-white/80 underline-offset-4 transition-colors hover:text-emerald-300 hover:underline"
-                href="https://www.devfraol.com.et/services/web-development"
-                rel="noreferrer"
-                target="_blank"
-              >
+              {t.footer.codeArtist}{" "}
+              <a className="text-white/80 underline-offset-4 transition-colors hover:text-emerald-300 hover:underline" href="https://www.devfraol.com.et/services/web-development" rel="noreferrer" target="_blank">
                 Fraol Belachew
               </a>
             </p>
