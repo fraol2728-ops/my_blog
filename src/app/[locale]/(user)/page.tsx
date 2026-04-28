@@ -45,7 +45,7 @@ export default async function Home({
 }) {
   const { locale } = await params;
   if (!isValidLocale(locale)) notFound();
-  const isAmharic = locale === "am";
+  const isAmharic = locale === "ar";
 
   const breadcrumbSchema = buildBreadcrumbSchema({
     locale: locale as AppLocale,

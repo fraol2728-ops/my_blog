@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useLocale } from "@/i18n/I18nProvider";
 
 export default function ServicesHero() {
-  const isAmharic = useLocale() === "am";
+  const isAmharic = useLocale() === "ar";
 
   return (
     <section className="relative isolate overflow-hidden">

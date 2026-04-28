@@ -65,12 +65,12 @@ export const buildSanityKeywordSignals = ({
 
 const localizedHomeTitle: Record<AppLocale, string> = {
   en: "Master Premier Green Energy Co. Ltd | Renewable Energy Engineering",
-  am: "የታዳሽ ኃይል ምህንድስና እና አማካሪ አገልግሎቶች",
+  ar: "ماستر بريميير للطاقة الخضراء | هندسة الطاقة المتجددة",
 };
 
 const localizedHomeDescription: Record<AppLocale, string> = {
   en: "Master Premier Green Energy Co. Ltd provides renewable energy engineering, technical support, and clean energy advisory services to expand reliable power access across South Sudan.",
-  am: "Master Premier Green Energy Co. Ltd በደቡብ ሱዳን የታማኝ ኃይል ተደራሽነትን ለማስፋፋት የታዳሽ ኃይል ምህንድስና፣ ቴክኒካል ድጋፍ እና የንጹህ ኃይል አማካሪ አገልግሎቶችን ይሰጣል።",
+  ar: "توفر شركة ماستر بريميير للطاقة الخضراء خدمات هندسة الطاقة المتجددة والدعم الفني والاستشارات لتوسيع الوصول الموثوق للطاقة في جنوب السودان.",
 };
 
 export const getLocalizedHomeMeta = (locale: AppLocale) => ({
@@ -113,11 +113,12 @@ export const pageMetadata = ({
       canonical: canonicalPath,
       languages: {
         en: `/en${path === "/" ? "" : path}`,
+        ar: `/ar${path === "/" ? "" : path}`,
       },
     },
     openGraph: {
       type: "website",
-      locale: "en_US",
+      locale: locale === "ar" ? "ar" : "en_US",
       url: canonicalPath,
       title,
       description,
