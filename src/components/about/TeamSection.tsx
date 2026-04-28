@@ -42,7 +42,7 @@ export default function TeamSection() {
               whileHover={{ y: -5 }}
               className="overflow-hidden rounded-xl bg-white shadow-lg"
             >
-              <div className="relative h-64 w-full">
+              <div className="relative h-80 w-full md:h-96">
                 <Image
                   src={member.image}
                   alt={member.name}
