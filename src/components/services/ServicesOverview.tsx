@@ -33,10 +33,10 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
       <div className="mx-auto max-w-7xl">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            {isAmharic ? "የአገልግሎት አጠቃላይ እይታ" : "Services Overview"}
+            {isAmharic ? "نص عربي" : "Services Overview"}
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {isAmharic ? "የሚፈልጉትን መፍትሄ ይምረጡ" : "Choose the Solution You Need"}
+            {isAmharic ? "نص عربي" : "Choose the Solution You Need"}
           </h2>
         </div>
 

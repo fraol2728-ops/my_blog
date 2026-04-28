@@ -17,7 +17,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
   }
 
   return (
-    <nav className="mt-10 flex flex-wrap items-center justify-center gap-2" aria-label={isAmharic ? "ገጽ መቀየሪያ" : "Pagination"}>
+    <nav className="mt-10 flex flex-wrap items-center justify-center gap-2" aria-label={isAmharic ? "نص عربي" : "Pagination"}>
       {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => {
         const isActive = currentPage === page;
 

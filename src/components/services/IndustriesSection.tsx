@@ -19,7 +19,7 @@ export default function IndustriesSection() {
     <section className="px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          {isAmharic ? "የምናገለግላቸው ዘርፎች" : "Industries We Power"}
+          {isAmharic ? "نص عربي" : "Industries We Power"}
         </h2>
         <motion.div
           initial="hidden"

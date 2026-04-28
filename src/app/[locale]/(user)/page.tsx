@@ -86,15 +86,15 @@ export default async function Home({
         <AboutSection />
         <BlogPreview posts={latestPosts} />
         <FeasibilityInsightsSection
-          kicker={isAmharic ? "የፕሮጀክት ብቃት ጥናቶች" : "Feasibility Studies"}
+          kicker={isAmharic ? "نص عربي" : "Feasibility Studies"}
           title={
             isAmharic
-              ? "የቅርብ ጊዜ 3 የፀሐይ ፕሮጀክት የብቃት ጥናቶች"
+              ? "نص عربي"
               : "Latest 3 feasibility studies from our engineering team"
           }
           description={
             isAmharic
-              ? "የቴክኒክ እና ፋይናንስ ግምገማዎችን በፍጥነት ይመልከቱ እና ነፃ ጥናት ይጠይቁ።"
+              ? "نص عربي"
               : "Review data-backed technical and financial assessments before starting your next solar project."
           }
           posts={latestFeasibilityPosts.slice(0, 3)}

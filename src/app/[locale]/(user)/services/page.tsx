@@ -137,10 +137,10 @@ export default async function ServicesPage({
         ...service,
         title:
           {
-            "Solar System Installation": "የፀሐይ ስርዓት ተከላ",
-            "Solar Equipment Supply": "የፀሐይ መሳሪያ አቅርቦት",
-            "Solar Panel Manufacturing": "የፀሐይ ፓነል ማምረት",
-            "Maintenance & Lifecycle Support": "ጥገና እና የህይወት ዑደት ድጋፍ",
+            "Solar System Installation": "نص عربي",
+            "Solar Equipment Supply": "نص عربي",
+            "Solar Panel Manufacturing": "نص عربي",
+            "Maintenance & Lifecycle Support": "نص عربي",
           }[service.title] ?? service.title,
       }))
     : services;
@@ -150,17 +150,17 @@ export default async function ServicesPage({
         ...item,
         title:
           {
-            Installation: "ተከላ",
-            "Equipment Supply": "መሳሪያ አቅርቦት",
-            Manufacturing: "ማምረት",
-            Maintenance: "ጥገና",
+            Installation: "نص عربي",
+            "Equipment Supply": "نص عربي",
+            Manufacturing: "نص عربي",
+            Maintenance: "نص عربي",
           }[item.title] ?? item.title,
         summary:
           {
-            "Turnkey deployment from design to commissioning.": "ከዲዛይን እስከ ኮሚሽን ድረስ ሙሉ አፈጻጸም።",
-            "Premium components with transparent procurement.": "ጥራት ያላቸው ክፍሎች በግልጽ ግዥ ሂደት።",
-            "Scalable, QA-driven module production.": "የጥራት ቁጥጥር ያለው ሊስፋፋ የሚችል ምርት።",
-            "Proactive support to protect long-term ROI.": "የረጅም ጊዜ ተመላሽን የሚጠብቅ ንቁ ድጋፍ።",
+            "Turnkey deployment from design to commissioning.": "نص عربي",
+            "Premium components with transparent procurement.": "نص عربي",
+            "Scalable, QA-driven module production.": "نص عربي",
+            "Proactive support to protect long-term ROI.": "نص عربي",
           }[item.summary] ?? item.summary,
       }))
     : serviceOverviewItems;
@@ -196,11 +196,11 @@ export default async function ServicesPage({
       <ProcessSection />
       <IndustriesSection />
       <FeasibilityInsightsSection
-        kicker={isAmharic ? "ተያያዥ የብቃት ግንዛቤዎች" : "Related Feasibility Insights"}
-        title={isAmharic ? "ከአገልግሎቶቻችን ጋር ተያያዥ ጥናቶች" : "Feasibility insights related to your service goals"}
+        kicker={isAmharic ? "نص عربي" : "Related Feasibility Insights"}
+        title={isAmharic ? "نص عربي" : "Feasibility insights related to your service goals"}
         description={
           isAmharic
-            ? "የእርስዎን ኢንቨስትመንት ውሳኔ ለማጠናከር በእኛ የቅርብ ጊዜ ጥናቶች ይጀምሩ።"
+            ? "نص عربي"
             : "Use recent studies to compare scope, ROI expectations, and implementation risks across project types."
         }
         posts={feasibilityPosts.slice(0, 3)}

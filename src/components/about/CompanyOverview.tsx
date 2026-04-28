@@ -15,9 +15,9 @@ export default function CompanyOverview() {
   const isAmharic = useLocale() === "ar";
   const localizedHighlights = isAmharic
     ? [
-        "ከኃይል ግምገማ እና አዋጭነት ጥናት እስከ ተከላ እና አገልግሎት ድረስ የምህንድስና ድጋፍ",
-        "የገበያ ትንተና፣ የፖሊሲ ልማት እና የአቅም ግንባታን የሚያካትት የንጹህ ኃይል ምክር",
-        "ተመጣጣኝነትን፣ ጽናትን እና ታማኝነትን የሚያረጋግጡ የአካባቢ የፀሐይ መፍትሄዎች",
+        "نص عربي",
+        "نص عربي",
+        "نص عربي",
       ]
     : highlights;
 
@@ -49,14 +49,14 @@ export default function CompanyOverview() {
           className="space-y-6"
         >
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            {isAmharic ? "የኩባንያ አጠቃላይ እይታ" : "Company Overview"}
+            {isAmharic ? "نص عربي" : "Company Overview"}
           </p>
           <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {isAmharic ? "በደቡብ ሱዳን ታማኝ የታዳሽ ኃይል አጋር" : "A Professional Renewable Energy Partner in South Sudan"}
+            {isAmharic ? "نص عربي" : "A Professional Renewable Energy Partner in South Sudan"}
           </h2>
           <p className="text-lg leading-relaxed text-slate-600">
             {isAmharic
-              ? "Master Premier Green Energy Co. Ltd ለታዳሽ ኃይል እና ለኃይል ተደራሽነት መፍትሄዎች ቴክኒካል እና የምክር አገልግሎት ይሰጣል። ቡድኖቻችን ለማህበረሰቦችና ለተቋማት ጥራት፣ አፈጻጸም እና ተመጣጣኝ ዋጋ የሚያመጡ የፀሐይ ስርዓቶችን ያቅዳሉ፣ ያዘጋጃሉ እና ያስረክባሉ።"
+              ? "نص عربي"
               : "Master Premier Green Energy Co. Ltd provides technical and advisory services for renewable energy and energy access solutions. Our teams plan, design and deliver solar systems that balance quality, performance and affordability for communities and institutions."}
           </p>
 

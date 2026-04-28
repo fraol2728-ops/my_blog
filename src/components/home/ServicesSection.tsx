@@ -64,37 +64,37 @@ export default function ServicesSection() {
         ...service,
         title:
           {
-            "Solar System Installation": "የፀሐይ ኃይል ስርዓት ተከላ",
-            "Solar Equipment & Product Supply": "የፀሐይ መሳሪያና ምርት አቅርቦት",
-            "Local Solar Panel Manufacturing": "የአካባቢ የፀሐይ ፓነል ማምረት",
-            "Maintenance & Technical Support": "ጥገና እና ቴክኒካል ድጋፍ",
+            "Solar System Installation": "نص عربي",
+            "Solar Equipment & Product Supply": "نص عربي",
+            "Local Solar Panel Manufacturing": "نص عربي",
+            "Maintenance & Technical Support": "نص عربي",
           }[service.title] ?? service.title,
         description:
           {
             "From site survey to final commissioning, we design and install high-performance solar systems tailored to your property and energy goals.":
-              "ከቦታ ጥናት እስከ መጨረሻ ኮሚሽን ድረስ ለእርስዎ ንብረትና የኃይል ፍላጎት የሚስማማ ከፍተኛ ብቃት ያለው የፀሐይ ስርዓት እንዘጋጃለን እና እንጫናለን።",
+              "نص عربي",
             "We supply premium solar panels, inverters, batteries, and accessories to ensure every project is built for efficiency, durability, and long-term value.":
-              "እያንዳንዱ ፕሮጀክት በውጤታማነት፣ በጽናት እና በረጅም ጊዜ ዋጋ እንዲገነባ ጥራት ያላቸው ፓነሎች፣ ኢንቨርተሮች፣ ባትሪዎች እና ተጨማሪ እቃዎችን እናቀርባለን።",
+              "نص عربي",
             "Our local manufacturing capabilities help deliver quality-controlled solar modules while reducing lead times and supporting regional clean energy growth.":
-              "የአካባቢ ማምረቻ ብቃታችን ጥራት የተቆጣጠረ የፀሐይ ሞጁል እንድናቀርብ ያግዛል፤ እንዲሁም የአቅርቦት ጊዜን ያሳንሳል እና የክልሉን ንጹህ ኃይል እድገት ይደግፋል።",
+              "نص عربي",
             "Keep your solar investment performing at its best with preventive maintenance, diagnostics, and responsive technical support from certified specialists.":
-              "የፀሐይ ኢንቨስትመንትዎ በከፍተኛ አፈጻጸም እንዲቆይ በቅድመ ጥገና፣ በምርመራ እና ፈጣን ቴክኒካል ድጋፍ ከተረጋገጡ ባለሙያዎች ጋር እንረዳዎታለን።",
+              "نص عربي",
           }[service.description] ?? service.description,
         highlights: service.highlights.map(
           (highlight) =>
             ({
-              "Detailed site evaluation and system sizing": "ዝርዝር የቦታ ግምገማ እና የስርዓት መጠን ማስተካከያ",
-              "Professional rooftop and ground-mount installation": "በባለሙያ የጣሪያ እና የመሬት ላይ ተከላ",
-              "Grid integration and commissioning support": "የግሪድ ግንኙነት እና የኮሚሽን ድጋፍ",
-              "Tier-1 panels and trusted inverter brands": "Tier-1 ፓነሎች እና ታማኝ የኢንቨርተር ብራንዶች",
-              "Battery storage and backup power components": "የባትሪ ማከማቻ እና የተተኪ ኃይል ክፍሎች",
-              "Fast, reliable procurement and delivery": "ፈጣን እና ታማኝ ግዥ እና አቅርቦት",
-              "Locally produced modules with strict QA": "በጥብቅ የጥራት ቁጥጥር የተመረቱ የአካባቢ ሞጁሎች",
-              "Scalable output for residential and commercial demand": "ለመኖሪያ እና ለንግድ ፍላጎት የሚለዋወጥ ምርት",
-              "Reduced logistics time and project delays": "የሎጂስቲክስ ጊዜን እና የፕሮጀክት መዘግየትን መቀነስ",
-              "Routine inspections and performance checks": "መደበኛ ምርመራ እና የአፈጻጸም ቁጥጥር",
-              "Rapid troubleshooting and repair services": "ፈጣን መላ ፍለጋ እና የጥገና አገልግሎት",
-              "Long-term monitoring and optimization": "የረጅም ጊዜ ክትትል እና ማሻሻያ",
+              "Detailed site evaluation and system sizing": "نص عربي",
+              "Professional rooftop and ground-mount installation": "نص عربي",
+              "Grid integration and commissioning support": "نص عربي",
+              "Tier-1 panels and trusted inverter brands": "نص عربي",
+              "Battery storage and backup power components": "نص عربي",
+              "Fast, reliable procurement and delivery": "نص عربي",
+              "Locally produced modules with strict QA": "نص عربي",
+              "Scalable output for residential and commercial demand": "نص عربي",
+              "Reduced logistics time and project delays": "نص عربي",
+              "Routine inspections and performance checks": "نص عربي",
+              "Rapid troubleshooting and repair services": "نص عربي",
+              "Long-term monitoring and optimization": "نص عربي",
             }[highlight] ?? highlight),
         ),
       }))
@@ -105,11 +105,11 @@ export default function ServicesSection() {
       <Reveal>
         <SectionHeader
           align="center"
-          kicker={isAmharic ? "አገልግሎቶቻችን" : "Our Services"}
-          title={isAmharic ? "ለሁሉም ፍላጎት ሁሉን አቀፍ የፀሐይ ኃይል መፍትሄዎች" : "Comprehensive Solar Solutions for Every Need"}
+          kicker={isAmharic ? "نص عربي" : "Our Services"}
+          title={isAmharic ? "نص عربي" : "Comprehensive Solar Solutions for Every Need"}
           subtitle={
             isAmharic
-              ? "ከተከላ እስከ ማምረት እና ረጅም ጊዜ ድጋፍ ድረስ ሙሉ የፀሐይ ኃይል መፍትሄዎችን እንሰጣለን።"
+              ? "نص عربي"
               : "We provide complete solar energy solutions, from installation to manufacturing and long-term support."
           }
         />

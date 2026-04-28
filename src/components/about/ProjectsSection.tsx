@@ -18,10 +18,10 @@ export default function ProjectsSection() {
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            {isAmharic ? "ተመራጭ ፕሮጀክቶች" : "Featured Projects"}
+            {isAmharic ? "نص عربي" : "Featured Projects"}
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {isAmharic ? "በተለያዩ የኃይል አካባቢዎች የተረጋገጠ አፈጻጸም" : "Proven Delivery Across Diverse Energy Environments"}
+            {isAmharic ? "نص عربي" : "Proven Delivery Across Diverse Energy Environments"}
           </h2>
         </div>
 

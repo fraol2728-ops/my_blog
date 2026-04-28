@@ -11,10 +11,10 @@ export default function AboutSection() {
   const isAmharic = useLocale() === "ar";
   const bulletPoints = isAmharic
     ? [
-        "የኃይል ኦዲት እና የአዋጭነት ጥናት",
-        "የስርዓት ንድፍ እና የንግድ ፕሮፖዛል",
-        "ተከላ፣ ጥገና እና ከአገልግሎት በኋላ ድጋፍ",
-        "የንፁህ ኃይል አማካሪነት እና የአቅም ግንባታ",
+        "نص عربي",
+        "نص عربي",
+        "نص عربي",
+        "نص عربي",
       ]
     : [
         "Energy audit and feasibility study",
@@ -39,11 +39,11 @@ export default function AboutSection() {
 
         <Reveal className="space-y-6" delay={0.1}>
           <SectionHeader
-            kicker={isAmharic ? "ስለ እኛ" : "About Us"}
-            title={isAmharic ? "ደቡብ ሱዳንን በታማኝ ታዳሽ ኃይል መፍትሄዎች እናጎለብታለን" : "Powering South Sudan with Reliable Renewable Solutions"}
+            kicker={isAmharic ? "نص عربي" : "About Us"}
+            title={isAmharic ? "نص عربي" : "Powering South Sudan with Reliable Renewable Solutions"}
             subtitle={
               isAmharic
-                ? "Master Premier Green Energy Co. Ltd በደቡብ ሱዳን የሚገኝ በምህንድስና ጥራት እና በንፁህ ኃይል አማካሪ አገልግሎቶች ላይ የሚያተኩር ኩባንያ ነው።"
+                ? "نص عربي"
                 : "Master Premier Green Energy Co. Ltd is a South Sudan based renewable energy company focused on engineering excellence and clean energy advisory services."
             }
           />
@@ -58,7 +58,7 @@ export default function AboutSection() {
           </ul>
 
           <Button href="/about" variant="primary">
-            {isAmharic ? "ተጨማሪ ስለ እኛ ይወቁ" : "Learn More About Us"}
+            {isAmharic ? "نص عربي" : "Learn More About Us"}
           </Button>
         </Reveal>
       </div>

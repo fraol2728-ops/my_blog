@@ -36,14 +36,14 @@ export default function SustainabilitySection() {
           className="space-y-6"
         >
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            {isAmharic ? "የዘላቂነት ቃል ኪዳን" : "Sustainability Commitment"}
+            {isAmharic ? "نص عربي" : "Sustainability Commitment"}
           </p>
           <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {isAmharic ? "የአየር ንብረት ግቦችን ወደ ተግባራዊ የኃይል ውጤቶች መቀየር" : "Turning Climate Goals into Practical Energy Outcomes"}
+            {isAmharic ? "نص عربي" : "Turning Climate Goals into Practical Energy Outcomes"}
           </h2>
           <p className="leading-relaxed text-slate-600">
             {isAmharic
-              ? "ዘላቂነት በአገልግሎታችን እያንዳንዱ ደረጃ ውስጥ ተካትቷል፤ ከዲዛይን ግምቶች እስከ ከተከላ በኋላ ማሻሻያ ድረስ። ደንበኞቻችን ጠንካራ አካባቢያዊ እና ኢኮኖሚያዊ ተመላሽ ያለው የወደፊት ዝግጁ መሠረተ ልማት እንዲገነቡ እንረዳለን።"
+              ? "نص عربي"
               : "Sustainability is built into every stage of our delivery model—from design assumptions to post-installation optimization. We help clients build future-ready infrastructure with strong environmental and economic returns."}
           </p>
 

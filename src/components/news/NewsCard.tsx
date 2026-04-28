@@ -46,7 +46,7 @@ export default function NewsCard({ post }: { post: Post }) {
           <h3 className="mt-3 line-clamp-2 text-xl font-semibold text-slate-900">{post.title}</h3>
           {post.excerpt && <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">{post.excerpt}</p>}
           <p className="mt-5 text-sm text-slate-500">
-            {dayjs(post.publishedAt).format("MMM D, YYYY")} · {post.author?.name ?? (isAmharic ? "የኤዲቶሪያል ቡድን" : "Editorial Team")}
+            {dayjs(post.publishedAt).format("MMM D, YYYY")} · {post.author?.name ?? (isAmharic ? "نص عربي" : "Editorial Team")}
           </p>
         </div>
       </Link>

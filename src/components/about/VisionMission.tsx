@@ -24,11 +24,11 @@ export default function VisionMission() {
   const localizedCards = isAmharic
     ? cards.map((card) => ({
         ...card,
-        title: card.title === "Our Mission" ? "ተልዕኳችን" : "ራዕያችን",
+        title: card.title === "Our Mission" ? "نص عربي" : "نص عربي",
         description:
           card.title === "Our Mission"
-            ? "የኃይል ወጪን የሚቀንሱ፣ ቋቋሚነትን የሚጨምሩ እና ወደ ንጹህ አሰራር ሽግግርን የሚፋጠኑ ከፍተኛ ተፅእኖ ያላቸው የታዳሽ ኃይል ስርዓቶችን ማቅረብ።"
-            : "ዘላቂ እና የኃይል ደህንነት ያለው ወደፊት ለሚገነቡ ድርጅቶች እጅግ ታማኝ የንጹህ ኃይል አፈጻጸም አጋር መሆን።",
+            ? "نص عربي"
+            : "نص عربي",
       }))
     : cards;
 

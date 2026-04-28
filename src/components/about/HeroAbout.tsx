@@ -28,14 +28,14 @@ export default function HeroAbout() {
           className="max-w-3xl space-y-6"
         >
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-green-300">
-            {isAmharic ? "ስለ ማስተር ፕሪሚየር ግሪን ኢነርጂ" : "About Solvora Energy"}
+            {isAmharic ? "نص عربي" : "About Solvora Energy"}
           </p>
           <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            {isAmharic ? "በተረጋገጠ የፀሐይ ሙያ የተሻለ የኃይል ወደፊት እንገነባለን" : "Building Smarter Energy Futures with Proven Solar Expertise"}
+            {isAmharic ? "نص عربي" : "Building Smarter Energy Futures with Proven Solar Expertise"}
           </h1>
           <p className="text-base leading-relaxed text-slate-200 sm:text-lg">
             {isAmharic
-              ? "እምነት፣ ውጤታማነት እና የሚለካ የዘላቂነት ውጤት ለሚፈልጉ ድርጅቶችና ማህበረሰቦች ከፍተኛ አፈጻጸም ያላቸው የታዳሽ ስርዓቶችን እንዘጋጃለን፣ እንጫናለን እና እንጠብቃለን።"
+              ? "نص عربي"
               : "We design, install, and maintain high-performance renewable systems for businesses and communities that demand reliability, efficiency, and measurable sustainability results."}
           </p>
         </motion.div>

@@ -159,7 +159,7 @@ export default function ContactForm() {
       <div className="mt-6 space-y-4">
         <div>
           <label htmlFor="fullName" className="text-sm font-medium text-gray-700">{t.contact.fullName}</label>
-          <input id="fullName" name="fullName" type="text" value={form.fullName} onChange={(e) => setForm((prev) => ({ ...prev, fullName: e.target.value }))} placeholder={lang === "ar" ? "ሙሉ ስምዎን ያስገቡ" : "John Doe"} className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/30" />
+          <input id="fullName" name="fullName" type="text" value={form.fullName} onChange={(e) => setForm((prev) => ({ ...prev, fullName: e.target.value }))} placeholder={lang === "ar" ? "نص عربي" : "John Doe"} className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/30" />
           {errors.fullName && <p className="mt-1 text-xs text-red-600">{errors.fullName}</p>}
         </div>
 
