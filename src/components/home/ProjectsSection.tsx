@@ -43,11 +43,11 @@ export default function ProjectsSection() {
       <Reveal>
         <SectionHeader
           align="center"
-          kicker={isAmharic ? "ፕሮጀክቶቻችን" : "Our Projects"}
-          title={isAmharic ? "ተፅዕኖ የሚፈጥሩ የፀሐይ ኃይል መፍትሄዎችን እናቀርባለን" : "Delivering Solar Solutions That Make an Impact"}
+          kicker={isAmharic ? "مشاريعنا" : "Our Projects"}
+          title={isAmharic ? "تقديم حلول الطاقة الشمسية التي تُحدث فرقاً" : "Delivering Solar Solutions That Make an Impact"}
           subtitle={
             isAmharic
-              ? "ከመኖሪያ ቤት ስርዓቶች እስከ ትልቅ መጠን ያላቸው ተከላዎች ድረስ ፕሮጀክቶቻችን ለጥራት፣ ለአፈጻጸም እና ለዘላቂነት ያለን ቁርጠኝነት ያሳያሉ።"
+              ? "من الأنظمة السكنية إلى المنشآت واسعة النطاق، تعكس مشاريعنا التزامنا بالجودة والأداء والاستدامة."
               : "From residential systems to large-scale installations, our projects reflect our commitment to quality, performance, and sustainability."
           }
         />
