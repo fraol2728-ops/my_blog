@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { useLocale } from "@/i18n/I18nProvider";
 
 export default function CTASection() {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
 
   return (
     <section className="bg-slate-900 px-6 py-20">
@@ -17,14 +17,14 @@ export default function CTASection() {
         className="mx-auto max-w-4xl rounded-xl bg-slate-800 px-8 py-14 text-center shadow-lg"
       >
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-green-300">
-          {isAmharic ? "ወደፊቱን እንገንባ" : "Let&apos;s Build the Future"}
+          {isArabic ? "نص عربي" : "Let&apos;s Build the Future"}
         </p>
         <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          {isAmharic ? "ቀጣይ የኃይል ፕሮጀክትዎን ከእኛ ጋር ይጀምሩ" : "Start Your Next Energy Project with Solvora Energy"}
+          {isArabic ? "نص عربي" : "Start Your Next Energy Project with Solvora Energy"}
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-slate-300">
-          {isAmharic
-            ? "ግቦትዎን ለመገምገም እና ለድርጅትዎ የሚስማማ የታዳሽ ኃይል ስትራቴጂክ የመንገድ ካርታ ለመፍጠር ከባለሙያዎቻችን ጋር ይገናኙ።"
+          {isArabic
+            ? "نص عربي"
             : "Connect with our specialists to evaluate your goals and create a strategic renewable roadmap tailored to your organization."}
         </p>
 
@@ -33,13 +33,13 @@ export default function CTASection() {
             href="/contact"
             className="rounded-xl bg-[#16a34a] px-6 py-3 font-semibold text-white transition hover:bg-green-600"
           >
-            {isAmharic ? "ምክክር ያስይዙ" : "Schedule a Consultation"}
+            {isArabic ? "نص عربي" : "Schedule a Consultation"}
           </Link>
           <Link
             href="/services"
             className="rounded-xl border border-slate-400 px-6 py-3 font-semibold text-white transition hover:bg-slate-700"
           >
-            {isAmharic ? "አገልግሎቶችን ይመልከቱ" : "Explore Services"}
+            {isArabic ? "نص عربي" : "Explore Services"}
           </Link>
         </div>
       </motion.div>

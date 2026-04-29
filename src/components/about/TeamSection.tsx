@@ -11,16 +11,16 @@ const team = [
 ];
 
 export default function TeamSection() {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
   return (
     <section id="leadership" className="px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            {isAmharic ? "የአመራር ቡድን" : "Leadership Team"}
+            {isArabic ? "نص عربي" : "Leadership Team"}
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {isAmharic ? "የኃይል ለውጥን የሚመሩ ባለልምድ መሪዎች" : "Experienced Leaders Driving Energy Transformation"}
+            {isArabic ? "نص عربي" : "Experienced Leaders Driving Energy Transformation"}
           </h2>
         </div>
 

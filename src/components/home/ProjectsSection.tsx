@@ -37,17 +37,17 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
   return (
     <Section>
       <Reveal>
         <SectionHeader
           align="center"
-          kicker={isAmharic ? "ፕሮጀክቶቻችን" : "Our Projects"}
-          title={isAmharic ? "ተፅዕኖ የሚፈጥሩ የፀሐይ ኃይል መፍትሄዎችን እናቀርባለን" : "Delivering Solar Solutions That Make an Impact"}
+          kicker={isArabic ? "نص عربي" : "Our Projects"}
+          title={isArabic ? "نص عربي" : "Delivering Solar Solutions That Make an Impact"}
           subtitle={
-            isAmharic
-              ? "ከመኖሪያ ቤት ስርዓቶች እስከ ትልቅ መጠን ያላቸው ተከላዎች ድረስ ፕሮጀክቶቻችን ለጥራት፣ ለአፈጻጸም እና ለዘላቂነት ያለን ቁርጠኝነት ያሳያሉ።"
+            isArabic
+              ? "نص عربي"
               : "From residential systems to large-scale installations, our projects reflect our commitment to quality, performance, and sustainability."
           }
         />

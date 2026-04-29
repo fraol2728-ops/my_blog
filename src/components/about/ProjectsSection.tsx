@@ -12,16 +12,16 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
   return (
     <section id="our-projects" className="bg-slate-50 px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            {isAmharic ? "ተመራጭ ፕሮጀክቶች" : "Featured Projects"}
+            {isArabic ? "نص عربي" : "Featured Projects"}
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {isAmharic ? "በተለያዩ የኃይል አካባቢዎች የተረጋገጠ አፈጻጸም" : "Proven Delivery Across Diverse Energy Environments"}
+            {isArabic ? "نص عربي" : "Proven Delivery Across Diverse Energy Environments"}
           </h2>
         </div>
 

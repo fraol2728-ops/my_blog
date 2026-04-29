@@ -11,11 +11,11 @@ interface CategoryFilterProps {
 }
 
 export default function CategoryFilter({ categories, activeCategory, onChange }: CategoryFilterProps) {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
 
   return (
     <div className="no-scrollbar flex items-center gap-2 overflow-x-auto pb-1">
-      {[{ title: isAmharic ? "ሁሉም" : "All", slug: "all" }, ...categories].map((category) => {
+      {[{ title: isArabic ? "نص عربي" : "All", slug: "all" }, ...categories].map((category) => {
         const isActive = activeCategory === category.slug;
 
         return (

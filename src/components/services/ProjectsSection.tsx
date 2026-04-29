@@ -12,12 +12,12 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
   return (
     <section className="bg-slate-50 px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          {isAmharic ? "ተመራጭ ፕሮጀክቶች" : "Featured Projects"}
+          {isArabic ? "نص عربي" : "Featured Projects"}
         </h2>
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {projects.map((project) => (

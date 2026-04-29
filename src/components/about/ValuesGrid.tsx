@@ -38,16 +38,16 @@ const values = [
 ];
 
 export default function ValuesGrid() {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
   return (
     <section id="our-values" className="bg-slate-50 px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            {isAmharic ? "ዋና እሴቶች" : "Core Values"}
+            {isArabic ? "نص عربي" : "Core Values"}
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {isAmharic ? "እያንዳንዱን ፕሮጀክት የሚመሩ መርሆች" : "Principles That Guide Every Project"}
+            {isArabic ? "نص عربي" : "Principles That Guide Every Project"}
           </h2>
         </div>
 
