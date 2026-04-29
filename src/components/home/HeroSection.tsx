@@ -103,9 +103,9 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
         label:
           isAmharic
             ? {
-                "Energy Generated": "የተመነጨ ኃይል",
-                "Client Satisfaction": "የደንበኛ እርካታ",
-                "Years Experience": "የልምድ ዓመታት",
+                "Energy Generated": "الطاقة المولدة",
+                "Client Satisfaction": "رضا العملاء",
+                "Years Experience": "سنوات الخبرة",
               }[item.label] ?? item.label
             : item.label,
       })),
@@ -156,14 +156,14 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
               className="max-w-2xl text-center md:text-left"
             >
               <p className="inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
-                {isAmharic ? "የንፁህ ኃይል መሠረተ ልማት" : "Clean Energy Infrastructure"}
+                {isAmharic ? "البنية التحتية للطاقة النظيفة" : "Clean Energy Infrastructure"}
               </p>
               <h1 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
                 Master Premier Green Energy Co. Ltd
               </h1>
               <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/80 md:mx-0 md:text-lg">
                 {isAmharic
-                  ? "በደቡብ ሱዳን ውስጥ የታዳሽ ኃይል ተደራሽነትን ለማሳደግ የምህንድስና፣ አማካሪ፣ ተከላ እና የጥገና አገልግሎቶችን እንሰጣለን።"
+                  ? "تقديم حلول هندسية واستشارية وتركيبية وخدماتية لتوفير الطاقة المتجددة في جميع أنحاء جنوب السودان."
                   : "Delivering engineering, advisory, installation and servicing solutions for renewable energy access across South Sudan."}
               </p>
 
@@ -178,7 +178,7 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
                   href={`/${locale}/services`}
                   className="ui-glow-btn rounded-xl border border-white/60 bg-transparent px-7 py-3.5 text-center font-semibold text-white transition-all duration-200 hover:-translate-y-1 hover:bg-white/10"
                 >
-                  {isAmharic ? "አገልግሎቶቻችንን ይመልከቱ" : "Explore Services"}
+                  {isAmharic ? "اكتشف الخدمات" : "Explore Services"}
                 </Link>
               </div>
             </m.div>
@@ -201,7 +201,7 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
                   />
                   <div className="relative">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/90">
-                      {isAmharic ? "ተመራጭ ፕሮጀክት" : "Featured Project"}
+                      {isAmharic ? "مشروع مميز" : "Featured Project"}
                     </p>
 
                     <div className="mt-2.5 overflow-hidden rounded-2xl border border-white/20">
@@ -226,7 +226,7 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
                     </p>
 
                     <span className="mt-3.5 inline-flex items-center rounded-full border border-white/40 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white transition group-hover:border-emerald-300 group-hover:bg-emerald-500/20">
-                      {isAmharic ? "ፕሮጀክቱን ይመልከቱ" : "View project"}
+                      {isAmharic ? "عرض المشروع" : "View project"}
                     </span>
                   </div>
                 </Link>
