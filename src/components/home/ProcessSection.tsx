@@ -35,21 +35,21 @@ export default function ProcessSection() {
         ...step,
         title:
           {
-            "Audit & Consultation": "ኦዲት እና ምክክር",
-            "System Design": "የስርዓት ንድፍ",
-            Installation: "ተከላ",
-            "Monitoring & Support": "ክትትል እና ድጋፍ",
+            "Audit & Consultation": "التدقيق والاستشارات",
+            "System Design": "تصميم النظام",
+            Installation: "تثبيت",
+            "Monitoring & Support": "المراقبة والدعم",
           }[step.title] ?? step.title,
         description:
           {
             "We assess your energy demand, site conditions, and project requirements.":
-              "የኃይል ፍላጎቶትን፣ የቦታ ሁኔታን እና የፕሮጀክት መስፈርቶትን እንገመግማለን።",
+              "نقوم بتقييم احتياجاتك من الطاقة، وظروف الموقع، ومتطلبات المشروع.",
             "Our engineers create a tailored solar design for efficient, reliable output.":
-              "መሐንዲሶቻችን ለተሻለ እና ታማኝ አፈጻጸም ተስማሚ የፀሐይ ኃይል ንድፍ ይዘጋጃሉ።",
+              "يقوم مهندسونا بتصميم أنظمة الطاقة الشمسية حسب الطلب لتحقيق إنتاج فعال وموثوق.",
             "Our technical team installs and commissions your system to high standards.":
-              "ቴክኒካል ቡድናችን ስርዓቶን በከፍተኛ ደረጃ ይጫናል እና ወደ ስራ ያስገባል።",
+              "يقوم فريقنا الفني بتركيب وتشغيل نظامك وفقًا لأعلى المعايير.",
             "We provide continuous monitoring and lifecycle support for long-term performance.":
-              "ረጅም ጊዜ አፈጻጸምን ለማረጋገጥ ቀጣይ ክትትል እና የሕይወት ዑደት ድጋፍ እንሰጣለን።",
+              "نحن نقدم مراقبة مستمرة ودعمًا لدورة حياة المنتج لضمان الأداء على المدى الطويل.",
           }[step.description] ?? step.description,
       }))
     : steps;
