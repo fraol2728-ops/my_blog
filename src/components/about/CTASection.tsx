@@ -17,14 +17,18 @@ export default function CTASection() {
         className="mx-auto max-w-4xl rounded-xl bg-slate-800 px-8 py-14 text-center shadow-lg"
       >
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-green-300">
-          {isAmharic ? "ወደፊቱን እንገንባ" : "Let&apos;s Build the Future"}
+          {isAmharic ? "لنبنِ المستقبل" : "Let&apos;s Build the Future"}
         </p>
+
         <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          {isAmharic ? "ቀጣይ የኃይል ፕሮጀክትዎን ከእኛ ጋር ይጀምሩ" : "Start Your Next Energy Project with Solvora Energy"}
+          {isAmharic
+            ? "ابدأ مشروع الطاقة القادم مع ماستر بريميير للطاقة الخضراء"
+            : "Start Your Next Energy Project with Master Premier Green Energy"}
         </h2>
+
         <p className="mx-auto mt-4 max-w-2xl text-slate-300">
           {isAmharic
-            ? "ግቦትዎን ለመገምገም እና ለድርጅትዎ የሚስማማ የታዳሽ ኃይል ስትራቴጂክ የመንገድ ካርታ ለመፍጠር ከባለሙያዎቻችን ጋር ይገናኙ።"
+            ? "تواصل مع خبرائنا لتقييم أهدافك وإنشاء خطة استراتيجية للطاقة المتجددة مصممة خصيصًا لاحتياجات مؤسستك."
             : "Connect with our specialists to evaluate your goals and create a strategic renewable roadmap tailored to your organization."}
         </p>
 
@@ -33,13 +37,14 @@ export default function CTASection() {
             href="/contact"
             className="rounded-xl bg-[#16a34a] px-6 py-3 font-semibold text-white transition hover:bg-green-600"
           >
-            {isAmharic ? "ምክክር ያስይዙ" : "Schedule a Consultation"}
+            {isAmharic ? "احجز استشارة" : "Schedule a Consultation"}
           </Link>
+
           <Link
             href="/services"
             className="rounded-xl border border-slate-400 px-6 py-3 font-semibold text-white transition hover:bg-slate-700"
           >
-            {isAmharic ? "አገልግሎቶችን ይመልከቱ" : "Explore Services"}
+            {isAmharic ? "استعرض الخدمات" : "Explore Services"}
           </Link>
         </div>
       </motion.div>
