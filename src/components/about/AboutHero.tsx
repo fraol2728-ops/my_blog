@@ -1,6 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { useLocale } from "@/i18n/I18nProvider";
 
 export default function AboutHero() {
+  const isAmharic = useLocale() === "ar";
+
   return (
     <section className="relative isolate min-h-[70vh] overflow-hidden">
       <Image
@@ -16,14 +21,17 @@ export default function AboutHero() {
       <div className="relative mx-auto flex min-h-[70vh] max-w-6xl items-center justify-center px-6 py-20 text-center">
         <div className="max-w-3xl space-y-6">
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-green-300">
-            About Us
+            {isAmharic ? "من نحن" : "About Us"}
           </p>
+
           <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
             Master Premier Green Energy Co. Ltd
           </h1>
+
           <p className="mx-auto max-w-2xl text-base text-slate-200 sm:text-lg">
-            A South Sudan based renewable energy company delivering engineering and clean energy advisory services for
-            sustainable growth, rural energy access, and long-term value.
+            {isAmharic
+              ? "شركة طاقة متجددة مقرها جنوب السودان، تقدم خدمات هندسية واستشارية في مجال الطاقة النظيفة لدعم النمو المستدام وتوفير الطاقة للمناطق الريفية وتحقيق قيمة طويلة الأمد."
+              : "A South Sudan based renewable energy company delivering engineering and clean energy advisory services for sustainable growth, rural energy access, and long-term value."}
           </p>
         </div>
       </div>
