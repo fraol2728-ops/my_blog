@@ -64,37 +64,37 @@ export default function ServicesSection() {
         ...service,
         title:
           {
-            "Solar System Installation": "የፀሐይ ኃይል ስርዓት ተከላ",
-            "Solar Equipment & Product Supply": "የፀሐይ መሳሪያና ምርት አቅርቦት",
-            "Local Solar Panel Manufacturing": "የአካባቢ የፀሐይ ፓነል ማምረት",
-            "Maintenance & Technical Support": "ጥገና እና ቴክኒካል ድጋፍ",
+            "Solar System Installation": "تركيب أنظمة الطاقة الشمسية",
+            "Solar Equipment & Product Supply": "توريد معدات ومنتجات الطاقة الشمسية",
+            "Local Solar Panel Manufacturing": "تصنيع الألواح الشمسية محليًا",
+            "Maintenance & Technical Support": "الصيانة والدعم الفني",
           }[service.title] ?? service.title,
         description:
           {
             "From site survey to final commissioning, we design and install high-performance solar systems tailored to your property and energy goals.":
-              "ከቦታ ጥናት እስከ መጨረሻ ኮሚሽን ድረስ ለእርስዎ ንብረትና የኃይል ፍላጎት የሚስማማ ከፍተኛ ብቃት ያለው የፀሐይ ስርዓት እንዘጋጃለን እና እንጫናለን።",
+              "من دراسة الموقع إلى التشغيل النهائي، نقوم بتصميم وتركيب أنظمة طاقة شمسية عالية الأداء بما يتناسب مع احتياجاتك وأهدافك من الطاقة.",
             "We supply premium solar panels, inverters, batteries, and accessories to ensure every project is built for efficiency, durability, and long-term value.":
-              "እያንዳንዱ ፕሮጀክት በውጤታማነት፣ በጽናት እና በረጅም ጊዜ ዋጋ እንዲገነባ ጥራት ያላቸው ፓነሎች፣ ኢንቨርተሮች፣ ባትሪዎች እና ተጨማሪ እቃዎችን እናቀርባለን።",
+              "نوفّر ألواحًا شمسية عالية الجودة، ومحولات، وبطاريات، وملحقات لضمان تنفيذ كل مشروع بكفاءة عالية ومتانة وقيمة طويلة الأمد.",
             "Our local manufacturing capabilities help deliver quality-controlled solar modules while reducing lead times and supporting regional clean energy growth.":
-              "የአካባቢ ማምረቻ ብቃታችን ጥራት የተቆጣጠረ የፀሐይ ሞጁል እንድናቀርብ ያግዛል፤ እንዲሁም የአቅርቦት ጊዜን ያሳንሳል እና የክልሉን ንጹህ ኃይል እድገት ይደግፋል።",
+              "تُمكّننا قدراتنا في التصنيع المحلي من تقديم وحدات شمسية بجودة عالية، مع تقليل زمن التنفيذ ودعم نمو الطاقة النظيفة في المنطقة.",
             "Keep your solar investment performing at its best with preventive maintenance, diagnostics, and responsive technical support from certified specialists.":
-              "የፀሐይ ኢንቨስትመንትዎ በከፍተኛ አፈጻጸም እንዲቆይ በቅድመ ጥገና፣ በምርመራ እና ፈጣን ቴክኒካል ድጋፍ ከተረጋገጡ ባለሙያዎች ጋር እንረዳዎታለን።",
+              "حافظ على أداء استثمارك في الطاقة الشمسية بأفضل مستوى من خلال الصيانة الوقائية، والتشخيص الدقيق، والدعم الفني السريع من خبراء معتمدين.",
           }[service.description] ?? service.description,
         highlights: service.highlights.map(
           (highlight) =>
             ({
-              "Detailed site evaluation and system sizing": "ዝርዝር የቦታ ግምገማ እና የስርዓት መጠን ማስተካከያ",
-              "Professional rooftop and ground-mount installation": "በባለሙያ የጣሪያ እና የመሬት ላይ ተከላ",
-              "Grid integration and commissioning support": "የግሪድ ግንኙነት እና የኮሚሽን ድጋፍ",
-              "Tier-1 panels and trusted inverter brands": "Tier-1 ፓነሎች እና ታማኝ የኢንቨርተር ብራንዶች",
-              "Battery storage and backup power components": "የባትሪ ማከማቻ እና የተተኪ ኃይል ክፍሎች",
-              "Fast, reliable procurement and delivery": "ፈጣን እና ታማኝ ግዥ እና አቅርቦት",
-              "Locally produced modules with strict QA": "በጥብቅ የጥራት ቁጥጥር የተመረቱ የአካባቢ ሞጁሎች",
-              "Scalable output for residential and commercial demand": "ለመኖሪያ እና ለንግድ ፍላጎት የሚለዋወጥ ምርት",
-              "Reduced logistics time and project delays": "የሎጂስቲክስ ጊዜን እና የፕሮጀክት መዘግየትን መቀነስ",
-              "Routine inspections and performance checks": "መደበኛ ምርመራ እና የአፈጻጸም ቁጥጥር",
-              "Rapid troubleshooting and repair services": "ፈጣን መላ ፍለጋ እና የጥገና አገልግሎት",
-              "Long-term monitoring and optimization": "የረጅም ጊዜ ክትትል እና ማሻሻያ",
+              "Detailed site evaluation and system sizing": "تقييم دقيق للموقع وتحديد حجم النظام",
+              "Professional rooftop and ground-mount installation": "تركيب احترافي على الأسطح أو الأرض",
+              "Grid integration and commissioning support": "دمج النظام مع الشبكة ودعم التشغيل",
+              "Tier-1 panels and trusted inverter brands": "ألواح من الفئة الأولى ومحولات من علامات موثوقة",
+              "Battery storage and backup power components": "أنظمة تخزين البطاريات وحلول الطاقة الاحتياطية",
+              "Fast, reliable procurement and delivery": "توريد وتسليم سريع وموثوق",
+              "Locally produced modules with strict QA": "وحدات مُصنّعة محليًا بمعايير جودة صارمة",
+              "Scalable output for residential and commercial demand": "إنتاج قابل للتوسع لتلبية الاحتياجات السكنية والتجارية",
+              "Reduced logistics time and project delays": "تقليل وقت اللوجستيات وتأخير المشاريع",
+              "Routine inspections and performance checks": "فحوصات دورية ومراقبة الأداء",
+              "Rapid troubleshooting and repair services": "خدمات إصلاح وتشخيص سريعة",
+              "Long-term monitoring and optimization": "مراقبة وتحسين الأداء على المدى الطويل",
             }[highlight] ?? highlight),
         ),
       }))
@@ -105,11 +105,11 @@ export default function ServicesSection() {
       <Reveal>
         <SectionHeader
           align="center"
-          kicker={isAmharic ? "አገልግሎቶቻችን" : "Our Services"}
-          title={isAmharic ? "ለሁሉም ፍላጎት ሁሉን አቀፍ የፀሐይ ኃይል መፍትሄዎች" : "Comprehensive Solar Solutions for Every Need"}
+          kicker={isAmharic ? "خدماتنا" : "Our Services"}
+          title={isAmharic ? "حلول متكاملة للطاقة الشمسية لجميع الاحتياجات" : "Comprehensive Solar Solutions for Every Need"}
           subtitle={
             isAmharic
-              ? "ከተከላ እስከ ማምረት እና ረጅም ጊዜ ድጋፍ ድረስ ሙሉ የፀሐይ ኃይል መፍትሄዎችን እንሰጣለን።"
+              ? "نقدّم حلول طاقة شمسية متكاملة، بدءًا من التركيب وصولًا إلى التصنيع والدعم طويل الأمد."
               : "We provide complete solar energy solutions, from installation to manufacturing and long-term support."
           }
         />
