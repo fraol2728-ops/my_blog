@@ -15,12 +15,29 @@ const industries = [
 
 export default function IndustriesSection() {
   const isAmharic = useLocale() === "ar";
+
+  const localizedIndustries = isAmharic
+    ? industries.map((industry) => ({
+        ...industry,
+        title:
+          {
+            "Commercial Real Estate": "العقارات التجارية",
+            "Manufacturing": "التصنيع",
+            "Healthcare": "الرعاية الصحية",
+            "Hospitality": "الضيافة",
+            "Public Infrastructure": "البنية التحتية العامة",
+            "Logistics": "الخدمات اللوجستية",
+          }[industry.title] ?? industry.title,
+      }))
+    : industries;
+
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          {isAmharic ? "የምናገለግላቸው ዘርፎች" : "Industries We Power"}
+          {isAmharic ? "القطاعات التي نخدمها" : "Industries We Power"}
         </h2>
+
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -28,7 +45,7 @@ export default function IndustriesSection() {
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
           className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {industries.map((industry) => (
+          {localizedIndustries.map((industry) => (
             <motion.div
               key={industry.title}
               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
@@ -36,7 +53,9 @@ export default function IndustriesSection() {
               className="rounded-xl border border-slate-200 bg-white p-6 shadow-lg"
             >
               <industry.icon className="h-8 w-8 text-[#16a34a]" />
-              <h3 className="mt-4 text-lg font-semibold text-slate-900">{industry.title}</h3>
+              <h3 className="mt-4 text-lg font-semibold text-slate-900">
+                {industry.title}
+              </h3>
             </motion.div>
           ))}
         </motion.div>
