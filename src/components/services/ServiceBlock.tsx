@@ -65,7 +65,7 @@ export default function ServiceBlock({ service, reverse = false }: ServiceBlockP
             href="/contact"
             className="mt-7 inline-flex rounded-xl bg-[#16a34a] px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-green-600"
           >
-            {isAmharic ? "ከባለሙያ ጋር ይነጋገሩ" : "Talk to an Expert"}
+            {isAmharic ? "التحدث إلى خبير" : "Talk to an Expert"}
           </Link>
         </div>
       </div>
