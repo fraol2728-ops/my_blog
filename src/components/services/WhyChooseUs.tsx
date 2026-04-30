@@ -29,28 +29,69 @@ const reasons = [
 
 export default function WhyChooseUs() {
   const isAmharic = useLocale() === "ar";
+
+  const localizedReasons = isAmharic
+    ? [
+        {
+          title: "خبرة معتمدة",
+          detail: "مهندسون كبار وفنيون معتمدون يعملون على كل مشروع.",
+          icon: BadgeCheck,
+        },
+        {
+          title: "تصميم يركز على الأداء",
+          detail: "أنظمة محسّنة لتحقيق أعلى إنتاجية وتوفير واستدامة.",
+          icon: BarChart3,
+        },
+        {
+          title: "الجودة والامتثال",
+          detail: "معايير جودة صارمة وبروتوكولات أمان والتزام باللوائح.",
+          icon: ShieldCheck,
+        },
+        {
+          title: "دعم مخصص",
+          detail: "استجابة سريعة مع استمرارية خدمة طويلة الأمد.",
+          icon: Headphones,
+        },
+      ]
+    : reasons;
+
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-7xl rounded-xl bg-white p-10 shadow-lg sm:p-12">
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          {isAmharic ? "መሪ ድርጅቶች ለምን እኛን ይመርጣሉ?" : "Why Leading Organizations Choose Us"}
+          {isAmharic
+            ? "لماذا تختارنا المؤسسات الرائدة؟"
+            : "Why Leading Organizations Choose Us"}
         </h2>
+
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
           className="mt-8 grid gap-6 md:grid-cols-2"
         >
-          {reasons.map((reason) => (
+          {localizedReasons.map((reason) => (
             <motion.div
               key={reason.title}
-              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+              variants={{
+                hidden: { opacity: 0, y: 16 },
+                visible: { opacity: 1, y: 0 },
+              }}
               className="rounded-xl border border-slate-200 p-6"
             >
               <reason.icon className="h-7 w-7 text-[#16a34a]" />
-              <h3 className="mt-3 text-lg font-semibold text-slate-900">{reason.title}</h3>
-              <p className="mt-2 text-sm text-slate-600">{reason.detail}</p>
+
+              <h3 className="mt-3 text-lg font-semibold text-slate-900">
+                {reason.title}
+              </h3>
+
+              <p className="mt-2 text-sm text-slate-600">
+                {reason.detail}
+              </p>
             </motion.div>
           ))}
         </motion.div>
