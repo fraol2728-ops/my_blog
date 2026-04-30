@@ -28,15 +28,41 @@ type ServicesOverviewProps = {
 export default function ServicesOverview({ services }: ServicesOverviewProps) {
   const isAmharic = useLocale() === "ar";
 
+  const localizedServices = isAmharic
+    ? services.map((item) => ({
+        ...item,
+        title:
+          {
+            installation: "تركيب أنظمة الطاقة الشمسية",
+            supply: "توريد معدات الطاقة الشمسية",
+            manufacturing: "تصنيع الألواح الشمسية",
+            maintenance: "الصيانة والدعم الفني",
+          }[item.id] ?? item.title,
+
+        summary:
+          {
+            installation:
+              "تصميم وتركيب أنظمة طاقة شمسية عالية الكفاءة تناسب احتياجاتك.",
+            supply:
+              "توفير جميع مكونات الطاقة الشمسية بجودة عالية وأداء موثوق.",
+            manufacturing:
+              "إنتاج ألواح شمسية محليًا بمعايير جودة عالية لدعم السوق المحلي.",
+            maintenance:
+              "خدمات صيانة ودعم فني لضمان أفضل أداء للنظام على المدى الطويل.",
+          }[item.id] ?? item.summary,
+      }))
+    : services;
+
   return (
     <section id="services-overview" className="px-6 py-20">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            {isAmharic ? "የአገልግሎት አጠቃላይ እይታ" : "Services Overview"}
+            {isAmharic ? "نظرة عامة على الخدمات" : "Services Overview"}
           </p>
+
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {isAmharic ? "የሚፈልጉትን መፍትሄ ይምረጡ" : "Choose the Solution You Need"}
+            {isAmharic ? "اختر الحل الذي يناسب احتياجاتك" : "Choose the Solution You Need"}
           </h2>
         </div>
 
@@ -50,7 +76,7 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
           }}
           className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4"
         >
-          {services.map((item) => {
+          {localizedServices.map((item) => {
             const Icon = iconMap[item.iconName];
 
             return (
@@ -65,9 +91,11 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
                   className="block rounded-xl border border-slate-200 bg-white p-6 shadow-lg transition hover:border-green-200"
                 >
                   <Icon className="h-8 w-8 text-[#16a34a]" />
+
                   <h3 className="mt-5 text-xl font-semibold text-slate-900">
                     {item.title}
                   </h3>
+
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">
                     {item.summary}
                   </p>
