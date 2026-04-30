@@ -1,5 +1,8 @@
+"use client";
+
 import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
+import { useLocale } from "@/i18n/I18nProvider";
 
 const detailedServices = [
   {
@@ -53,10 +56,81 @@ const detailedServices = [
 ];
 
 export default function DetailedServices() {
+  const isAmharic = useLocale() === "ar";
+
+  const localizedServices = isAmharic
+    ? detailedServices.map((service) => ({
+        ...service,
+        title:
+          {
+            "Solar System Installation": "تركيب أنظمة الطاقة الشمسية",
+            "Solar Equipment Supply": "توريد معدات الطاقة الشمسية",
+            "Solar Panel Manufacturing": "تصنيع الألواح الشمسية",
+            "Maintenance & Support": "الصيانة والدعم الفني",
+          }[service.title] ?? service.title,
+
+        description:
+          {
+            "We engineer and deploy high-efficiency solar systems with precision planning, safety-first execution, and clear project governance from start to finish.":
+              "نقوم بتصميم وتنفيذ أنظمة طاقة شمسية عالية الكفاءة مع تخطيط دقيق وتنفيذ آمن وإدارة واضحة للمشاريع من البداية حتى التسليم.",
+
+            "Our procurement team sources and delivers premium-grade components that maximize reliability, output, and long-term return on your solar investment.":
+              "يوفر فريق التوريد لدينا مكونات عالية الجودة تضمن أقصى درجات الاعتمادية والكفاءة وعائدًا طويل الأمد على استثمارك في الطاقة الشمسية.",
+
+            "Through advanced manufacturing partnerships and QA-driven production workflows, we provide scalable module solutions built for consistent performance.":
+              "من خلال شراكات تصنيع متقدمة وأنظمة إنتاج تعتمد على الجودة، نقدم حلولًا قابلة للتوسع تضمن أداءً مستقرًا وموثوقًا.",
+
+            "Protect system uptime and output with proactive maintenance programs, responsive troubleshooting, and expert support tailored to your operating profile.":
+              "حافظ على استمرارية النظام وكفاءته من خلال برامج صيانة استباقية وخدمات دعم فني سريعة وحلول مخصصة لاحتياجاتك التشغيلية.",
+          }[service.description] ?? service.description,
+
+        bullets: service.bullets.map(
+          (bullet) =>
+            ({
+              "Custom engineering for residential and commercial properties":
+                "تصميم هندسي مخصص للمنازل والمشاريع التجارية",
+
+              "Certified installation teams with strict quality controls":
+                "فرق تركيب معتمدة مع رقابة جودة صارمة",
+
+              "Commissioning, testing, and performance handover":
+                "اختبار وتشغيل وتسليم النظام بكفاءة عالية",
+
+              "Tier-1 solar panels, inverters, and storage systems":
+                "ألواح ومحولات وأنظمة تخزين من الدرجة الأولى",
+
+              "Transparent supply chain and lead-time management":
+                "إدارة شفافة لسلسلة التوريد ومواعيد التسليم",
+
+              "Component matching for optimal system compatibility":
+                "توافق مثالي بين المكونات لضمان أفضل أداء",
+
+              "Rigorous quality assurance and performance validation":
+                "ضمان جودة صارم واختبارات أداء دقيقة",
+
+              "Scalable output for utility, commercial, and residential needs":
+                "إنتاج قابل للتوسع لتلبية جميع الاحتياجات",
+
+              "Reduced procurement risk through controlled production":
+                "تقليل مخاطر التوريد من خلال إنتاج مُتحكم به",
+
+              "Scheduled preventive inspections and diagnostics":
+                "فحوصات دورية وصيانة وقائية",
+
+              "Rapid corrective maintenance and technical interventions":
+                "صيانة سريعة وحلول فنية فورية",
+
+              "Long-term performance tracking and optimization guidance":
+                "مراقبة وتحسين الأداء على المدى الطويل",
+            }[bullet] ?? bullet)
+        ),
+      }))
+    : detailedServices;
+
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-6xl space-y-24">
-        {detailedServices.map((service, index) => {
+        {localizedServices.map((service, index) => {
           const imageFirst = index % 2 === 0;
 
           return (
@@ -81,6 +155,7 @@ export default function DetailedServices() {
                 <h3 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
                   {service.title}
                 </h3>
+
                 <p className="mt-5 text-lg leading-relaxed text-slate-600">
                   {service.description}
                 </p>
@@ -92,7 +167,9 @@ export default function DetailedServices() {
                         className="mt-0.5 h-5 w-5 shrink-0 text-[#458137]"
                         aria-hidden="true"
                       />
-                      <span className="text-base text-slate-700">{bullet}</span>
+                      <span className="text-base text-slate-700">
+                        {bullet}
+                      </span>
                     </li>
                   ))}
                 </ul>
