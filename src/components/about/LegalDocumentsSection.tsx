@@ -13,23 +13,39 @@ const legalDocuments = [
 ];
 
 export default function LegalDocumentsSection() {
-  const isAmharic = useLocale() === "ar";
+  const isArabic = useLocale() === "ar";
+
+  const localizedDocs = isArabic
+    ? legalDocuments.map((doc) => ({
+        ...doc,
+        title:
+          {
+            "Certificate Record 1": "شهادة تسجيل 1",
+            "Certificate Record 2": "شهادة تسجيل 2",
+            "Certificate Record 3": "شهادة تسجيل 3",
+            "Legal Document 1": "وثيقة قانونية 1",
+            "Legal Document 2": "وثيقة قانونية 2",
+          }[doc.title] ?? doc.title,
+      }))
+    : legalDocuments;
 
   return (
     <section id="legal-documents" className="bg-white px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            {isAmharic ? "ሕጋዊ ሰነዶች" : "Legal Documents"}
+            {isArabic ? "الوثائق القانونية" : "Legal Documents"}
           </p>
+
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {isAmharic
-              ? "የኩባንያችን ኦፊሴላዊ ሕጋዊ ሰነዶች"
+            {isArabic
+              ? "الوثائق القانونية الرسمية للشركة"
               : "Our Official Company Legal Documents"}
           </h2>
+
           <p className="mx-auto mt-4 max-w-3xl text-sm text-slate-600 sm:text-base">
-            {isAmharic
-              ? "ለግልጽነት እና ለእምነት የቀረቡ የምዝገባ እና የሕጋዊ ሰነዶች ምስሎች።"
+            {isArabic
+              ? "نستعرض هنا مجموعة من وثائق التسجيل والوثائق القانونية التي تعكس التزامنا بالشفافية والامتثال."
               : "A quick view of registration and legal records that support our compliance and transparency."}
           </p>
         </div>
@@ -44,7 +60,7 @@ export default function LegalDocumentsSection() {
           viewport={{ once: true, amount: 0.15 }}
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {legalDocuments.map((doc) => (
+          {localizedDocs.map((doc) => (
             <motion.article
               key={doc.title}
               variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
@@ -60,8 +76,11 @@ export default function LegalDocumentsSection() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
+
               <div className="border-t border-slate-100 px-4 py-3">
-                <h3 className="text-sm font-medium text-slate-700 sm:text-base">{doc.title}</h3>
+                <h3 className="text-sm font-medium text-slate-700 sm:text-base">
+                  {doc.title}
+                </h3>
               </div>
             </motion.article>
           ))}
