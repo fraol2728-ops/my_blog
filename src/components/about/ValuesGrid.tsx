@@ -39,15 +39,48 @@ const values = [
 
 export default function ValuesGrid() {
   const isAmharic = useLocale() === "ar";
+
+  const localizedValues = isAmharic
+    ? values.map((v) => ({
+        ...v,
+        title:
+          {
+            Integrity: "النزاهة",
+            Innovation: "الابتكار",
+            Sustainability: "الاستدامة",
+            Partnership: "الشراكة",
+            Performance: "الأداء",
+            "People First": "الإنسان أولاً",
+          }[v.title] ?? v.title,
+
+        description:
+          {
+            "Transparent processes, clear pricing, and accountable project delivery.":
+              "عمليات شفافة، وأسعار واضحة، وتنفيذ مسؤول للمشاريع.",
+            "Continuous adoption of smarter technologies and proven methods.":
+              "اعتماد مستمر على التقنيات الذكية والأساليب المجربة.",
+            "Solutions designed for environmental and long-term economic impact.":
+              "حلول مصممة لتحقيق تأثير بيئي واقتصادي طويل الأمد.",
+            "Collaborative planning with clients, communities, and stakeholders.":
+              "تخطيط تعاوني مع العملاء والمجتمعات وأصحاب المصلحة.",
+            "Data-led optimization to maximize energy output and ROI.":
+              "تحسين يعتمد على البيانات لتعظيم إنتاج الطاقة والعائد الاستثماري.",
+            "A safety-focused culture that supports teams and clients alike.":
+              "ثقافة تركز على السلامة وتدعم الفرق والعملاء على حد سواء.",
+          }[v.description] ?? v.description,
+      }))
+    : values;
+
   return (
     <section id="our-values" className="bg-slate-50 px-6 py-20 scroll-mt-24">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#16a34a]">
-            {isAmharic ? "ዋና እሴቶች" : "Core Values"}
+            {isAmharic ? "القيم الأساسية" : "Core Values"}
           </p>
+
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            {isAmharic ? "እያንዳንዱን ፕሮጀክት የሚመሩ መርሆች" : "Principles That Guide Every Project"}
+            {isAmharic ? "المبادئ التي تقود كل مشروع" : "Principles That Guide Every Project"}
           </h2>
         </div>
 
@@ -61,7 +94,7 @@ export default function ValuesGrid() {
           viewport={{ once: true, amount: 0.2 }}
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {values.map(({ title, description, icon: Icon }) => (
+          {localizedValues.map(({ title, description, icon: Icon }) => (
             <motion.article
               key={title}
               variants={{
