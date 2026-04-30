@@ -49,6 +49,7 @@ export default function NewsGrid({ posts, categories, initialSearch = "" }: News
         .filter(Boolean)
         .join(" ")
         .toLowerCase();
+
       const matchesSearch = !keyword || haystack.includes(keyword);
 
       return matchesCategory && matchesSearch;
@@ -57,9 +58,10 @@ export default function NewsGrid({ posts, categories, initialSearch = "" }: News
 
   const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
   const safeCurrentPage = Math.min(currentPage, totalPages);
+
   const paginatedPosts = filteredPosts.slice(
     (safeCurrentPage - 1) * POSTS_PER_PAGE,
-    safeCurrentPage * POSTS_PER_PAGE,
+    safeCurrentPage * POSTS_PER_PAGE
   );
 
   const handleCategoryChange = (category: string) => {
@@ -75,7 +77,11 @@ export default function NewsGrid({ posts, categories, initialSearch = "" }: News
   return (
     <section className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
       <div>
-        <CategoryFilter categories={categories} activeCategory={activeCategory} onChange={handleCategoryChange} />
+        <CategoryFilter
+          categories={categories}
+          activeCategory={activeCategory}
+          onChange={handleCategoryChange}
+        />
 
         <motion.div layout className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
           <AnimatePresence mode="popLayout">
@@ -87,11 +93,17 @@ export default function NewsGrid({ posts, categories, initialSearch = "" }: News
 
         {paginatedPosts.length === 0 && (
           <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">
-            {isAmharic ? "ከአሁኑ ማጣሪያዎች ጋር የሚመጣጠን ዜና አልተገኘም።" : "No news matched your current filters."}
+            {isAmharic
+              ? "لم يتم العثور على أخبار مطابقة لخيارات التصفية الحالية."
+              : "No news matched your current filters."}
           </div>
         )}
 
-        <Pagination currentPage={safeCurrentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+        <Pagination
+          currentPage={safeCurrentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
 
       <Sidebar
