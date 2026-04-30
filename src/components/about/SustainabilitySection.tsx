@@ -60,7 +60,12 @@ export default function SustainabilitySection() {
         isArabic ? "text-right" : ""
       }`}
     >
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+      <div
+        className={`mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 ${
+          isArabic ? "lg:[&>*:first-child]:order-2" : ""
+        }`}
+      >
+        {/* TEXT */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -86,12 +91,25 @@ export default function SustainabilitySection() {
 
           <div className="space-y-4">
             {localizedPillars.map(({ key, title, description, icon: Icon }) => (
-              <div key={key} className="rounded-xl bg-white p-5 shadow-lg">
-                <div className="flex items-start gap-3">
-                  <Icon className="mt-0.5 size-5 text-[#16a34a]" aria-hidden="true" />
+              <div
+                key={key}
+                className="rounded-xl bg-white p-5 shadow-lg transition hover:shadow-xl hover:-translate-y-1"
+              >
+                <div
+                  className={`flex items-start gap-3 ${
+                    isArabic ? "flex-row-reverse text-right" : ""
+                  }`}
+                >
+                  <Icon
+                    className="mt-0.5 size-5 text-[#16a34a]"
+                    aria-hidden="true"
+                  />
+
                   <div>
                     <h3 className="font-semibold text-slate-900">{title}</h3>
-                    <p className="mt-1 text-sm text-slate-600">{description}</p>
+                    <p className="mt-1 text-sm text-slate-600">
+                      {description}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -99,6 +117,7 @@ export default function SustainabilitySection() {
           </div>
         </motion.div>
 
+        {/* IMAGE */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -108,7 +127,11 @@ export default function SustainabilitySection() {
         >
           <Image
             src="/solarimage.webp"
-            alt={isArabic ? "البنية التحتية للطاقة المستدامة" : "Sustainable energy infrastructure"}
+            alt={
+              isArabic
+                ? "البنية التحتية للطاقة المستدامة"
+                : "Sustainable energy infrastructure"
+            }
             width={1200}
             height={900}
             className="h-full w-full object-cover"
