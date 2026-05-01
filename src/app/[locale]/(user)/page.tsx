@@ -45,7 +45,8 @@ export default async function Home({
 }) {
   const { locale } = await params;
   if (!isValidLocale(locale)) notFound();
-  const isAmharic = locale === "ar";
+
+  const isArabic = locale === "ar";
 
   const breadcrumbSchema = buildBreadcrumbSchema({
     locale: locale as AppLocale,
@@ -58,12 +59,13 @@ export default async function Home({
   let latestFeasibilityPosts: FeasibilityPost[] = [];
 
   try {
-    [latestPosts, featuredProjects, latestProjects, latestFeasibilityPosts] = await Promise.all([
-      getAllPosts(3),
-      getFeaturedProjects(1),
-      getProjects(),
-      getFeasibilityPosts(),
-    ]);
+    [latestPosts, featuredProjects, latestProjects, latestFeasibilityPosts] =
+      await Promise.all([
+        getAllPosts(3),
+        getFeaturedProjects(1),
+        getProjects(),
+        getFeasibilityPosts(),
+      ]);
   } catch {
     latestPosts = [];
     featuredProjects = [];
@@ -71,35 +73,41 @@ export default async function Home({
     latestFeasibilityPosts = [];
   }
 
-  const featuredProject = featuredProjects?.[0] ?? latestProjects?.[0] ?? null;
+  const featuredProject =
+    featuredProjects?.[0] ?? latestProjects?.[0] ?? null;
 
   return (
     <div className="bg-white text-slate-900">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
       />
+
       <HeroSection featuredProject={featuredProject} />
 
       <main>
         <PartnersSection locale={locale} />
         <AboutSection />
         <BlogPreview posts={latestPosts} />
+
         <FeasibilityInsightsSection
-          kicker={isAmharic ? "የፕሮጀክት ብቃት ጥናቶች" : "Feasibility Studies"}
+          kicker={isArabic ? "دراسات الجدوى" : "Feasibility Studies"}
           title={
-            isAmharic
-              ? "የቅርብ ጊዜ 3 የፀሐይ ፕሮጀክት የብቃት ጥናቶች"
+            isArabic
+              ? "أحدث 3 دراسات جدوى لمشاريع الطاقة الشمسية"
               : "Latest 3 feasibility studies from our engineering team"
           }
           description={
-            isAmharic
-              ? "የቴክኒክ እና ፋይናንስ ግምገማዎችን በፍጥነት ይመልከቱ እና ነፃ ጥናት ይጠይቁ።"
+            isArabic
+              ? "اطّلع على تقييمات فنية ومالية دقيقة مبنية على البيانات قبل البدء في مشروعك الشمسي القادم."
               : "Review data-backed technical and financial assessments before starting your next solar project."
           }
           posts={latestFeasibilityPosts.slice(0, 3)}
           locale={locale}
         />
+
         <ServicesSection />
         <ProjectsSection />
         <ProcessSection />
