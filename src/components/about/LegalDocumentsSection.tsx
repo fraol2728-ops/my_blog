@@ -7,7 +7,7 @@ import { useLocale } from "@/i18n/I18nProvider";
 const legalDocuments = [
   { title: "Certificate Record 1", image: "/cr1.png" },
   { title: "Certificate Record 2", image: "/cr2.png" },
-  { title: "Certificate Record 3", image: "/cr3.jfif" },
+  { title: "Certificate Record 3", image: "/cr3.png" },
   { title: "Legal Document 1", image: "/legal1.jpg" },
   { title: "Legal Document 2", image: "/legal2.jpg" },
 ];
