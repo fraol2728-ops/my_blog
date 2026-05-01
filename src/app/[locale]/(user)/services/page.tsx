@@ -123,7 +123,9 @@ export default async function ServicesPage({
 }) {
   const { locale } = await params;
   if (!isValidLocale(locale)) notFound();
-  const isAmharic = locale === "ar";
+
+  const isArabic = locale === "ar";
+
   const breadcrumbSchema = buildBreadcrumbSchema({
     locale: locale as AppLocale,
     items: [
@@ -132,35 +134,82 @@ export default async function ServicesPage({
     ],
   });
 
-  const localizedServices = isAmharic
+  const localizedServices = isArabic
     ? services.map((service) => ({
         ...service,
         title:
           {
-            "Solar System Installation": "የፀሐይ ስርዓት ተከላ",
-            "Solar Equipment Supply": "የፀሐይ መሳሪያ አቅርቦት",
-            "Solar Panel Manufacturing": "የፀሐይ ፓነል ማምረት",
-            "Maintenance & Lifecycle Support": "ጥገና እና የህይወት ዑደት ድጋፍ",
+            "Solar System Installation": "تركيب أنظمة الطاقة الشمسية",
+            "Solar Equipment Supply": "توريد معدات الطاقة الشمسية",
+            "Solar Panel Manufacturing": "تصنيع الألواح الشمسية",
+            "Maintenance & Lifecycle Support": "الصيانة ودعم دورة الحياة",
           }[service.title] ?? service.title,
+        description:
+          {
+            "From feasibility to commissioning, we deliver high-performance deployments with enterprise-grade project control and safety standards.":
+              "من دراسات الجدوى إلى التشغيل الكامل، نقدم مشاريع عالية الأداء وفق أعلى معايير السلامة وإدارة المشاريع.",
+            "We source premium components that optimize lifetime performance while reducing procurement and compatibility risk across your system.":
+              "نوفّر مكونات عالية الجودة تضمن أداءً طويل الأمد وتقلل من مخاطر التوافق وسلسلة التوريد.",
+            "Our manufacturing network combines scalable output with strict quality controls to support projects of any size.":
+              "تجمع شبكتنا التصنيعية بين القدرة على التوسع ومعايير جودة صارمة لدعم المشاريع بجميع أحجامها.",
+            "Keep systems operating at peak performance through proactive service programs, intelligent monitoring, and rapid issue response.":
+              "نحافظ على أداء الأنظمة بأعلى كفاءة من خلال الصيانة الاستباقية والمراقبة الذكية والاستجابة السريعة للأعطال.",
+          }[service.description] ?? service.description,
+        bullets: service.bullets.map(
+          (b) =>
+            ({
+              "Custom engineering for commercial and industrial facilities":
+                "تصميم هندسي مخصص للمنشآت التجارية والصناعية",
+              "Certified installers with strict QA checklists":
+                "فرق تركيب معتمدة وفق معايير جودة صارمة",
+              "Turnkey commissioning and performance validation":
+                "تشغيل كامل وتسليم جاهز مع ضمان الأداء",
+
+              "Tier-1 modules, inverters, and storage systems":
+                "ألواح ومحولات وأنظمة تخزين من الفئة الأولى",
+              "Supply chain visibility with predictable lead times":
+                "شفافية في التوريد مع جداول زمنية دقيقة",
+              "Component matching for maximum energy yield":
+                "توافق مكونات لتحقيق أعلى إنتاج للطاقة",
+
+              "Rigorous module testing and quality assurance":
+                "اختبارات دقيقة وضمان جودة صارم",
+              "Scalable production for growing project pipelines":
+                "إنتاج قابل للتوسع لمواكبة نمو المشاريع",
+              "Reliable output with consistent performance metrics":
+                "أداء ثابت وموثوق وفق مؤشرات واضحة",
+
+              "Preventive inspections and health diagnostics":
+                "فحوصات وقائية وتشخيص شامل",
+              "Rapid-response field maintenance and repairs":
+                "صيانة ميدانية سريعة الاستجابة",
+              "Continuous optimization and output reporting":
+                "تحسين مستمر وتقارير أداء دورية",
+            }[b] ?? b)
+        ),
       }))
     : services;
 
-  const localizedOverviewItems = isAmharic
+  const localizedOverviewItems = isArabic
     ? serviceOverviewItems.map((item) => ({
         ...item,
         title:
           {
-            Installation: "ተከላ",
-            "Equipment Supply": "መሳሪያ አቅርቦት",
-            Manufacturing: "ማምረት",
-            Maintenance: "ጥገና",
+            Installation: "التركيب",
+            "Equipment Supply": "توريد المعدات",
+            Manufacturing: "التصنيع",
+            Maintenance: "الصيانة",
           }[item.title] ?? item.title,
         summary:
           {
-            "Turnkey deployment from design to commissioning.": "ከዲዛይን እስከ ኮሚሽን ድረስ ሙሉ አፈጻጸም።",
-            "Premium components with transparent procurement.": "ጥራት ያላቸው ክፍሎች በግልጽ ግዥ ሂደት።",
-            "Scalable, QA-driven module production.": "የጥራት ቁጥጥር ያለው ሊስፋፋ የሚችል ምርት።",
-            "Proactive support to protect long-term ROI.": "የረጅም ጊዜ ተመላሽን የሚጠብቅ ንቁ ድጋፍ።",
+            "Turnkey deployment from design to commissioning.":
+              "تنفيذ متكامل من التصميم إلى التشغيل.",
+            "Premium components with transparent procurement.":
+              "مكونات عالية الجودة مع شفافية في التوريد.",
+            "Scalable, QA-driven module production.":
+              "إنتاج قابل للتوسع بمعايير جودة عالية.",
+            "Proactive support to protect long-term ROI.":
+              "دعم استباقي للحفاظ على العائد طويل الأمد.",
           }[item.summary] ?? item.summary,
       }))
     : serviceOverviewItems;
@@ -178,6 +227,7 @@ export default async function ServicesPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+
       <ServicesHero />
       <ServicesOverview services={localizedOverviewItems} />
 
@@ -195,17 +245,23 @@ export default async function ServicesPage({
 
       <ProcessSection />
       <IndustriesSection />
+
       <FeasibilityInsightsSection
-        kicker={isAmharic ? "ተያያዥ የብቃት ግንዛቤዎች" : "Related Feasibility Insights"}
-        title={isAmharic ? "ከአገልግሎቶቻችን ጋር ተያያዥ ጥናቶች" : "Feasibility insights related to your service goals"}
+        kicker={isArabic ? "رؤى دراسات الجدوى" : "Related Feasibility Insights"}
+        title={
+          isArabic
+            ? "تحليلات ودراسات جدوى مرتبطة بخدماتنا"
+            : "Feasibility insights related to your service goals"
+        }
         description={
-          isAmharic
-            ? "የእርስዎን ኢንቨስትመንት ውሳኔ ለማጠናከር በእኛ የቅርብ ጊዜ ጥናቶች ይጀምሩ።"
+          isArabic
+            ? "استكشف أحدث الدراسات لمساعدتك في اتخاذ قرارات استثمارية مدروسة وتقليل المخاطر."
             : "Use recent studies to compare scope, ROI expectations, and implementation risks across project types."
         }
         posts={feasibilityPosts.slice(0, 3)}
         locale={locale}
       />
+
       <ProjectsSection />
       <WhyChooseUs />
       <CTASection />
