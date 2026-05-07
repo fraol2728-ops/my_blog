@@ -9,7 +9,7 @@ import { useLanguage } from "@/context/language";
 import { getTranslation } from "@/lib/translations";
 
 const socialLinks = [
-  { href: "mailto:mpgenergy@gmail.com", label: "Email", icon: Mail },
+  { href: "mailto:support@masterpremier.energy", label: "Email", icon: Mail },
   { href: "tel:+211982004848", label: "Phone 1", icon: Phone },
   { href: "tel:+211928004848", label: "Phone 2", icon: Phone },
   {
@@ -82,9 +82,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="mailto:mpgenergy@gmail.com">
+                <a className="inline-flex items-center gap-2 hover:text-emerald-300" href="mailto:support@masterpremier.energy">
                   <Mail className="h-4 w-4" />
-                  mpgenergy@gmail.com
+                  support@masterpremier.energy
                 </a>
               </li>
             </ul>

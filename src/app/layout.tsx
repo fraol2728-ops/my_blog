@@ -64,7 +64,7 @@ const jsonLd = {
         "contactType": "customer service",
         "availableLanguage": ["English", "Arabic"]
       },
-      "email": "mpgenergy@gmail.com",
+      "email": "support@masterpremier.energy",
       "telephone": "+211982004848",
       "areaServed": {
         "@type": "Country",
@@ -86,7 +86,7 @@ const jsonLd = {
       "name": "Master Premier Green Energy Co. Ltd",
       "image": "https://www.masterpremier.energy/logo.png",
       "telephone": "+211982004848",
-      "email": "mpgenergy@gmail.com",
+      "email": "support@masterpremier.energy",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Thongping, Florian Road, Block 3, Plot No. 258",
