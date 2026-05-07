@@ -14,11 +14,15 @@ export const metadata: Metadata = {
   keywords: ["Master Green Energy", "Master Premier Green Energy", "Master Green", "MPGE", "solar energy South Sudan", "solar installation Juba", "off-grid solar South Sudan", "renewable energy South Sudan", "solar company South Sudan", "clean energy South Sudan", "Master Green Energy Solar", "solar PV South Sudan"],
   metadataBase: new URL("https://www.masterpremier.energy"),
   alternates: { canonical: "https://www.masterpremier.energy/en", languages: { en: "/en", ar: "/ar" } },
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
   openGraph: {
     type: "website", locale: "en_US", url: "https://www.masterpremier.energy/en", siteName: "Master Premier Green Energy Co. Ltd",
     title: "Master Premier Green Energy Co. Ltd | Solar Energy South Sudan",
     description: "South Sudan's leading solar and renewable energy company. Off-grid solar systems, energy audits, installation and support.",
-    images: [{ url: "https://www.masterpremier.energy/og-image.jpg", width: 1200, height: 630, alt: "Master Premier Green Energy - Solar Power South Sudan" }],
+    images: [{ url: "https://www.masterpremier.energy/logo.png", width: 512, height: 512, alt: "Master Premier Green Energy Co. Ltd Logo" }],
   },
   twitter: { card: "summary_large_image", title: "Master Premier Green Energy Co. Ltd", description: "South Sudan's leading solar energy company — off-grid systems, energy audits, and clean energy advisory.", images: ["https://www.masterpremier.energy/og-image.jpg"], site: "https://www.masterpremier.energy/en" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 } },
@@ -47,8 +51,8 @@ const jsonLd = {
       "logo": {
         "@type": "ImageObject",
         "url": "https://www.masterpremier.energy/logo.png",
-        "width": 400,
-        "height": 100
+        "width": 512,
+        "height": 512
       },
       "description": "Master Premier Green Energy Co. Ltd (MPGE) is South Sudan's leading renewable energy company. We provide solar installation, off-grid solar systems, energy audits, feasibility studies, and clean energy advisory services in Juba and across South Sudan.",
       "address": {
@@ -132,6 +136,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+        {/* Logo for Google */}
+        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
       </head>
       <body className="antialiased overflow-x-hidden font-sans transition-all duration-300">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }} />
