@@ -145,7 +145,8 @@ export default function DetailedServices() {
                     alt={service.alt}
                     width={1200}
                     height={900}
-                    className="h-[360px] w-full object-cover"
+                    loading="lazy"
+            className="h-[360px] w-full object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>

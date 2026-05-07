@@ -26,7 +26,8 @@ export default async function OtherPosts({
                   width={500}
                   height={500}
                   alt="mainImage"
-                  className=" aspect-[3/2] w-full rounded-tr-2xl rounded-tl-2xl object-cover shadow-xl group-hover:scale-105 duration-300"
+                  loading="lazy"
+            className=" aspect-[3/2] w-full rounded-tr-2xl rounded-tl-2xl object-cover shadow-xl group-hover:scale-105 duration-300"
                 />
               )}
             </div>
@@ -48,7 +49,8 @@ export default async function OtherPosts({
                         alt="authorImage"
                         width={50}
                         height={50}
-                        className="aspect-square size-6 rounded-full object-cover"
+                        loading="lazy"
+            className="aspect-square size-6 rounded-full object-cover"
                       />
                     )}
                     <p className="text-gray-700">{post?.author?.name}</p>

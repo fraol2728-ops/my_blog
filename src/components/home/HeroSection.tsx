@@ -211,7 +211,8 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
                           alt={featuredProject.title || "Featured project image"}
                           width={900}
                           height={540}
-                          className="aspect-[16/8] w-full object-cover transition duration-500 group-hover:scale-105"
+                          loading="lazy"
+            className="aspect-[16/8] w-full object-cover transition duration-500 group-hover:scale-105"
                         />
                       ) : (
                         <div className="aspect-[16/9] w-full bg-gradient-to-br from-emerald-500/25 to-slate-900/90" />

@@ -56,7 +56,8 @@ export default function FeasibilityStudyPage({
                         alt={post.mainImage.alt ?? post.title}
                         width={1200}
                         height={760}
-                        className="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
+            className="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                       />
                     ) : (
                       <div className="aspect-[16/10] w-full bg-gradient-to-br from-emerald-50 to-slate-100" />
@@ -99,7 +100,8 @@ export default function FeasibilityStudyPage({
                       alt={post.mainImage.alt ?? post.title}
                       width={900}
                       height={620}
-                      className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                      loading="lazy"
+            className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.04]"
                     />
                   ) : (
                     <div className="aspect-[4/3] w-full bg-gradient-to-br from-emerald-50 to-slate-100" />

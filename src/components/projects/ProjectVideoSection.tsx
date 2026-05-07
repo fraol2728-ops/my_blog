@@ -45,7 +45,8 @@ export default function ProjectVideoSection({ videoUrl, title, thumbnail }: Proj
         className="group relative mt-6 block w-full overflow-hidden rounded-2xl border border-slate-200"
       >
         {thumbnail ? (
-          <Image src={thumbnail} alt={`${title} video thumbnail`} width={1600} height={900} className="h-[360px] w-full object-cover transition duration-700 group-hover:scale-105" />
+          <Image src={thumbnail} alt={`${title} video thumbnail`} width={1600} height={900} loading="lazy"
+            className="h-[360px] w-full object-cover transition duration-700 group-hover:scale-105" />
         ) : (
           <div className="grid h-[360px] w-full place-items-center bg-gradient-to-br from-slate-200 to-slate-300 text-slate-600">Video preview</div>
         )}

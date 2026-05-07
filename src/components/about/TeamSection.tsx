@@ -67,7 +67,8 @@ export default function TeamSection() {
                   src={member.image}
                   alt={member.name}
                   fill
-                  className="object-cover"
+                  loading="lazy"
+            className="object-cover"
                   sizes="(max-width: 1024px) 50vw, 25vw"
                 />
               </div>

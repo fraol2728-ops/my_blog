@@ -85,7 +85,8 @@ const CategoryPage = async ({
                               alt="authorImage"
                               width={50}
                               height={50}
-                              className="aspect-square size-6 rounded-full object-cover"
+                              loading="lazy"
+            className="aspect-square size-6 rounded-full object-cover"
                             />
                           )}
                           <p className="text-gray-700">{post?.author?.name}</p>

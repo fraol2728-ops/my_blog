@@ -99,7 +99,8 @@ export default function ProjectsSection() {
                 alt={project.title}
                 width={1200}
                 height={900}
-                className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+                loading="lazy"
+            className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
 

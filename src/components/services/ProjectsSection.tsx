@@ -60,7 +60,8 @@ export default function ProjectsSection() {
                 alt={isAmharic ? project.title.ar : project.title.en}
                 width={900}
                 height={1200}
-                className="h-[320px] w-full object-cover transition duration-500 group-hover:scale-110"
+                loading="lazy"
+            className="h-[320px] w-full object-cover transition duration-500 group-hover:scale-110"
               />
 
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent" />

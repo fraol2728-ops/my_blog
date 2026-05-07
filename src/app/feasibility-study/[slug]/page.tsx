@@ -86,7 +86,8 @@ export default async function FeasibilityStudyDetailPage({
                 alt={post.mainImage.alt ?? post.title}
                 width={1600}
                 height={950}
-                className="w-full rounded-3xl border border-white/60 object-cover shadow-2xl shadow-slate-900/15"
+                loading="lazy"
+            className="w-full rounded-3xl border border-white/60 object-cover shadow-2xl shadow-slate-900/15"
               />
             </Reveal>
           </div>
@@ -107,7 +108,8 @@ export default async function FeasibilityStudyDetailPage({
                         alt={value.alt || post.title}
                         width={1400}
                         height={900}
-                        className="w-full rounded-2xl border border-slate-200"
+                        loading="lazy"
+            className="w-full rounded-2xl border border-slate-200"
                       />
                     ),
                   },
@@ -132,7 +134,8 @@ export default async function FeasibilityStudyDetailPage({
                   alt={image.alt ?? `${post.title} gallery image ${index + 1}`}
                   width={900}
                   height={700}
-                  className="h-full min-h-52 w-full rounded-2xl border border-slate-200 object-cover shadow-sm"
+                  loading="lazy"
+            className="h-full min-h-52 w-full rounded-2xl border border-slate-200 object-cover shadow-sm"
                 />
               </Reveal>
             ))}

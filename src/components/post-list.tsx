@@ -49,7 +49,8 @@ export default function PostList({
                     alt="authorImage"
                     width={50}
                     height={50}
-                    className="size-6 rounded-full object-cover"
+                    loading="lazy"
+            className="size-6 rounded-full object-cover"
                   />
                 )}
                 <p className="text-sm text-gray-700">{post?.author?.name}</p>
@@ -64,7 +65,8 @@ export default function PostList({
                 alt={post?.title || "post image"}
                 width={900}
                 height={500}
-                className="mb-4 h-44 w-full rounded-2xl object-cover"
+                loading="lazy"
+            className="mb-4 h-44 w-full rounded-2xl object-cover"
               />
             )}
             <h2 className="text-xl font-medium text-gray-950">{post?.title}</h2>

@@ -34,7 +34,8 @@ const portableTextComponents: any = {
       const imageUrl = urlFor(value).width(1400).height(900).url();
       return (
         <div className="my-8 overflow-hidden rounded-2xl border border-slate-200 shadow-lg shadow-slate-200/60">
-          <Image src={imageUrl} alt={value.alt ?? "Project content image"} width={1400} height={900} className="h-auto w-full object-cover" />
+          <Image src={imageUrl} alt={value.alt ?? "Project content image"} width={1400} height={900} loading="lazy"
+            className="h-auto w-full object-cover" />
         </div>
       );
     },
@@ -262,7 +263,8 @@ export default async function ProjectCaseStudyPage({
                     <article key={relatedProject._id} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                       <div className="relative h-48 overflow-hidden">
                         {imageUrl ? (
-                          <Image src={imageUrl} alt={relatedProject.mainImage?.alt ?? getLocalizedValue(relatedProject.title, lang, "")} fill className="object-cover transition duration-500 group-hover:scale-105" />
+                          <Image src={imageUrl} alt={relatedProject.mainImage?.alt ?? getLocalizedValue(relatedProject.title, lang, "")} fill loading="lazy"
+            className="object-cover transition duration-500 group-hover:scale-105" />
                         ) : (
                           <div className="h-full w-full bg-gradient-to-br from-slate-100 to-slate-200" />
                         )}
