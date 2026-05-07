@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
     openGraph: {
       type: "article",
       locale: locale === "en" ? "en_US" : "am_ET",
-      url: canonicalPath,
+      url: `${SITE_URL}${canonicalPath}`,
       title,
       description,
       images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
@@ -60,6 +60,7 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
       title,
       description,
       images: [imageUrl],
+      site: `${SITE_URL}${canonicalPath}`,
     },
   };
 }
