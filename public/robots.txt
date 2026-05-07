@@ -1,8 +1,14 @@
 User-agent: *
 Allow: /
+
 User-agent: Googlebot
 Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 Sitemap: https://www.masterpremier.energy/sitemap.xml
-Sitemap: https://www.masterpremier.energy/sitemap-index.xml
+
 Disallow: /api/
 Disallow: /_next/
+Disallow: /studio/
