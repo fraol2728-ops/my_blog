@@ -1,4 +1,5 @@
 import FeaturedPost from "@/components/news/FeaturedPost";
+import Breadcrumb from "@/components/Breadcrumb";
 import NewsGrid from "@/components/news/NewsGrid";
 import NewsHero from "@/components/news/NewsHero";
 import Newsletter from "@/components/news/Newsletter";
@@ -74,7 +75,7 @@ export default async function NewsPage({
     locale: locale as AppLocale,
     items: [
       { name: "Home", path: "/" },
-      { name: "News", path: "/news" },
+      { name: "Solar Energy News", path: "/news" },
     ],
   });
 
@@ -108,6 +109,12 @@ export default async function NewsPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(newsCollectionSchema) }}
       />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/en" },
+            { label: "Solar Energy News", href: "/en/news" },
+          ]}
+        />
         <NewsHero />
 
         <section className="mt-10">

@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import Breadcrumb from "@/components/Breadcrumb";
 import ProjectsPageClient from "@/components/projects/ProjectsPageClient";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { buildBreadcrumbSchema, SITE_URL } from "@/lib/seo";
@@ -55,7 +56,7 @@ export default async function ProjectsPage({
     locale: locale as AppLocale,
     items: [
       { name: "Home", path: "/" },
-      { name: "Projects", path: "/projects" },
+      { name: "Solar Projects South Sudan", path: "/projects" },
     ],
   });
 
@@ -84,6 +85,12 @@ export default async function ProjectsPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectCollectionSchema) }}
+      />
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/en" },
+          { label: "Solar Projects South Sudan", href: "/en/projects" },
+        ]}
       />
       <ProjectsPageClient projects={projects} locale={locale} />
     </>

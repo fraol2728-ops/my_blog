@@ -7,10 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import Breadcrumb from "@/components/Breadcrumb";
 import ProjectGallery from "@/components/projects/ProjectGallery";
 import { Reveal } from "@/components/ui/reveal";
-import { isValidLocale } from "@/i18n/config";
-import { SITE_NAME, SITE_URL } from "@/lib/seo";
+import { isValidLocale, type AppLocale } from "@/i18n/config";
+import { buildBreadcrumbSchema, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { urlFor } from "@/sanity/lib/image";
 import { getProjectBySlug, getProjects } from "@/sanity/queries";
 import { Project } from "@/types";
@@ -117,6 +118,14 @@ export default async function ProjectCaseStudyPage({
   const solution = getLocalizedValue(project.solution, lang, "");
   const results = getLocalizedValue(project.results, lang, "");
   const body = getLocalizedValue(project.body, lang, []);
+  const breadcrumbSchema = buildBreadcrumbSchema({
+    locale: locale as AppLocale,
+    items: [
+      { name: "Home", path: "/" },
+      { name: "Projects", path: "/projects" },
+      { name: title, path: `/projects/${project.slug}` },
+    ],
+  });
 
   const metaItems = [
     { label: "Capacity", value: project.capacity ?? "—", icon: Zap },
@@ -127,6 +136,17 @@ export default async function ProjectCaseStudyPage({
 
   return (
     <div className="bg-white pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/en" },
+          { label: "Projects", href: "/en/projects" },
+          { label: title, href: `/en/projects/${project.slug}` },
+        ]}
+      />
       <article>
         <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
           <Link href={`/${locale}/projects`} className="text-sm font-medium text-green-700 hover:text-green-800">

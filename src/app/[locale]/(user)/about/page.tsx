@@ -1,4 +1,5 @@
 import CTASection from "@/components/about/CTASection";
+import Breadcrumb from "@/components/Breadcrumb";
 import CompanyOverview from "@/components/about/CompanyOverview";
 import HeroAbout from "@/components/about/HeroAbout";
 import LegalDocumentsSection from "@/components/about/LegalDocumentsSection";
@@ -53,7 +54,7 @@ export default async function AboutPage({
     locale: locale as AppLocale,
     items: [
       { name: "Home", path: "/" },
-      { name: "About", path: "/about" },
+      { name: "About Master Premier Green Energy", path: "/about" },
     ],
   });
 
@@ -62,6 +63,12 @@ export default async function AboutPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/en" },
+          { label: "About Master Premier Green Energy", href: "/en/about" },
+        ]}
       />
       <HeroAbout />
       <CompanyOverview />
