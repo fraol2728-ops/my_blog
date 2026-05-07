@@ -48,6 +48,16 @@ export default async function Home({
 
   const isArabic = locale === "ar";
 
+
+  const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {"@type":"Organization","@id":"https://www.masterpremier.energy/#organization","name":"Master Premier Green Energy Co. Ltd","alternateName":["Master Green Energy","MPGE","Master Green","Master Premier"],"url":"https://www.masterpremier.energy/en","logo":{"@type":"ImageObject","url":"https://www.masterpremier.energy/logo.png"}},
+      {"@type":"WebSite","@id":"https://www.masterpremier.energy/#website","url":"https://www.masterpremier.energy/en","name":"Master Premier Green Energy Co. Ltd","publisher":{"@id":"https://www.masterpremier.energy/#organization"}},
+      {"@type":"LocalBusiness","@id":"https://www.masterpremier.energy/#localbusiness","name":"Master Premier Green Energy Co. Ltd","telephone":"+211982004848","email":"mpgenergy@gmail.com","url":"https://www.masterpremier.energy/en"}
+    ]
+  };
+
   const breadcrumbSchema = buildBreadcrumbSchema({
     locale: locale as AppLocale,
     items: [{ name: "Home", path: "/" }],
@@ -78,12 +88,8 @@ export default async function Home({
 
   return (
     <div className="bg-white text-slate-900">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <HeroSection featuredProject={featuredProject} />
 

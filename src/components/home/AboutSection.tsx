@@ -34,6 +34,7 @@ export default function AboutSection() {
             height={900}
             className="h-full w-full object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
+            priority
           />
         </Reveal>
 

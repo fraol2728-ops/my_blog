@@ -78,7 +78,7 @@ const SinglePostPage = async ({
 
   const blogPostingSchema = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "Article",
     headline: post.title,
     datePublished: post.publishedAt,
     author: {
@@ -100,6 +100,7 @@ const SinglePostPage = async ({
 
   return (
     <div className="overflow-hidden">
+      <nav aria-label="Breadcrumb" className="sr-only"><ol><li>Home</li><li>News</li><li>{post.title}</li></ol></nav>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}

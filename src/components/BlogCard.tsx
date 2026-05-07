@@ -49,7 +49,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         href={postHref}
         className="mt-5 inline-flex text-sm font-semibold text-emerald-700 transition hover:text-emerald-600"
       >
-        Read Full Article →
+        {post?.title} →
       </Link>
     </article>
   );
