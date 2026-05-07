@@ -56,7 +56,8 @@ export default function KilimanjaroPage() {
               alt="Kilimanjaro Construction Consulting and Design Co. Ltd logo"
               width={640}
               height={420}
-              className="h-full w-full object-contain bg-white/90 p-5"
+              loading="lazy"
+            className="h-full w-full object-contain bg-white/90 p-5"
             />
           </div>
         </div>

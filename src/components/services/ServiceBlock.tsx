@@ -40,7 +40,8 @@ export default function ServiceBlock({ service, reverse = false }: ServiceBlockP
               alt={service.imageAlt}
               width={1200}
               height={900}
-              className="h-[320px] w-full object-cover transition duration-500 hover:scale-105"
+              loading="lazy"
+            className="h-[320px] w-full object-cover transition duration-500 hover:scale-105"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>

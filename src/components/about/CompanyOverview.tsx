@@ -36,6 +36,7 @@ export default function CompanyOverview() {
             alt="Solar engineers inspecting a utility project"
             width={1200}
             height={900}
+            loading="lazy"
             className="h-full w-full object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />

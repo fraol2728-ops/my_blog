@@ -50,7 +50,8 @@ export default function PartnersSection({ locale }: { locale: string }) {
                       src={partner.logo}
                       alt={`${partner.name} logo`}
                       fill
-                      className="object-contain p-2 transition duration-500 group-hover:scale-105"
+                      loading="lazy"
+            className="object-contain p-2 transition duration-500 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 40vw"
                     />
                   </div>

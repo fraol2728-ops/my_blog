@@ -72,7 +72,8 @@ export default function LegalDocumentsSection() {
                   src={doc.image}
                   alt={doc.title}
                   fill
-                  className="object-cover object-center transition duration-500 group-hover:scale-[1.02]"
+                  loading="lazy"
+            className="object-cover object-center transition duration-500 group-hover:scale-[1.02]"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>

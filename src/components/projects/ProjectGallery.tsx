@@ -35,7 +35,8 @@ export default function ProjectGallery({ images, title }: { images: GalleryImage
                 alt={image.alt ?? `${title} image ${index + 1}`}
                 width={1200}
                 height={900}
-                className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+                loading="lazy"
+            className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
               />
             </button>
           );
@@ -72,7 +73,8 @@ export default function ProjectGallery({ images, title }: { images: GalleryImage
                 alt={images[activeIndex]?.alt ?? `${title} image ${activeIndex + 1}`}
                 width={1800}
                 height={1300}
-                className="max-h-[88vh] w-full object-contain"
+                loading="lazy"
+            className="max-h-[88vh] w-full object-contain"
               />
             </motion.div>
           </motion.div>

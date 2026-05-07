@@ -134,7 +134,8 @@ const SinglePostPage = async ({
                     alt="authorImage"
                     width={50}
                     height={50}
-                    className="aspect-square size-6 rounded-full object-cover"
+                    loading="lazy"
+            className="aspect-square size-6 rounded-full object-cover"
                   />
                 )}
                 <p className="text-gray-700">{post?.author?.name}</p>
@@ -162,7 +163,8 @@ const SinglePostPage = async ({
                     src={urlFor(post?.mainImage).url()}
                     width={800}
                     height={800}
-                    className="mb-10 aspect-[3/2] rounded-2xl object-cover shadow-xl"
+                    loading="lazy"
+            className="mb-10 aspect-[3/2] rounded-2xl object-cover shadow-xl"
                     alt="postMainImage"
                   />
                 )}
@@ -195,7 +197,8 @@ const SinglePostPage = async ({
                           <Image
                             alt={value.alt || ""}
                             src={urlFor(value).url()}
-                            className="w-full rounded-2xl"
+                            loading="lazy"
+            className="w-full rounded-2xl"
                             width={1400}
                             height={1000}
                           />

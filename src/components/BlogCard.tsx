@@ -25,6 +25,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             alt={post?.title || "News post image"}
             width={1000}
             height={680}
+            loading="lazy"
             className="aspect-[4/3] w-full rounded-xl object-cover transition duration-500 group-hover:scale-[1.03]"
           />
         ) : (

@@ -137,7 +137,8 @@ export default function ServicesSection() {
                     alt={service.alt}
                     width={1200}
                     height={800}
-                    className="h-[400px] w-full object-cover transition duration-500 hover:scale-105"
+                    loading="lazy"
+            className="h-[400px] w-full object-cover transition duration-500 hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>

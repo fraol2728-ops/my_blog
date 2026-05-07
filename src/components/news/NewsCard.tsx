@@ -32,7 +32,8 @@ export default function NewsCard({ post }: { post: Post }) {
               alt={post.title}
               width={800}
               height={500}
-              className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              loading="lazy"
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
             />
           ) : (
             <div className="h-full w-full bg-slate-200" />

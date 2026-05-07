@@ -28,7 +28,8 @@ export default async function FeaturedPosts({ locale = "en" }: { locale?: string
                   src={urlFor(post?.mainImage).url()}
                   width={800}
                   height={800}
-                  className="aspect-[3/2] w-full rounded-2xl object-cover group-hover:scale-110 duration-500"
+                  loading="lazy"
+            className="aspect-[3/2] w-full rounded-2xl object-cover group-hover:scale-110 duration-500"
                 />
               )}
             </div>
@@ -53,7 +54,8 @@ export default async function FeaturedPosts({ locale = "en" }: { locale?: string
                       alt="authorImage"
                       width={50}
                       height={50}
-                      className="aspect-square size-6 rounded-full object-cover"
+                      loading="lazy"
+            className="aspect-square size-6 rounded-full object-cover"
                     />
                   )}
                   <p className="text-gray-700">{post?.author?.name}</p>

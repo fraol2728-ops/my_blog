@@ -30,9 +30,11 @@ export default function BeforeAfterSlider({ beforeImage, afterImage, title }: Be
       <h2 className="text-2xl font-semibold text-slate-900">Before / After Transformation</h2>
       <p className="mt-2 text-sm text-slate-600">Drag the slider to compare site conditions and completed delivery.</p>
       <div className="relative mt-6 overflow-hidden rounded-2xl border border-slate-200">
-        <Image src={beforeUrl} alt={beforeImage?.alt ?? `${title} before`} width={1600} height={980} className="h-[440px] w-full object-cover" />
+        <Image src={beforeUrl} alt={beforeImage?.alt ?? `${title} before`} width={1600} height={980} loading="lazy"
+            className="h-[440px] w-full object-cover" />
         <div className="pointer-events-none absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${position}%` }}>
-          <Image src={afterUrl} alt={afterImage?.alt ?? `${title} after`} width={1600} height={980} className="h-[440px] w-full max-w-none object-cover" />
+          <Image src={afterUrl} alt={afterImage?.alt ?? `${title} after`} width={1600} height={980} loading="lazy"
+            className="h-[440px] w-full max-w-none object-cover" />
         </div>
 
         <div className="pointer-events-none absolute inset-y-0" style={{ left: `${position}%` }}>

@@ -60,6 +60,7 @@ export default function ProjectsSection() {
             alt={featuredProject.alt}
             width={1400}
             height={1000}
+            loading="lazy"
             className="h-full min-h-[280px] w-full object-cover transition duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
@@ -90,7 +91,8 @@ export default function ProjectsSection() {
                 alt={project.alt}
                 width={900}
                 height={600}
-                className="h-56 w-full rounded-xl object-cover transition duration-500 group-hover:scale-105"
+                loading="lazy"
+            className="h-56 w-full rounded-xl object-cover transition duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
