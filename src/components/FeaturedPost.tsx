@@ -53,7 +53,7 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
           href={postHref}
           className="mt-6 inline-flex items-center text-sm font-semibold text-emerald-700 transition hover:text-emerald-600"
         >
-          Read Full Article →
+          {post?.title} →
         </Link>
       </div>
     </article>

@@ -58,6 +58,10 @@ export default function AboutSection() {
             ))}
           </ul>
 
+          <p className="text-base text-slate-700">
+            Master Premier Green Energy Co. Ltd, also known as MPGE, is the leading solar energy company in South Sudan. Whether you need off-grid solar installation in Juba, an energy audit, or a full feasibility study, our team is ready to help.
+          </p>
+
           <Button href="/about" variant="primary">
             {isAmharic ? "اعرف المزيد عنا" : "Learn More About Us"}
           </Button>
