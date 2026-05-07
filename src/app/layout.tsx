@@ -29,101 +29,102 @@ export const metadata: Metadata = {
 };
 
 const siteNavigationSchema = buildSiteNavigationSchema();
-const structuredDataGraph = {
+const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
       "@id": "https://www.masterpremier.energy/#organization",
-      name: "Master Premier Green Energy Co. Ltd",
-      alternateName: ["Master Green Energy", "Master Green", "MPGE", "Master Premier", "Master Green Energy Solar"],
-      url: "https://www.masterpremier.energy/en",
-      logo: {
+      "name": "Master Premier Green Energy Co. Ltd",
+      "alternateName": [
+        "Master Green Energy",
+        "Master Green",
+        "MPGE",
+        "Master Premier",
+        "Master Premier Green"
+      ],
+      "url": "https://www.masterpremier.energy/en",
+      "logo": {
         "@type": "ImageObject",
-        url: "https://www.masterpremier.energy/logo.png",
-        width: 400,
-        height: 100,
+        "url": "https://www.masterpremier.energy/logo.png",
+        "width": 400,
+        "height": 100
       },
-      description:
-        "Master Premier Green Energy Co. Ltd (MPGE) is South Sudan's leading renewable energy company. We provide solar installation, off-grid solar systems, energy audits, feasibility studies, and clean energy advisory services in Juba and across South Sudan.",
-      address: {
+      "description": "Master Premier Green Energy Co. Ltd (MPGE) is South Sudan's leading renewable energy company. We provide solar installation, off-grid solar systems, energy audits, feasibility studies, and clean energy advisory services in Juba and across South Sudan.",
+      "address": {
         "@type": "PostalAddress",
-        streetAddress: "Thongping, Florian Road, Block 3, Plot No. 258",
-        addressLocality: "Juba",
-        addressRegion: "Central Equatoria",
-        addressCountry: "SS",
+        "streetAddress": "Thongping, Florian Road, Block 3, Plot No. 258",
+        "addressLocality": "Juba",
+        "addressRegion": "Central Equatoria",
+        "addressCountry": "SS"
       },
-      contactPoint: {
+      "contactPoint": {
         "@type": "ContactPoint",
-        telephone: "+211982004848",
-        contactType: "customer service",
-        availableLanguage: ["English", "Arabic"],
+        "telephone": "+211982004848",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Arabic"]
       },
-      email: "mpgenergy@gmail.com",
-      telephone: "+211982004848",
-      areaServed: {
+      "email": "mpgenergy@gmail.com",
+      "telephone": "+211982004848",
+      "areaServed": {
         "@type": "Country",
-        name: "South Sudan",
+        "name": "South Sudan"
       },
-      foundingLocation: {
-        "@type": "Place",
-        name: "Juba, South Sudan",
-      },
-      knowsAbout: [
+      "knowsAbout": [
         "Solar Energy",
         "Renewable Energy",
         "Off-grid Solar Systems",
         "Energy Audits",
         "Feasibility Studies",
         "Solar Panel Installation",
-        "Clean Energy Advisory",
-        "Solar Manufacturing",
-      ],
+        "Clean Energy Advisory"
+      ]
     },
     {
       "@type": "LocalBusiness",
       "@id": "https://www.masterpremier.energy/#localbusiness",
-      name: "Master Premier Green Energy Co. Ltd",
-      image: "https://www.masterpremier.energy/logo.png",
-      telephone: "+211982004848",
-      email: "mpgenergy@gmail.com",
-      address: {
+      "name": "Master Premier Green Energy Co. Ltd",
+      "image": "https://www.masterpremier.energy/logo.png",
+      "telephone": "+211982004848",
+      "email": "mpgenergy@gmail.com",
+      "address": {
         "@type": "PostalAddress",
-        streetAddress: "Thongping, Florian Road, Block 3, Plot No. 258",
-        addressLocality: "Juba",
-        addressRegion: "Central Equatoria",
-        addressCountry: "SS",
+        "streetAddress": "Thongping, Florian Road, Block 3, Plot No. 258",
+        "addressLocality": "Juba",
+        "addressRegion": "Central Equatoria",
+        "addressCountry": "SS"
       },
-      geo: {
+      "geo": {
         "@type": "GeoCoordinates",
-        latitude: 4.8594,
-        longitude: 31.5713,
+        "latitude": 4.8594,
+        "longitude": 31.5713
       },
-      url: "https://www.masterpremier.energy/en",
-      priceRange: "$$",
-      openingHoursSpecification: {
+      "url": "https://www.masterpremier.energy/en",
+      "priceRange": "$$",
+      "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "08:00",
-        closes: "17:00",
-      },
-      currenciesAccepted: "USD",
-      paymentAccepted: "Cash, Bank Transfer",
+        "dayOfWeek": [
+          "Monday","Tuesday","Wednesday","Thursday","Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://www.masterpremier.energy/#website",
-      url: "https://www.masterpremier.energy/en",
-      name: "Master Premier Green Energy Co. Ltd",
-      alternateName: ["Master Green Energy", "MPGE", "Master Green"],
-      description: "South Sudan's leading solar and renewable energy company.",
-      publisher: {
-        "@id": "https://www.masterpremier.energy/#organization",
+      "url": "https://www.masterpremier.energy/en",
+      "name": "Master Premier Green Energy Co. Ltd",
+      "alternateName": ["Master Green Energy", "MPGE", "Master Green"],
+      "description": "South Sudan's leading solar and renewable energy company.",
+      "publisher": {
+        "@id": "https://www.masterpremier.energy/#organization"
       },
-      inLanguage: ["en", "ar"],
-    },
-  ],
-};
+      "inLanguage": ["en", "ar"]
+    }
+  ]
+}
+
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -139,7 +140,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             {children}
           </LanguageProvider>
         </SessionProvider>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredDataGraph) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>
   );
