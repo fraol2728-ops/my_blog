@@ -84,6 +84,7 @@ export default function Navbar() {
     },
     { href: "/news", label: copy.nav.news },
     { href: "/projects", label: copy.nav.projects },
+    { href: "/faq", label: "FAQ" },
     { href: "/contact", label: copy.nav.contact },
   ];
 
