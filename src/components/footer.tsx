@@ -30,6 +30,7 @@ export default function Footer() {
     { href: localized("/about"), label: t.footer.about },
     { href: localized("/services"), label: t.footer.services },
     { href: localized("/news"), label: t.footer.news },
+    { href: localized("/faq"), label: "FAQ" },
     { href: localized("/contact"), label: t.footer.contactUs },
   ];
 
