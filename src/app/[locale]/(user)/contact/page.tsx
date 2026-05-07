@@ -2,6 +2,7 @@ import ContactForm from "@/components/contact/ContactForm";
 import ContactHero from "@/components/contact/ContactHero";
 import ContactInfo from "@/components/contact/ContactInfo";
 import FAQSection from "@/components/contact/FAQSection";
+import Breadcrumb from "@/components/Breadcrumb";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
 import { buildBreadcrumbSchema } from "@/lib/seo";
@@ -52,7 +53,7 @@ export default async function ContactPage({
     locale: locale as AppLocale,
     items: [
       { name: "Home", path: "/" },
-      { name: "Contact", path: "/contact" },
+      { name: "Contact Master Premier Green Energy", path: "/contact" },
     ],
   });
 
@@ -62,7 +63,13 @@ export default async function ContactPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-            <ContactHero />
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/en" },
+          { label: "Contact Master Premier Green Energy", href: "/en/contact" },
+        ]}
+      />
+      <ContactHero />
       <section className="py-20">
         <div className="mx-auto grid max-w-6xl gap-12 px-4 md:grid-cols-2">
           <ContactForm />

@@ -1,4 +1,5 @@
 import { Button } from "@/components/button";
+import Breadcrumb from "@/components/Breadcrumb";
 import Container from "@/components/container";
 import OtherPosts from "@/components/otherPosts";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
@@ -101,7 +102,13 @@ const SinglePostPage = async ({
 
   return (
     <div className="overflow-hidden">
-      <nav aria-label="Breadcrumb" className="sr-only"><ol><li>Home</li><li>News</li><li>{post.title}</li></ol></nav>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/en" },
+          { label: "News", href: "/en/news" },
+          { label: post.title, href: `/en/post/${post.slug}` },
+        ]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}

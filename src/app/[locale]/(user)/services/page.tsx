@@ -1,4 +1,5 @@
 import CTASection from "@/components/services/CTASection";
+import Breadcrumb from "@/components/Breadcrumb";
 import FeasibilityInsightsSection from "@/components/feasibility/FeasibilityInsightsSection";
 import IndustriesSection from "@/components/services/IndustriesSection";
 import ProcessSection from "@/components/services/ProcessSection";
@@ -141,7 +142,7 @@ export default async function ServicesPage({
     locale: locale as AppLocale,
     items: [
       { name: "Home", path: "/" },
-      { name: "Services", path: "/services" },
+      { name: "Solar Services South Sudan", path: "/services" },
     ],
   });
 
@@ -237,6 +238,12 @@ export default async function ServicesPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/en" },
+          { label: "Solar Services South Sudan", href: "/en/services" },
+        ]}
       />
 
       <ServicesHero />
