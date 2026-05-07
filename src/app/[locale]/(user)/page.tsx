@@ -29,18 +29,18 @@ export async function generateMetadata({
   if (!isValidLocale(locale)) notFound();
 
   return {
-    title: "Master Premier Green Energy | #1 Solar Company in South Sudan",
+    title: "Master Premier Green Energy | Solar Company South Sudan | MPGE",
     description:
-      "Master Premier Green Energy Co. Ltd (MPGE) is South Sudan's leading solar energy company. Expert solar installation, off-grid systems, energy audits and clean energy advisory in Juba and across South Sudan. Get a free quote today.",
+      "Master Premier Green Energy Co. Ltd (MPGE) — #1 solar energy company in South Sudan. Solar installation, off-grid systems, energy audits and feasibility studies in Juba and across South Sudan. Call +211 982 004 848.",
     keywords:
       "Master Green Energy, Master Premier Green Energy, Master Green, MPGE, Master Green Energy Solar, solar energy South Sudan, solar company South Sudan, solar installation Juba, off-grid solar South Sudan, renewable energy South Sudan, solar panel installation, energy audit South Sudan, feasibility study solar",
     alternates: {
       canonical: "https://www.masterpremier.energy/en",
     },
     openGraph: {
-      title: "Master Premier Green Energy | #1 Solar Company in South Sudan",
+      title: "Master Premier Green Energy | Solar Company South Sudan | MPGE",
       description:
-        "Master Premier Green Energy Co. Ltd (MPGE) is South Sudan's leading solar energy company. Expert solar installation, off-grid systems, energy audits and clean energy advisory in Juba and across South Sudan. Get a free quote today.",
+        "Master Premier Green Energy Co. Ltd (MPGE) — #1 solar energy company in South Sudan. Solar installation, off-grid systems, energy audits and feasibility studies in Juba and across South Sudan. Call +211 982 004 848.",
       url: "https://www.masterpremier.energy/en",
       siteName: "Master Premier Green Energy Co. Ltd",
       type: "website",
