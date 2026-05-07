@@ -38,9 +38,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const [posts, projects, studies] = await Promise.all([
-    clientFetch<SlugWithUpdatedAt[]>({ query: POST_SLUGS_QUERY }),
-    clientFetch<SlugWithUpdatedAt[]>({ query: PROJECT_SLUGS_QUERY, tags: ["project"] }),
-    clientFetch<SlugWithUpdatedAt[]>({ query: FEASIBILITY_SLUGS_QUERY, tags: ["feasibility-post"] }),
+    clientFetch({ query: POST_SLUGS_QUERY }) as Promise<SlugWithUpdatedAt[]>,
+    clientFetch({ query: PROJECT_SLUGS_QUERY, tags: ["project"] }) as Promise<SlugWithUpdatedAt[]>,
+    clientFetch({ query: FEASIBILITY_SLUGS_QUERY, tags: ["feasibility-post"] }) as Promise<SlugWithUpdatedAt[]>,
   ]);
 
   const postPages: MetadataRoute.Sitemap = (posts ?? []).map((post) => ({
