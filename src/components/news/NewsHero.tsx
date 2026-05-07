@@ -12,7 +12,7 @@ export default function NewsHero() {
       </p>
 
       <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-        {isAmharic ? "أخبار الشركة" : "Corporate Newsroom"}
+        {isAmharic ? "أخبار الشركة" : "Solar Energy News & Insights — Master Premier Green Energy"}
       </h1>
 
       <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">

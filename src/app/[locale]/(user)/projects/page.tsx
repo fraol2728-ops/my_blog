@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 import ProjectsPageClient from "@/components/projects/ProjectsPageClient";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
-import { buildBreadcrumbSchema, pageMetadata, SITE_URL } from "@/lib/seo";
+import { buildBreadcrumbSchema, SITE_URL } from "@/lib/seo";
 import { getProjects } from "@/sanity/queries";
 import { Project } from "@/types";
 
@@ -18,14 +18,24 @@ export async function generateMetadata({
 
   if (!isValidLocale(locale)) notFound();
 
-  return pageMetadata({
-    locale: locale as AppLocale,
-    path: "/projects",
-    title: "Our Projects & Impact | Master Premier Green Energy",
+  return {
+    title: "Solar Projects in South Sudan | Master Premier Green Energy",
     description:
-      "Explore residential, commercial, and government solar case studies with proven energy output and measurable savings.",
-    keywords: ["solar projects", "solar case studies", "commercial solar", "residential solar"],
-  });
+      "Explore completed solar energy projects by Master Premier Green Energy across South Sudan. From off-grid installations to large-scale commercial solar systems in Juba and beyond.",
+    keywords:
+      "Master Green Energy, Master Premier Green Energy, Master Green, MPGE, Master Green Energy Solar, solar energy South Sudan, solar company South Sudan, solar installation Juba, off-grid solar South Sudan, renewable energy South Sudan",
+    alternates: {
+      canonical: "https://www.masterpremier.energy/en/projects",
+    },
+    openGraph: {
+      title: "Solar Projects in South Sudan | Master Premier Green Energy",
+      description:
+        "Explore completed solar energy projects by Master Premier Green Energy across South Sudan. From off-grid installations to large-scale commercial solar systems in Juba and beyond.",
+      url: "https://www.masterpremier.energy/en/projects",
+      siteName: "Master Premier Green Energy Co. Ltd",
+      type: "website",
+    },
+  };
 }
 
 export default async function ProjectsPage({

@@ -10,7 +10,7 @@ import ServicesOverview, {
 } from "@/components/services/ServicesOverview";
 import WhyChooseUs from "@/components/services/WhyChooseUs";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
-import { buildBreadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema } from "@/lib/seo";
 import { getFeasibilityPosts } from "@/sanity/queries";
 import type { FeasibilityPost } from "@/types";
 import type { Metadata } from "next";
@@ -25,13 +25,24 @@ export async function generateMetadata({
 
   if (!isValidLocale(locale)) notFound();
 
-  return pageMetadata({
-    locale: locale as AppLocale,
-    path: "/services",
-    title: "Solar Engineering, Advisory, and Installation Services",
+  return {
+    title: "Solar Energy Services | Master Premier Green Energy South Sudan",
     description:
-      "Explore Master Premier Green Energy services including energy audits, feasibility studies, system design, installation, and after-service support.",
-  });
+      "Master Premier Green Energy offers complete solar services in South Sudan — installation, equipment supply, local manufacturing, energy audits, feasibility studies and maintenance. Serving Juba and all regions.",
+    keywords:
+      "Master Green Energy, Master Premier Green Energy, Master Green, MPGE, Master Green Energy Solar, solar energy South Sudan, solar company South Sudan, solar installation Juba, off-grid solar South Sudan, renewable energy South Sudan",
+    alternates: {
+      canonical: "https://www.masterpremier.energy/en/services",
+    },
+    openGraph: {
+      title: "Solar Energy Services | Master Premier Green Energy South Sudan",
+      description:
+        "Master Premier Green Energy offers complete solar services in South Sudan — installation, equipment supply, local manufacturing, energy audits, feasibility studies and maintenance. Serving Juba and all regions.",
+      url: "https://www.masterpremier.energy/en/services",
+      siteName: "Master Premier Green Energy Co. Ltd",
+      type: "website",
+    },
+  };
 }
 
 const services: ServiceDetail[] = [

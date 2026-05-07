@@ -8,7 +8,7 @@ import TeamSection from "@/components/about/TeamSection";
 import ValuesGrid from "@/components/about/ValuesGrid";
 import VisionMission from "@/components/about/VisionMission";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
-import { buildBreadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -21,13 +21,24 @@ export async function generateMetadata({
 
   if (!isValidLocale(locale)) notFound();
 
-  return pageMetadata({
-    locale: locale as AppLocale,
-    path: "/about",
-    title: "About Master Premier Green Energy Co. Ltd",
+  return {
+    title: "About Master Premier Green Energy | Solar Experts in South Sudan",
     description:
-      "Learn how Master Premier Green Energy Co. Ltd delivers renewable energy engineering, advisory services, and reliable solar access solutions across South Sudan.",
-  });
+      "Learn about Master Premier Green Energy Co. Ltd — South Sudan's trusted renewable energy company. Our team delivers solar installation, energy audits, and clean energy advisory services across Juba and South Sudan.",
+    keywords:
+      "Master Green Energy, Master Premier Green Energy, Master Green, MPGE, Master Green Energy Solar, solar energy South Sudan, solar company South Sudan, solar installation Juba, off-grid solar South Sudan, renewable energy South Sudan",
+    alternates: {
+      canonical: "https://www.masterpremier.energy/en/about",
+    },
+    openGraph: {
+      title: "About Master Premier Green Energy | Solar Experts in South Sudan",
+      description:
+        "Learn about Master Premier Green Energy Co. Ltd — South Sudan's trusted renewable energy company. Our team delivers solar installation, energy audits, and clean energy advisory services across Juba and South Sudan.",
+      url: "https://www.masterpremier.energy/en/about",
+      siteName: "Master Premier Green Energy Co. Ltd",
+      type: "website",
+    },
+  };
 }
 
 export default async function AboutPage({

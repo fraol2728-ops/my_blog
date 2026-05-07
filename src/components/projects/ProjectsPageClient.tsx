@@ -88,7 +88,7 @@ export default function ProjectsPageClient({
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-green-600">{t.projects.caseStudies}</p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">{t.projects.premiumExperience}</h1>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">{lang === "ar" ? t.projects.premiumExperience : "Our Solar Projects Across South Sudan"}</h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
               {t.projects.intro}
             </p>

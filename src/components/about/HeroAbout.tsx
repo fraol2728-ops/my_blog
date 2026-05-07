@@ -36,7 +36,7 @@ export default function HeroAbout() {
           <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
             {isAmharic
               ? "نبني مستقبلًا أكثر ذكاءً للطاقة بخبرة موثوقة في الطاقة الشمسية"
-              : "Building Smarter Energy Futures with Proven Solar Expertise"}
+              : "About Master Premier Green Energy Co. Ltd"}
           </h1>
 
           <p className="text-base leading-relaxed text-slate-200 sm:text-lg">
