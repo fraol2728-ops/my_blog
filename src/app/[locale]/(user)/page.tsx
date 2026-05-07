@@ -64,7 +64,7 @@ export default async function Home({
     "@graph": [
       {"@type":"Organization","@id":"https://www.masterpremier.energy/#organization","name":"Master Premier Green Energy Co. Ltd","alternateName":["Master Green Energy","MPGE","Master Green","Master Premier"],"url":"https://www.masterpremier.energy/en","logo":{"@type":"ImageObject","url":"https://www.masterpremier.energy/logo.png"}},
       {"@type":"WebSite","@id":"https://www.masterpremier.energy/#website","url":"https://www.masterpremier.energy/en","name":"Master Premier Green Energy Co. Ltd","publisher":{"@id":"https://www.masterpremier.energy/#organization"}},
-      {"@type":"LocalBusiness","@id":"https://www.masterpremier.energy/#localbusiness","name":"Master Premier Green Energy Co. Ltd","telephone":"+211982004848","email":"mpgenergy@gmail.com","url":"https://www.masterpremier.energy/en"}
+      {"@type":"LocalBusiness","@id":"https://www.masterpremier.energy/#localbusiness","name":"Master Premier Green Energy Co. Ltd","telephone":"+211982004848","email":"support@masterpremier.energy","url":"https://www.masterpremier.energy/en"}
     ]
   };
 

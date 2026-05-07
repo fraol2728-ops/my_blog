@@ -8,7 +8,7 @@ const contactItems = [
   { icon: MapPin, label: "Address", value: "Thongping, Florian Road, Block 3, Plot No. 258 - Juba, South Sudan" },
   { icon: Phone, label: "Phone 1", value: "+211 982 004 848" },
   { icon: Phone, label: "Phone 2", value: "+211 928 004 848" },
-  { icon: Mail, label: "Email", value: "mpgenergy@gmail.com" },
+  { icon: Mail, label: "Email", value: "support@masterpremier.energy" },
   { icon: Clock3, label: "Working Hours", value: "Mon - Fri: 8:00 AM - 6:00 PM" },
 ];
 

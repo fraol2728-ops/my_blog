@@ -20,7 +20,7 @@ export async function generateMetadata({
   return {
     title: "Contact Master Premier Green Energy | Solar Quote South Sudan",
     description:
-      "Contact Master Premier Green Energy Co. Ltd for a free solar energy quote in South Sudan. Call +211 982 004 848 or email mpgenergy@gmail.com. Based in Juba.",
+      "Contact Master Premier Green Energy Co. Ltd for a free solar energy quote in South Sudan. Call +211 982 004 848 or email support@masterpremier.energy. Based in Juba.",
     keywords:
       "Master Green Energy, Master Premier Green Energy, Master Green, MPGE, Master Green Energy Solar, solar energy South Sudan, solar company South Sudan, solar installation Juba, off-grid solar South Sudan, renewable energy South Sudan",
     alternates: {
@@ -29,7 +29,7 @@ export async function generateMetadata({
     openGraph: {
       title: "Contact Master Premier Green Energy | Solar Quote South Sudan",
       description:
-        "Contact Master Premier Green Energy Co. Ltd for a free solar energy quote in South Sudan. Call +211 982 004 848 or email mpgenergy@gmail.com. Based in Juba.",
+        "Contact Master Premier Green Energy Co. Ltd for a free solar energy quote in South Sudan. Call +211 982 004 848 or email support@masterpremier.energy. Based in Juba.",
       url: "https://www.masterpremier.energy/en/contact",
       siteName: "Master Premier Green Energy Co. Ltd",
       type: "website",
