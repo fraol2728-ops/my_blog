@@ -48,7 +48,7 @@ export const pageMetadata = ({ locale, path, title, description, keywords }: { l
     keywords: buildDynamicSeoKeywords({ sanityKeywords: keywords }),
     alternates: { canonical: absoluteCanonical, languages: { en: `${SITE_URL}/en${path === "/" ? "" : path}`, ar: `${SITE_URL}/ar${path === "/" ? "" : path}` } },
     openGraph: { type: "website", locale: locale === "ar" ? "ar" : "en_US", url: absoluteCanonical, title, description, siteName: SITE_NAME, images: [{ url: ogImage, width: 1200, height: 630, alt: `${title} | ${SITE_NAME}` }] },
-    twitter: { card: "summary_large_image", title, description, images: [ogImage] },
+    twitter: { card: "summary_large_image", title, description, images: [ogImage], site: absoluteCanonical },
   };
 };
 

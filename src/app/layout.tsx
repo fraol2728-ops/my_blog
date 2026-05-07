@@ -18,9 +18,9 @@ export const metadata: Metadata = {
     type: "website", locale: "en_US", url: "https://www.masterpremier.energy/en", siteName: "Master Premier Green Energy Co. Ltd",
     title: "Master Premier Green Energy Co. Ltd | Solar Energy South Sudan",
     description: "South Sudan's leading solar and renewable energy company. Off-grid solar systems, energy audits, installation and support.",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Master Premier Green Energy - Solar Power South Sudan" }],
+    images: [{ url: "https://www.masterpremier.energy/og-image.jpg", width: 1200, height: 630, alt: "Master Premier Green Energy - Solar Power South Sudan" }],
   },
-  twitter: { card: "summary_large_image", title: "Master Premier Green Energy Co. Ltd", description: "South Sudan's leading solar energy company — off-grid systems, energy audits, and clean energy advisory.", images: ["/og-image.jpg"] },
+  twitter: { card: "summary_large_image", title: "Master Premier Green Energy Co. Ltd", description: "South Sudan's leading solar energy company — off-grid systems, energy audits, and clean energy advisory.", images: ["https://www.masterpremier.energy/og-image.jpg"], site: "https://www.masterpremier.energy/en" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 } },
   verification: {
     google: "PASTE_YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE_HERE",
