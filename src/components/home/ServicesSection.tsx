@@ -5,6 +5,7 @@ import { Section, SectionHeader } from "@/components/ui/section";
 import { useLocale } from "@/i18n/I18nProvider";
 import { CheckCircle } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const services = [
   {
@@ -18,6 +19,7 @@ const services = [
     ],
     image: "/service1.jpg",
     alt: "Technicians installing solar panels on a rooftop",
+    slug: "solar-installation",
   },
   {
     title: "Solar Equipment & Product Supply",
@@ -30,6 +32,7 @@ const services = [
     ],
     image: "/service2.jpg",
     alt: "Solar equipment and hardware prepared for installation",
+    slug: "equipment-supply",
   },
   {
     title: "Local Solar Panel Manufacturing",
@@ -42,6 +45,7 @@ const services = [
     ],
     image: "/service3.jpg",
     alt: "Solar panel manufacturing line with assembled modules",
+    slug: "panel-manufacturing",
   },
   {
     title: "Maintenance & Technical Support",
@@ -54,6 +58,7 @@ const services = [
     ],
     image: "/service4.jpg",
     alt: "Engineer providing technical support for a solar system",
+    slug: "maintenance-support",
   },
 ];
 
@@ -139,7 +144,7 @@ export default function ServicesSection() {
               </div>
 
               <div className={imageFirst ? "order-2" : "order-1 md:order-1"}>
-                <h3 className="text-2xl font-semibold text-slate-900 md:text-3xl">{service.title}</h3>
+                <Link href={`/en/services#${service.slug}`} className="text-2xl font-semibold text-slate-900 md:text-3xl hover:text-emerald-700">{service.title}</Link>
                 <p className="mt-4 text-base text-slate-600 md:text-lg">{service.description}</p>
 
                 <ul className="mt-6 space-y-3">
