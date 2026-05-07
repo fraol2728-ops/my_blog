@@ -7,7 +7,7 @@ import { Post, PostCategory } from "@/types";
 import { getMessages } from "@/i18n/get-messages";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
-import { buildBreadcrumbSchema, buildSanityKeywordSignals, pageMetadata, SITE_URL } from "@/lib/seo";
+import { buildBreadcrumbSchema, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
 
 
@@ -19,29 +19,28 @@ export async function generateMetadata({
   searchParams: Promise<{ q?: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const { q } = await searchParams;
+  await searchParams;
 
   if (!isValidLocale(locale)) notFound();
 
-  const [postsResponse, categoriesResponse] = await Promise.allSettled([
-    getAllPosts(50),
-    getCategories(),
-  ]);
-
-  const posts: Post[] = postsResponse.status === "fulfilled" ? postsResponse.value ?? [] : [];
-  const categories: PostCategory[] =
-    categoriesResponse.status === "fulfilled" ? categoriesResponse.value ?? [] : [];
-  const sanityKeywords = buildSanityKeywordSignals({ posts, categories });
-  const queryKeyword = q?.trim();
-
-  return pageMetadata({
-    locale: locale as AppLocale,
-    path: "/news",
-    title: "Master Premier News and Clean Energy Updates",
+  return {
+    title: "Solar Energy News South Sudan | Master Premier Green Energy",
     description:
-      "Stay updated on Master Premier Green Energy projects, renewable energy insights, and clean energy access developments in South Sudan.",
-    keywords: queryKeyword ? [...sanityKeywords, queryKeyword] : sanityKeywords,
-  });
+      "Stay updated with the latest solar energy news, insights and updates from Master Premier Green Energy — South Sudan's leading renewable energy company.",
+    keywords:
+      "Master Green Energy, Master Premier Green Energy, Master Green, MPGE, Master Green Energy Solar, solar energy South Sudan, solar company South Sudan, solar installation Juba, off-grid solar South Sudan, renewable energy South Sudan",
+    alternates: {
+      canonical: "https://www.masterpremier.energy/en/news",
+    },
+    openGraph: {
+      title: "Solar Energy News South Sudan | Master Premier Green Energy",
+      description:
+        "Stay updated with the latest solar energy news, insights and updates from Master Premier Green Energy — South Sudan's leading renewable energy company.",
+      url: "https://www.masterpremier.energy/en/news",
+      siteName: "Master Premier Green Energy Co. Ltd",
+      type: "website",
+    },
+  };
 }
 
 export default async function NewsPage({

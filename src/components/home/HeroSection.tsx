@@ -159,7 +159,7 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
                 {isAmharic ? "البنية التحتية للطاقة النظيفة" : "Clean Energy Infrastructure"}
               </p>
               <h1 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-                Master Premier Green Energy — Solar Power in South Sudan
+                Master Premier Green Energy — Solar Power Solutions in South Sudan
               </h1>
               <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/80 md:mx-0 md:text-lg">
                 {isAmharic

@@ -8,7 +8,7 @@ import ProjectsSection from "@/components/home/ProjectsSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import WhySolarSection from "@/components/home/WhySolarSection";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
-import { buildBreadcrumbSchema, getLocalizedHomeMeta, pageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema } from "@/lib/seo";
 import {
   getAllPosts,
   getFeaturedProjects,
@@ -28,14 +28,24 @@ export async function generateMetadata({
 
   if (!isValidLocale(locale)) notFound();
 
-  const localized = getLocalizedHomeMeta(locale as AppLocale);
-
-  return pageMetadata({
-    locale: locale as AppLocale,
-    path: "/",
-    title: localized.title,
-    description: localized.description,
-  });
+  return {
+    title: "Master Premier Green Energy | #1 Solar Company in South Sudan",
+    description:
+      "Master Premier Green Energy Co. Ltd (MPGE) is South Sudan's leading solar energy company. Expert solar installation, off-grid systems, energy audits and clean energy advisory in Juba and across South Sudan. Get a free quote today.",
+    keywords:
+      "Master Green Energy, Master Premier Green Energy, Master Green, MPGE, Master Green Energy Solar, solar energy South Sudan, solar company South Sudan, solar installation Juba, off-grid solar South Sudan, renewable energy South Sudan, solar panel installation, energy audit South Sudan, feasibility study solar",
+    alternates: {
+      canonical: "https://www.masterpremier.energy/en",
+    },
+    openGraph: {
+      title: "Master Premier Green Energy | #1 Solar Company in South Sudan",
+      description:
+        "Master Premier Green Energy Co. Ltd (MPGE) is South Sudan's leading solar energy company. Expert solar installation, off-grid systems, energy audits and clean energy advisory in Juba and across South Sudan. Get a free quote today.",
+      url: "https://www.masterpremier.energy/en",
+      siteName: "Master Premier Green Energy Co. Ltd",
+      type: "website",
+    },
+  };
 }
 
 export default async function Home({

@@ -4,7 +4,7 @@ import ContactInfo from "@/components/contact/ContactInfo";
 import FAQSection from "@/components/contact/FAQSection";
 import { isValidLocale, type AppLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
-import { buildBreadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema } from "@/lib/seo";
 import type { Metadata } from "next";
 
 
@@ -17,13 +17,24 @@ export async function generateMetadata({
 
   if (!isValidLocale(locale)) notFound();
 
-  return pageMetadata({
-    locale: locale as AppLocale,
-    path: "/contact",
-    title: "Contact Master Premier Green Energy Co. Ltd",
+  return {
+    title: "Contact Master Premier Green Energy | Solar Quote South Sudan",
     description:
-      "Contact our team in Juba for renewable energy engineering, advisory support, and solar project consultation.",
-  });
+      "Contact Master Premier Green Energy Co. Ltd for a free solar energy quote in South Sudan. Call +211 982 004 848 or email mpgenergy@gmail.com. Based in Juba.",
+    keywords:
+      "Master Green Energy, Master Premier Green Energy, Master Green, MPGE, Master Green Energy Solar, solar energy South Sudan, solar company South Sudan, solar installation Juba, off-grid solar South Sudan, renewable energy South Sudan",
+    alternates: {
+      canonical: "https://www.masterpremier.energy/en/contact",
+    },
+    openGraph: {
+      title: "Contact Master Premier Green Energy | Solar Quote South Sudan",
+      description:
+        "Contact Master Premier Green Energy Co. Ltd for a free solar energy quote in South Sudan. Call +211 982 004 848 or email mpgenergy@gmail.com. Based in Juba.",
+      url: "https://www.masterpremier.energy/en/contact",
+      siteName: "Master Premier Green Energy Co. Ltd",
+      type: "website",
+    },
+  };
 }
 
 export default async function ContactPage({

@@ -34,7 +34,7 @@ export default function ServicesHero() {
           <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
             {isAmharic
               ? "حلول طاقة متكاملة من البداية إلى التشغيل الكامل"
-              : "End-to-End Energy Solutions Built to Scale"}
+              : "Solar Energy Services in South Sudan — Master Premier Green Energy"}
           </h1>
 
           <p className="max-w-2xl text-base text-slate-200 sm:text-lg">
