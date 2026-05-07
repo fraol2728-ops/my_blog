@@ -267,6 +267,26 @@ const SinglePostPage = async ({
         </div>
       </Container>
       <OtherPosts otherPosts={otherPosts} locale={locale} />
+
+      <Container className="pb-20">
+        <section className="ui-card mx-auto mt-6 max-w-3xl p-6 md:p-8">
+          <h3 className="text-2xl font-semibold tracking-tight text-gray-950">Explore Our Solar Services</h3>
+          <p className="mt-3 text-base leading-7 text-gray-700">
+            Master Premier Green Energy provides complete renewable energy solutions across South Sudan.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/en/services" className="inline-flex rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900 transition hover:border-emerald-600 hover:text-emerald-700">
+              View All Services
+            </Link>
+            <Link href="/en/contact" className="inline-flex rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900 transition hover:border-emerald-600 hover:text-emerald-700">
+              Get a Free Quote
+            </Link>
+            <Link href="/en/projects" className="inline-flex rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900 transition hover:border-emerald-600 hover:text-emerald-700">
+              See Our Projects
+            </Link>
+          </div>
+        </section>
+      </Container>
     </div>
   );
 };

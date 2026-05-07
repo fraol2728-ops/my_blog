@@ -59,9 +59,9 @@ export default function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">{t.footer.coreServices}</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/80">
               {t.footer.serviceItems.map((service) => (
-                <li key={service}>
+                <li key={service === "Energy audit & feasibility studies" ? "Energy Audit & Feasibility Studies — South Sudan" : service === "System design & commercial proposals" ? "Solar System Design South Sudan" : service === "Installation & after-service support" ? "Solar Installation & Support — Juba" : service}>
                   <Link className="inline-flex hover:text-emerald-300" href={localized("/services")}>
-                    {service}
+                    {service === "Energy audit & feasibility studies" ? "Energy Audit & Feasibility Studies — South Sudan" : service === "System design & commercial proposals" ? "Solar System Design South Sudan" : service === "Installation & after-service support" ? "Solar Installation & Support — Juba" : service}
                   </Link>
                 </li>
               ))}

@@ -19,7 +19,7 @@ const services = [
     ],
     image: "/service1.jpg",
     alt: "Technicians installing solar panels on a rooftop",
-    slug: "solar-installation",
+    slug: "installation",
   },
   {
     title: "Solar Equipment & Product Supply",
@@ -32,7 +32,7 @@ const services = [
     ],
     image: "/service2.jpg",
     alt: "Solar equipment and hardware prepared for installation",
-    slug: "equipment-supply",
+    slug: "equipment",
   },
   {
     title: "Local Solar Panel Manufacturing",
@@ -45,7 +45,7 @@ const services = [
     ],
     image: "/service3.jpg",
     alt: "Solar panel manufacturing line with assembled modules",
-    slug: "panel-manufacturing",
+    slug: "manufacturing",
   },
   {
     title: "Maintenance & Technical Support",
@@ -58,7 +58,7 @@ const services = [
     ],
     image: "/service4.jpg",
     alt: "Engineer providing technical support for a solar system",
-    slug: "maintenance-support",
+    slug: "maintenance",
   },
 ];
 
