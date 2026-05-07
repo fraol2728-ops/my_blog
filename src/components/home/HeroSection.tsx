@@ -115,6 +115,9 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
   return (
     <LazyMotion features={domAnimation}>
       <section className="relative min-h-[calc(100svh-var(--site-header-height,0px))] overflow-hidden bg-black">
+        <p className="sr-only">
+          Master Premier Green Energy Co. Ltd, also known as Master Green Energy, Master Green, MPGE, and Master Premier, is the number one solar energy and renewable energy company in South Sudan. We provide solar installation, off-grid solar systems, energy audits, and feasibility studies in Juba and across South Sudan. Contact us at +211 982 004 848 or support@masterpremier.energy
+        </p>
         <AnimatePresence mode="wait">
           <m.div
             key={activeImage}
