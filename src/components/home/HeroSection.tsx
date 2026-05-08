@@ -12,9 +12,9 @@ import type { Project } from "@/types";
 const sliderImages = ["/slide1.jpg", "/slide2.jpg", "/slide3.jpg", "/slide4.jpg"];
 
 const stats = [
-  { icon: Zap, label: "Energy Generated", value: 50, suffix: "MW" },
-  { icon: Smile, label: "Client Satisfaction", value: 98, suffix: "%" },
-  { icon: Wrench, label: "Years Experience", value: 10, suffix: "+" },
+  { icon: Zap, label: "MW Solar Energy Delivered", value: 50, suffix: "MW" },
+  { icon: Smile, label: "Client Satisfaction Rate", value: 98, suffix: "%" },
+  { icon: Wrench, label: "Years in Renewable Energy", value: 10, suffix: "+" },
 ];
 
 function useCountUp(end: number, duration = 1700) {
@@ -103,9 +103,9 @@ export default function HeroSection({ featuredProject }: HeroSectionProps) {
         label:
           isAmharic
             ? {
-                "Energy Generated": "الطاقة المولدة",
-                "Client Satisfaction": "رضا العملاء",
-                "Years Experience": "سنوات الخبرة",
+                "MW Solar Energy Delivered": "ميغاواط الطاقة الشمسية المقدمة",
+                "Client Satisfaction Rate": "معدل رضا العملاء",
+                "Years in Renewable Energy": "سنوات في الطاقة المتجددة",
               }[item.label] ?? item.label
             : item.label,
       })),
