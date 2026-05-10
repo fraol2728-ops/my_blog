@@ -6,129 +6,39 @@ import { buildSiteNavigationSchema } from "@/lib/seo";
 import { LanguageProvider } from "@/context/language";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.masterpremier.energy"),
   title: {
-    default: "Master Premier Green Energy Co. Ltd | Solar Energy South Sudan",
+    default: "Solar Company in South Sudan | Master Premier Green Energy",
     template: "%s | Master Premier Green Energy",
   },
-  description: "Master Premier Green Energy Co. Ltd (MPGE) — South Sudan's leading renewable energy company. Expert solar installation, off-grid systems, energy audits, and clean energy advisory in Juba and across South Sudan.",
-  keywords: ["Master Green Energy", "Master Premier Green Energy", "Master Green", "MPGE", "solar energy South Sudan", "solar installation Juba", "off-grid solar South Sudan", "renewable energy South Sudan", "solar company South Sudan", "clean energy South Sudan", "Master Green Energy Solar", "solar PV South Sudan"],
-  metadataBase: new URL("https://www.masterpremier.energy"),
-  alternates: { canonical: "https://www.masterpremier.energy/en", languages: { en: "/en", ar: "/ar" } },
-  icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
-  },
+  description:
+    "We provide solar installation, off-grid systems, and renewable energy solutions in South Sudan for homes and businesses.",
   openGraph: {
-    type: "website", locale: "en_US", url: "https://www.masterpremier.energy/en", siteName: "Master Premier Green Energy Co. Ltd",
-    title: "Master Premier Green Energy Co. Ltd | Solar Energy South Sudan",
-    description: "South Sudan's leading solar and renewable energy company. Off-grid solar systems, energy audits, installation and support.",
-    images: [{ url: "https://www.masterpremier.energy/logo.png", width: 512, height: 512, alt: "Master Premier Green Energy Co. Ltd Logo" }],
+    type: "website",
+    url: "https://www.masterpremier.energy",
+    siteName: "Master Premier Green Energy",
+    title: "Solar Company in South Sudan | Master Premier Green Energy",
+    description:
+      "We provide solar installation, off-grid systems, and renewable energy solutions in South Sudan for homes and businesses.",
+    images: [
+      {
+        url: "/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Solar installation services in South Sudan by Master Premier Green Energy",
+      },
+    ],
   },
-  twitter: { card: "summary_large_image", title: "Master Premier Green Energy Co. Ltd", description: "South Sudan's leading solar energy company — off-grid systems, energy audits, and clean energy advisory.", images: ["https://www.masterpremier.energy/og-image.jpg"], site: "https://www.masterpremier.energy/en" },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 } },
-  verification: {
-    google: "PASTE_YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE_HERE",
-    other: { "msvalidate.01": "PASTE_YOUR_BING_WEBMASTER_VERIFICATION_CODE_HERE" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solar Company in South Sudan | Master Premier Green Energy",
+    description:
+      "We provide solar installation, off-grid systems, and renewable energy solutions in South Sudan for homes and businesses.",
+    images: ["/hero.jpg"],
   },
 };
 
 const siteNavigationSchema = buildSiteNavigationSchema();
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://www.masterpremier.energy/#organization",
-      "name": "Master Premier Green Energy Co. Ltd",
-      "alternateName": [
-        "Master Green Energy",
-        "Master Green",
-        "MPGE",
-        "Master Premier",
-        "Master Premier Green"
-      ],
-      "url": "https://www.masterpremier.energy/en",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.masterpremier.energy/logo.png",
-        "width": 512,
-        "height": 512
-      },
-      "description": "Master Premier Green Energy Co. Ltd (MPGE) is South Sudan's leading renewable energy company. We provide solar installation, off-grid solar systems, energy audits, feasibility studies, and clean energy advisory services in Juba and across South Sudan.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Thongping, Florian Road, Block 3, Plot No. 258",
-        "addressLocality": "Juba",
-        "addressRegion": "Central Equatoria",
-        "addressCountry": "SS"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+211982004848",
-        "contactType": "customer service",
-        "availableLanguage": ["English", "Arabic"]
-      },
-      "email": "support@masterpremier.energy",
-      "telephone": "+211982004848",
-      "areaServed": {
-        "@type": "Country",
-        "name": "South Sudan"
-      },
-      "knowsAbout": [
-        "Solar Energy",
-        "Renewable Energy",
-        "Off-grid Solar Systems",
-        "Energy Audits",
-        "Feasibility Studies",
-        "Solar Panel Installation",
-        "Clean Energy Advisory"
-      ]
-    },
-    {
-      "@type": "LocalBusiness",
-      "@id": "https://www.masterpremier.energy/#localbusiness",
-      "name": "Master Premier Green Energy Co. Ltd",
-      "image": "https://www.masterpremier.energy/logo.png",
-      "telephone": "+211982004848",
-      "email": "support@masterpremier.energy",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Thongping, Florian Road, Block 3, Plot No. 258",
-        "addressLocality": "Juba",
-        "addressRegion": "Central Equatoria",
-        "addressCountry": "SS"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 4.8594,
-        "longitude": 31.5713
-      },
-      "url": "https://www.masterpremier.energy/en",
-      "priceRange": "$$",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday","Tuesday","Wednesday","Thursday","Friday"
-        ],
-        "opens": "08:00",
-        "closes": "17:00"
-      }
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.masterpremier.energy/#website",
-      "url": "https://www.masterpremier.energy/en",
-      "name": "Master Premier Green Energy Co. Ltd",
-      "alternateName": ["Master Green Energy", "MPGE", "Master Green"],
-      "description": "South Sudan's leading solar and renewable energy company.",
-      "publisher": {
-        "@id": "https://www.masterpremier.energy/#organization"
-      },
-      "inLanguage": ["en", "ar"]
-    }
-  ]
-}
-
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -136,7 +46,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-        {/* Logo for Google */}
         <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/logo.png" />
       </head>
@@ -148,7 +57,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             {children}
           </LanguageProvider>
         </SessionProvider>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>
   );
